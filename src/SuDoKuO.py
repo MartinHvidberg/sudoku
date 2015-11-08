@@ -27,7 +27,17 @@ class SuDoKu(object):
     def myrow(self,k,l):
         return self.m[k]
     
-    
+    def mybox(self,k,l):
+        kk = (k//3)*3
+        ll = (l//3)*3
+        return [self.m[kk+i][ll+j] for i in range(3) for j in range(3)]
+        #=======================================================================
+        # lst_ret = list()
+        # for i in range(3):
+        #     for j in range(3):
+        #         lst_ret.append(self.m[kk+i][ll+j])
+        # return lst_ret
+        #=======================================================================
             
     #def pencil(self):
     #    self

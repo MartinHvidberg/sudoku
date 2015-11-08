@@ -16,3 +16,5 @@ log.info(str_start_message)
 
 s = SuDoKuO.SuDoKu("13........2...9......8..7..6....48....5.2...........4.....3...27..5.....8........")
 print s
+print s.mycol(4,4)
+print s.myrow(4,4)

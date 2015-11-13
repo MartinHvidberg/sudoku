@@ -84,10 +84,10 @@ class SuDoKu(object):
             else:
                 lines[p] = "|+++ +++ +++|+++ +++ +++|+++ +++ +++|"
         # Fill values
-        print lines[1][12]
         for i in range(9):
             for j in range(9):
-                lines[i] = lines[i][:j] + str(self.m[i][j]) + lines[i][j+1:]
+                if self.m[i][j] != 0:
+                    lines[(i*4)+2] = lines[(i*4)+2][:(j*4)+2] + str(self.m[i][j]) + lines[(i*4)+2][(j*4)+2+1:]
         # to strings
         str_ret = ""
         for line in lines:

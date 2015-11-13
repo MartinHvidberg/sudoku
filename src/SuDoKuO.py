@@ -60,7 +60,7 @@ class SuDoKu(object):
         def l(i):
             return ("|"+p(i,0)+p(i,1)+p(i,2)+"|"+p(i,3)+p(i,4)+p(i,5)+"|"+p(i,6)+p(i,7)+p(i,8)+"|\n").replace('0',' ')
         def q():
-            v = '-------------\n'
+            v = '+---+---+---+\n'
             return (v+l(0)+l(1)+l(2)+v+l(3)+l(4)+l(5)+v+l(6)+l(7)+l(8)+v).strip()
         return q()
     
@@ -72,3 +72,30 @@ class SuDoKu(object):
     
     def show_solved(self):
         return self.show_small(self.solution)
+    
+    def show_big(self):
+        lines = [['0' for i in range(37)] for j in range(37)]
+        # Build graticules
+        for p in range(37):
+            if p in (0,12,24,36):
+                lines[p] = "+-----------+-----------+-----------+"
+            elif p in (4,8,16,20,28,32,36):
+                lines[p] = "|           |           |           |"
+            else:
+                lines[p] = "|+++ +++ +++|+++ +++ +++|+++ +++ +++|"
+        # Fill values
+        print lines[1][12]
+        for i in range(9):
+            for j in range(9):
+                lines[i] = lines[i][:j] + str(self.m[i][j]) + lines[i][j+1:]
+        # to strings
+        str_ret = ""
+        for line in lines:
+            for pin in line:
+                str_ret += str(pin)
+            str_ret += '\n'
+        return str_ret
+                        
+    def show_pencil(self):
+        return self.show_big()
+        

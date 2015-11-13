@@ -16,6 +16,7 @@ log.info(str_start_message)
 
 s = SuDoKuO.SuDoKu("13........2...9......8..7..6....48....5.2...........4.....3...27..5.....8........")
 print s
+print s.show_solved()
 print "col 4.4",s.mycol(4,4)
 print "row 4.4",s.myrow(4,4)
 print "box 0,0",s.mybox(0,0)

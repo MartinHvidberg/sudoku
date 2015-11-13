@@ -87,7 +87,10 @@ class SuDoKu(object):
         for i in range(9):
             for j in range(9):
                 if self.m[i][j] != 0:
-                    lines[(i*4)+2] = lines[(i*4)+2][:(j*4)+2] + str(self.m[i][j]) + lines[(i*4)+2][(j*4)+2+1:]
+                    lines[(i*4)+1] = lines[(i*4)+1][:(j*4)+2-1] +'...'+ lines[(i*4)+1][(j*4)+2+2:]
+                    lines[(i*4)+2] = lines[(i*4)+2][:(j*4)+2-1] +'.'+str(self.m[i][j])+'.'+ lines[(i*4)+2][(j*4)+2+2:]
+                    lines[(i*4)+3] = lines[(i*4)+3][:(j*4)+2-1] +'...'+ lines[(i*4)+3][(j*4)+2+2:]
+                    #lines[(i*4)+2] = lines[(i*4)+2][:(j*4)+2] + str(self.m[i][j]) + lines[(i*4)+2][(j*4)+2+1:]
         # to strings
         str_ret = ""
         for line in lines:

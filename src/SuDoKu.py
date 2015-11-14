@@ -19,3 +19,4 @@ print s
 #print s.show_solved()
 print "=== pencil ==="
 print s.show_pencil()
+print s.p

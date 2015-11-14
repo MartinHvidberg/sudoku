@@ -11,7 +11,7 @@ class SuDoKu(object):
     
     def __init__(self, str_ini):
         self.m = [['0' for i in range(9)] for j in range(9)] # Empty (0 filled) matrix
-        self.p = [[list() for i in range(9)] for j in range(9)] # Empty (empty lists) pencil-matrix
+        self.p = [[set() for i in range(9)] for j in range(9)] # Empty (empty lists) pencil-matrix
         if len(str_ini) == 0:
             pass # Creating empty sudoku ...
         elif len(str_ini) == 81:
@@ -50,7 +50,14 @@ class SuDoKu(object):
         return True
             
     def pencil(self):
-        pass
+        for i in range(9):
+            for j in range(9):
+                marks = set([1,2,3,4,5,6,7,8,9])
+                fixed = set(self.mycol(i,j)+self.myrow(i,j)+self.mybox(i,j))
+                print 'fixed: '+str(i) + str(j) + str(fixed)
+                #for val in fixed:
+                #    marks.remove(val)
+                #self.p[i][j] = "W"
     
     #====== Printout functions ======
     
@@ -86,11 +93,12 @@ class SuDoKu(object):
         # Fill values
         for i in range(9):
             for j in range(9):
-                if self.m[i][j] != 0:
+                if self.m[i][j] != 0: # show solved value
                     lines[(i*4)+1] = lines[(i*4)+1][:(j*4)+2-1] +'...'+ lines[(i*4)+1][(j*4)+2+2:]
                     lines[(i*4)+2] = lines[(i*4)+2][:(j*4)+2-1] +'.'+str(self.m[i][j])+'.'+ lines[(i*4)+2][(j*4)+2+2:]
                     lines[(i*4)+3] = lines[(i*4)+3][:(j*4)+2-1] +'...'+ lines[(i*4)+3][(j*4)+2+2:]
-                    #lines[(i*4)+2] = lines[(i*4)+2][:(j*4)+2] + str(self.m[i][j]) + lines[(i*4)+2][(j*4)+2+1:]
+                else: # show pencil marks
+                    pass
         # to strings
         str_ret = ""
         for line in lines:

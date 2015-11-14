@@ -53,12 +53,9 @@ class SuDoKu(object):
         for i in range(9):
             for j in range(9):
                 marks = set([1,2,3,4,5,6,7,8,9])
-                fixed = set(self.mycol(i,j)+self.myrow(i,j)+self.mybox(i,j))
-                print 'fixed: '+str(i) + str(j) + str(fixed)
-                #for val in fixed:
-                #    marks.remove(val)
-                #self.p[i][j] = "W"
-    
+                fixed = set(self.mycol(i,j)) | set(self.myrow(i,j)) | set(self.mybox(i,j))
+                self.p[i][j] = marks - fixed
+                
     #====== Printout functions ======
     
     def show_small(self, matrix):
@@ -85,20 +82,40 @@ class SuDoKu(object):
         # Build graticules
         for p in range(37):
             if p in (0,12,24,36):
-                lines[p] = "+-----------+-----------+-----------+"
+                lines[p] = "+===========+===========+===========+"
             elif p in (4,8,16,20,28,32,36):
-                lines[p] = "|           |           |           |"
+                lines[p] = "|---+---+---|---+---+---|---+---+---|"
             else:
-                lines[p] = "|+++ +++ +++|+++ +++ +++|+++ +++ +++|"
-        # Fill values
+                lines[p] = "|   !   !   |   !   !   |   !   !   |"
+        # Fill values # XXX This can be cleaned up - cci and ccj pre-calcs
         for i in range(9):
             for j in range(9):
+                cci = i*4+2
+                ccj = j*4+2
                 if self.m[i][j] != 0: # show solved value
-                    lines[(i*4)+1] = lines[(i*4)+1][:(j*4)+2-1] +'...'+ lines[(i*4)+1][(j*4)+2+2:]
-                    lines[(i*4)+2] = lines[(i*4)+2][:(j*4)+2-1] +'.'+str(self.m[i][j])+'.'+ lines[(i*4)+2][(j*4)+2+2:]
-                    lines[(i*4)+3] = lines[(i*4)+3][:(j*4)+2-1] +'...'+ lines[(i*4)+3][(j*4)+2+2:]
+                    lines[cci-1] = lines[cci-1][:ccj-1] +'...'+ lines[cci-1][ccj+2:]
+                    lines[cci] = lines[cci][:ccj-1] +'.'+str(self.m[i][j])+'.'+ lines[cci][ccj+2:]
+                    lines[cci+1] = lines[cci+1][:ccj-1] +'...'+ lines[cci+1][ccj+2:]
                 else: # show pencil marks
-                    pass
+                    if 1 in self.p[i][j]:
+                        lines[cci-1] = lines[cci-1][:ccj-1] +str(1)+ lines[cci-1][ccj:]
+                    if 2 in self.p[i][j]:
+                        lines[cci-1] = lines[cci-1][:ccj] +str(2)+ lines[cci-1][ccj+1:]
+                    if 3 in self.p[i][j]:
+                        lines[cci-1] = lines[cci-1][:ccj+1] +str(3)+ lines[cci-1][ccj+2:]
+                    if 4 in self.p[i][j]:
+                        lines[cci] = lines[cci][:ccj-1] +str(4)+ lines[cci][ccj:]
+                    if 5 in self.p[i][j]:
+                        lines[cci] = lines[cci][:ccj] +str(5)+ lines[cci][ccj+1:]
+                    if 6 in self.p[i][j]:
+                        lines[cci] = lines[cci][:ccj+1] +str(6)+ lines[cci][ccj+2:]
+                    if 7 in self.p[i][j]:
+                        lines[cci+1] = lines[cci+1][:ccj-1] +str(7)+ lines[cci+1][ccj:]
+                    if 8 in self.p[i][j]:
+                        lines[cci+1] = lines[cci+1][:ccj] +str(8)+ lines[cci+1][ccj+1:]
+                    if 9 in self.p[i][j]:
+                        lines[cci+1] = lines[cci+1][:ccj+1] +str(9)+ lines[cci+1][ccj+2:]
+                        
         # to strings
         str_ret = ""
         for line in lines:

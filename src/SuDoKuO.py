@@ -15,16 +15,19 @@ class SuDoKu(object):
         if len(str_ini) == 0:
             pass # Creating empty sudoku ...
         elif len(str_ini) == 81:
+            self.i = str_ini # Backup the original (init) fill, in string form
             try:
                 self.m = [[int(str_ini[j*9+i].replace('.','0')) for i in range(9)] for j in range(9)]
-                self.v = self.validate() # Validate that the fill is legal
-                if self.v:
-                    self.i = str_ini # Backup the original (init) fill, in string form
-                    self.o = self.m # Backup the original (init) fill, in matrix form
-                    self.pencil() # Fill in the pencil marks, for the init matrix
-                    self.solution = [[int(SuDoKuX.sudoku99(str_ini)[j*9+i].replace('.','0')) for i in range(9)] for j in range(9)] # Solve using brute force, to see if solution(s) exist
             except:
                 log.error("#102 > SuDoKu Object can't create, Check that it only contains digits, and '.'")
+            self.v = self.validate() # Validate that the fill is legal
+            if self.v:
+                try:
+                    self.solution = [[int(SuDoKuX.sudoku99(str_ini)[j*9+i].replace('.','0')) for i in range(9)] for j in range(9)] # Solve using brute force, to see if solution(s) exist
+                except:
+                    self.solution = self.m # If not solable, keep the init values to avoid a Null variable.
+                    self.v = False # It looked valid, but it's not ...
+                self.pencil() # Fill in the pencil marks, for the valid, solvable, init matrix
         else:
             log.error("#101 > SuDoKu Object can't create, because ini string do not have length 0 or 81.")
             
@@ -38,14 +41,16 @@ class SuDoKu(object):
         kk = (k//3)*3
         ll = (l//3)*3
         return [self.m[kk+i][ll+j] for i in range(3) for j in range(3)]
-        #=======================================================================
-        # lst_ret = list()
-        # for i in range(3):
-        #     for j in range(3):
-        #         lst_ret.append(self.m[kk+i][ll+j])
-        # return lst_ret
-        #=======================================================================
     
+    def rows(self):
+        return self.m 
+    
+    def cols(self):
+        return [self.mycol(1,i) for i in range(9)]
+    
+    def boxs(self):
+        return [self.mybox(i*3,j*3) for i in range(3) for j in range(3)]
+        
     def validate(self):
         return True
             

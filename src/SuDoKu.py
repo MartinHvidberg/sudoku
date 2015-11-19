@@ -14,17 +14,8 @@ log_fil.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(name)s -
 log.addHandler(log_fil)
 log.info(str_start_message)
 
-s = SuDoKuO.SuDoKu("131.......2...9......8..7..6....48....5.2...........4.....3...27..5.....8........")
+s = SuDoKuO.SuDoKu("13........2...9......8..7..6....48....5.2...........4.....3...27..5.....8........")
 print s
-print "rows"
-for r in s.rows():
-    print r
-print "cols"
-for c in s.cols():
-    print c
-print "boxs"
-for b in s.boxs():
-    print b
 print s.show_solved()
 print "=== pencil ==="
 #print s.show_pencil()

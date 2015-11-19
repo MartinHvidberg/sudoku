@@ -2,7 +2,7 @@
 
 import logging
 
-import SuDoKuX
+import SuDoKuX # Xtra functions, made by others...
 
 # create logger
 log = logging.getLogger('sudoku.obj')
@@ -21,12 +21,13 @@ class SuDoKu(object):
             except:
                 log.error("#102 > SuDoKu Object can't create, Check that it only contains digits, and '.'")
             self.v = self.validate() # Validate that the fill is legal
-            if self.v:
+            if self.v: # If it's valid, so far, check it it's solvable
                 try:
                     self.solution = [[int(SuDoKuX.sudoku99(str_ini)[j*9+i].replace('.','0')) for i in range(9)] for j in range(9)] # Solve using brute force, to see if solution(s) exist
                 except:
-                    self.solution = self.m # If not solable, keep the init values to avoid a Null variable.
+                    self.solution = self.m # If not solvable, keep the init values to avoid a Null variable.
                     self.v = False # It looked valid, but it's not ...
+            if self.v: # If it's valid, and also is solvable
                 self.pencil() # Fill in the pencil marks, for the valid, solvable, init matrix
         else:
             log.error("#101 > SuDoKu Object can't create, because ini string do not have length 0 or 81.")
@@ -52,7 +53,13 @@ class SuDoKu(object):
         return [self.mybox(i*3,j*3) for i in range(3) for j in range(3)]
         
     def validate(self):
-        return True
+        bol_valid = True # Until proven guilty
+        for area in self.rows()+self.cols()+self.boxs(): # check row, col and box duplets
+            a = filter(lambda a: a != 0, area)
+            if len(a) != len(list(set(a))):
+                bol_valid = False
+                log.error("#201 > Area seems to have redundant values: "+str(area))
+        return bol_valid
             
     def pencil(self):
         for i in range(9):
@@ -60,6 +67,12 @@ class SuDoKu(object):
                 marks = set([1,2,3,4,5,6,7,8,9])
                 fixed = set(self.mycol(i,j)) | set(self.myrow(i,j)) | set(self.mybox(i,j))
                 self.p[i][j] = marks - fixed
+                
+    #====== SLAP (Solve Like A Person) solver functions ======
+    
+    def free_gifts(self):
+        
+        return
                 
     #====== Printout functions ======
     
@@ -80,7 +93,10 @@ class SuDoKu(object):
         return self.show_small(self.m)
     
     def show_solved(self):
-        return self.show_small(self.solution)
+        if self.v:
+            return self.show_small(self.solution)
+        else:
+            return "SuDoKu can't be solved, since it's invalid..."
     
     def show_big(self):
         lines = [['0' for i in range(37)] for j in range(37)]

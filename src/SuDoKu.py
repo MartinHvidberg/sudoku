@@ -18,4 +18,6 @@ s = SuDoKuO.SuDoKu("13........2...9......8..7..6....48....5.2...........4.....3.
 print s
 print s.show_solved()
 print "=== pencil ==="
-#print s.show_pencil()
+print s.show_pencil()
+s._setm(3, 3, 1)
+print s.show_pencil()

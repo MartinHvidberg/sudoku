@@ -68,6 +68,19 @@ class SuDoKu(object):
                 fixed = set(self.mycol(i,j)) | set(self.myrow(i,j)) | set(self.mybox(i,j))
                 self.p[i][j] = marks - fixed
                 
+    def _setm(self, i, j, v):
+        """ Set cell i,j in .m to value, and clear relevant pencil marks. """
+        self.m[i][j] = v
+        for c in range(9): # row, and col pencil marks
+            self.p[i][c].discard(v)
+            self.p[c][j].discard(v)
+        kk = (i//3)*3 # box pencil marks
+        ll = (j//3)*3
+        for k in range(3):
+            for l in range(3):
+                self.p[kk+k][ll+l].discard(v)
+        return
+                
     #====== SLAP (Solve Like A Person) solver functions ======
     
     def free_gifts(self):

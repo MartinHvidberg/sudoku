@@ -34,25 +34,64 @@ class SuDoKu(object):
                 self.pencil() # Fill in the pencil marks, for the valid, solvable, init matrix
         else:
             log.error("#101 > SuDoKu Object can't create, because ini string do not have length 0 or 81.")
-
-    def mycol(self,k,l):
-        return [self.m[i][l] for i in range(9)]
+            
+    # Basic functions
+            
+    def get(self,k,l):
+        """ Return SuDoKu value in cell k,l """
+        return self.m[k][l]
+    
+    def _cps_myrow(self,k,l):
+        """ Return list of cps (coordinate pairs), representing the row that (k,l) belongs to """
+        return [(k,i) for i in range(9)]
     
     def myrow(self,k,l):
-        return self.m[k]
+        """ Return list of digits, representing the row that (k,l) belongs to """
+        return self.m[k] # Not using ._cps_ since this is simpler and faster
     
-    def mybox(self,k,l):
+    def _cps_mycol(self,k,l):
+        """ Return list of cps (coordinate pairs), representing the col that (k,l) belongs to """
+        return [(i,l) for i in range(9)]
+
+    def mycol(self,k,l):
+        """ Return list of digits, representing the col that (k,l) belongs to """
+        return [self.m[i][l] for i in range(9)] # Not using ._cps_ since this is simpler and faster
+    
+    def _cps_mybox(self,k,l):
+        """ Return list of cps (coordinate pairs), representing the box that (k,l) belongs to """
         kk = (k//3)*3
         ll = (l//3)*3
-        return [self.m[kk+i][ll+j] for i in range(3) for j in range(3)]
+        return [(kk+i,ll+j) for i in range(3) for j in range(3)]
+    
+    def mybox(self,k,l):
+        """ Return list of digits, representing the box that (k,l) belongs to """
+        return [self.get(i,j) for i,j in self._cps_mybox(k,l)]
+    
+    def _cps_rows(self):
+        """ Return list of lists of cps (coordinate pairs), representing all rows in the SuDoKu """
+        #XXX
+        return
 
     def rows(self):
-        return self.m 
+        """ Return a list of lists of digits, representing all rows in the SuDoKu """
+        return self.m  # Not using ._cps_ since this is simpler and faster
+    
+    def _cps_cols(self):
+        """ Return list of lists of cps (coordinate pairs), representing all cols in the SuDoKu """
+        #XXX
+        return
     
     def cols(self):
+        """ Return a list of lists of digits, representing all cols in the SuDoKu """
         return [self.mycol(1,i) for i in range(9)]
     
+    def _cps_boxs(self):
+        """ Return list of lists of cps (coordinate pairs), representing all boxs in the SuDoKu """
+        #XXX
+        return
+    
     def boxs(self):
+        """ Return a list of lists of digits, representing all boxs in the SuDoKu """
         return [self.mybox(i*3,j*3) for i in range(3) for j in range(3)]
         
     def validate(self):

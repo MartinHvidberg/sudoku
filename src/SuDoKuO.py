@@ -34,7 +34,7 @@ class SuDoKu(object):
                 self.pencil() # Fill in the pencil marks, for the valid, solvable, init matrix
         else:
             log.error("#101 > SuDoKu Object can't create, because ini string do not have length 0 or 81.")
-            
+
     def mycol(self,k,l):
         return [self.m[i][l] for i in range(9)]
     
@@ -45,7 +45,7 @@ class SuDoKu(object):
         kk = (k//3)*3
         ll = (l//3)*3
         return [self.m[kk+i][ll+j] for i in range(3) for j in range(3)]
-    
+
     def rows(self):
         return self.m 
     
@@ -73,18 +73,18 @@ class SuDoKu(object):
                 self.p[i][j] = marks - fixed
         log.info("pencile() Done...")
                 
-    def _setm(self, i, j, v):
-        """ Set cell i,j in .m to value, and clear relevant pencil marks. """
-        self.m[i][j] = v
+    def _setm(self, k, l, v):
+        """ Set cell k,l in .m to value, and clear relevant pencil marks. """
+        self.m[k][l] = v
         for c in range(9): # row, and col pencil marks
-            self.p[i][c].discard(v)
-            self.p[c][j].discard(v)
-        kk = (i//3)*3 # box pencil marks
-        ll = (j//3)*3
-        for k in range(3):
-            for l in range(3):
-                self.p[kk+k][ll+l].discard(v)
-        log.info("# Set      : ("+str(i)+','+str(j)+') = '+str(v))
+            self.p[k][c].discard(v)
+            self.p[c][l].discard(v)
+        kk = (k//3)*3 # box pencil marks
+        ll = (l//3)*3
+        for i in range(3):
+            for j in range(3):
+                self.p[kk+i][ll+j].discard(v)
+        log.info("# Set      : ("+str(k)+','+str(l)+') = '+str(v))
         return
                 
     #====== SLAP (Solve Like A Person) solver functions ======

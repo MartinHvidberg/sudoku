@@ -15,6 +15,7 @@ class SuDoKu(object):
         if len(str_ini) == 0:
             pass # Creating empty sudoku ...
         elif len(str_ini) == 81:
+            log.info("Input: "+str_ini)
             self.i = str_ini # Backup the original (init) fill, in string form
             try:
                 self.m = [[int(str_ini[j*9+i].replace('.','0')) for i in range(9)] for j in range(9)]
@@ -24,9 +25,11 @@ class SuDoKu(object):
             if self.v: # If it's valid, so far, check it it's solvable
                 try:
                     self.solution = [[int(SuDoKuX.sudoku99(str_ini)[j*9+i].replace('.','0')) for i in range(9)] for j in range(9)] # Solve using brute force, to see if solution(s) exist
+                    log.info("Input is Solvable, but was not checked for uniqueness...")
                 except:
                     self.solution = self.m # If not solvable, keep the init values to avoid a Null variable.
                     self.v = False # It looked valid, but it's not ...
+                    log.warning("Input is NOT Solvable...")
             if self.v: # If it's valid, and also is solvable
                 self.pencil() # Fill in the pencil marks, for the valid, solvable, init matrix
         else:
@@ -59,6 +62,7 @@ class SuDoKu(object):
             if len(a) != len(list(set(a))):
                 bol_valid = False
                 log.error("#201 > Area seems to have redundant values: "+str(area))
+        log.info("validate() = "+str(bol_valid))
         return bol_valid
             
     def pencil(self):
@@ -67,6 +71,7 @@ class SuDoKu(object):
                 marks = set([1,2,3,4,5,6,7,8,9])
                 fixed = set(self.mycol(i,j)) | set(self.myrow(i,j)) | set(self.mybox(i,j))
                 self.p[i][j] = marks - fixed
+        log.info("pencile() Done...")
                 
     def _setm(self, i, j, v):
         """ Set cell i,j in .m to value, and clear relevant pencil marks. """
@@ -79,6 +84,7 @@ class SuDoKu(object):
         for k in range(3):
             for l in range(3):
                 self.p[kk+k][ll+l].discard(v)
+        log.info("# Set      : ("+str(i)+','+str(j)+') = '+str(v))
         return
                 
     #====== SLAP (Solve Like A Person) solver functions ======

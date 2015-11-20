@@ -1,0 +1,60 @@
+
+
+:: Basic / Tofu ::
+	
+	: Without penciling :
+	
+	* Free gifts (Free Drinks)
+	
+	* Crosshatching, Grouphatching
+	
+	: With penceling :
+	
+	* Singles (single candidates, Single-candidate squares)
+		
+:: 2 / Judo ::
+
+	: Square filling strategies :
+	
+	* Hidden Singles (Virtual crosshatches) = Single-square candidates?
+	
+	: Candidate limiting strategies :
+	
+	* Locked Candidates (Box claim and Row/column claims)
+	
+	.disjoint subsets.
+	* Naked Pairs (pairs)
+	* Naked Triples (triples)
+	* Naked Quads
+	
+:: 3 / Sumo :: (When we have a  'gridlock'? Seek definition, inklude/exclude hidden pairs?)
+	
+	* Hidden Pairs
+	* Hidden Triples
+	* Hidden Quads
+	
+	* Remote pair chains
+	
+:: Advanced / Ninja ::
+
+	.Fishy Exclusions, advanced disjoint subsets. 
+	* X-Wing (N=2)
+	* Swordfish (N=3)
+	* Jellyfish (N=4)
+	
+	.Beyond even fishy.
+	BUG (Bivalue Universal Grave) Removal
+	
+	.Colour solving techniques.
+	Conjugate pair chains (simple colouring)
+	Multi-Colouring
+	
+	.Extreme.
+	Non-Unique Rectangles
+	XY-Wing (Not to be confused with X-Wing)
+	XYZ-Wing 
+	Forcing patterns
+	Forcing Chains
+	
+	.Guessing included.
+	Nishio (Two candidate cell - Do you feel lucky?)

@@ -14,19 +14,20 @@ log_fil.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(name)s -
 log.addHandler(log_fil)
 log.info(str_start_message)
 
-s = SuDoKuO.SuDoKu("13........2...9......8..7..6....48....5.2...........4.....3...27..5.....8........")
+#s = SuDoKuO.SuDoKu("13........2...9......8..7..6....48....5.2...........4.....3...27..5.....8........")
+s = SuDoKuO.SuDoKu("13.475269527.6941896481273.679154.23.456289712817.35464569371.27.258639489324.657")
 print s
-for i,j in s._cps_myrow(4,6):
+print s.show_solved()
+print " a row (horizontal)"
+for i,j in s._cps_this_row(4,6):
     print s.get(i,j),
-print s.myrow(4,6)
-for i,j in s._cps_mycol(4, 6):
+print s.this_row(4,6)
+print " a col (vertical)"
+for i,j in s._cps_this_col(4, 6):
     print s.get(i,j),
-print s.mycol(4,6)
-for i,j in s._cps_mybox(4,6):
+print s.this_col(4,6)
+print " a box (you know)"
+for i,j in s._cps_this_box(4,6):
     print s.get(i,j),
-print s.mybox(4,6)
+print s.this_box(4,6)
 
-#print s.show_solved()
-print "=== pencil ==="
-s._setm(3, 3, 1)
-#print s.show_pencil()

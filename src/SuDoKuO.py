@@ -41,36 +41,39 @@ class SuDoKu(object):
         """ Return SuDoKu value in cell k,l """
         return self.m[k][l]
     
-    def _cps_myrow(self,k,l):
+    #   this_ functions
+    
+    def _cps_this_row(self,k,l):
         """ Return list of cps (coordinate pairs), representing the row that (k,l) belongs to """
         return [(k,i) for i in range(9)]
     
-    def myrow(self,k,l):
+    def this_row(self,k,l):
         """ Return list of digits, representing the row that (k,l) belongs to """
         return self.m[k] # Not using ._cps_ since this is simpler and faster
     
-    def _cps_mycol(self,k,l):
+    def _cps_this_col(self,k,l):
         """ Return list of cps (coordinate pairs), representing the col that (k,l) belongs to """
         return [(i,l) for i in range(9)]
 
-    def mycol(self,k,l):
+    def this_col(self,k,l):
         """ Return list of digits, representing the col that (k,l) belongs to """
         return [self.m[i][l] for i in range(9)] # Not using ._cps_ since this is simpler and faster
     
-    def _cps_mybox(self,k,l):
+    def _cps_this_box(self,k,l):
         """ Return list of cps (coordinate pairs), representing the box that (k,l) belongs to """
         kk = (k//3)*3
         ll = (l//3)*3
         return [(kk+i,ll+j) for i in range(3) for j in range(3)]
     
-    def mybox(self,k,l):
+    def this_box(self,k,l):
         """ Return list of digits, representing the box that (k,l) belongs to """
-        return [self.get(i,j) for i,j in self._cps_mybox(k,l)]
+        return [self.get(i,j) for i,j in self._cps_this_box(k,l)]
+    
+    #   all-rows, -cols and -box functions
     
     def _cps_rows(self):
         """ Return list of lists of cps (coordinate pairs), representing all rows in the SuDoKu """
-        #XXX
-        return
+        return [[(i,j) for j in range(9)] for i in range(9)]
 
     def rows(self):
         """ Return a list of lists of digits, representing all rows in the SuDoKu """
@@ -78,22 +81,22 @@ class SuDoKu(object):
     
     def _cps_cols(self):
         """ Return list of lists of cps (coordinate pairs), representing all cols in the SuDoKu """
-        #XXX
-        return
+        return [[(i,j) for i in range(9)] for j in range(9)]
     
     def cols(self):
         """ Return a list of lists of digits, representing all cols in the SuDoKu """
-        return [self.mycol(1,i) for i in range(9)]
+        return [self.this_col(1,i) for i in range(9)]
     
     def _cps_boxs(self):
         """ Return list of lists of cps (coordinate pairs), representing all boxs in the SuDoKu """
-        #XXX
-        return
+        return [(i*3,j*3) for i in range(3) for j in range(3)]
     
     def boxs(self):
         """ Return a list of lists of digits, representing all boxs in the SuDoKu """
-        return [self.mybox(i*3,j*3) for i in range(3) for j in range(3)]
-        
+        return [self.this_box(i*3,j*3) for i in range(3) for j in range(3)]
+    
+    # more functions
+    
     def validate(self):
         bol_valid = True # Until proven guilty
         for area in self.rows()+self.cols()+self.boxs(): # check row, col and box duplets
@@ -108,11 +111,11 @@ class SuDoKu(object):
         for i in range(9):
             for j in range(9):
                 marks = set([1,2,3,4,5,6,7,8,9])
-                fixed = set(self.mycol(i,j)) | set(self.myrow(i,j)) | set(self.mybox(i,j))
+                fixed = set(self.this_col(i,j)) | set(self.this_row(i,j)) | set(self.this_box(i,j))
                 self.p[i][j] = marks - fixed
         log.info("pencile() Done...")
                 
-    def _setm(self, k, l, v):
+    def _set(self, k, l, v):
         """ Set cell k,l in .m to value, and clear relevant pencil marks. """
         self.m[k][l] = v
         for c in range(9): # row, and col pencil marks
@@ -129,7 +132,13 @@ class SuDoKu(object):
     #====== SLAP (Solve Like A Person) solver functions ======
     
     def free_gifts(self):
-        
+        for area in _cps_areas():
+            av = _cps_to_values(area)
+            if av.count(0) == 1:
+                i,j = area[av.find(0)]
+                #self.set(i,j,0)
+                print "set:",i,j,0
+                
         return
                 
     #====== Printout functions ======

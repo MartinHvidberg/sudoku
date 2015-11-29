@@ -10,7 +10,7 @@
 	
 	: With penceling :
 	
-	* Singles (single candidates, Single-candidate squares)
+	* Naked Singles (single candidates, Single-candidate squares)
 		
 :: 2 / Judo ::
 
@@ -35,6 +35,8 @@
 	
 	* Remote pair chains
 	
+	* Pointing pairs, pointing triples (whatever that is?)
+	
 :: Advanced / Ninja ::
 
 	.Fishy Exclusions, advanced disjoint subsets. 
@@ -54,7 +56,7 @@
 	XY-Wing (Not to be confused with X-Wing)
 	XYZ-Wing 
 	Forcing patterns
-	Forcing Chains
+	Forcing Chains (seems to be group of XY-Wing and XYZ-Wing?)
 	
 	.Guessing included.
 	Nishio (Two candidate cell - Do you feel lucky?)

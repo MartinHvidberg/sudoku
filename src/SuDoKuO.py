@@ -89,7 +89,7 @@ class SuDoKu(object):
     
     def _cps_boxs(self):
         """ Return list of lists of cps (coordinate pairs), representing all boxs in the SuDoKu """
-        return [(i*3,j*3) for i in range(3) for j in range(3)]
+        return [self._cps_this_box(i*3,j*3) for i in range(3) for j in range(3)]
     
     def boxs(self):
         """ Return a list of lists of digits, representing all boxs in the SuDoKu """

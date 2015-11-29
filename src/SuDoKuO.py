@@ -95,6 +95,9 @@ class SuDoKu(object):
         """ Return a list of lists of digits, representing all boxs in the SuDoKu """
         return [self.this_box(i*3,j*3) for i in range(3) for j in range(3)]
     
+    def _cps_areas(self):
+        return self._cps_rows() + self._cps_cols() + self._cps_boxs()
+    
     # more functions
     
     def validate(self):
@@ -134,17 +137,25 @@ class SuDoKu(object):
                 self.p[kk+i][ll+j].discard(v)
         log.info("# Set      : ("+str(k)+','+str(l)+') = '+str(v))
         return
+    
+    def _cps_to_val(self,obj_in):
+        if isinstance(obj_in, list):
+            obj_ret = list()
+            for num_item in range(len(obj_in)):
+                obj_ret.append(self._cps_to_val(obj_in[num_item]))
+        elif isinstance(obj_in, tuple):
+            return self.get(obj_in[0],obj_in[1])
+        return obj_ret
                 
     #====== SLAP (Solve Like A Person) solver functions ======
     
     def free_gifts(self):
-        for area in _cps_areas():
-            av = _cps_to_values(area)
+        for area in self._cps_areas():
+            av = self._cps_to_val(area)
             if av.count(0) == 1:
-                i,j = area[av.find(0)]
-                #self.set(i,j,0)
-                print "set:",i,j,0
-                
+                i,j =  area[av.index(0)]
+                val = (set([1,2,3,4,5,6,7,8,9]) - set(av)).pop()
+                self._set(i,j,val)
         return
                 
     #====== Printout functions ======
@@ -220,4 +231,9 @@ class SuDoKu(object):
                         
     def show_pencil(self):
         return self.show_big()
+    
+if __name__ == "__main__":
+    
+    print "\n   *** This module can't be run - it should be called from another program ***"
+    
         

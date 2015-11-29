@@ -108,16 +108,22 @@ class SuDoKu(object):
         return bol_valid
             
     def pencil(self):
+        # Exclude digits occupied elsewhere in row, col or box.
         for i in range(9):
             for j in range(9):
-                marks = set([1,2,3,4,5,6,7,8,9])
-                fixed = set(self.this_col(i,j)) | set(self.this_row(i,j)) | set(self.this_box(i,j))
-                self.p[i][j] = marks - fixed
+                if self.get(i, j) != 0:
+                    self.p[i][j] = set()
+                else:
+                    marks = set([1,2,3,4,5,6,7,8,9])
+                    fixed = set(self.this_col(i,j)) | set(self.this_row(i,j)) | set(self.this_box(i,j))
+                    self.p[i][j] = marks - fixed
+        
         log.info("pencile() Done...")
                 
     def _set(self, k, l, v):
         """ Set cell k,l in .m to value, and clear relevant pencil marks. """
         self.m[k][l] = v
+        self.p[k][l] = set() # its own pencil marks
         for c in range(9): # row, and col pencil marks
             self.p[k][c].discard(v)
             self.p[c][l].discard(v)

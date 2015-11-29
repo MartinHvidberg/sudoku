@@ -18,8 +18,15 @@ log.info(str_start_message)
 #s = SuDoKuO.SuDoKu("13.475269527.6941896481273.679154.23.456289712817.35464569371.27.258639489324.657")
 s = SuDoKuO.SuDoKu("8..........36......7..9.2...5...7.......457.....1...3...1....68..85...1..9....4..") # Is this really the hardest-ever sudoku?
 print s
-print s.boxs()
-print s._cps_boxs()
+print s.show_pencil()
+print s.p
+s._set(0,1,1)
+print s.show_pencil()
+print s.p
+
+#print s.boxs()
+#print s._cps_boxs()
+
 #print s.show_solved()
 
 #===============================================================================

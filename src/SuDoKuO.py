@@ -122,6 +122,7 @@ class SuDoKu(object):
                     self.p[i][j] = marks - fixed        
         log.info("pencile() Done...")
         log.info("pencile() marks: "+str(self.pencils_as_string()))
+        return
                 
     def _set(self, k, l, v):
         """ Set cell k,l in .m to value, and clear relevant pencil marks. """
@@ -159,7 +160,24 @@ class SuDoKu(object):
                 self._set(i,j,val)
                 dic_hits['set'] += 1
         log.info('Free-Gifts - Set: '+str(dic_hits['set']) + ', pencil: '+str(dic_hits['pencil']))
-        return
+        return dic_hits['set']+dic_hits['pencil']
+    
+    def crosshatching(self):
+        dic_hits = {'set':0,'pencil':0}
+        
+        log.info('Crosshatching - Set: '+str(dic_hits['set']) + ', pencil: '+str(dic_hits['pencil']))
+        return dic_hits['set']+dic_hits['pencil']
+    
+    def naked_singles(self):
+        dic_hits = {'set':0,'pencil':0}
+        for i in range(9):
+            for j in range(9):
+                if len(self.p[i][j])==1:
+                    self._set(i,j,self.p[i][j].pop())
+                    dic_hits['set'] += 1
+        log.info('Naked-Singles - Set: '+str(dic_hits['set']) + ', pencil: '+str(dic_hits['pencil']))
+        return dic_hits['set']+dic_hits['pencil']
+        
                 
     #====== Printout functions ======
     

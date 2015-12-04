@@ -1,7 +1,7 @@
 import logging
 
 import SuDoKuO
-from pyasn1_modules.rfc2459 import CPSuri
+#?#from pyasn1_modules.rfc2459 import CPSuri
 
 # Sample SoDuKos from: http://www2.warwick.ac.uk/fac/sci/moac/people/students/peter_cock/python/sudoku
 
@@ -16,10 +16,15 @@ log.addHandler(log_fil)
 log.info(str_start_message)
 
 #s = SuDoKuO.SuDoKu("13........2...9......8..7..6....48....5.2...........4.....3...27..5.....8........")
-#s = SuDoKuO.SuDoKu("13.475269527.6941896481273.679154.23.456289712817.35464569371.27.258639489324.657")
-s = SuDoKuO.SuDoKu("8..........36......7..9.2...5...7.......457.....1...3...1....68..85...1..9....4..") # Is this really the hardest-ever sudoku?
-#print s.show_pencil()
+#s = SuDoKuO.SuDoKu("13.475269527.6941896481273.679154.23.456289712817.35464569371.27.258639489324.657") # Extremely simple
+#s = SuDoKuO.SuDoKu("..8...2.4.2.....7...6..7.98..2.......8.96.....15..34...............8.5363.9....8.")
+s = SuDoKuO.SuDoKu("..7.1.8344..378.5.8634....192....3853..2856...81.39..2...56319.1958.7....38...527") # Supposedly very easy
+#s = SuDoKuO.SuDoKu("8..........36......7..9.2...5...7.......457.....1...3...1....68..85...1..9....4..") # Is this really the hardest-ever sudoku?
+print s.show_pencil()
 s.free_gifts()
+s.naked_singles()
+s.naked_singles()
+s.naked_singles()
 print s
 
 #===============================================================================

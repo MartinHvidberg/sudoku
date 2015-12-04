@@ -119,9 +119,9 @@ class SuDoKu(object):
                 else:
                     marks = set([1,2,3,4,5,6,7,8,9])
                     fixed = set(self.this_col(i,j)) | set(self.this_row(i,j)) | set(self.this_box(i,j))
-                    self.p[i][j] = marks - fixed
-        
+                    self.p[i][j] = marks - fixed        
         log.info("pencile() Done...")
+        log.info("pencile() marks: "+str(self.pencils_as_string()))
                 
     def _set(self, k, l, v):
         """ Set cell k,l in .m to value, and clear relevant pencil marks. """
@@ -150,12 +150,15 @@ class SuDoKu(object):
     #====== SLAP (Solve Like A Person) solver functions ======
     
     def free_gifts(self):
+        dic_hits = {'set':0,'pencil':0}
         for area in self._cps_areas():
             av = self._cps_to_val(area)
             if av.count(0) == 1:
                 i,j =  area[av.index(0)]
                 val = (set([1,2,3,4,5,6,7,8,9]) - set(av)).pop()
                 self._set(i,j,val)
+                dic_hits['set'] += 1
+        log.info('Free-Gifts - Set: '+str(dic_hits['set']) + ', pencil: '+str(dic_hits['pencil']))
         return
                 
     #====== Printout functions ======
@@ -172,6 +175,19 @@ class SuDoKu(object):
     
     def __str__(self):
         return self.show_current()
+    
+    def pencils_as_lol(self):
+        return [[list(self.p[i][j]) for j in range(9)] for i in range(9)]
+    
+    def pencils_as_string(self):
+        lst_ret = self.pencils_as_lol()
+        str_ret = "("
+        for lst_r in lst_ret:
+            for lst_p in lst_r:
+                lst_p.sort()
+                str_ret += str(lst_p).replace('[','').replace(']','').replace(',','').replace(' ','')+','
+            str_ret += ';'
+        return str_ret.strip(';')+')'
     
     def show_current(self):
         return self.show_small(self.m)

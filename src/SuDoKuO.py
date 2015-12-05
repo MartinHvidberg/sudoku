@@ -1,5 +1,4 @@
 
-
 import logging
 
 import SuDoKuX # Xtra functions, made by others...
@@ -34,7 +33,6 @@ class SuDoKu(object):
                 self.pencil() # Fill in the pencil marks, for the valid, solvable, init matrix
         else:
             log.error("#101 > SuDoKu Object can't create, because ini string do not have length 0 or 81.")
-            
     # Basic functions
             
     def get(self,k,l):
@@ -99,6 +97,12 @@ class SuDoKu(object):
         return self._cps_rows() + self._cps_cols() + self._cps_boxs()
     
     # more functions
+    
+    def solved(self):
+        empty = 0
+        for row in self.rows():
+            empty += len(filter(lambda x: x==0, row))
+        return empty == 0
     
     def validate(self):
         bol_valid = True # Until proven guilty
@@ -177,9 +181,26 @@ class SuDoKu(object):
                     dic_hits['set'] += 1
         log.info('Naked-Singles - Set: '+str(dic_hits['set']) + ', pencil: '+str(dic_hits['pencil']))
         return dic_hits['set']+dic_hits['pencil']
+
+    def slap(self):
+        """ The main thing you would call ...
+        The 'Solve Like A Person' function.
+        This will try to solve the SuDoKu, by intelligently calling a sequence of the SLAP functions above. """
         
+        while not self.solved():
+            if not self.free_gifts():
+                if not self.crosshatching():
+                    if not self.naked_singles():
+                        log.info('Seem to have exhausted all solving strategies ...')
+                        return -1
+        log.info('Seem to have solved the SuDoKu. Thanks for using SLAP :-)')
+        return 0
+            
                 
     #====== Printout functions ======
+    
+    def __str__(self):
+        return self.show_current()
     
     def show_small(self, matrix):
         def p(i,j):
@@ -190,9 +211,6 @@ class SuDoKu(object):
             v = '+---+---+---+\n'
             return (v+l(0)+l(1)+l(2)+v+l(3)+l(4)+l(5)+v+l(6)+l(7)+l(8)+v).strip()
         return q()
-    
-    def __str__(self):
-        return self.show_current()
     
     def pencils_as_lol(self):
         return [[list(self.p[i][j]) for j in range(9)] for i in range(9)]

@@ -11,6 +11,7 @@ class SuDoKu(object):
     def __init__(self, str_ini):
         self.m = [['0' for i in range(9)] for j in range(9)] # Empty (0 filled) matrix
         self.p = [[set() for i in range(9)] for j in range(9)] # Empty (empty lists) pencil-matrix
+        self.rec = list() # Track record of solving tactics steps
         if len(str_ini) == 0:
             pass # Creating empty sudoku ...
         elif len(str_ini) == 81:
@@ -33,6 +34,7 @@ class SuDoKu(object):
                 self.pencil() # Fill in the pencil marks, for the valid, solvable, init matrix
         else:
             log.error("#101 > SuDoKu Object can't create, because ini string do not have length 0 or 81.")
+            
     # Basic functions
             
     def get(self,k,l):
@@ -140,7 +142,7 @@ class SuDoKu(object):
         for i in range(3):
             for j in range(3):
                 self.p[kk+i][ll+j].discard(v)
-        log.info("# Set      : ("+str(k)+','+str(l)+') = '+str(v))
+        #log.info("# Set      : ("+str(k)+','+str(l)+') = '+str(v))
         return
     
     def _cps_to_val(self,obj_in):
@@ -154,33 +156,42 @@ class SuDoKu(object):
                 
     #====== SLAP (Solve Like A Person) solver functions ======
     
+    def record(self, dic_hit):
+        """ Adds a solving-move to the track record """
+        
+        return
+    
     def free_gifts(self):
-        dic_hits = {'set':0,'pencil':0}
+        track = Track('Free gifts') 
         for area in self._cps_areas():
             av = self._cps_to_val(area)
             if av.count(0) == 1:
                 i,j =  area[av.index(0)]
                 val = (set([1,2,3,4,5,6,7,8,9]) - set(av)).pop()
                 self._set(i,j,val)
-                dic_hits['set'] += 1
-        log.info('Free-Gifts - Set: '+str(dic_hits['set']) + ', pencil: '+str(dic_hits['pencil']))
-        return dic_hits['set']+dic_hits['pencil']
+                track.set(i,j,val)
+        log.info(track.show())
+        self.record(track)
+        return track.goods()
     
     def crosshatching(self):
-        dic_hits = {'set':0,'pencil':0}
-        
-        log.info('Crosshatching - Set: '+str(dic_hits['set']) + ', pencil: '+str(dic_hits['pencil']))
-        return dic_hits['set']+dic_hits['pencil']
+        track = Track('Crosshatching') 
+        # Action goes here ...
+        log.info(track.show())
+        self.record(track)
+        return track.goods()
     
     def naked_singles(self):
-        dic_hits = {'set':0,'pencil':0}
+        track = Track('Naked singles') 
         for i in range(9):
             for j in range(9):
                 if len(self.p[i][j])==1:
-                    self._set(i,j,self.p[i][j].pop())
-                    dic_hits['set'] += 1
-        log.info('Naked-Singles - Set: '+str(dic_hits['set']) + ', pencil: '+str(dic_hits['pencil']))
-        return dic_hits['set']+dic_hits['pencil']
+                    val = self.p[i][j].pop()
+                    self._set(i,j,val)
+                    track.set(i,j,val)
+        log.info(track.show())
+        self.record(track)
+        return track.goods()
 
     def slap(self):
         """ The main thing you would call ...
@@ -284,6 +295,41 @@ class SuDoKu(object):
     def show_pencil(self):
         return self.show_big()
     
+class Track(object):
+    
+    def __init__(self, caller='anonymous'):
+        self.tactic = caller
+        self.sets = 0
+        self.pencils = 0
+        self.hits = list()
+        
+    def goods(self):
+        return self.sets + self.pencils
+        
+    def show(self):
+        t = self.tactic.ljust(16)
+        s = str(self.sets)
+        p = str(self.pencils)
+        h = ""
+        for hit in self.hits:
+            h += hit+','
+        h = h.rstrip(',')
+        return t+' : set:'+s+' pen:'+p+' ['+h+']'
+        
+    def set(self,i,j,v):
+        self.sets += 1
+        self.hits.append('s('+str(i)+','+str(j)+'='+str(v)+')')
+        return
+        
+    def pencil(self):
+        self.pencils += 1
+        return
+        
+    def hit(self, hit_a):
+        self.hits.append(hit_a)
+        return
+    
+
 if __name__ == "__main__":
     
     print "\n   *** This module can't be run - it should be called from another program ***"

@@ -20,11 +20,9 @@ log.info(str_start_message)
 #s = SuDoKuO.SuDoKu("..8...2.4.2.....7...6..7.98..2.......8.96.....15..34...............8.5363.9....8.")
 s = SuDoKuO.SuDoKu("..7.1.8344..378.5.8634....192....3853..2856...81.39..2...56319.1958.7....38...527") # Supposedly very easy
 #s = SuDoKuO.SuDoKu("8..........36......7..9.2...5...7.......457.....1...3...1....68..85...1..9....4..") # Is this really the hardest-ever sudoku?
-print s#.show_pencil()
-print s.solved()
+print s
 s.slap()
 print s
-print s.solved()
 
 #===============================================================================
 # print s.show_pencil()

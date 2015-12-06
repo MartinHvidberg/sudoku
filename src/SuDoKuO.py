@@ -191,7 +191,6 @@ class SuDoKu(object):
         return track.goods()
     
     def crosshatching(self):
-        print 'Crosshatching'
         track = Track('Crosshatching') 
         for box in self._cps_boxs():
             boxf = self.only_free_cells(box)
@@ -202,8 +201,6 @@ class SuDoKu(object):
                     boxc = self.only_n_notin_row(boxc,n)
                     boxc = self.only_n_notin_col(boxc,n)
                     if len(boxc) == 1:
-                        print boxc, '=', n, 'in below:'
-                        print self.show_small(self.m)
                         self._set(boxc[0][0],boxc[0][1],n)
                         track.set(boxc[0][0],boxc[0][1],n)
         log.info(track.show())

@@ -8,7 +8,8 @@ log = logging.getLogger('sudoku.obj')
 
 class SuDoKu(object):
     
-    def __init__(self, str_ini):
+    def __init__(self, str_ini, lst_hardess = ['Free gifts', 'Crosshatching', 'Naked singles']):
+        self.hardness = lst_hardess
         self.m = [['0' for i in range(9)] for j in range(9)] # Empty (0 filled) matrix
         self.p = [[set() for i in range(9)] for j in range(9)] # Empty (empty lists) pencil-matrix
         self.rec = list() # Track record of solving tactics steps
@@ -172,19 +173,26 @@ class SuDoKu(object):
     
     def stats(self):
         dic_stat = dict()
+        str_ret = ""
         if self.validate():
-            if self.solved():
-                if len(self.rec)>1:
-                    for track in self.rec:
-                        if track.tactic not in dic_stat.keys():
-                            dic_stat[track.tactic] = track.goods()
-                        else:
-                            dic_stat[track.tactic] = dic_stat[track.tactic] + track.goods()
-                    return str(dic_stat)
-                else:
-                    return 'No track record found - this is really strange :-('
+            if not self.solved():
+                str_ret += 'Not solved ...'
+            if len(self.rec)>0:
+                for track in self.rec:
+                    if track.tactic not in dic_stat.keys():
+                        dic_stat[track.tactic] = track.goods()
+                    else:
+                        dic_stat[track.tactic] = dic_stat[track.tactic] + track.goods()
+                # Present the dic_stat in difficulty-sorted order
+                lst_keys = dic_stat.keys()
+                lst_keys = sorted(lst_keys, key=self.hardness.index, reverse=True)
+                str_ret += "{"
+                for k in lst_keys:
+                    str_ret += str(k) + ':' +str(dic_stat[k]) + ','
+                str_ret = str_ret.rstrip(',')
+                return str_ret+'}' 
             else:
-                return 'Not solved ...'
+                return 'No track record found - this is really strange :-('
         else:
             return 'Not valid ...'
                 

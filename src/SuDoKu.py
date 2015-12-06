@@ -26,6 +26,9 @@ s.slap()
 print s
 print s.stats()
 
+#log.info('Solved:',str(s.solved()))
+log.info('Stats: '+str(s.stats()))
+
 #===============================================================================
 # print s.show_pencil()
 # print s.p

@@ -197,11 +197,15 @@ class SuDoKu(object):
             boxf = self.only_free_cells(box)
             set_taken_values = set(self._cps_to_val(box))
             for n in range(9):
+                boxc = boxf # get a fresh copy
                 if not n in set_taken_values: # skip values all ready in box
-                    pass #boxc = self.only_n_notin_row(boxf,n)
-                    #boxc = self.only_n_notin_col(boxc,n)
-                        
-                            
+                    boxc = self.only_n_notin_row(boxc,n)
+                    boxc = self.only_n_notin_col(boxc,n)
+                    if len(boxc) == 1:
+                        print boxc, '=', n, 'in below:'
+                        print self.show_small(self.m)
+                        self._set(boxc[0][0],boxc[0][1],n)
+                        track.set(boxc[0][0],boxc[0][1],n)
         log.info(track.show())
         self.record(track)
         return track.goods()

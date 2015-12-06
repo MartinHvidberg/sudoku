@@ -35,13 +35,28 @@ class SuDoKu(object):
         else:
             log.error("#101 > SuDoKu Object can't create, because ini string do not have length 0 or 81.")
             
-    # Basic functions
+    # Basic functions (get, set)
             
     def get(self,k,l):
         """ Return SuDoKu value in cell k,l """
         return self.m[k][l]
+                
+    def _set(self, k, l, v):
+        """ Set cell k,l in .m to value, and clear relevant pencil marks. """
+        self.m[k][l] = v
+        self.p[k][l] = set() # its own pencil marks
+        for c in range(9): # row, and col pencil marks
+            self.p[k][c].discard(v)
+            self.p[c][l].discard(v)
+        kk = (k//3)*3 # box pencil marks
+        ll = (l//3)*3
+        for i in range(3):
+            for j in range(3):
+                self.p[kk+i][ll+j].discard(v)
+        return
     
-    #   this_ functions
+    # this functions
+    # returns lists of cps or values, representing the row, col or box of 'this' cell
     
     def _cps_this_row(self,k,l):
         """ Return list of cps (coordinate pairs), representing the row that (k,l) belongs to """
@@ -69,7 +84,8 @@ class SuDoKu(object):
         """ Return list of digits, representing the box that (k,l) belongs to """
         return [self.get(i,j) for i,j in self._cps_this_box(k,l)]
     
-    #   all-rows, -cols and -box functions
+    # all-rows, -cols and -box functions
+    # return lists of cps or value, representing all rows, etc in the sudoku   
     
     def _cps_rows(self):
         """ Return list of lists of cps (coordinate pairs), representing all rows in the SuDoKu """
@@ -98,6 +114,22 @@ class SuDoKu(object):
     def _cps_areas(self):
         return self._cps_rows() + self._cps_cols() + self._cps_boxs()
     
+    # only_ functiones
+    # take a list of cps, and returns that list. But only returns elements that meet the criteria
+    # the returned list can be empty
+    
+    def only_free_cells(self,lst_cps):
+        return [cps for cps in lst_cps if self.m[cps[0]][cps[1]]==0]
+    
+    def only_taken_cells(self,lst_cps):
+        return [cps for cps in lst_cps if self.m[cps[0]][cps[1]]!=0]
+    
+    def only_n_notin_row(self,lst_cps,n):
+        return [cps for cps in lst_cps if n not in self.this_row(cps[0],cps[1])]
+    
+    def only_n_notin_col(self,lst_cps,n):
+        return [cps for cps in lst_cps if n not in self.this_col(cps[0],cps[1])]
+    
     # more functions
     
     def solved(self):
@@ -125,24 +157,8 @@ class SuDoKu(object):
                 else:
                     marks = set([1,2,3,4,5,6,7,8,9])
                     fixed = set(self.this_col(i,j)) | set(self.this_row(i,j)) | set(self.this_box(i,j))
-                    self.p[i][j] = marks - fixed        
-        log.info("pencile() Done...")
+                    self.p[i][j] = marks - fixed      
         log.info("pencile() marks: "+str(self.pencils_as_string()))
-        return
-                
-    def _set(self, k, l, v):
-        """ Set cell k,l in .m to value, and clear relevant pencil marks. """
-        self.m[k][l] = v
-        self.p[k][l] = set() # its own pencil marks
-        for c in range(9): # row, and col pencil marks
-            self.p[k][c].discard(v)
-            self.p[c][l].discard(v)
-        kk = (k//3)*3 # box pencil marks
-        ll = (l//3)*3
-        for i in range(3):
-            for j in range(3):
-                self.p[kk+i][ll+j].discard(v)
-        #log.info("# Set      : ("+str(k)+','+str(l)+') = '+str(v))
         return
     
     def _cps_to_val(self,obj_in):
@@ -175,8 +191,17 @@ class SuDoKu(object):
         return track.goods()
     
     def crosshatching(self):
+        print 'Crosshatching'
         track = Track('Crosshatching') 
-        # Action goes here ...
+        for box in self._cps_boxs():
+            boxf = self.only_free_cells(box)
+            set_taken_values = set(self._cps_to_val(box))
+            for n in range(9):
+                if not n in set_taken_values: # skip values all ready in box
+                    pass #boxc = self.only_n_notin_row(boxf,n)
+                    #boxc = self.only_n_notin_col(boxc,n)
+                        
+                            
         log.info(track.show())
         self.record(track)
         return track.goods()

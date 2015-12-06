@@ -131,22 +131,6 @@ class SuDoKu(object):
         return [cps for cps in lst_cps if n not in self.this_col(cps[0],cps[1])]
     
     # more functions
-    
-    def solved(self):
-        empty = 0
-        for row in self.rows():
-            empty += len(filter(lambda x: x==0, row))
-        return empty == 0
-    
-    def validate(self):
-        bol_valid = True # Until proven guilty
-        for area in self.rows()+self.cols()+self.boxs(): # check row, col and box duplets
-            a = filter(lambda a: a != 0, area)
-            if len(a) != len(list(set(a))):
-                bol_valid = False
-                log.error("#201 > Area seems to have redundant values: "+str(area))
-        log.info("validate() = "+str(bol_valid))
-        return bol_valid
             
     def pencil(self):
         # Exclude digits occupied elsewhere in row, col or box.
@@ -169,12 +153,46 @@ class SuDoKu(object):
         elif isinstance(obj_in, tuple):
             return self.get(obj_in[0],obj_in[1])
         return obj_ret
+    
+    def solved(self):
+        empty = 0
+        for row in self.rows():
+            empty += len(filter(lambda x: x==0, row))
+        return empty == 0
+    
+    def validate(self):
+        bol_valid = True # Until proven guilty
+        for area in self.rows()+self.cols()+self.boxs(): # check row, col and box duplets
+            a = filter(lambda a: a != 0, area)
+            if len(a) != len(list(set(a))):
+                bol_valid = False
+                log.error("#201 > Area seems to have redundant values: "+str(area))
+        log.info("validate() = "+str(bol_valid))
+        return bol_valid
+    
+    def stats(self):
+        dic_stat = dict()
+        if self.validate():
+            if self.solved():
+                if len(self.rec)>1:
+                    for track in self.rec:
+                        if track.tactic not in dic_stat.keys():
+                            dic_stat[track.tactic] = track.goods()
+                        else:
+                            dic_stat[track.tactic] = dic_stat[track.tactic] + track.goods()
+                    return str(dic_stat)
+                else:
+                    return 'No track record found - this is really strange :-('
+            else:
+                return 'Not solved ...'
+        else:
+            return 'Not valid ...'
                 
     #====== SLAP (Solve Like A Person) solver functions ======
     
     def record(self, dic_hit):
         """ Adds a solving-move to the track record """
-        
+        self.rec.append(dic_hit)
         return
     
     def free_gifts(self):

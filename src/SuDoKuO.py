@@ -8,7 +8,7 @@ log = logging.getLogger('sudoku.obj')
 
 class SuDoKu(object):
     
-    def __init__(self, str_ini, lst_hardess = ['Free gifts', 'Crosshatching', 'Naked singles']):
+    def __init__(self, str_ini, lst_hardess = ['Free gifts', 'Crosshatching', 'Naked singles', 'Locked Candidates']):
         self.hardness = lst_hardess
         self.m = [['0' for i in range(9)] for j in range(9)] # Empty (0 filled) matrix
         self.p = [[set() for i in range(9)] for j in range(9)] # Empty (empty lists) pencil-matrix
@@ -56,7 +56,7 @@ class SuDoKu(object):
                 self.p[kk+i][ll+j].discard(v)
         return
     
-    # this functions
+    #------ this functions -----------------------------------------------------
     # returns lists of cps or values, representing the row, col or box of 'this' cell
     
     def _cps_this_row(self,k,l):
@@ -85,7 +85,7 @@ class SuDoKu(object):
         """ Return list of digits, representing the box that (k,l) belongs to """
         return [self.get(i,j) for i,j in self._cps_this_box(k,l)]
     
-    # all-rows, -cols and -box functions
+    #------ all-rows, -cols and -box functions ---------------------------------
     # return lists of cps or value, representing all rows, etc in the sudoku   
     
     def _cps_rows(self):
@@ -115,7 +115,7 @@ class SuDoKu(object):
     def _cps_areas(self):
         return self._cps_rows() + self._cps_cols() + self._cps_boxs()
     
-    # only_ functiones
+    #------ only_ functiones ---------------------------------------------------
     # take a list of cps, and returns that list. But only returns elements that meet the criteria
     # the returned list can be empty
     
@@ -131,7 +131,21 @@ class SuDoKu(object):
     def only_n_notin_col(self,lst_cps,n):
         return [cps for cps in lst_cps if n not in self.this_col(cps[0],cps[1])]
     
-    # more functions
+    #------ Subdeviding functions ----------------------------------------------
+    
+    def rows_in_box(self, lst_in):
+        return self._slice9in3_vert(lst_in)
+    
+    def _slice9in3_vert(self, lst_in):
+        if len(lst_in) == 9:
+            return [[lst_in[0],lst_in[3],lst_in[6]],[lst_in[1],lst_in[4],lst_in[7]],[lst_in[2],lst_in[5],lst_in[8]]]
+        else:
+            return []
+    
+    def _slice9in3_hori(self, lst_in): 
+        return [lst_in[n*3:n*3+3] for n in range(3)]
+    
+    #------ pencil functions ---------------------------------------------------
             
     def pencil(self):
         # Exclude digits occupied elsewhere in row, col or box.
@@ -146,6 +160,20 @@ class SuDoKu(object):
         log.info("pencile() marks: "+str(self.pencils_as_string()))
         return
     
+    def _p_count_in_cps(self, n, lst_cps):
+        #print 'in', n, lst_cps
+        lst_ps = [self.p[i][j] for i,j in lst_cps]
+        #print 'ps', n, lst_ps
+        cnt = 0
+        for pset in lst_ps:
+            if n in pset:
+                cnt += 1
+        return cnt
+    
+    def p_for_cpsXXX(self, lst_cps):
+        return [self.p[cps[0]][cps[1]] for cps in lst_cps] 
+    
+    # more functions
     def _cps_to_val(self,obj_in):
         if isinstance(obj_in, list):
             obj_ret = list()
@@ -203,6 +231,8 @@ class SuDoKu(object):
         self.rec.append(dic_hit)
         return
     
+    #------ Singles ------------------------------------------------------------
+    
     def free_gifts(self):
         track = Track('Free gifts') 
         for area in self._cps_areas():
@@ -244,6 +274,33 @@ class SuDoKu(object):
         log.info(track.show())
         self.record(track)
         return track.goods()
+    
+    # def hidden_single(self): # Equal to Crosshaching
+    #     track = Track('Hidden Single')
+    #     
+    #     log.info(track.show())
+    #     self.record(track)
+    #     return track.goods()
+    
+    #------ Intersections ------------------------------------------------------
+    
+    def locked_candidates(self):
+        track = Track('Locked Candidates')
+        for box in self._cps_boxs():
+            for boxrow in self.rows_in_box(box):
+                for n in range(1,9):
+                    cnt_box = self._p_count_in_cps(n,box) <- XXX This count too little ...???
+                    cnt_boxrow = self._p_count_in_cps(n,boxrow)
+                    # Type 1 : Pointing
+                    if cnt_box != 0 and cnt_box == cnt_boxrow:
+                        print "    Found LocledCand. Same # "+str(cnt_box)+" of "+str(n)+' in '+str(boxrow)+' and '+str(box)
+                        
+                    # Type 2 : Claiming
+            
+        log.info(track.show())
+        self.record(track)
+        return track.goods()
+        
 
     def slap(self):
         """ The main thing you would call ...
@@ -254,8 +311,9 @@ class SuDoKu(object):
             if not self.free_gifts():
                 if not self.crosshatching():
                     if not self.naked_singles():
-                        log.info('Seem to have exhausted all solving strategies ...')
-                        return -1
+                        if not self.locked_candidates():
+                            log.info('Seem to have exhausted all solving strategies ...')
+                            return -1
         log.info('Seem to have solved the SuDoKu. Thanks for using SLAP :-)')
         return 0
             

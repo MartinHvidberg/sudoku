@@ -28,8 +28,8 @@ log.info(str_start_message)
 #s = SuDoKuO.SuDoKu("..........65.138..21....54.....86....57.....46.......3........9....3.7..9..87.3.2")  # {Naked singles:28,Crosshatching:20,Free gifts:9}
 
 ### Cat ?
-#s = SuDoKuO.SuDoKu("..46...8..39....4.81..37..6..7..4....2.....3....3..6..7..51..28.8....31..9...34..") # MX 17. dec. '15. Let. LG
-s = SuDoKuO.SuDoKu("5......1..3.5.9.......2.4....1..4...9.......8...6..2....4.8.......1.7.9..2......6") # Claimed to be simple, yet chaligsing computers
+s = SuDoKuO.SuDoKu("..46...8..39....4.81..37..6..7..4....2.....3....3..6..7..51..28.8....31..9...34..") # MX 17. dec. '15. Let. LG
+#s = SuDoKuO.SuDoKu("5......1..3.5.9.......2.4....1..4...9.......8...6..2....4.8.......1.7.9..2......6") # Claimed to be simple, yet chaligsing computers
 
 ### Cat Higher
 #s = SuDoKuO.SuDoKu("13........2...9......8..7..6....48....5.2...........4.....3...27..5.....8........")
@@ -37,7 +37,7 @@ s = SuDoKuO.SuDoKu("5......1..3.5.9.......2.4....1..4...9.......8...6..2....4.8.
 #s = SuDoKuO.SuDoKu("8..........36......7..9.2...5...7.......457.....1...3...1....68..85...1..9....4..") # Is this really the hardest-ever sudoku?
 #s = SuDoKuO.SuDoKu(".......12........3..23..4....18....5.6..7.8.......9.....85.....9...4.5..47...6...") # "Platinum Blonde"
 
-print s
+print s.show_big()
 s.slap()
 print s
 print s.stats()

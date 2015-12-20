@@ -129,6 +129,14 @@ class SoDuKo_test(unittest.TestCase):
     def test_csp_to_val_6(self):
         self.assertEqual(self.sumo.boxs(), self.sumo._cps_to_val(self.sumo._cps_boxs()))
         
+    # Subdeviding functions
+    
+    def test_slice9in3_hori_1(self):
+        self.assertEqual(self.sumo._slice9in3_hori([1,2,3,4,5,6,7,8,9]), [[1,2,3],[4,5,6],[7,8,9]])
+        
+    def test_slice9in3_vert_1(self):
+        self.assertEqual(self.sumo._slice9in3_vert([1,2,3,4,5,6,7,8,9]), [[1,4,7],[2,5,8],[3,6,9]])
+        
     # Only functions
     
     def test_only_free_cells_1(self):
@@ -139,5 +147,20 @@ class SoDuKo_test(unittest.TestCase):
         
     def test_only_n_notin_col(self):
         self.assertEqual(self.sumo.only_n_notin_col(self.sumo._cps_this_box(4,0),8),[(3,1),(4,1),(5,1)])
+        
+    # ------ Pencil functions --------------------------------------------------
+    
+    def test_p_count_in_cps_1(self):
+        cps_a = self.sumo._cps_this_row(8,8)
+        res = self.sumo._p_count_in_cps(3,cps_a)
+        #print self.sumo.show_big()
+        #print "cps_a", cps_a
+        #print "pensi", self.sumo.p_for_cpsXXX(cps_a)
+        #print "cnt3:", res
+        self.assertEqual(res,5)
+    
+    def test_p_for_cpsXXX(self):
+        cps_a = self.sumo._cps_this_box(1,1)
+        self.assertEqual(self.sumo.p_for_cpsXXX(cps_a),[set([]),set([1,2,4,6]),set([2,4,5,6,9]),set([1,2,4,5,9]),set([1,2,4]),set([]),set([1,4,5,6]),set([]),set([4,5,6])])
         
     #def test_only_n_notin_row

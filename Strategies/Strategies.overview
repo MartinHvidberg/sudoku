@@ -1,35 +1,37 @@
 Sort of on overview of strategies applicable to a human brain.
 
+(!) = Name used in "The Mathematics of Sudoku" by Tom Davis (http://www.geometer.org/mathcircles/sudoku.pdf)
+
 :: Basic / Tofu ::
 	
 	: Without penciling :
 	
-	* Free gifts (Free Drinks)
+	* 1. Free gifts (Free Drinks) "Unique Missing Candidate" !1
 	
-	* Crosshatching, Grouphatching, Scanning (maybe equivalent to hidden singles?)
+	* 2. Crosshatching, Grouphatching, Scanning (maybe equivalent to hidden singles?)
 	
 	: With penceling :
 	
-	* Naked Singles (Sole-candidate, single candidates, Single-candidate squares)
+	* 3. Naked Singles !2 (Sole-candidate, single candidates, Single-candidate squares)
 		
 :: 2 / Judo ::
 
 	: Square filling strategies :
 	
-	* Hidden Singles (Unique Candidate, Virtual crosshatches) = Single-square candidates?
+	* Hidden Singles !3 (Unique Candidate, Virtual crosshatches) = Single-square candidates?
 	
 	: Candidate limiting strategies :
 	
-	* Locked Candidates (Box claim and Row/column claims)
+	*  Locked Candidates !4 (Box claim and Row/column claims)
 	
 	.disjoint subsets.
-	* Naked Pairs (pairs)
+	* Naked Pairs (pairs) "Naked and Hidden Pairs, Triplets, Quads, ..." !5
 	* Naked Triples (triples)
 	* Naked Quads
 	
 :: 3 / Sumo :: (When we have a  'gridlock'? Seek definition, inklude/exclude hidden pairs?)
 	
-	* Hidden Pairs
+	* Hidden Pairs "Naked and Hidden Pairs, Triplets, Quads, ..." !5
 	* Hidden Triples
 	* Hidden Quads
 	
@@ -40,23 +42,27 @@ Sort of on overview of strategies applicable to a human brain.
 :: Advanced / Ninja ::
 
 	.Fishy Exclusions, advanced disjoint subsets. 
-	* X-Wing (N=2)
-	* Swordfish (N=3)
+	* X-Wings (N=2) !6
+	* Swordfish (N=3) !6
 	* Jellyfish (N=4)
+	
+	XY-Wing !7 (Not to be confused with X-Wing)
+	XYZ-Wing 
 	
 	.Beyond even fishy.
 	BUG (Bivalue Universal Grave) Removal
 	
 	.Colour solving techniques.
 	Conjugate pair chains (simple colouring)
-	Multi-Colouring
+	Simple Coloring !8 
+	Multi-Coloring !9
+	
+	Unique Solution Constraints !10
 	
 	.Extreme.
 	Non-Unique Rectangles
-	XY-Wing (Not to be confused with X-Wing)
-	XYZ-Wing 
 	Forcing patterns
-	Forcing Chains (seems to be group of XY-Wing and XYZ-Wing?)
+	Forcing Chains !11 (seems to be group of XY-Wing and XYZ-Wing?)
 	
-	.Guessing included.
+	.Guessing !12 included.
 	Nishio (Two candidate cell - Do you feel lucky?)

@@ -158,6 +158,8 @@ class SoDuKo_test(unittest.TestCase):
         #print "pensi", self.sumo.p_for_cpsXXX(cps_a)
         #print "cnt3:", res
         self.assertEqual(res,5)
+        
+    def test_ps_is_cps_1
     
     def test_p_for_cpsXXX(self):
         cps_a = self.sumo._cps_this_box(1,1)

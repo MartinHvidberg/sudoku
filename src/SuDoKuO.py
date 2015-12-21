@@ -2,6 +2,7 @@
 import logging
 
 import SuDoKuX # Xtra functions, made by others...
+from twisted.internet.defer import returnValue
 
 # create logger
 log = logging.getLogger('sudoku.obj')
@@ -145,10 +146,17 @@ class SuDoKu(object):
     def _slice9in3_hori(self, lst_in): 
         return [lst_in[n*3:n*3+3] for n in range(3)]
     
+    def area_cross(self, cpsa, cpsb):
+        cps1 = list()
+        cps2 = list()
+        cps3 = list()
+        
+        return
+    
     #------ pencil functions ---------------------------------------------------
             
     def pencil(self):
-        # Exclude digits occupied elsewhere in row, col or box.
+        ''' Fill pencil-marks, simply based on the filled cells. Intended for initial pencil-marking '''
         for i in range(9):
             for j in range(9):
                 if self.get(i, j) != 0:
@@ -160,7 +168,15 @@ class SuDoKu(object):
         log.info("pencile() marks: "+str(self.pencils_as_string()))
         return
     
+    def ps_in_cps(self, lst_cps):
+        ''' Return list of values of pencil-marks, represented in cells in cps '''
+        lst_ps = list()
+        for cps in lst_cps:
+            lst_ps.extend(list(self.p[cps[0]][cps[1]]))
+        return list(set(lst_ps))
+        
     def _p_count_in_cps(self, n, lst_cps):
+        ''' Count number of occurrences of value n in pencil-marks in cells in cps '''
         #print 'in', n, lst_cps
         lst_ps = [self.p[i][j] for i,j in lst_cps]
         #print 'ps', n, lst_ps
@@ -284,12 +300,12 @@ class SuDoKu(object):
     
     #------ Intersections ------------------------------------------------------
     
-    def locked_candidates(self):
+    def locked_candidates_beta(self):
         track = Track('Locked Candidates')
         for box in self._cps_boxs():
             for boxrow in self.rows_in_box(box):
                 for n in range(1,9):
-                    cnt_box = self._p_count_in_cps(n,box) <- XXX This count too little ...???
+                    cnt_box = self._p_count_in_cps(n,box) # <- XXX This count too little ...???
                     cnt_boxrow = self._p_count_in_cps(n,boxrow)
                     # Type 1 : Pointing
                     if cnt_box != 0 and cnt_box == cnt_boxrow:
@@ -300,8 +316,30 @@ class SuDoKu(object):
         log.info(track.show())
         self.record(track)
         return track.goods()
+    
+    def locked_candidates(self):
+        track = Track('Locked Candidates')
+        rows_and_cols = self._cps_rows() # XXX join to one line
+        rows_and_cols.extend(self._cps_cols())
+        for box in self._cps_boxs():
+            lst_n = self.ps_in_cps(box)
+            for roc in rows_and_cols:
+                ro,xs,co = self.area_cross(roc,box)
+                ps_ro = self.ps_in_cps(ro)
+                ps_xs = self.ps_in_cps(xs)
+                ps_co = self.ps_in_cps(co)
+                for n in lst_n:
+                    if n in ps_xs:
+                        if not n in ps_ro: # Type1?
+                            self.p_wipe_n_in_cps(n,ro)
+                            track.erase(n,ro)
+                        if not n in ps_co: # Type2?
+                            self.p_wipe_n_in_cps(n,co)
+                            track.erase(n,co)
+        log.info(track.show())
+        self.record(track)
+        return track.goods()
         
-
     def slap(self):
         """ The main thing you would call ...
         The 'Solve Like A Person' function.
@@ -408,13 +446,13 @@ class SuDoKu(object):
 class Track(object):
     
     def __init__(self, caller='anonymous'):
-        self.tactic = caller
-        self.sets = 0
-        self.pencils = 0
+        self.tactic = caller # The 'Tactic' that did this
+        self.sets = 0 # Number of successful Set operations
+        self.pencils = 0 # Number of successful Pencil operations
         self.hits = list()
         
     def goods(self):
-        return self.sets + self.pencils
+        return self.sets + self.pencils # return total count of Good operations
         
     def show(self):
         t = self.tactic.ljust(16)
@@ -431,8 +469,9 @@ class Track(object):
         self.hits.append('s('+str(i)+','+str(j)+'='+str(v)+')')
         return
         
-    def pencil(self):
+    def erase(self,n,lst_cps):
         self.pencils += 1
+        self.hits.append('pe('+str(n)+'@'+str(lst_cps).replace(' ','')+')')
         return
         
     def hit(self, hit_a):

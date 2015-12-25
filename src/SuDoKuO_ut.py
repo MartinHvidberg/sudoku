@@ -137,6 +137,9 @@ class SoDuKo_test(unittest.TestCase):
     def test_slice9in3_vert_1(self):
         self.assertEqual(self.sumo._slice9in3_vert([1,2,3,4,5,6,7,8,9]), [[1,4,7],[2,5,8],[3,6,9]])
         
+    def test_area_cross_1(self):
+        self.assertEqual(self.sumo.area_cross([1,2,3,4,3],[3,4,5,6]),[[1,2],[3,4],[5,6]])
+        
     # Only functions
     
     def test_only_free_cells_1(self):
@@ -158,8 +161,6 @@ class SoDuKo_test(unittest.TestCase):
         #print "pensi", self.sumo.p_for_cpsXXX(cps_a)
         #print "cnt3:", res
         self.assertEqual(res,5)
-        
-    def test_ps_is_cps_1
     
     def test_p_for_cpsXXX(self):
         cps_a = self.sumo._cps_this_box(1,1)

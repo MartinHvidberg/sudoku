@@ -1,4 +1,4 @@
-
+import copy
 import logging
 
 import SuDoKuX # Xtra functions, made by others...
@@ -146,12 +146,25 @@ class SuDoKu(object):
     def _slice9in3_hori(self, lst_in): 
         return [lst_in[n*3:n*3+3] for n in range(3)]
     
-    def area_cross(self, cpsa, cpsb):
-        cps1 = list()
-        cps2 = list()
-        cps3 = list()
-        
-        return
+    def area_cross(self, lst_cpsa, lst_cpsb):
+        # re-code, using set() and s-t, s&t, t-s
+        if isinstance(lst_cpsa, list) and isinstance(lst_cpsb, list):
+            if len(lst_cpsa)>0 and len(lst_cpsb)>0:
+                lst_cpsa = list(set(lst_cpsa))
+                lst_cpsb = list(set(lst_cpsb))
+                lst_cpsc = copy.deepcopy(lst_cpsa)
+                lst_cpsx = list()
+                for itm_n in lst_cpsc:
+                    if itm_n in lst_cpsb:
+                        lst_cpsx.append(itm_n)
+                        lst_cpsa.remove(itm_n)
+                        lst_cpsb.remove(itm_n)
+                return [lst_cpsa,lst_cpsx,lst_cpsb]
+            else:
+                return[lst_cpsa,list(),lst_cpsb]
+        else:
+            print "Damn: that wasn't a list ..."
+            return -999
     
     #------ pencil functions ---------------------------------------------------
             
@@ -187,7 +200,11 @@ class SuDoKu(object):
         return cnt
     
     def p_for_cpsXXX(self, lst_cps):
-        return [self.p[cps[0]][cps[1]] for cps in lst_cps] 
+        return [self.p[cps[0]][cps[1]] for cps in lst_cps]
+    
+    def p_wipe_n_in_cps(self,num_n,lst_cps):
+        for cps in lst_cps:
+            self.p[cps[0]][cps[1]] = self.p[cps[0]][cps[1]].discard(num_n)
     
     # more functions
     def _cps_to_val(self,obj_in):
@@ -331,6 +348,7 @@ class SuDoKu(object):
                 for n in lst_n:
                     if n in ps_xs:
                         if not n in ps_ro: # Type1?
+                            print "p_wipe_n_in_cps:",n,ro
                             self.p_wipe_n_in_cps(n,ro)
                             track.erase(n,ro)
                         if not n in ps_co: # Type2?

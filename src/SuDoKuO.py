@@ -183,10 +183,14 @@ class SuDoKu(object):
     
     def ps_in_cps(self, lst_cps):
         ''' Return list of values of pencil-marks, represented in cells in cps '''
-        lst_ps = list()
-        for cps in lst_cps:
-            lst_ps.extend(list(self.p[cps[0]][cps[1]]))
-        return list(set(lst_ps))
+        if len(lst_cps)>0:
+            set_ps = set()
+            for cps in lst_cps:
+                if self.p[cps[0]][cps[1]]: XXX # investigate why this can sometimes be NoneType XXX
+                    set_ps = set_ps | self.p[cps[0]][cps[1]]
+            return set_ps
+        else:
+            return list()
         
     def _p_count_in_cps(self, n, lst_cps):
         ''' Count number of occurrences of value n in pencil-marks in cells in cps '''
@@ -203,8 +207,10 @@ class SuDoKu(object):
         return [self.p[cps[0]][cps[1]] for cps in lst_cps]
     
     def p_wipe_n_in_cps(self,num_n,lst_cps):
-        for cps in lst_cps:
-            self.p[cps[0]][cps[1]] = self.p[cps[0]][cps[1]].discard(num_n)
+        if len(lst_cps)>0:
+            for cps in lst_cps:
+                if self.p[cps[0]][cps[1]]: XXX # Investigate why this can sometimes be NoneType XXX 
+                    self.p[cps[0]][cps[1]] = self.p[cps[0]][cps[1]].discard(num_n)
     
     # more functions
     def _cps_to_val(self,obj_in):
@@ -317,23 +323,6 @@ class SuDoKu(object):
     
     #------ Intersections ------------------------------------------------------
     
-    def locked_candidates_beta(self):
-        track = Track('Locked Candidates')
-        for box in self._cps_boxs():
-            for boxrow in self.rows_in_box(box):
-                for n in range(1,9):
-                    cnt_box = self._p_count_in_cps(n,box) # <- XXX This count too little ...???
-                    cnt_boxrow = self._p_count_in_cps(n,boxrow)
-                    # Type 1 : Pointing
-                    if cnt_box != 0 and cnt_box == cnt_boxrow:
-                        print "    Found LocledCand. Same # "+str(cnt_box)+" of "+str(n)+' in '+str(boxrow)+' and '+str(box)
-                        
-                    # Type 2 : Claiming
-            
-        log.info(track.show())
-        self.record(track)
-        return track.goods()
-    
     def locked_candidates(self):
         track = Track('Locked Candidates')
         rows_and_cols = self._cps_rows() # XXX join to one line
@@ -367,9 +356,9 @@ class SuDoKu(object):
             if not self.free_gifts():
                 if not self.crosshatching():
                     if not self.naked_singles():
-                        if not self.locked_candidates():
-                            log.info('Seem to have exhausted all solving strategies ...')
-                            return -1
+                        #if not self.locked_candidates():
+                        log.info('Seem to have exhausted all solving strategies ...')
+                        return -1
         log.info('Seem to have solved the SuDoKu. Thanks for using SLAP :-)')
         return 0
             

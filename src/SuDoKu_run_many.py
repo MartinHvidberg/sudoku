@@ -12,7 +12,7 @@ log.addHandler(log_fil)
 log.info(str_start_message)
 
 count = 0
-with open("../data/incraesing50g.txt") as f:
+with open("../data/SolvedLG.txt") as f:
     for line in f:
         count += 1
         str_org_line = line.strip()

@@ -1,5 +1,21 @@
 # SuDoKuO_ut.PY
 
+# sumo:
+# +---+---+---+
+# |8  |   |   |
+# |  3|6  |   |
+# | 7 | 9 |2  |
+# +---+---+---+
+# | 5 |  7|   |
+# |   | 45|7  |
+# |   |1  | 3 |
+# +---+---+---+
+# |  1|   | 68|
+# |  8|5  | 1 |
+# | 9 |   |4  |
+# +---+---+---+
+
+
 import unittest
 import SuDoKuO
     
@@ -145,10 +161,10 @@ class SoDuKo_test(unittest.TestCase):
     def test_only_free_cells_1(self):
         self.assertEqual(self.sumo.only_free_cells(self.sumo._cps_this_box(8,8)), [(6,6),(7,6),(7,8),(8,7),(8,8)])
         
-    def test_only_n_notin_row(self):
+    def test_only_n_notin_row_1(self):
         self.assertEqual(self.sumo.only_n_notin_row(self.sumo._cps_this_box(4,6),5),[(5,6),(5,7),(5,8)])
         
-    def test_only_n_notin_col(self):
+    def test_only_n_notin_col_1(self):
         self.assertEqual(self.sumo.only_n_notin_col(self.sumo._cps_this_box(4,0),8),[(3,1),(4,1),(5,1)])
         
     # ------ Pencil functions --------------------------------------------------

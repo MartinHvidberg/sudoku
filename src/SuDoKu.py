@@ -10,7 +10,7 @@ str_start_message = "Start"
 log = logging.getLogger('sudoku')
 log.setLevel(logging.DEBUG)
 log_fil = logging.FileHandler("sudoku.log", mode='w')
-log_fil.setLevel(logging.INFO)
+#log_fil.setLevel(logging.INFO)
 log_fil.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(name)s - %(message)s')) #
 log.addHandler(log_fil)
 log.info(str_start_message)
@@ -28,7 +28,7 @@ log.info(str_start_message)
 #s = SuDoKuO.SuDoKu("..........65.138..21....54.....86....57.....46.......3........9....3.7..9..87.3.2")  # {Naked singles:28,Crosshatching:20,Free gifts:9}
 
 ### Cat ?
-s = SuDoKuO.SuDoKu("..46...8..39....4.81..37..6..7..4....2.....3....3..6..7..51..28.8....31..9...34..") # MX 17. dec. '15. Let. LG
+##s = SuDoKuO.SuDoKu("..46...8..39....4.81..37..6..7..4....2.....3....3..6..7..51..28.8....31..9...34..") # MX 17. dec. '15. Let. LG
 #s = SuDoKuO.SuDoKu("5......1..3.5.9.......2.4....1..4...9.......8...6..2....4.8.......1.7.9..2......6") # Claimed to be simple, yet chaligsing computers
 
 ### Cat Higher
@@ -37,11 +37,13 @@ s = SuDoKuO.SuDoKu("..46...8..39....4.81..37..6..7..4....2.....3....3..6..7..51.
 #s = SuDoKuO.SuDoKu("8..........36......7..9.2...5...7.......457.....1...3...1....68..85...1..9....4..") # Is this really the hardest-ever sudoku?
 #s = SuDoKuO.SuDoKu(".......12........3..23..4....18....5.6..7.8.......9.....85.....9...4.5..47...6...") # "Platinum Blonde"
 
-print s.show_big()
+s = SuDoKuO.SuDoKu("074600083639000040810437006367004000020060030050300600743516928086040310090003460") 
+print "Pre\n",s.show_big()
 s.slap()
-print s
+print "Post\n",s.show_big()
 print s.stats()
 log.info('Stats: '+str(s.stats()))
+print s.show_current()
 
 #===============================================================================
 # print s.show_pencil()
@@ -70,6 +72,3 @@ log.info('Stats: '+str(s.stats()))
 #     print s.get(i,j),
 # print s.this_box(4,6)
 #===============================================================================
-
-
-

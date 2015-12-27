@@ -142,6 +142,12 @@ class SuDoKu(object):
     def only_taken_cells(self,lst_cps):
         return [cps for cps in lst_cps if self.m[cps[0]][cps[1]]!=0]
     
+    def only_n_in_row(self,lst_cps,n):
+        return [cps for cps in lst_cps if n in self.this_row(cps[0],cps[1])]
+    
+    def only_n_in_col(self,lst_cps,n):
+        return [cps for cps in lst_cps if n in self.this_col(cps[0],cps[1])]
+    
     def only_n_notin_row(self,lst_cps,n):
         return [cps for cps in lst_cps if n not in self.this_row(cps[0],cps[1])]
     
@@ -232,8 +238,7 @@ class SuDoKu(object):
         """ Remove (wipe) the number n from the Pencil-marks in all cells, in a list of coordinate pairs """
         if len(lst_cps)>0:
             for cps in lst_cps:
-                if self.p[cps[0]][cps[1]]: 
-                    self.p[cps[0]][cps[1]] = self.p[cps[0]][cps[1]].discard(num_n)
+                self.p[cps[0]][cps[1]] = self.p[cps[0]][cps[1]]-set([num_n])
     
     # more functions
     def _cps_to_val(self,obj_in):
@@ -320,10 +325,11 @@ class SuDoKu(object):
             boxf = self.only_free_cells(box)
             set_taken_values = set(self._cps_to_val(box))
             for n in range(9):
+                n += 1 # we need range [1..9] not [0..8]
                 boxc = boxf # get a fresh copy
-                if not n in set_taken_values: # skip values all ready in box
-                    boxc = self.only_n_notin_row(boxc,n)
-                    boxc = self.only_n_notin_col(boxc,n)
+                if not n in set_taken_values: # skip values all ready in box      
+                    boxc = self.only_n_notin_row(boxc,n)           
+                    boxc = self.only_n_notin_col(boxc,n)            
                     if len(boxc) == 1:
                         self._set(boxc[0][0],boxc[0][1],n)
                         track.set(boxc[0][0],boxc[0][1],n)
@@ -356,27 +362,15 @@ class SuDoKu(object):
     def locked_candidates(self):
         """ Solving technique: Locked Candidates. """
         track = Track('Locked Candidates')
-        rows_and_cols = self._cps_rows() # XXX join to one line
-        rows_and_cols.extend(self._cps_cols())
+        log.info("\n"+self.show_pencil())
+        log.info('Type 1 (Pointing) Looking at a box ------')
         for box in self._cps_boxs():
-            lst_n = self.ps_in_cps(box)
-            for roc in rows_and_cols:
-                ro,xs,co = self.area_cross(roc,box)
-                ps_ro = self.ps_in_cps(ro)
-                ps_xs = self.ps_in_cps(xs)
-                ps_co = self.ps_in_cps(co)
-                for n in lst_n:
-                    if n in ps_xs:
-                        if not n in ps_ro: # Type1?
-                            print "p_wipe_n_in_cps:",n,ro
-                            self.p_wipe_n_in_cps(n,ro)
-                            track.erase(n,ro)
-                        if not n in ps_co: # Type2?
-                            self.p_wipe_n_in_cps(n,co)
-                            track.erase(n,co)
+            for n in range(9):
+                pass
+                    
         log.info(track.show())
         self.record(track)
-        return track.goods()
+        return 0#track.goods()
         
     def slap(self):
         """ The main thing you would call ...
@@ -386,9 +380,9 @@ class SuDoKu(object):
             if not self.free_gifts():
                 if not self.crosshatching():
                     if not self.naked_singles():
-                        #if not self.locked_candidates():
-                        log.info('Seem to have exhausted all solving strategies ...')
-                        return
+                        if not self.locked_candidates():
+                            log.info('Seem to have exhausted all solving strategies ...')
+                            return
         log.info('Seem to have solved the SuDoKu. Thanks for using SLAP :-)')
             
     #====== Printout functions ======

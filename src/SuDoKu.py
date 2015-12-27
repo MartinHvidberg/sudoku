@@ -41,8 +41,6 @@ print s.show_big()
 s.slap()
 print s
 print s.stats()
-
-#log.info('Solved:',str(s.solved()))
 log.info('Stats: '+str(s.stats()))
 
 #===============================================================================

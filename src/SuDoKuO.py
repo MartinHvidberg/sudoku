@@ -257,8 +257,9 @@ class SuDoKu(object):
     
     def validate(self):
         bol_valid = True # Until proven guilty
-        for area in self.rows()+self.cols()+self.boxs(): # check row, col and box duplets
-            a = filter(lambda a: a != 0, area)
+        for area in self.areas(): # check row, col and box duplets
+            #a = filter(lambda a: a != 0, area)
+            a = [val for val in area if val!=0]
             if len(a) != len(list(set(a))):
                 bol_valid = False
                 log.error("#201 > Area seems to have redundant values: "+str(area))
@@ -286,20 +287,20 @@ class SuDoKu(object):
                 str_ret = str_ret.rstrip(',')
                 return str_ret+'}' 
             else:
-                return 'No track record found - this is really strange :-('
+                raise CustomException(" stats() No track record found - this is really strange :-(")
         else:
-            return 'Not valid ...'
+            raise CustomException(" stats() takes a valid SuDoKu. This is Not valid: "+str(self.m))
                 
     #====== SLAP (Solve Like A Person) solver functions ======
     
     def record(self, dic_hit):
         """ Adds a solving-move to the track record """
         self.rec.append(dic_hit)
-        return
     
     #------ Singles ------------------------------------------------------------
     
     def free_gifts(self):
+        """ Solving technique: Free Gifts. """
         track = Track('Free gifts') 
         for area in self._cps_areas():
             av = self._cps_to_val(area)
@@ -313,6 +314,7 @@ class SuDoKu(object):
         return track.goods()
     
     def crosshatching(self):
+        """ Solving technique: Crosshatching. """
         track = Track('Crosshatching') 
         for box in self._cps_boxs():
             boxf = self.only_free_cells(box)
@@ -330,6 +332,7 @@ class SuDoKu(object):
         return track.goods()
     
     def naked_singles(self):
+        """ Solving technique: Naked singles. """
         track = Track('Naked singles') 
         for i in range(9):
             for j in range(9):
@@ -351,6 +354,7 @@ class SuDoKu(object):
     #------ Intersections ------------------------------------------------------
     
     def locked_candidates(self):
+        """ Solving technique: Locked Candidates. """
         track = Track('Locked Candidates')
         rows_and_cols = self._cps_rows() # XXX join to one line
         rows_and_cols.extend(self._cps_cols())
@@ -377,19 +381,16 @@ class SuDoKu(object):
     def slap(self):
         """ The main thing you would call ...
         The 'Solve Like A Person' function.
-        This will try to solve the SuDoKu, by intelligently calling a sequence of the SLAP functions above. """
-        
+        This will try to solve the SuDoKu, by intelligently calling a sequence of the SLAP functions above. """        
         while not self.solved():
             if not self.free_gifts():
                 if not self.crosshatching():
                     if not self.naked_singles():
                         #if not self.locked_candidates():
                         log.info('Seem to have exhausted all solving strategies ...')
-                        return -1
+                        return
         log.info('Seem to have solved the SuDoKu. Thanks for using SLAP :-)')
-        return 0
             
-                
     #====== Printout functions ======
     
     def __str__(self):
@@ -480,15 +481,18 @@ class SuDoKu(object):
 class Track(object):
     
     def __init__(self, caller='anonymous'):
+        """ Initialise the track record """
         self.tactic = caller # The 'Tactic' that did this
         self.sets = 0 # Number of successful Set operations
         self.pencils = 0 # Number of successful Pencil operations
         self.hits = list()
         
     def goods(self):
-        return self.sets + self.pencils # return total count of Good operations
+        """ Return total count of Good operations """
+        return self.sets + self.pencils
         
     def show(self):
+        """ Return the summed track record """ 
         t = self.tactic.ljust(16)
         s = str(self.sets)
         p = str(self.pencils)
@@ -499,19 +503,18 @@ class Track(object):
         return t+' : set:'+s+' pen:'+p+' ['+h+']'
         
     def set(self,i,j,v):
+        """ Note a set() operation """
         self.sets += 1
         self.hits.append('s('+str(i)+','+str(j)+'='+str(v)+')')
-        return
         
     def erase(self,n,lst_cps):
+        """ Note a erase() operation """
         self.pencils += 1
         self.hits.append('pe('+str(n)+'@'+str(lst_cps).replace(' ','')+')')
-        return
         
     def hit(self, hit_a):
-        self.hits.append(hit_a)
-        return
-    
+        """ Append a hit to the track record """
+        self.hits.append(hit_a)    
 
 if __name__ == "__main__":
     

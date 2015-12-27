@@ -2,14 +2,22 @@ import copy
 import logging
 
 import SuDoKuX # Xtra functions, made by others...
-from twisted.internet.defer import returnValue
+###from twisted.internet.defer import returnValue
 
 # create logger
 log = logging.getLogger('sudoku.obj')
 
+# Extended exception handeling
+class CustomException(Exception):
+    def __init__(self, value):
+        self.parameter = value
+    def __str__(self):
+        return repr(self.parameter)
+
 class SuDoKu(object):
     
     def __init__(self, str_ini, lst_hardess = ['Free gifts', 'Crosshatching', 'Naked singles', 'Locked Candidates']):
+        """ initialises a SuDoKu object """
         self.hardness = lst_hardess
         self.m = [['0' for i in range(9)] for j in range(9)] # Empty (0 filled) matrix
         self.p = [[set() for i in range(9)] for j in range(9)] # Empty (empty lists) pencil-matrix
@@ -40,13 +48,17 @@ class SuDoKu(object):
     # Basic functions (get, set)
             
     def get(self,k,l):
-        """ Return SuDoKu value in cell k,l """
+        """ Return SuDoKu value in cell k,l 
+        ret: integer """
         return self.m[k][l]
                 
     def _set(self, k, l, v):
-        """ Set cell k,l in .m to value, and clear relevant pencil marks. """
+        """ Set cell k,l in .m to v, and clear relevant pencil marks."""
+        for inp in [k,l,v-1]:
+            if not isinstance(inp,int) or inp<0 or inp>8:
+                raise CustomException("_set() takes three integers k, l and v, k and l must all be in [0..8], v must be in [1..9]. Recieved: "+str(k)+", "+str(l)+", "+str(v))
         self.m[k][l] = v
-        self.p[k][l] = set() # its own pencil marks
+        self.p[k][l] = set() # the k,l cell's own pencil marks
         for c in range(9): # row, and col pencil marks
             self.p[k][c].discard(v)
             self.p[c][l].discard(v)
@@ -55,7 +67,6 @@ class SuDoKu(object):
         for i in range(3):
             for j in range(3):
                 self.p[kk+i][ll+j].discard(v)
-        return
     
     #------ this functions -----------------------------------------------------
     # returns lists of cps or values, representing the row, col or box of 'this' cell
@@ -114,7 +125,12 @@ class SuDoKu(object):
         return [self.this_box(i*3,j*3) for i in range(3) for j in range(3)]
     
     def _cps_areas(self):
+        """ Return list of lists of cps (coordinate pairs), representing all rows and all cols and all boxs in the SuDoKu """
         return self._cps_rows() + self._cps_cols() + self._cps_boxs()
+    
+    def areas(self):
+        """ Return a list of lists of digits, representing all rows, cols and boxes in the SuDoKu """
+        return self.rows()+self.cols()+self.boxs()
     
     #------ only_ functiones ---------------------------------------------------
     # take a list of cps, and returns that list. But only returns elements that meet the criteria
@@ -135,65 +151,71 @@ class SuDoKu(object):
     #------ Subdeviding functions ----------------------------------------------
     
     def rows_in_box(self, lst_in):
+        """ Takes one list. Return three lists of lists, having sliced the box into three parts (it's rows). """
         return self._slice9in3_vert(lst_in)
     
     def _slice9in3_vert(self, lst_in):
+        """ Generic Vertical slicer. Part list of 9 elements into 3 lists of 3 elements, by Vertical slicing """
         if len(lst_in) == 9:
             return [[lst_in[0],lst_in[3],lst_in[6]],[lst_in[1],lst_in[4],lst_in[7]],[lst_in[2],lst_in[5],lst_in[8]]]
         else:
             return []
     
     def _slice9in3_hori(self, lst_in): 
+        """ Generic Horizontal slicer. Part list of 9 elements into 3 lists of 3 elements, by Horizontal slicing """
         return [lst_in[n*3:n*3+3] for n in range(3)]
     
     def area_cross(self, lst_cpsa, lst_cpsb):
-        # re-code, using set() and s-t, s&t, t-s
-        if isinstance(lst_cpsa, list) and isinstance(lst_cpsb, list):
-            if len(lst_cpsa)>0 and len(lst_cpsb)>0:
-                lst_cpsa = list(set(lst_cpsa))
-                lst_cpsb = list(set(lst_cpsb))
-                lst_cpsc = copy.deepcopy(lst_cpsa)
-                lst_cpsx = list()
-                for itm_n in lst_cpsc:
-                    if itm_n in lst_cpsb:
-                        lst_cpsx.append(itm_n)
-                        lst_cpsa.remove(itm_n)
-                        lst_cpsb.remove(itm_n)
-                return [lst_cpsa,lst_cpsx,lst_cpsb]
-            else:
-                return[lst_cpsa,list(),lst_cpsb]
+        """ Make a crossing of two lists a and b. Return a list of three lists.
+        1: Elements exclusively in a. 2: Elements in both a and b. 3. Elements exclusively in b.
+        ret: list"""        
+        if not isinstance(lst_cpsa, list):
+            raise CustomException("area_cross() takes two lists: First parameter given is not a list.")
+        if not isinstance(lst_cpsb, list):
+            raise CustomException("area_cross() takes two lists: First parameter given is not a list.")
+        # XXX re-code, using set() and s-t, s&t, t-s
+        if len(lst_cpsa)>0 and len(lst_cpsb)>0:
+            lst_cpsa = list(set(lst_cpsa))
+            lst_cpsb = list(set(lst_cpsb))
+            lst_cpsc = copy.deepcopy(lst_cpsa)
+            lst_cpsx = list()
+            for itm_n in lst_cpsc:
+                if itm_n in lst_cpsb:
+                    lst_cpsx.append(itm_n)
+                    lst_cpsa.remove(itm_n)
+                    lst_cpsb.remove(itm_n)
+            return [lst_cpsa,lst_cpsx,lst_cpsb]
         else:
-            print "Damn: that wasn't a list ..."
-            return -999
+            return[lst_cpsa,list(),lst_cpsb]
     
     #------ pencil functions ---------------------------------------------------
             
     def pencil(self):
-        ''' Fill pencil-marks, simply based on the filled cells. Intended for initial pencil-marking '''
+        """ Fill pencil-marks, simply based on the filled cells. Intended for initial pencil-marking. """
         for i in range(9):
             for j in range(9):
-                if self.get(i, j) != 0:
+                if self.get(i,j) != 0:
                     self.p[i][j] = set()
                 else:
                     marks = set([1,2,3,4,5,6,7,8,9])
                     fixed = set(self.this_col(i,j)) | set(self.this_row(i,j)) | set(self.this_box(i,j))
                     self.p[i][j] = marks - fixed      
         log.info("pencile() marks: "+str(self.pencils_as_string()))
-        return
     
     def ps_in_cps(self, lst_cps):
-        ''' Return list of values of pencil-marks, represented in cells in cps '''
+        """ Return list of values of pencil-marks, represented in cells in cps """
+        if not isinstance(lst_cps, list):
+            raise CustomException(" ps_in_cps() takes list of coordinate pairs. Input parameter is not type list.")
         if len(lst_cps)>0:
             set_ps = set()
             for cps in lst_cps:
-                if self.p[cps[0]][cps[1]]: XXX # investigate why this can sometimes be NoneType XXX
-                    set_ps = set_ps | self.p[cps[0]][cps[1]]
+                set_ps = set_ps | self.p[cps[0]][cps[1]]
             return set_ps
         else:
             return list()
         
     def _p_count_in_cps(self, n, lst_cps):
-        ''' Count number of occurrences of value n in pencil-marks in cells in cps '''
+        """ Count number of occurrences of value n in pencil-marks in cells in cps """
         #print 'in', n, lst_cps
         lst_ps = [self.p[i][j] for i,j in lst_cps]
         #print 'ps', n, lst_ps
@@ -207,22 +229,27 @@ class SuDoKu(object):
         return [self.p[cps[0]][cps[1]] for cps in lst_cps]
     
     def p_wipe_n_in_cps(self,num_n,lst_cps):
+        """ Remove (wipe) the number n from the Pencil-marks in all cells, in a list of coordinate pairs """
         if len(lst_cps)>0:
             for cps in lst_cps:
-                if self.p[cps[0]][cps[1]]: XXX # Investigate why this can sometimes be NoneType XXX 
+                if self.p[cps[0]][cps[1]]: 
                     self.p[cps[0]][cps[1]] = self.p[cps[0]][cps[1]].discard(num_n)
     
     # more functions
     def _cps_to_val(self,obj_in):
-        if isinstance(obj_in, list):
+        """ Takes a coordinate pair (a tuple) or a list of them. Returns the value in that cell, or a list of them """
+        if isinstance(obj_in, tuple):
+            return self.get(obj_in[0],obj_in[1])
+        elif isinstance(obj_in, list):
             obj_ret = list()
             for num_item in range(len(obj_in)):
                 obj_ret.append(self._cps_to_val(obj_in[num_item]))
-        elif isinstance(obj_in, tuple):
-            return self.get(obj_in[0],obj_in[1])
-        return obj_ret
-    
+            return obj_ret
+        else:
+            raise CustomException(" _cps_to_val() takes a tuple or a list, this input was neither ...")
+        
     def solved(self):
+        """ Returns True if the SuDoKu is solved, otherwise returns False. """
         empty = 0
         for row in self.rows():
             empty += len(filter(lambda x: x==0, row))
@@ -488,6 +515,4 @@ class Track(object):
 
 if __name__ == "__main__":
     
-    print "\n   *** This module can't be run - it should be called from another program ***"
-    
-        
+    raise CustomException("*** This module can't be run - it should be called from another program ***")

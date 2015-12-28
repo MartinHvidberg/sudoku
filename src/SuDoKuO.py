@@ -1,8 +1,30 @@
+#!/usr/bin/env python
+# -*- coding: utf-8; -*-
+
+###
+#
+#
+# ToDo ------
+#    Many calls of type (csp[0],cps[1]) should be replaced by cps
+
+# Build-in modules
 import copy
 import logging
+# Third party modules
+#   none
+# Own modules
+import SuDoKuX # Xtra functions, made by others, but collected by me ...
 
-import SuDoKuX # Xtra functions, made by others...
-###from twisted.internet.defer import returnValue
+#===============================================================================
+# __author__ = "Martin Hvidberg"
+# __copyright__ = ""
+# __credits__ = []
+# __license__ = "GPL"
+# __version__ = "Version 3, 29 June 2007"
+# __maintainer__ = "Martin Hvidberg"
+# __email__ = "martin@hvidberg.net"
+# __status__ = "Development"
+#===============================================================================
 
 # create logger
 log = logging.getLogger('sudoku.obj')
@@ -15,8 +37,12 @@ class CustomException(Exception):
         return repr(self.parameter)
 
 class SuDoKu(object):
+    """ My SuDoKu class """
     
-    def __init__(self, str_ini, lst_hardess = ['Free gifts', 'Crosshatching', 'Naked singles', 'Locked Candidates']):
+    DIGS = tuple([n+1 for n in range(9)])
+    STPS = ['Free gifts', 'Crosshatching', 'Naked singles', 'Locked Cand.']
+    
+    def __init__(self, str_ini, lst_hardess = STPS):
         """ initialises a SuDoKu object """
         self.hardness = lst_hardess
         self.m = [['0' for i in range(9)] for j in range(9)] # Empty (0 filled) matrix
@@ -154,6 +180,9 @@ class SuDoKu(object):
     def only_n_notin_col(self,lst_cps,n):
         return [cps for cps in lst_cps if n not in self.this_col(cps[0],cps[1])]
     
+    def only_pen_n_in_cell(self,n,lst_cps):
+        return [cps for cps in lst_cps if n in self.p[cps[0]][cps[1]]]
+    
     #------ Subdeviding functions ----------------------------------------------
     
     def rows_in_box(self, lst_in):
@@ -193,6 +222,23 @@ class SuDoKu(object):
             return [lst_cpsa,lst_cpsx,lst_cpsb]
         else:
             return[lst_cpsa,list(),lst_cpsb]
+            
+    #------ locical functions (returning booleans) -----------------------------
+    
+    def cps_allinone_row(self, lst_cps):
+        print lst_cps
+        coor = [ i for i,j in lst_cps]
+        print coor
+        if len(set(coor)) == 1:
+            return True
+        else:
+            return False
+    
+    def cps_allinone_col(self, lst_cps):
+        return False
+    
+    def cps_allinone_box(self, lst_cps):
+        return False
     
     #------ pencil functions ---------------------------------------------------
             
@@ -324,8 +370,7 @@ class SuDoKu(object):
         for box in self._cps_boxs():
             boxf = self.only_free_cells(box)
             set_taken_values = set(self._cps_to_val(box))
-            for n in range(9):
-                n += 1 # we need range [1..9] not [0..8]
+            for n in self.DIGS:
                 boxc = boxf # get a fresh copy
                 if not n in set_taken_values: # skip values all ready in box      
                     boxc = self.only_n_notin_row(boxc,n)           
@@ -361,13 +406,14 @@ class SuDoKu(object):
     
     def locked_candidates(self):
         """ Solving technique: Locked Candidates. """
-        track = Track('Locked Candidates')
-        log.info("\n"+self.show_pencil())
+        track = Track('Locked Cand.')
         log.info('Type 1 (Pointing) Looking at a box ------')
         for box in self._cps_boxs():
-            for n in range(9):
-                pass
-                    
+            for n in self.DIGS:
+                cps_box_n = self.only_pen_n_in_cell(n,box) # reduce to cps with pencil n
+                if self.cps_allinone_row(cps_box_n):
+                    cps_rest = self.cps_notin_box(self.this_row(cps_box_n[0][0],cps_box_n[0][1]))
+                    self.whipe_pencil_n_in_cps(n,cps_rest) 
         log.info(track.show())
         self.record(track)
         return 0#track.goods()

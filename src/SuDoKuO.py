@@ -163,27 +163,44 @@ class SuDoKu(object):
     # the returned list can be empty
     
     def only_free_cells(self,lst_cps):
+        """ Return the cps list, but only cells with value 0 (free cells) """
         return [cps for cps in lst_cps if self.m[cps[0]][cps[1]]==0]
     
     def only_taken_cells(self,lst_cps):
+        """ Return the cps list, but only cells with value not 0 (taken cells) """
         return [cps for cps in lst_cps if self.m[cps[0]][cps[1]]!=0]
     
     def only_n_in_row(self,lst_cps,n):
+        """ Return the cps list, but only cells where value n is in the same row """
         return [cps for cps in lst_cps if n in self.this_row(cps[0],cps[1])]
     
     def only_n_in_col(self,lst_cps,n):
+        """ Return the cps list, but only cells  where value n is in the same col """
         return [cps for cps in lst_cps if n in self.this_col(cps[0],cps[1])]
     
     def only_n_notin_row(self,lst_cps,n):
+        """ Return the cps list, but only cells where value n is NOT in the same row """
         return [cps for cps in lst_cps if n not in self.this_row(cps[0],cps[1])]
     
     def only_n_notin_col(self,lst_cps,n):
+        """ Return the cps list, but only cells  where value n is NOT in the same col """
         return [cps for cps in lst_cps if n not in self.this_col(cps[0],cps[1])]
     
+    def only_cps_in_cps(self,lst_cpsa,lst_cpsb):
+        """ Return the cpsa list, but only cells that are Also in the cpsb list """
+        return list(set(lst_cpsa) & set(lst_cpsb))
+    
+    def only_cps_notin_cps(self,lst_cpsa,lst_cpsb):
+        """ Return the cpsa list, but only cells that are Not in the cpsb list """
+        return list(set(lst_cpsa) - set(lst_cpsb))
+    
     def only_pen_n_in_cell(self,n,lst_cps):
+        """ Return the cps list, but only cells that have n among its pencil marks """
         return [cps for cps in lst_cps if n in self.p[cps[0]][cps[1]]]
     
     #------ Subdeviding functions ----------------------------------------------
+    # take a list of cps, and returns that list. But subdevided into pieces.
+    # takes list, but returns list of lists.
     
     def rows_in_box(self, lst_in):
         """ Takes one list. Return three lists of lists, having sliced the box into three parts (it's rows). """
@@ -226,9 +243,7 @@ class SuDoKu(object):
     #------ locical functions (returning booleans) -----------------------------
     
     def cps_allinone_row(self, lst_cps):
-        print lst_cps
         coor = [ i for i,j in lst_cps]
-        print coor
         if len(set(coor)) == 1:
             return True
         else:
@@ -268,9 +283,7 @@ class SuDoKu(object):
         
     def _p_count_in_cps(self, n, lst_cps):
         """ Count number of occurrences of value n in pencil-marks in cells in cps """
-        #print 'in', n, lst_cps
         lst_ps = [self.p[i][j] for i,j in lst_cps]
-        #print 'ps', n, lst_ps
         cnt = 0
         for pset in lst_ps:
             if n in pset:
@@ -407,16 +420,18 @@ class SuDoKu(object):
     def locked_candidates(self):
         """ Solving technique: Locked Candidates. """
         track = Track('Locked Cand.')
-        log.info('Type 1 (Pointing) Looking at a box ------')
         for box in self._cps_boxs():
             for n in self.DIGS:
                 cps_box_n = self.only_pen_n_in_cell(n,box) # reduce to cps with pencil n
-                if self.cps_allinone_row(cps_box_n):
-                    cps_rest = self.cps_notin_box(self.this_row(cps_box_n[0][0],cps_box_n[0][1]))
-                    self.whipe_pencil_n_in_cps(n,cps_rest) 
+                if self.cps_allinone_row(cps_box_n): # Check for Row uniqueness
+                    cps_rest = self.only_cps_notin_cps(self._cps_this_row(cps_box_n[0][0],cps_box_n[0][1]),box)
+                    cps_wipe = self.only_pen_n_in_cell(n,cps_rest) # Only whipe if there is something to wipe
+                    if len(cps_wipe) > 0:
+                        self.p_wipe_n_in_cps(n,cps_rest) 
+                        track.erase(n,cps_wipe)
         log.info(track.show())
         self.record(track)
-        return 0#track.goods()
+        return track.goods()
         
     def slap(self):
         """ The main thing you would call ...

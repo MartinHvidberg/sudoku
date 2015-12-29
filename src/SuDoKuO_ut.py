@@ -214,6 +214,30 @@ class SoDuKo_test(unittest.TestCase):
         b = s._cps_this_box(0,8)
         self.assertEqual(s.only_pen_n_in_cell(3,b),[(0,6),(0,8),(2,8)])
         
+    def test_only_cps_in_cps_1(self):
+        boxa = self.sumo._cps_this_box(4,4)
+        cola = self.sumo._cps_this_col(4,4)
+        xrsa = self.sumo.only_cps_in_cps(boxa,cola) # Box in Col
+        self.assertEqual(set(xrsa),set([(3,4),(4,4),(5,4)])) # order of elements is not significant
+        
+    def test_only_cps_in_cps_2(self):
+        boxa = self.sumo._cps_this_box(4,4)
+        cola = self.sumo._cps_this_col(4,4)
+        xrsa = self.sumo.only_cps_in_cps(cola,boxa) # Col in Box
+        self.assertEqual(set(xrsa),set([(3,4),(4,4),(5,4)])) # order of elements is not significant
+        
+    def test_only_cps_notin_cps_3(self):
+        boxa = self.sumo._cps_this_box(4,4)
+        cola = self.sumo._cps_this_col(4,4)
+        xrsa = self.sumo.only_cps_notin_cps(cola,boxa) # Col - Box
+        self.assertEqual(set(xrsa),set([(0,4),(1,4),(2,4),(6,4),(7,4),(8,4)])) # order of elements is not significant
+        
+    def test_only_cps_notin_cps_4(self):
+        boxa = self.sumo._cps_this_box(4,4)
+        cola = self.sumo._cps_this_col(4,4)
+        xrsa = self.sumo.only_cps_notin_cps(boxa,cola) # Box - Col
+        self.assertEqual(set(xrsa),set([(3,3),(3,5),(4,3),(4,5),(5,3),(5,5)])) # order of elements is not significant
+        
     # ------ Pencil functions --------------------------------------------------
     
     def test_p_count_in_cps_1(self):

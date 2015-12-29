@@ -7,7 +7,6 @@ def same_col(i,j): return (i-j) % 9 == 0
 def same_block(i,j): return (i/27 == j/27 and i%9/3 == j%9/3)
 
 def r(a):
-    #print 'go:', a
     i = a.find('0')
     if i == -1:
         print 'SOLVED: ', a

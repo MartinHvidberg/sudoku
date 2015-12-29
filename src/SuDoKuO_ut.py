@@ -196,8 +196,28 @@ class SoDuKo_test(unittest.TestCase):
         
     def test_area_cross_1(self):
         self.assertEqual(self.sumo.area_cross([1,2,3,4,3],[3,4,5,6]),[[1,2],[3,4],[5,6]])
+
+    #------ locical functions (returning booleans) -----------------------------
+
+    def test_cps_allinone_row_1(self):
+        self.assertTrue(self.sumo.cps_allinone_row(self.sumo._cps_rows()[1]))
+
+    def test_cps_allinone_row_2(self):
+        self.assertFalse(self.sumo.cps_allinone_row(self.sumo._cps_cols()[2]))
         
-    # Only functions
+    def test_cps_allinone_col_1(self):
+        self.assertTrue(self.sumo.cps_allinone_col(self.sumo._cps_cols()[3]))
+        
+    def test_cps_allinone_col_2(self):
+        self.assertFalse(self.sumo.cps_allinone_col(self.sumo._cps_rows()[4]))
+
+    def test_cps_allinone_box_1(self):
+        self.assertTrue(self.sumo.cps_allinone_box(self.sumo._cps_boxs()[5]))
+
+    def test_cps_allinone_box_2(self):
+        self.assertFalse(self.sumo.cps_allinone_box(self.sumo._cps_rows()[6]))
+    
+    #------ Only functions
     
     def test_only_free_cells_1(self):
         self.assertEqual(self.sumo.only_free_cells(self.sumo._cps_this_box(8,8)), [(6,6),(7,6),(7,8),(8,7),(8,8)])
@@ -237,8 +257,8 @@ class SoDuKo_test(unittest.TestCase):
         cola = self.sumo._cps_this_col(4,4)
         xrsa = self.sumo.only_cps_notin_cps(boxa,cola) # Box - Col
         self.assertEqual(set(xrsa),set([(3,3),(3,5),(4,3),(4,5),(5,3),(5,5)])) # order of elements is not significant
-        
-    # ------ Pencil functions --------------------------------------------------
+           
+    #------ Pencil functions --------------------------------------------------
     
     def test_p_count_in_cps_1(self):
         cps_a = self.sumo._cps_this_row(8,8)

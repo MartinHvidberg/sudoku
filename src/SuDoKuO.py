@@ -255,7 +255,9 @@ class SuDoKu(object):
             return False
     
     def cps_allinone_box(self, lst_cps):
-        return False
+        cps_box = self._cps_this_box(lst_cps[0][0],lst_cps[0][1])
+        cps_jnt = self.only_cps_in_cps(lst_cps,cps_box)
+        return len(cps_jnt) == len(lst_cps)
     
     #------ pencil functions ---------------------------------------------------
             

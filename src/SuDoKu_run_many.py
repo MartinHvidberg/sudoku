@@ -15,8 +15,8 @@ count = 0 # Total
 cnt_s = 0 # Solved
 cnt_u = 0 # Unsloved
 #with open("../data/SolvedLG.txt") as f:
-with open("../data/top95.txt") as f:    
-#with open("../data/1000sudoku_plain.txt") as f:    
+#with open("../data/top95.txt") as f:    
+with open("../data/1000sudoku_plain.txt") as f:    
     for line in f:
         count += 1
         str_org_line = line.strip()
@@ -27,10 +27,10 @@ with open("../data/top95.txt") as f:
         s.slap()
         if s.solved():
             cnt_s += 1
-            print "("+str(count)+") "+str_org_line + ' # '+s.stats()
+            print "4 "+str_org_line + "("+str(count)+")" +s.stats()
         else:
             cnt_u += 1
-            print "("+str(count)+") "+str_org_line + ' # !!! '+s.stats()
+            print "0 ("+str(count)+") "+str_org_line + ' # '+s.stats()
 
 cnt_p = cnt_s*100.0/count
 print "Total {0} (solved {1} unsolved {2}) = {3}%".format(count,cnt_s,cnt_u,cnt_p)

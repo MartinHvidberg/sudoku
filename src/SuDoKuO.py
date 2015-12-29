@@ -15,16 +15,14 @@ import logging
 # Own modules
 import SuDoKuX # Xtra functions, made by others, but collected by me ...
 
-#===============================================================================
 # __author__ = "Martin Hvidberg"
 # __copyright__ = ""
 # __credits__ = []
 # __license__ = "GPL"
-# __version__ = "Version 3, 29 June 2007"
+__version__ = "0.4.0"
 # __maintainer__ = "Martin Hvidberg"
 # __email__ = "martin@hvidberg.net"
 # __status__ = "Development"
-#===============================================================================
 
 # create logger
 log = logging.getLogger('sudoku.obj')
@@ -243,14 +241,18 @@ class SuDoKu(object):
     #------ locical functions (returning booleans) -----------------------------
     
     def cps_allinone_row(self, lst_cps):
-        coor = [ i for i,j in lst_cps]
+        coor = [i for i,j in lst_cps]
         if len(set(coor)) == 1:
             return True
         else:
             return False
     
     def cps_allinone_col(self, lst_cps):
-        return False
+        coor = [j for i,j in lst_cps]
+        if len(set(coor)) == 1:
+            return True
+        else:
+            return False
     
     def cps_allinone_box(self, lst_cps):
         return False
@@ -425,7 +427,13 @@ class SuDoKu(object):
                 cps_box_n = self.only_pen_n_in_cell(n,box) # reduce to cps with pencil n
                 if self.cps_allinone_row(cps_box_n): # Check for Row uniqueness
                     cps_rest = self.only_cps_notin_cps(self._cps_this_row(cps_box_n[0][0],cps_box_n[0][1]),box)
-                    cps_wipe = self.only_pen_n_in_cell(n,cps_rest) # Only whipe if there is something to wipe
+                    cps_wipe = self.only_pen_n_in_cell(n,cps_rest) # Only wipe if there is something to wipe
+                    if len(cps_wipe) > 0:
+                        self.p_wipe_n_in_cps(n,cps_rest) 
+                        track.erase(n,cps_wipe)
+                if self.cps_allinone_col(cps_box_n): # Check for Col uniqueness
+                    cps_rest = self.only_cps_notin_cps(self._cps_this_col(cps_box_n[0][0],cps_box_n[0][1]),box)
+                    cps_wipe = self.only_pen_n_in_cell(n,cps_rest) # Only wipe if there is something to wipe
                     if len(cps_wipe) > 0:
                         self.p_wipe_n_in_cps(n,cps_rest) 
                         track.erase(n,cps_wipe)

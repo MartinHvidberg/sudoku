@@ -11,16 +11,26 @@ log_fil.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(name)s -
 log.addHandler(log_fil)
 log.info(str_start_message)
 
-count = 0
+count = 0 # Total
+cnt_s = 0 # Solved
+cnt_u = 0 # Unsloved
 #with open("../data/SolvedLG.txt") as f:
-with open("../data/incraesing50g.txt") as f:    
+with open("../data/top95.txt") as f:    
+#with open("../data/1000sudoku_plain.txt") as f:    
     for line in f:
         count += 1
         str_org_line = line.strip()
         str_sdk_line = line.split()[0]
+        if len(str_sdk_line) != 81:
+            break # It's likely an empty line, comment ore the likes ...
         s = SuDoKuO.SuDoKu(str_sdk_line)
         s.slap()
         if s.solved():
-            print str_org_line + ' # '+s.stats()
+            cnt_s += 1
+            print "("+str(count)+") "+str_org_line + ' # '+s.stats()
         else:
-            print str_org_line + ' # !!! '+s.stats()
+            cnt_u += 1
+            print "("+str(count)+") "+str_org_line + ' # !!! '+s.stats()
+
+cnt_p = cnt_s*100.0/count
+print "Total {0} (solved {1} unsolved {2}) = {3}%".format(count,cnt_s,cnt_u,cnt_p)

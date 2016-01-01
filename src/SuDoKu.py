@@ -13,13 +13,13 @@ import logging
 # Third party modules
 #   none
 # Own modules
-import SuDoKuX
+import SuDoKuX # <--- This should be in the Slam section in this file ...
 
 # __author__ = "Martin Hvidberg"
 # __copyright__ = ""
 # __credits__ = []
 # __license__ = "GPL"
-__version__ = "0.4.0"
+__version__ = "0.4.1"
 # __maintainer__ = "Martin Hvidberg"
 # __email__ = "martin@hvidberg.net"
 # __status__ = "Development"

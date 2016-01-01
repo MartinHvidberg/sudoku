@@ -35,14 +35,12 @@ class CustomException(Exception):
         return repr(self.parameter)
 
 class SuDoKu(object):
-    """ My SuDoKu class """
+    """ My Generic SuDoKu class """
     
     DIGS = tuple([n+1 for n in range(9)])
-    STPS = ['Free gifts', 'Crosshatching', 'Naked singles', 'Locked Cand.']
     
-    def __init__(self, str_ini, lst_hardess = STPS):
+    def __init__(self, str_ini):
         """ initialises a SuDoKu object """
-        self.hardness = lst_hardess
         self.m = [['0' for i in range(9)] for j in range(9)] # Empty (0 filled) matrix
         self.p = [[set() for i in range(9)] for j in range(9)] # Empty (empty lists) pencil-matrix
         self.rec = list() # Track record of solving tactics steps
@@ -545,10 +543,13 @@ class SuDoKu(object):
 
 class Slap(SuDoKu):
     
-    def __init__(self):
-        self.someparameter = True
+    STPS = ['Free gifts', 'Crosshatching', 'Naked singles', 'Locked Cand.']
     
-class Smam(SuDoKu):
+    def __init__(self, str_ini, lst_hardess = STPS):
+        SuDoKu.__init__(self, str_ini)
+        self.hardness = lst_hardess
+    
+class Slam(SuDoKu):
     
     def __init__(self):
         self.someparameter = True

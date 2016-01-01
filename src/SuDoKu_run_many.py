@@ -23,7 +23,7 @@ with open("../data/top95.txt") as f:
         str_sdk_line = line.split()[0]
         if len(str_sdk_line) != 81:
             break # It's likely an empty line, comment ore the likes ...
-        s = SuDoKuO.SuDoKu(str_sdk_line)
+        s = SuDoKuO.Slap(str_sdk_line)
         s.slap()
         if s.solved():
             cnt_s += 1

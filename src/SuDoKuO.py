@@ -542,7 +542,17 @@ class SuDoKu(object):
                         
     def show_pencil(self):
         return self.show_big()
+
+class Slap(SuDoKu):
     
+    def __init__(self):
+        self.someparameter = True
+    
+class Smam(SuDoKu):
+    
+    def __init__(self):
+        self.someparameter = True
+        
 class Track(object):
     
     def __init__(self, caller='anonymous'):

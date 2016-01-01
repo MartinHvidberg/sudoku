@@ -55,14 +55,14 @@
 
 
 import unittest
-import SuDoKuO
+import SuDoKu
     
 class SoDuKo_test(unittest.TestCase):
     
     # Invoked before each test method
     def setUp(self):
-        self.sumo = SuDoKuO.SuDoKu("8..........36......7..9.2...5...7.......457.....1...3...1....68..85...1..9....4..")
-        self.inva = SuDoKuO.SuDoKu("8....8.....36......7..9.2...5...7.......457.....1...3...1....68..85...1..9....4..")
+        self.sumo = SuDoKu.Slap("8..........36......7..9.2...5...7.......457.....1...3...1....68..85...1..9....4..")
+        self.inva = SuDoKu.Slap("8....8.....36......7..9.2...5...7.......457.....1...3...1....68..85...1..9....4..")
         
     def test_CONSTANTS_1(self):
         self.assertEqual(self.sumo.DIGS,(1,2,3,4,5,6,7,8,9))

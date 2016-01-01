@@ -594,4 +594,4 @@ class Track(object):
 
 if __name__ == "__main__":
     
-    raise CustomException("*** This module can't be run - it should be called from another program ***")
+    raise CustomException("*** This module can't be run - it should be called from another module ***")

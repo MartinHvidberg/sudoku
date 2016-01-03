@@ -532,6 +532,11 @@ class Slap(SuDoKu):
                     if len(cps_wipe) > 0:
                         self.p_wipe_n_in_cps(n,cps_rest) 
                         track.erase(n,cps_wipe)
+        for col in self._cps_cols():
+            for n in self.DIGS:
+                cps_col_n = self.only_pen_n_in_cell(n,col) # reduce to cps with pencil n
+                if self.cps_allinone_box(cps_col_n): # Check for Box uniqueness
+                    cps_rest = 
         log.info(track.show())
         self.record(track)
         return track.goods()

@@ -46,6 +46,8 @@ print "Post\n",s.show_big()
 print s.stats()
 log.info('Stats: '+str(s.stats()))
 
+print "End of SuDoKu ..."
+
 
 #===============================================================================
 # print s.show_pencil()

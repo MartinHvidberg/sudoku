@@ -93,10 +93,10 @@ class SuDoKu(object):
                 self.p[kk+i][ll+j].discard(v)
     
     #------ this functions -----------------------------------------------------
-    # returns lists of cps or values, representing the row, col or box of 'this' cell
+    # returns lists of cps (coordinate pairs), or values, representing the row, col or box of 'this' cell
     
     def _cps_this_row(self,k,l):
-        """ Return list of cps (coordinate pairs), representing the row that (k,l) belongs to """
+        """ Return list of cps representing the row that (k,l) belongs to """
         return [(k,i) for i in range(9)]
     
     def this_row(self,k,l):
@@ -268,7 +268,8 @@ class SuDoKu(object):
                 if self.get(i,j) != 0:
                     self.p[i][j] = set()
                 else:
-                    marks = set([1,2,3,4,5,6,7,8,9])
+                    # marks = set([1,2,3,4,5,6,7,8,9]) Performance can be improved using litteral.
+                    marks = {1,2,3,4,5,6,7,8,9}
                     fixed = set(self.this_col(i,j)) | set(self.this_row(i,j)) | set(self.this_box(i,j))
                     self.p[i][j] = marks - fixed      
         log.info("pencile() marks: "+str(self.pencils_as_string()))
@@ -294,8 +295,8 @@ class SuDoKu(object):
                 cnt += 1
         return cnt
     
-    def p_for_cpsXXX(self, lst_cps):
-        return [self.p[cps[0]][cps[1]] for cps in lst_cps]
+    #def p_for_cpsXXX(self, lst_cps): Function persumed deprevated... Better check that...
+    #    return [self.p[cps[0]][cps[1]] for cps in lst_cps]
     
     def p_wipe_n_in_cps(self,num_n,lst_cps):
         """ Remove (wipe) the number n from the Pencil-marks in all cells, in a list of coordinate pairs """
@@ -324,10 +325,12 @@ class SuDoKu(object):
         return empty == 0
     
     def validate(self):
+        """ Return True if the sudoku is valid, otherwise returns False """
         bol_valid = True # Until proven guilty
+        # XXX Consider checking for values not beeing single digit numbers
         for area in self.areas(): # check row, col and box duplets
-            #a = filter(lambda a: a != 0, area)
-            a = [val for val in area if val!=0]
+            # a = filter(lambda a: a != 0, area)
+            a = [val for val in area if val != 0]
             if len(a) != len(list(set(a))):
                 bol_valid = False
                 log.error("#201 > Area seems to have redundant values: "+str(area))
@@ -339,8 +342,8 @@ class SuDoKu(object):
         str_ret = ""
         if self.validate():
             if not self.solved():
-                str_ret += 'Not solved ...'
-            if len(self.rec)>0:
+                str_ret += 'Not solved by SLAP... '
+            if len(self.rec) > 0:
                 for track in self.rec:
                     if track.tactic not in dic_stat.keys():
                         dic_stat[track.tactic] = track.goods()
@@ -351,13 +354,13 @@ class SuDoKu(object):
                 lst_keys = sorted(lst_keys, key=self.hardness.index, reverse=True)
                 str_ret += "{"
                 for k in lst_keys:
-                    str_ret += str(k) + ':' +str(dic_stat[k]) + ','
+                    str_ret += str(k) + ':' + str(dic_stat[k]) + ','
                 str_ret = str_ret.rstrip(',')
                 return str_ret+'}' 
             else:
                 raise CustomException(" stats() No track record found - this is really strange :-(")
         else:
-            raise CustomException(" stats() takes a valid SuDoKu. This is Not valid: "+str(self.m))
+            raise CustomException(" stats() takes a valid SuDoKu. This is Not valid: " + str(self.m))
                 
     #====== SLAP (Solve Like A Person) solver functions ======
     
@@ -368,13 +371,15 @@ class SuDoKu(object):
     #------ Singles ------------------------------------------------------------
     
     def free_gifts(self):
-        """ Solving technique: Free Gifts. """
+        """ Solving technique: Free Gifts.
+        A Col, Row or Box only have 1 unfilled cell left """
         track = Track('Free gifts') 
         for area in self._cps_areas():
             av = self._cps_to_val(area)
             if av.count(0) == 1:
                 i,j =  area[av.index(0)]
-                val = (set([1,2,3,4,5,6,7,8,9]) - set(av)).pop()
+                # val = (set([1,2,3,4,5,6,7,8,9]) - set(av)).pop() Better performance with literal
+                val = ({1,2,3,4,5,6,7,8,9} - set(av)).pop()
                 self._set(i,j,val)
                 track.set(i,j,val)
         log.info(track.show())
@@ -400,7 +405,8 @@ class SuDoKu(object):
         return track.goods()
     
     def naked_singles(self):
-        """ Solving technique: Naked singles. """
+        """ Solving technique: Naked singles.
+        Some thing like: 'Only one pencil mark left in this cell'?. Check up on that..."""
         track = Track('Naked singles') 
         for i in range(9):
             for j in range(9):

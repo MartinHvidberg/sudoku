@@ -25,8 +25,8 @@ log.info(str_start_message)
 #s = SuDoKuO.SuDoKu("3..4....2.51..7.9...9...83..9.7.8..5.........8..2.4.6..42...1...7.1..32.5....6..9") # Pol. 20. dec. '15. Let. LG
 
 ### Cat 3 (Naked singles, Crosshatching & Free gifts)
-s = SuDoKuO.SuDoKu("..........65.138..21....54.....86....57.....46.......3........9....3.7..9..87.3.2")  # {Naked singles:14,Crosshatching:28,Free gifts:15}
-#s = SuDoKuO.SuDoKu("..46...8..39....4.81..37..6..7..4....2.....3....3..6..7..51..28.8....31..9...34..") # MX 17. dec. '15. Let. LG
+#s = SuDoKuO.SuDoKu("..........65.138..21....54.....86....57.....46.......3........9....3.7..9..87.3.2")  # {Naked singles:14,Crosshatching:28,Free gifts:15}
+s = SuDoKuO.SuDoKu("..46...8..39....4.81..37..6..7..4....2.....3....3..6..7..51..28.8....31..9...34..") # MX 17. dec. '15. Let. LG
 #s = SuDoKuO.SuDoKu("........8.76..8....9.....6...4..2..6..1....74.8...72..1.2..3...9...4..21..8..6.3.") # ver 0.4.0 Solves or not?
 
 ### Cat 4 (Locked Cand., Naked singles, Crosshatching & Free gifts

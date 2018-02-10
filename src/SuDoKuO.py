@@ -2,8 +2,6 @@
 # -*- coding: utf-8; -*-
 
 ###
-#
-#
 # ToDo ------
 #    Many calls of type (csp[0],cps[1]) should be replaced by cps
 
@@ -466,6 +464,13 @@ class SuDoKu(object):
     
     def __str__(self):
         return self.show_current()
+
+    def show_line(self):
+        str_r = str()
+        for lst_l in self.m:
+            for int_n in lst_l:
+                str_r += (str(int_n))
+        return str_r.replace('0','.')
     
     def show_small(self, matrix):
         def p(i,j):

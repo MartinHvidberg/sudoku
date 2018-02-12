@@ -1,5 +1,6 @@
 
 from string import maketrans
+import copy
 
 import SuDoKu_simple
 import SuDoKuO
@@ -48,15 +49,50 @@ class SuDoKuNrmlz(SuDoKuO.SuDoKu):
         self.m = lst_t[::-1]
         self.clean_all_but_m()
 
+    def turn_r(self):
+        """ Turn the maxrix 90 degrees - right """
+        self.m = [col[::-1] for col in self.cols()]
 
 
 if __name__ == '__main__':
 
-    S = SuDoKuNrmlz(".4.8.52...2..4..5.5.......4.9...312.1.6.78..337.9.4.8......67....8359.1..19..76..")
-    print "Original\n", S
-    S.permute()
-    print "Permuted\n", S
-    S.flip_v()
-    print "Flip-V\n", S
-    S.flip_h()
-    print "Flip-H\n", S
+    str_s = ".4.8.52...2..4..5.5.......4.9...312.1.6.78..337.9.4.8......67....8359.1..19..76.."
+    # S = SuDoKuNrmlz(str_s)
+    # print "Original\n", S
+    # S.permute()
+    # print "Permuted\n", S
+    # S.flip_v()
+    # print "Flip-V\n", S
+    # S.flip_h()
+    # print "Flip-H\n", S
+
+    print "# Normalizing candidates..."
+    S = SuDoKuNrmlz(str_s)
+    # lst_nc = [S, copy.deepcopy(S), copy.deepcopy(S), copy.deepcopy(S)]
+    # for n in [1,3]:
+    #     lst_nc[n].flip_h()
+    # for n in [2,3]:
+    #     lst_nc[n].flip_v()
+    # for sdk in lst_nc:
+    #     print sdk
+    print "\n# Auto multiplyer"
+    lst_sdk = [S]
+    # Multiply, and flip H
+    lst_add = [SuDoKuNrmlz(sdk.show_line()) for sdk in lst_sdk]
+    for sdk in lst_add:
+        sdk.flip_h()
+    lst_sdk.extend(lst_add)
+    # Multiply, and flip V
+    lst_add = [SuDoKuNrmlz(sdk.show_line()) for sdk in lst_sdk]
+    for sdk in lst_add:
+        sdk.flip_v()
+    lst_sdk.extend(lst_add)
+
+    print lst_sdk
+    for sdk in lst_sdk:
+        print sdk
+
+    print "\n# Twister..."
+    print S
+    S.turn_r()
+    print S

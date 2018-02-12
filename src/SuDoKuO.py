@@ -481,6 +481,18 @@ class SuDoKu(object):
             v = '+---+---+---+\n'
             return (v+l(0)+l(1)+l(2)+v+l(3)+l(4)+l(5)+v+l(6)+l(7)+l(8)+v).strip()
         return q()
+
+    def show_medium(self, matrix):
+        def p(i,j):
+            return str(matrix[i][j])
+        def l(i):
+            return ("| "+p(i,0)+" "+p(i,1)+" "+p(i,2)
+                    +" | "+p(i,3)+" "+p(i,4)+" "+p(i,5)
+                    +" | "+p(i,6)+" "+p(i,7)+" "+p(i,8)+" |\n").replace('0',' ')
+        def q():
+            v = '+ - - - + - - - + - - - +\n'
+            return (v+l(0)+l(1)+l(2)+v+l(3)+l(4)+l(5)+v+l(6)+l(7)+l(8)+v).strip()
+        return q()
     
     def pencils_as_lol(self):
         return [[list(self.p[i][j]) for j in range(9)] for i in range(9)]
@@ -496,7 +508,7 @@ class SuDoKu(object):
         return str_ret.strip(';')+')'
     
     def show_current(self):
-        return self.show_small(self.m)
+        return self.show_medium(self.m)
     
     def show_solved(self):
         if self.v:

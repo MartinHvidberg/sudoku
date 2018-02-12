@@ -53,6 +53,10 @@ class SuDoKuNrmlz(SuDoKuO.SuDoKu):
         """ Turn the maxrix 90 degrees - right """
         self.m = [col[::-1] for col in self.cols()]
 
+    def turn_l(self):
+        """ Turn the maxrix 90 degrees - left """
+        self.m = [col for col in self.cols()][::-1]
+
 
 if __name__ == '__main__':
 
@@ -87,12 +91,59 @@ if __name__ == '__main__':
     for sdk in lst_add:
         sdk.flip_v()
     lst_sdk.extend(lst_add)
+    # Copy to Left twist, and Right twist
+    lst_lft = [SuDoKuNrmlz(sdk.show_line()) for sdk in lst_sdk]
+    lst_rgt = [SuDoKuNrmlz(sdk.show_line()) for sdk in lst_sdk]
+    # Multiply, and Left twist
+    lst_add = [SuDoKuNrmlz(sdk.show_line()) for sdk in lst_lft]
+    for sdk in lst_add:
+        sdk.turn_l() # turn 90
+    lst_lft.extend(lst_add)
+    for sdk in lst_add:
+        sdk.turn_l() # turn 180
+    lst_lft.extend(lst_add)
+    for sdk in lst_add:
+        sdk.turn_l() # turn 270
+    lst_lft.extend(lst_add)
+    lst_sdk.extend(lst_lft)
+    # Multiply, and Right twist
+    lst_add = [SuDoKuNrmlz(sdk.show_line()) for sdk in lst_rgt]
+    for sdk in lst_add:
+        sdk.turn_r() # turn 90
+    lst_rgt.extend(lst_add)
+    for sdk in lst_add:
+        sdk.turn_r() # turn 180
+    lst_rgt.extend(lst_add)
+    for sdk in lst_add:
+        sdk.turn_r() # turn 270
+    lst_rgt.extend(lst_add)
+    lst_sdk.extend(lst_rgt)
 
     print lst_sdk
     for sdk in lst_sdk:
+        print sdk.show_line()
+    print len(lst_sdk)
+    lst_sdk = list(set([sdk.show_line() for sdk in lst_sdk]))
+    lst_sdk.sort()
+    for sdk in lst_sdk:
         print sdk
+    print len(lst_sdk)
 
-    print "\n# Twister..."
+    print lst_sdk[0]
+    Sn = SuDoKuNrmlz(lst_sdk[0])
+    Sp = SuDoKuNrmlz(lst_sdk[0])
+    Snp = SuDoKuNrmlz(lst_sdk[0])
+    Sp.permute()
+    Snp.permute()
     print S
-    S.turn_r()
-    print S
+    print Sn
+    print Sp
+    print Snp
+    S.slap()
+    print S.stats()
+    Sn.slap()
+    print Sn.stats()
+    Sp.slap()
+    print Sp.stats()
+    Snp.slap()
+    print Snp.stats()

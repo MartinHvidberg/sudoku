@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0046)http://www.sadmansoftware.com/sudoku/faq11.php -->
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="window-target" content="_top">
+<meta name="description" content="SadMan Software Sudoku FAQ - What is the grading scheme, how are different grades assigned?">
+<meta name="keywords" content="sadman, sudoku, su doku, soduko, faq">
+<meta name="author" content="Simon Armstrong">
+<meta name="copyright" content="Copyright © 2000-2019 Simon Armstrong. All Rights Reserved.">
+<meta name="robots" content="index,follow">
+<meta name="revisit" content="31 days">
+<meta name="revisit-after" content="31 days">
+<meta name="audience" content="all">
+<meta name="rating" content="general">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="no-email-collection" content="http://www.sadmansoftware.com/termsofservice.php">
+<meta property="og:site_name" content="SadMan Software">
+<meta property="og:type" content="website">
+<meta property="og:description" content="SadMan Software Sudoku FAQ - What is the grading scheme, how are different grades assigned?">
+<meta property="og:image" content="http://www.sadmansoftware.com/images/ogsudoku.png">
+<meta property="og:url" content="http://www.sadmansoftware.com/sudoku/faq11.php">
+<meta property="og:locale" content="en_GB">
+<link rel="canonical" href="http://www.sadmansoftware.com/sudoku/faq11.php">
+<link rel="image_src" href="http://www.sadmansoftware.com/images/ogsudoku.png">
+<link rel="icon" type="image/png" href="http://www.sadmansoftware.com/sudoku/favicon-16x16.png">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.sadmansoftware.com/rss.xml">
+<link rel="stylesheet" type="text/css" href="./faq11.php_files/sms.css">
+<link rel="stylesheet" type="text/css" href="./faq11.php_files/css">
+<link rel="preload" href="./faq11.php_files/f(8).txt" as="script"><script src="./faq11.php_files/osd.js"></script><script src="./faq11.php_files/f(7).txt" id="google_shimpl"></script><script type="text/javascript" src="./faq11.php_files/f(8).txt"></script><link rel="preload" href="./faq11.php_files/f(9).txt" as="script"><script type="text/javascript" src="./faq11.php_files/f(9).txt"></script><link rel="preload" href="./faq11.php_files/f(7).txt" as="script"></head>
+<body>
+<div id="maincontainer">
+<div id="topsection">
+<div class="innertube">
+<div id="pageheader">
+<a href="http://www.sadmansoftware.com/"><span class="logo shadow">SS</span></a>
+<div class="floatl">
+<a href="http://www.sadmansoftware.com/"><span class="h1 shadow">SadMan Software</span></a><br>
+<span class="h2 shadow">
+Sudoku FAQ 11</span>
+</div>
+</div>
+</div>
+<div id="mainmenu" class="gradientBG">
+<ul>
+<li><a id="applications" href="http://www.sadmansoftware.com/sudoku/faq11.php#" style="background-color: transparent;">Applications</a></li>
+<li><a id="delphi" href="http://www.sadmansoftware.com/sudoku/faq11.php#">Delphi Components</a></li>
+<li><a id="forums" href="http://www.sadmansoftware.com/sudoku/faq11.php#">Support Forums</a></li>
+<li><a id="legal" href="http://www.sadmansoftware.com/sudoku/faq11.php#">Legal</a></li>
+</ul>
+<span id="menuright">&nbsp;</span>
+</div>
+</div>
+
+<div id="contentwrapper">
+<div id="contentcolumn">
+<div class="innertubemore">
+<div id="breadcrumbtrail">
+<a href="http://www.sadmansoftware.com/">Home</a> &gt; <a href="http://www.sadmansoftware.com/sudoku/">Sudoku</a> &gt; <a href="http://www.sadmansoftware.com/sudoku/faq.php">FAQs</a> &gt; FAQ 11
+</div>
+
+<div class="faq">
+<h2>What is the grading scheme, how are different grades assigned?</h2>
+<p><b>A</b>. This is the grading scheme currently used, although this may change in the future.</p>
+<dl>
+<dt>Simple</dt>
+<dd>Naked Single only or Hidden Single only (depending upon a configuration option.)</dd>
+<dt>Easy</dt>
+<dd>(NumHiddenSingle &gt; 0) and (NumNakedSingle &gt; 0)</dd>
+<dt>Mild</dt>
+<dd>(NumNakedPairs + NumHiddenPairs + NumBlockBlockInteractions + NumBlockColumnRowInteractions) &gt; 0</dd>
+<dt>Moderate</dt>
+<dd>(NumBlockBlockInteractions + NumBlockColumnRowInteractions &gt; 0) and<br>
+(NumNakedPairs + NumHiddenPairs &gt; 0)</dd>
+<dt>Hard</dt>
+<dd>(NumXWing + NumXYWing + NumXYZWing + NumXYChain + NumForcingChains + NumColouring + NumNakedTriplets + NumHiddenTriplets) &gt; 0</dd>
+<dt>Very Hard</dt>
+<dd>(NumXWing + NumXYWing + NumXYZWing + NumXYChain + NumForcingChains + NumColouring &gt; 1) or<br>
+(NumNakedTriplets + NumHiddenTriplets &gt; 2)</dd>
+<dt>Fiendish</dt>
+<dd>(NumNakedQuads + NumHiddenQuads + NumSwordfish &gt; 0) or<br>
+(NumXWing + NumXYWing + NumXYZWing + NumXYChain + NumForcingChains + NumColouring &gt; 2)</dd>
+<dt>Diabolical</dt>
+<dd>(NumNakedQuads + NumHiddenQuads + NumSwordfish &gt; 1) or<br>
+(NumXWing + NumXYWing + NumXYZWing + NumXYChain + NumForcingChains + NumColouring &gt; 4)</dd>
+<dt>Not Solved</dt>
+<dd>Trial and error. None of the other techniques can solve the puzzle, and Sudoku can only solve the puzzle using trial and error.</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div id="leftcolumn">
+<div class="innertube">
+<ul>
+<li><a href="http://www.sadmansoftware.com/sudoku/">Overview</a></li>
+<li><a href="http://www.sadmansoftware.com/sudoku/screenshot.php">Screen Shot</a></li>
+<li><a href="http://www.sadmansoftware.com/sudoku/faq.php">FAQ</a></li>
+<li><a href="http://www.sadmansoftware.com/sudoku/download.php">Upgrade</a></li>
+<li><a href="http://www.sadmansoftware.com/sudoku/history.php">Change History</a></li>
+<li><a href="http://www.sadmansoftware.com/sudoku/translations.php">Translations <img src="./faq11.php_files/flags.gif" alt="" width="25" height="15"></a></li>
+<li><a href="http://www.sadmansoftware.com/sudoku/awards.php">User Comments</a></li>
+<li><a href="http://www.sadmansoftware.com/sudoku/buy.php">Buy</a></li>
+<li><a href="http://www.sadmansoftware.com/sudoku/emptygrids.php">Printable Grids</a></li>
+<li><a href="http://www.sadmansoftware.com/sudoku/solvingtechniques.php">Solving Techniques</a></li>
+<li><a href="http://www.sadmansoftware.com/sudoku/glossary.php">Glossary</a></li>
+<li><a href="http://www.sadmansoftware.com/sudoku/links.php">Links</a></li>
+<li><a href="http://www.sadmansoftware.com/forums/viewforum.php?f=2">Support Forum</a></li>
+</ul>
+
+<table cellspacing="0" cellpadding="5" border="0" class="quote"><tbody><tr><th>What People Say</th></tr><tr><td><img alt="" src="./faq11.php_files/quoteopen.png"><br><span class="quote">Love the program.</span><img alt="" src="./faq11.php_files/quoteclose.png"><br><span class="quoter">Howard Goldman, New York</span>
+</td></tr><tr><td align="right"><a href="http://www.sadmansoftware.com/sudoku/awards.php">More …</a></td></tr></tbody></table><br><div id="nospam">
+<img src="./faq11.php_files/no_adware_spyware.png" title="SadMan Software applications do not include any malware" alt="No malware" width="50" height="50">
+<img src="./faq11.php_files/no_spam.png" title="SadMan Software does not send spam" alt="No spam" width="50" height="50">
+<br>
+<a href="http://www.siteadvisor.com/sites/sadmansoftware.com" rel="external" target="_blank"><img src="./faq11.php_files/mcafeesiteadvisor.png" alt="McAfee Site Report" title="McAfee says this site is safe -- click to see the report"></a>
+<br>
+<a href="http://www.mywot.com/en/scorecard/sadmansoftware.com" rel="external" target="_blank"><img src="./faq11.php_files/wot80x15.png" alt="Web of Trust" title="View SadMan Software&#39;s Web of Trust Scorecard"></a>
+<br>
+</div>
+</div>
+</div>
+<div id="rightcolumn">
+<div class="innertube">
+<script async="" src="./faq11.php_files/analytics.js"></script><script async="" type="text/javascript" src="./faq11.php_files/f(10).txt"></script>
+<!-- 120x600 -->
+<ins class="adsbygoogle" style="display:inline-block;width:120px;height:600px" data-ad-client="ca-pub-0510972520217041" data-ad-slot="2885941398" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:120px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:120px;background-color:transparent;"><iframe width="120" height="600" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;border:0px;width:120px;height:600px;" src="./faq11.php_files/saved_resource(1).html"></iframe></ins></ins></ins>
+<script type="text/javascript">
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+</div>
+<div id="footer" class="gradientBG">
+<a href="http://www.sadmansoftware.com/termsofservice.php">Terms of Service</a> |
+<a href="http://www.sadmansoftware.com/privacy.php">Privacy</a> |
+<a href="http://www.sadmansoftware.com/cookies.php">Cookies</a> |
+<a href="http://www.sadmansoftware.com/sitemap.php">Site Map</a> |
+<a href="http://www.sadmansoftware.com/contactform.php">Contact</a>
+<div id="copyright">
+Copyright © 2000-2019 Simon Armstrong. All Rights Reserved.</div>
+</div>
+</div>
+<div style="width: 350px; left: 247px; display: none; top: 145px;" id="rollover-navigation">
+<div style="display: inline;" id="nav-applications" class="nav-group">
+<div class="rollover-header">Free</div>
+<div class="rollover-header">Commercial</div>
+<div class="rollover-column panel">
+<ul>
+<li><a href="http://www.sadmansoftware.com/converteasy/">ConvertEasy</a></li>
+<li><a href="http://www.sadmansoftware.com/fivesandthrees/">Fives and Threes</a></li>
+<li><a href="http://www.sadmansoftware.com/search/">Search</a></li>
+<li><a href="http://www.sadmansoftware.com/sudoku/">Sudoku</a></li>
+</ul>
+</div>
+<div class="rollover-column panel">
+<ul>
+<li><a href="http://www.sadmansoftware.com/converteasy/f2c.php">Fahrenheit to Celsius</a></li>
+<li><a href="http://www.sadmansoftware.com/convertonline.php">Online Conversion</a></li>
+<li><a href="http://www.sadmansoftware.com/mandelbrot/">Mandelbrot Explorer</a></li>
+<li><a href="http://www.sadmansoftware.com/onefoundation/">One Foundation</a></li>
+<li><a href="http://www.sadmansoftware.com/qix/">Qix!</a></li>
+<li><a href="http://www.sadmansoftware.com/slicensplice/">Slice 'n' Splice</a></li>
+<li><a href="http://www.sadmansoftware.com/snake/">Snake</a></li>
+<li><a href="http://www.sadmansoftware.com/snapshot/">Snapshot</a></li>
+<li><a href="http://www.sadmansoftware.com/timesheet/">Timesheet</a></li>
+<li><a href="http://www.sadmansoftware.com/wordplay/">WordPlay</a></li>
+<li><a href="http://www.sadmansoftware.com/xchange/">XChange</a></li>
+<li><a href="http://www.sadmansoftware.com/xchangecl/">XChangeCL</a></li>
+</ul>
+</div>
+</div>
+
+<div style="display: none;" id="nav-delphi" class="nav-group">
+<div class="rollover-header">Free</div>
+<div class="rollover-header">Commercial</div>
+<div class="rollover-column panel">
+<ul>
+<li><a href="http://www.sadmansoftware.com/delphi/rac/">Resource Allocation Chart</a></li>
+</ul>
+</div>
+<div class="rollover-column panel">
+<ul>
+<li><a href="http://www.sadmansoftware.com/delphi/freeware/applic.php">Application at Design</a></li>
+<li><a href="http://www.sadmansoftware.com/delphi/freeware/baseconvert.php">Base Convertor</a></li>
+<li><a href="http://www.sadmansoftware.com/delphi/freeware/buttoned.php">Button Edit</a></li>
+<li><a href="http://www.sadmansoftware.com/delphi/freeware/centre.php">Centre Control</a></li>
+<li><a href="http://www.sadmansoftware.com/delphi/freeware/ctrlsize.php">Control Sizer</a></li>
+<li><a href="http://www.sadmansoftware.com/delphi/freeware/expeval.php">Expression Evaluator</a></li>
+<li><a href="http://www.sadmansoftware.com/delphi/freeware/filetime.php">File Time Stamper</a></li>
+<li><a href="http://www.sadmansoftware.com/delphi/freeware/findfile.php">Find File</a></li>
+<li><a href="http://www.sadmansoftware.com/delphi/freeware/fontlist.php">Font ListBox</a></li>
+<li><a href="http://www.sadmansoftware.com/delphi/freeware/icongrab.php">Icon Grabber</a></li>
+<li><a href="http://www.sadmansoftware.com/delphi/freeware/icotobmp.php">Icon to Bitmap</a></li>
+<li><a href="http://www.sadmansoftware.com/delphi/freeware/scaler.php">Scaler</a></li>
+<li><a href="http://www.sadmansoftware.com/delphi/freeware/stopwatch.php">Stopwatch</a></li>
+<li><a href="http://www.sadmansoftware.com/delphi/freeware/transbmp.php">Transparent Bitmap</a></li>
+</ul>
+</div>
+</div>
+
+<div style="display: none;" id="nav-legal" class="nav-group short">
+<div class="rollover-header"></div>
+<div class="rollover-column panel">
+<ul>
+<li><a href="http://www.sadmansoftware.com/termsofservice.php">Terms of Service</a></li>
+<li><a href="http://www.sadmansoftware.com/privacy.php">Privacy Policy</a></li>
+<li><a href="http://www.sadmansoftware.com/cookies.php">Cookies</a></li>
+<li><a href="http://www.sadmansoftware.com/updatepolicy.php">Update Policy</a></li>
+<li><a href="http://www.sadmansoftware.com/contactform.php">Contact</a></li>
+</ul>
+</div>
+</div>
+
+<div style="display: none;" id="nav-forums" class="nav-group short">
+<div class="rollover-header"></div>
+<div class="rollover-column panel">
+<ul>
+<li><a href="http://www.sadmansoftware.com/forums/viewforum.php?f=9">ConvertEasy</a></li>
+<li><a href="http://www.sadmansoftware.com/forums/viewforum.php?f=4">Fives and Threes</a></li>
+<li><a href="http://www.sadmansoftware.com/forums/viewforum.php?f=3">Search</a></li>
+<li><a href="http://www.sadmansoftware.com/forums/viewforum.php?f=12">Slice'n'Splice</a></li>
+<li><a href="http://www.sadmansoftware.com/forums/viewforum.php?f=11">Snapshot</a></li>
+<li><a href="http://www.sadmansoftware.com/forums/viewforum.php?f=2">Sudoku</a></li>
+<li><a href="http://www.sadmansoftware.com/forums/viewforum.php?f=13">WordPlay</a></li>
+<li><a href="http://www.sadmansoftware.com/forums/viewforum.php?f=5">XChange</a></li>
+<li><a href="http://www.sadmansoftware.com/forums/viewforum.php?f=6">XChangeCL</a></li>
+<li><a href="http://www.sadmansoftware.com/forums/viewforum.php?f=7">Resource Allocation Chart</a></li>
+<li><a href="http://www.sadmansoftware.com/forums/viewforum.php?f=8">Everything Else</a></li>
+</ul>
+</div>
+</div>
+<div></div></div>
+<script type="text/javascript" src="./faq11.php_files/jquery.min.js" integrity="sha384-4sWHYQI7C0ZkvmEha8XCmcheuKUQ8n6YpszXRw68iKeWkPffjvMg0AR9YOC3ZN7Q" crossorigin="anonymous"></script>
+<script type="text/javascript" src="./faq11.php_files/sms.js"></script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-1156845-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+<ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><ins id="aswift_1_anchor" style="display:block;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><iframe frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;border:0px;width:0px;height:0px;" src="./faq11.php_files/saved_resource(2).html"></iframe></ins></ins></ins><iframe id="google_osd_static_frame_7144894043490" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;" src="./faq11.php_files/saved_resource(3).html"></iframe></body><iframe id="google_esf" name="google_esf" src="./faq11.php_files/zrt_lookup.html" data-ad-client="ca-pub-0510972520217041" style="display: none;"></iframe></html>

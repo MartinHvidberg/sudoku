@@ -1,0 +1,383 @@
+/*	--
+	--
+	--	Imports */
+@import url("../core/screen.css");
+@import url("family.css");
+
+
+/*	--	Layout for puzzlehome block element
+	----------------------------------------	*/
+.content p
+{
+	font-size: 1em;
+	line-height: 1.2em;
+	margin-bottom: 1.8em;
+}
+
+.puzzlehome
+{
+	padding: 0em 3.8em 3.8em 2em;
+	width: 51.5em;
+	min-width: 515px;
+	min-height: 250px;
+}
+
+h1
+{
+	margin-bottom: 1em;
+}
+
+.puzzlehome h1
+{
+	padding-left: 1em;
+}
+
+.puzzlehome h2
+{
+	margin: 0 0 0.7em 0;
+	position: relative;
+	top: -0.1em;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+.puzzlehome table td
+{
+	vertical-align: top;
+}
+.puzzlehome ul.circle li
+{
+	line-height: 1.5em;
+	margin-left: 0.1em;
+}
+.puzzlehome ul.circle
+{
+	margin: 0.2em 0em 0.8em;
+}
+
+* html .puzzlehome ul.circle, .puzzlehome dl
+{
+	_position: relative;
+	_left: -0.3em;
+}
+
+.puzzlehome object, .puzzlehome .viewerhtml
+{
+	margin-top: 0.2em;
+	margin-right: 1.2em;
+}
+.puzzlelist	
+{
+	padding-bottom: 1.4em;
+}
+
+.puzzlelist dl	
+{
+	height: 19.8em;
+}
+
+.puzzlelist p, .puzzlelist ul
+{
+	margin-left: 2.8em;
+	margin-bottom: 1.3em;
+	font-size: 1.1em;
+	line-height: 1.5em;
+}
+.puzzlelist ul li
+{
+	font-size: 1em;
+	line-height: 1.45em;
+}
+.puzzlelist h1
+{
+	margin-left: 1.5em;
+}
+/*	--	Style for puzzlehome block element
+	----------------------------------------	*/
+
+.puzzlehome
+{
+	font-size: 1em;
+}
+
+.playnewpuzzles	
+{
+	margin-top: -4.6em;
+}
+
+/*	--	Layout for tips block element
+	----------------------------------------	*/
+
+.tips ul.circle
+{
+	margin: 0.8em 0em 0.8em 0em;
+	line-height: 1.2em;
+}
+
+.tips ul.circle li
+{
+	background-position: 0 0.45em;
+	margin-bottom: 0.7em;
+	font-size: 1.1em;
+}
+
+.tips h1
+{
+	margin-bottom: 1em;
+}
+
+.tips h2
+{
+	padding: 1.15em 0em 0em 2.4em;
+	margin: 1.7em 0 0;
+	background-repeat: no-repeat;
+	background-position: bottom left;
+}
+
+.tips p
+{
+	margin-bottom: 2em;
+	font-size: 1.1em;
+	line-height: 1.4em;
+}
+.rules p
+{
+	font-size: 1.1em;
+	line-height: 1.4em;
+}
+
+.interactive p
+{
+	font-family: Verdana;
+	font-size: 1.1em;
+	line-height: 1.4em;
+	margin-bottom: 0.6em;
+}
+
+.interactive h2
+{
+	margin-top: 1.2em;
+	margin-bottom: 0.9em;
+	border-top: 1px;
+	border-top-style: solid;
+	padding-top: 1.2em;
+}
+
+.interactive img.no-caption
+{
+	margin: 0em 0 0.7em 0em;
+	display: block;
+	border: none;
+	float: none;
+}
+
+.interactive h6
+{
+	font-size: 1.1em;
+	margin-bottom: 0.05em;
+}
+
+.interactive ul.circle
+{
+	margin-bottom: 0.6em;
+}
+
+.interactive ul.circle li
+{
+	background-position: 0 0.5em;
+}
+
+.techniques p
+{
+	font-size: 1.1em;
+	line-height: 1.454em;
+	margin-bottom: 1.3em;
+}
+
+.techniques img.wrappedimage, .techniques div.caption
+{
+	float: none;
+	margin: 0.3em 1em 0em 0em;
+	padding: 0;
+}
+.techniques img + h4, .techniques div.clear + h4, .techniques img + p
+{
+	margin-top: 1.3em;
+}
+
+.techniques h2
+{
+	margin-top: 2.35em;
+	font-size: 1.3em;
+}
+
+.techniques h4
+{
+	font-size: 1.1em;
+}
+
+/*Puzzle Names */
+.puzzlenames h1
+{
+	margin-bottom: 2em;
+}
+.puzzlenames .publication
+{
+	padding-bottom: 0em;
+}
+.puzzlenames .family
+{
+	padding-bottom: 3.8em;
+	width: 100%;
+}
+.puzzlenames .family h2
+{
+	border-bottom: 1px solid;
+	margin: 0em 0em 0.9em 0em;
+	padding: 0em 0em 0.636em 0em;
+	height: 1.9em;
+}
+.puzzlenames .family h2 img
+{
+	display: block;
+}
+.puzzlenames .family h3
+{
+	padding: 1.4em 0 0 0;
+	clear: left;
+	margin: 0;
+}
+.puzzlenames .family object
+{
+	float: left;
+	margin: 0em 0.909em 0em -1.8em;
+}
+.puzzlenames .family ul.triangle
+{
+	display: inline;
+}
+.puzzlenames .family ul.triangle li
+{
+	float: left;
+	white-space: nowrap;
+	margin: 0em 1.545em 0em 0em;
+	padding: 0em 0em 0em 1em;
+	font-size: 1.1em;
+}
+a:hover, a:active
+{
+	color: #005893;
+}
+/* end Puzzle Names */
+/* Puzzle Info */
+.puzzleinfoleftbar
+{
+	background-repeat: no-repeat;	
+	height: 21.8em;
+	width: 16.3em;
+	position: relative;
+	left: 3em;
+}
+
+.puzzleinfoleftbar div
+{
+	height: 100%;
+	width: 16.3em;
+	position: relative;	
+	margin-top: 2.8em;
+}
+
+.puzzleinfoleftbar samp	
+{
+	display: block;
+	width: 90%;
+	text-align: center;
+	font-family: Verdana;
+	position: relative;
+	left: -0.1em;
+}
+.puzzleinfoleftbar a
+{
+	text-decoration: none;
+}
+.puzzleinfoleftbar .h2
+{
+	text-decoration: none;
+	margin: 0 auto 0em;
+	padding-top: 1.45em;
+	padding-bottom: 5.9em;
+	font-size: 1.8em;
+	line-height: 1.05em;
+}
+.puzzleinfoleftbar .bottom
+{
+	text-decoration: underline;
+	font-size: 1em; 
+	font-weight: bold;
+	padding-bottom: 1em;
+	top: 0.3em;
+	left: 0.5em;
+}
+.puzzleinfoleftbar a:hover .bottom
+{
+	color: #005893;
+}
+.hiddenpuzzle
+{
+	margin-left: 2em;
+}
+.puzzleinfo .buttons
+{
+ margin-top: -1.9em;
+}
+.puzzleinfo .buttons input
+{
+	padding: 0 1em;
+}
+.puzzleinfo p	
+{
+	margin-bottom: 1.3em;
+	font-size: 1.1em;
+	line-height: 1.5em;
+}
+.puzzleinfo p.left
+{
+	float: left; 
+	margin-right: 0.5em;
+}
+.puzzleinfo h2
+{
+	font-size: 1.8em;
+	font-weight: normal;
+	margin-bottom: 0.4em;
+	margin-top: 1.9em;
+}
+.puzzleinfo #smbuttons .smbutton
+{
+	margin-bottom: 0.1em;
+}
+.puzzleinfo .playnewpuzzles
+{
+	margin-top: -4.5em;
+}
+.footer .language a:link
+{
+	color: #0590b8;
+}
+
+.footer .language a:visited
+{
+	color: #716f6e;
+}
+
+.footer .language a:active
+{
+	color: #005893;
+}
+.sky .ja .puzzleinfoleftbar .h2
+{
+	font-size: 1.6em;
+}
+.sky .ja .puzzleinfoleftbar .bottom
+{
+	top: 2.3em;
+}

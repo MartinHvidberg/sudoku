@@ -58,7 +58,7 @@ class SuDoKu(object):
             self.v = self.validate() # Validate that the fill is legal
             if self.v: # If it's valid, so far, check it it's solvable
                 try:
-                    self.solution = [[int(SuDoKuX.sudoku99(str_ini)[j*9+i].replace('.','0')) for i in range(9)] for j in range(9)] # Solve using brute force, to see if solution(s) exist
+XXXX                    self.solution = [[int(SuDoKuX.sudoku99_NEW_XXX_(str_ini)[j*9+i].replace('.','0')) for i in range(9)] for j in range(9)] # Solve using brute force, to see if solution(s) exist
                     log.info("Input is Solvable, but was not checked for uniqueness...")
                 except:
                     self.solution = self.m # If not solvable, keep the init values to avoid a Null variable.
@@ -327,8 +327,8 @@ class SuDoKu(object):
     def validate(self):
         """ Return True if the sudoku is valid, otherwise returns False """
         bol_valid = True # Until proven guilty
-        # XXX Consider checking for values not beeing single digit numbers
-        for area in self.areas(): # check row, col and box duplets
+        # XXX Consider checking for values not being single digit numbers
+        for area in self.areas(): # check row, col and box doublets
             # a = filter(lambda a: a != 0, area)
             a = [val for val in area if val != 0]
             if len(a) != len(list(set(a))):

@@ -5,6 +5,8 @@ import SuDoKuO
 
 # Sample SoDuKos from: http://www2.warwick.ac.uk/fac/sci/moac/people/students/peter_cock/python/sudoku
 
+#  - ported to py3 with the 2to3 tool
+
 # Start message, and logging
 str_start_message = "Start"
 log = logging.getLogger('sudoku')
@@ -40,13 +42,13 @@ s = SuDoKuO.SuDoKu("..46...8..39....4.81..37..6..7..4....2.....3....3..6..7..51.
 #s = SuDoKuO.SuDoKu(".......12........3..23..4....18....5.6..7.8.......9.....85.....9...4.5..47...6...") # "Platinum Blonde"
 #s = SuDoKuO.SuDoKu(".....3.17.15..9..8.6.......1....7.....9...2.....5....4.......2.5..6..34.34.2.....") # 49of50
 
-print "Pre\n",s.show_big()
+print("Pre\n",s.show_big())
 s.slap()
-print "Post\n",s.show_big()
-print s.stats()
+print("Post\n",s.show_big())
+print(s.stats())
 log.info('Stats: '+str(s.stats()))
 
-print "End of SuDoKu ..."
+print("End of SuDoKu ...")
 
 
 #===============================================================================

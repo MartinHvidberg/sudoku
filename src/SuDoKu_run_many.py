@@ -1,6 +1,8 @@
 import logging
 import SuDoKuO
 
+#  - ported to py3 with the 2to3 tool
+
 # Start message, and logging
 str_start_message = "Start"
 log = logging.getLogger('sudoku')
@@ -27,10 +29,10 @@ with open("../data/top95.txt") as f:
         s.slap()
         if s.solved():
             cnt_s += 1
-            print "4 "+s.stats()+" ("+str(count)+") "+str_org_line
+            print("4 "+s.stats()+" ("+str(count)+") "+str_org_line)
         else:
             cnt_u += 1
-            print "0 "+s.stats()+" ("+str(count)+") "+str_org_line
+            print("0 "+s.stats()+" ("+str(count)+") "+str_org_line)
 
 cnt_p = cnt_s*100.0/count
-print "Total {0} (solved {1} unsolved {2}) = {3}%".format(count,cnt_s,cnt_u,cnt_p)
+print("Total {0} (solved {1} unsolved {2}) = {3}%".format(count,cnt_s,cnt_u,cnt_p))

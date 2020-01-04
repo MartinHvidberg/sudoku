@@ -5,6 +5,7 @@ import copy
 import SuDoKu_simple
 import SuDoKuO
 
+#  - ported to py3 with the 2to3 tool
 
 class SuDoKuNrmlz(SuDoKuO.SuDoKu):
     """ My SuDoKu class + Normalisation Analysis end Transformations """
@@ -70,7 +71,7 @@ if __name__ == '__main__':
     # S.flip_h()
     # print "Flip-H\n", S
 
-    print "# Normalizing candidates..."
+    print("# Normalizing candidates...")
     S = SuDoKuNrmlz(str_s)
     # lst_nc = [S, copy.deepcopy(S), copy.deepcopy(S), copy.deepcopy(S)]
     # for n in [1,3]:
@@ -79,7 +80,7 @@ if __name__ == '__main__':
     #     lst_nc[n].flip_v()
     # for sdk in lst_nc:
     #     print sdk
-    print "\n# Auto multiplyer"
+    print("\n# Auto multiplyer")
     lst_sdk = [S]
     # Multiply, and flip H
     lst_add = [SuDoKuNrmlz(sdk.show_line()) for sdk in lst_sdk]
@@ -119,31 +120,31 @@ if __name__ == '__main__':
     lst_rgt.extend(lst_add)
     lst_sdk.extend(lst_rgt)
 
-    print lst_sdk
+    print(lst_sdk)
     for sdk in lst_sdk:
-        print sdk.show_line()
-    print len(lst_sdk)
+        print(sdk.show_line())
+    print(len(lst_sdk))
     lst_sdk = list(set([sdk.show_line() for sdk in lst_sdk]))
     lst_sdk.sort()
     for sdk in lst_sdk:
-        print sdk
-    print len(lst_sdk)
+        print(sdk)
+    print(len(lst_sdk))
 
-    print lst_sdk[0]
+    print(lst_sdk[0])
     Sn = SuDoKuNrmlz(lst_sdk[0])
     Sp = SuDoKuNrmlz(lst_sdk[0])
     Snp = SuDoKuNrmlz(lst_sdk[0])
     Sp.permute()
     Snp.permute()
-    print S
-    print Sn
-    print Sp
-    print Snp
+    print(S)
+    print(Sn)
+    print(Sp)
+    print(Snp)
     S.slap()
-    print S.stats()
+    print(S.stats())
     Sn.slap()
-    print Sn.stats()
+    print(Sn.stats())
     Sp.slap()
-    print Sp.stats()
+    print(Sp.stats())
     Snp.slap()
-    print Snp.stats()
+    print(Snp.stats())

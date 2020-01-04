@@ -7,5 +7,5 @@ installed_packages_list = sorted(["%s==%s" % (i.key, i.version) for i in install
 print(installed_packages_list)
 
 for itm in installed_packages_list:
-    print itm
+    print(itm)
 

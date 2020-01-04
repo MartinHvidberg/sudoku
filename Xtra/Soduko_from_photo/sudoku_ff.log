@@ -1,0 +1,8 @@
+2020-01-04 14:39:30,114 - sudoku.ff - INFO - Start
+2020-01-04 14:39:30,114 - sudoku.ff - INFO - numpy version: 1.17.4
+2020-01-04 14:39:30,114 - sudoku.ff - INFO - OpenCV version: 4.1.2
+2020-01-04 14:39:30,114 - sudoku.ff - INFO - imutils version: <module 'imutils.contours' from '/home/martin/.local/lib/python3.7/site-packages/imutils/contours.py'>
+2020-01-04 14:39:31,981 - sudoku.ff - DEBUG - 
+	img: <class 'numpy.ndarray'> (563, 563, 3)
+	grey: <class 'numpy.ndarray'> (563, 563)
+	tresh: <class 'numpy.ndarray'> (563, 563)

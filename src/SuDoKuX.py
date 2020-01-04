@@ -1,12 +1,12 @@
 #https://github.com/attractivechaos/plb/blob/master/sudoku/incoming/sudoku-bb.py
 
 # Boris Borcic 2006
-# Quick and concise Python 2.5 sudoku solver
+# Quick and concise Python 2.5 sudoku solver - ported to py3 with the 2to3 tool
 #
 
 w2q = [[n/9,n/81*9+n%9+81,n%81+162,n%9*9+n/243*3+n/27%3+243] for n in range(729)]
 q2w = (z[1] for z in sorted((x,y) for y,s in enumerate(w2q) for x in s))
-q2w = map(set,zip(*9*[q2w]))
+q2w = list(map(set,list(zip(*9*[q2w]))))
 w2q2w = [set(w for q in qL for w in q2w[q]) for qL in w2q]
 
 class Completed(Exception) : pass
@@ -15,7 +15,7 @@ def sudoku99(problem) :
     givens = list(9*j+int(k)-1 for j,k in enumerate(problem[:81]) if '0'<k)
     try :
         search(givens,[9]*len(q2w),set(),set())
-    except Completed,ws :
+    except Completed as ws :
         return ''.join(str(w%9+1) for w in sorted(ws.message))
 
 def search(w0s,q2nw,takens,ws) :
@@ -42,4 +42,4 @@ def search(w0s,q2nw,takens,ws) :
 if __name__ == '__main__' :
     #print(sudoku99('13........2...9......8..7..6....48....5.2...........4.....3...27..5.....8........'.replace('.','0')))
 
-    print(sudoku99('8..5.9..67..3.1..2..3...8....12.34..9...6...3..68.47....4...5..2..4.5..76..9.2..4'.replace('.','0')))
+    print((sudoku99('8..5.9..67..3.1..2..3...8....12.34..9...6...3..68.47....4...5..2..4.5..76..9.2..4'.replace('.','0'))))

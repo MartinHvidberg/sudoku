@@ -1,4 +1,4 @@
-#http://pythontips.com/2013/09/01/sudoku-solver-in-python/
+#http://pythontips.com/2013/09/01/sudoku-solver-in-python/  - ported to py3 with the 2to3 tool
 
 import sys
 
@@ -9,7 +9,7 @@ def same_block(i,j): return (i/27 == j/27 and i%9/3 == j%9/3)
 def r(a):
     i = a.find('0')
     if i == -1:
-        print 'SOLVED: ', a
+        print('SOLVED: ', a)
         #sys.exit(a)
 
     excluded_numbers = set()
@@ -25,8 +25,8 @@ if __name__ == '__main__':
     if len(sys.argv) == 2 and len(sys.argv[1]) == 81:
         r(sys.argv[1])
     else:
-        print 'Usage: python sudoku.py puzzle'
-        print '    where puzzle is an 81 character string representing the puzzle read left-to-right, top-to-bottom, and 0 is a blank'
+        print('Usage: python sudoku.py puzzle')
+        print('    where puzzle is an 81 character string representing the puzzle read left-to-right, top-to-bottom, and 0 is a blank')
         #r('13........2...9......8..7..6....48....5.2...........4.....3...27..5.....8........'.replace('.','0'))
         r('.......12........3..23..4....18....5.6..7.8.......9.....85.....9...4.5..47...6...'.replace('.','0')) # Platinum Blonde
         #r('138475269.2...9......8..7..6....48....5.2...........4.....3...27..5.....8........'.replace('.','0'))

@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8; -*-
 
+#  - ported to py3 with the 2to3 tool
+
 ###
 # ToDo ------
 #    Many calls of type (csp[0],cps[1]) should be replaced by cps
@@ -319,7 +321,7 @@ class SuDoKu(object):
         """ Returns True if the SuDoKu is solved, otherwise returns False. """
         empty = 0
         for row in self.rows():
-            empty += len(filter(lambda x: x==0, row))
+            empty += len([x for x in row if x==0])
         return empty == 0
     
     def validate(self):
@@ -343,12 +345,12 @@ class SuDoKu(object):
                 str_ret += 'Not solved by SLAP... '
             if len(self.rec) > 0:
                 for track in self.rec:
-                    if track.tactic not in dic_stat.keys():
+                    if track.tactic not in list(dic_stat.keys()):
                         dic_stat[track.tactic] = track.goods()
                     else:
                         dic_stat[track.tactic] = dic_stat[track.tactic] + track.goods()
                 # Present the dic_stat in difficulty-sorted order
-                lst_keys = dic_stat.keys()
+                lst_keys = list(dic_stat.keys())
                 lst_keys = sorted(lst_keys, key=self.hardness.index, reverse=True)
                 str_ret += "{"
                 for k in lst_keys:

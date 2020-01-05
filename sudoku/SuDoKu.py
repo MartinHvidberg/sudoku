@@ -1,6 +1,12 @@
 import logging
 
 import SuDoKuO
+
+""" Sort of main module
+This is the module that executes SLAP (Solve Like A Person) solving of some SuDoKus
+Eventually in order to assess their difficulty level
+"""
+
 #?#from pyasn1_modules.rfc2459 import CPSuri
 
 # Sample SoDuKos from: http://www2.warwick.ac.uk/fac/sci/moac/people/students/peter_cock/python/sudoku

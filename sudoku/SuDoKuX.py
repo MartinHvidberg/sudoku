@@ -1,3 +1,11 @@
+
+""" External (X-ternal) code
+Small and big pieces of code, copied from the inernet or elsewhere
+This may be called from the other modules for test or to confirm solvability etc.
+"""
+
+import sys
+
 # #https://github.com/attractivechaos/plb/blob/master/sudoku/incoming/sudoku-bb.py
 #
 # # Boris Borcic 2006
@@ -136,4 +144,4 @@ def r(a):
 if __name__ == '__main__' :
     #print(sudoku99('13........2...9......8..7..6....48....5.2...........4.....3...27..5.....8........'.replace('.','0')))
 
-    print((sudoku99('8..5.9..67..3.1..2..3...8....12.34..9...6...3..68.47....4...5..2..4.5..76..9.2..4'.replace('.','0'))))
+    print((r('8..5.9..67..3.1..2..3...8....12.34..9...6...3..68.47....4...5..2..4.5..76..9.2..4'.replace('.','0'))))

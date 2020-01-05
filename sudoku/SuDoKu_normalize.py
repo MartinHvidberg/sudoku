@@ -1,8 +1,11 @@
 
-# from str import maketrans
-
 # import SuDoKu_simple
 import SuDoKuO
+
+""" Bringing a SuDoKu on it's 'normal' form 
+Assuming that all SuDoKu's have permutations and that every group of permutation have a 'normal' member
+This module is about transforming a SuDoKu to it's 'normal' permutation
+"""
 
 #  - ported to py3 with the 2to3 tool
 

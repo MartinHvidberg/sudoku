@@ -1,5 +1,22 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en"><style type="text/css">embed[height="175"][width="175"], embed[height="200"][width="100%"], embed[height="200"][width="175"], embed[height="233"][width="280"], embed[height="250"][width="175"], embed[width="100%"][height="100"], embed[width="1000"][height="150"], embed[width="120"][height="240"], embed[width="120"][height="600"], embed[width="160"][height="600"], embed[width="180"][height="300"], embed[width="180"][height="530"], embed[width="200"][height="230"], embed[width="200"][height="250"], embed[width="200"][height="300"], embed[width="200"][height="400"], embed[width="200"][height="500"], embed[width="210"][height="270"], embed[width="212"][height="300"], embed[width="215"][height="359"], embed[width="220"][height="250"], embed[width="240"][height="150"], embed[width="240"][height="250"], embed[width="240"][height="300"], embed[width="240"][height="400"], embed[width="240"][height="420"], embed[width="250"][height="250"], embed[width="300"][height="250"], embed[width="310"][height="70"], embed[width="430"][height="120"], embed[width="460"][height="70"], embed[width="468"][height="60"], embed[width="470"][height="50"], embed[width="500"][height="100"], embed[width="500"][height="120"], embed[width="500"][height="170"], embed[width="570"][height="100"], embed[width="600"][height="160"], embed[width="600"][height="200"], embed[width="600"][height="90"], embed[width="680"][height="130"], embed[width="700"][height="60"], embed[width="728"][height="90"], embed[width="940"][height="90"], embed[width="960"][height="120"], iframe[width="104"][height="464"], iframe[width="200"][height="240"], iframe[width="200"][height="300"], iframe[width="210"][height="237"], iframe[width="240"][height="350"] { display: none!important; }
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://www.sudokudragon.com/sudokustrategy.htm">
+
+<title>Sudoku Puzzle solving strategies</title>
+<meta name="keywords" content="sudoku strategy,sudoku puzzle strategy,sudoku game tactics,sudoku tactics">
+<meta name="description" content="How to solve Sudoku puzzles using the only choice; shared subgroup; twins and other strategies">
+<link rel="stylesheet" type="text/css" href="Sudoku%20Puzzle%20solving%20strategies_files/styles2.css"> 
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script type="text/javascript" async="" src="Sudoku%20Puzzle%20solving%20strategies_files/analytics.js"></script><script type="text/javascript" async="async" src="Sudoku%20Puzzle%20solving%20strategies_files/js.js"></script>
+<script type="text/javascript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-1387932-1');
+</script><style type="text/css">embed[height="175"][width="175"], embed[height="200"][width="100%"], embed[height="200"][width="175"], embed[height="233"][width="280"], embed[height="250"][width="175"], embed[width="100%"][height="100"], embed[width="1000"][height="150"], embed[width="120"][height="240"], embed[width="120"][height="600"], embed[width="160"][height="600"], embed[width="180"][height="300"], embed[width="180"][height="530"], embed[width="200"][height="230"], embed[width="200"][height="250"], embed[width="200"][height="300"], embed[width="200"][height="400"], embed[width="200"][height="500"], embed[width="210"][height="270"], embed[width="212"][height="300"], embed[width="215"][height="359"], embed[width="220"][height="250"], embed[width="240"][height="150"], embed[width="240"][height="250"], embed[width="240"][height="300"], embed[width="240"][height="400"], embed[width="240"][height="420"], embed[width="250"][height="250"], embed[width="300"][height="250"], embed[width="310"][height="70"], embed[width="430"][height="120"], embed[width="460"][height="70"], embed[width="468"][height="60"], embed[width="470"][height="50"], embed[width="500"][height="100"], embed[width="500"][height="120"], embed[width="500"][height="170"], embed[width="570"][height="100"], embed[width="600"][height="160"], embed[width="600"][height="200"], embed[width="600"][height="90"], embed[width="680"][height="130"], embed[width="700"][height="60"], embed[width="728"][height="90"], embed[width="940"][height="90"], embed[width="960"][height="120"], iframe[width="104"][height="464"], iframe[width="200"][height="240"], iframe[width="200"][height="300"], iframe[width="210"][height="237"], iframe[width="240"][height="350"] { display: none!important; }
 iframe[width="468"][height="60"], iframe[width="600"][height="90"], iframe[width="780"][height="120"], iframe[width="980"][height="90"], img[width="460"][height="60"], img[width="600"][height="90"], img[width="720"][height="90"], object[height="100"][width="550"], object[height="120"][width="120"], object[height="175"][width="175"], object[height="200"][width="100%"], object[height="250"][width="175"], object[height="380"][width="190"], object[height="80"][width="100%"], object[height="97"][width="500"], object[width="100%"][height="150"], object[width="100%"][height="250"], object[width="100%"][height="60"], object[width="100%"][height="90"], object[width="1000"][height="100"], object[width="1000"][height="150"], object[width="1000"][height="200"], object[width="1000"][height="300"], object[width="1000"][height="70"], object[width="1000"][height="90"], object[width="1020"][height="200"], object[width="1020"][height="220"], object[width="1024"][height="150"], object[width="1024"][height="80"], object[width="120"][height="300"], object[width="120"][height="60"], object[width="120"][height="600"], object[width="140"][height="320"], object[width="140"][height="600"], object[width="1440"][height="299"], object[width="150"][height="150"], object[width="150"][height="250"], object[width="150"][height="300"], object[width="150"][height="360"], object[width="160"][height="200"], object[width="160"][height="400"], object[width="160"][height="600"], object[width="161"][height="250"], object[width="170"][height="170"], object[width="170"][height="80"], object[width="175"][height="200"], object[width="175"][height="220"], object[width="180"][height="107"], object[width="180"][height="235"], object[width="180"][height="250"] { display: none!important; }
 object[width="180"][height="300"], object[width="180"][height="540"], object[width="185"][height="228"], object[width="188"][height="290"], object[width="190"][height="310"], object[width="190"][height="46"], object[width="190"][height="700"], object[width="200"][height="100"], object[width="200"][height="150"], object[width="200"][height="220"], object[width="200"][height="300"], object[width="200"][height="352"], object[width="200"][height="360"], object[width="200"][height="400"], object[width="210"][height="300"], object[width="215"][height="400"], object[width="220"][height="160"], object[width="220"][height="320"], object[width="224"][height="373"], object[width="229"][height="229"], object[width="230"][height="100"], object[width="230"][height="60"], object[width="234"][height="60"], object[width="240"][height="100"], object[width="240"][height="120"], object[width="240"][height="200"], object[width="240"][height="240"], object[width="240"][height="300"], object[width="240"][height="325"], object[width="240"][height="350"], object[width="240"][height="400"], object[width="240"][height="800"], object[width="250"][height="125"], object[width="250"][height="250"], object[width="250"][height="500"], object[width="250"][height="520"], object[width="250"][height="60"], object[width="256"][height="300"], object[width="260"][height="450"], object[width="265"][height="300"], object[width="270"][height="540"], object[width="275"][height="138"], object[width="280"][height="90"], object[width="300"][height="250"], object[width="300"][height="276"], object[width="300"][height="78"], object[width="340"][height="170"], object[width="340"][height="585"], object[width="340"][height="80"], object[width="350"][height="115"] { display: none!important; }
 object[width="350"][height="170"], object[width="360"][height="120"], object[width="360"][height="60"], object[width="370"][height="170"], object[width="400"][height="50"], object[width="400"][height="87"], object[width="408"][height="275"], object[width="440"][height="100"], object[width="460"][height="40"], object[width="468"][height="40"], object[width="468"][height="60"], object[width="468"][height="90"], object[width="469"][height="70"], object[width="470"][height="50"], object[width="480"][height="100"], object[width="480"][height="60"], object[width="500"][height="100"], object[width="500"][height="200"], object[width="500"][height="250"], object[width="500"][height="78"], object[width="530"][height="170"], object[width="545"][height="70"], object[width="550"][height="130"], object[width="550"][height="200"], object[width="560"][height="120"], object[width="570"][height="180"], object[width="572"][height="106"], object[width="580"][height="80"], object[width="590"][height="100"], object[width="600"][height="130"], object[width="600"][height="200"], object[width="600"][height="250"], object[width="600"][height="80"], object[width="600"][height="90"], object[width="610"][height="130"], object[width="620"][height="120"], object[width="626"][height="75"], object[width="630"][height="206"], object[width="635"][height="185"], object[width="675"][height="80"], object[width="680"][height="125"], object[width="680"][height="240"], object[width="680"][height="90"], object[width="690"][height="85"], object[width="700"][height="100"], object[width="700"][height="87"], object[width="700"][height="90"], object[width="703"][height="120"], object[width="720"][height="120"], object[width="720"][height="60"] { display: none!important; }
@@ -535,24 +552,7 @@ a[href^="http://us.marketgid.com"], a[href^="http://track.adform.net/"], a[href^
 #ad_main, #ad_left, #ad_leaderboard, #ad_home, #ad_header, #ad_global_header2, #ad_global_above_footer, #ad_footer, #ad_content, #ad_container, #ad_center, #ad_box, #ad_banner, #ad_area, #ad_728_90, #ad_5, #ad_4, #ad_3, #ad_2, #ad_1, #adWrap, #adTower, #adText, #adSense, #adRight, #adPosition0, #adLink1, #adLink, #adLeader, #adLayer, #adHolder, #adHeader, #adGallery, #adFrame, #adDiv, #adComponentWrapper, #adBox, #adBelt, #adBanner1, #adBanner, #ad728x90, #ad728, #ad468, #ad-wrapper, #ad-unit, #ad-top-wrapper, #ad-top-banner-placeholder, #ad-top, #ad-text, #ad-rotator { display: none!important; }
 #ad-panel, #ad-overlay, #ad-main, #ad-leaderboard, #ad-header-728x90, #ad-header, #ad-container, #ad-column, #ad-bg, #ad-banner, #ad-background, #ad-area, #ad-7, #ad-2, #ad-1, #WNAd41, #TopAd, #Tadspacehead, #SponsoredLinks, #RightAdBlock, #PreRollAd, #PageLeaderAd, #HouseAd, #ContentAd, #BottomAds, #BottomAdContainer, #BodyAd, #Advertisements, #AdvertiseFrame, #Adrectangle, #Adcode, #AdRectangle, #AdImage, #AdHeader, #AdContainer, #AdColumn, #AD_banner, #AD_Top, div[id^="google_ads_iframe_"], .top-banners, .post-ads, .banners_block, .b-header-banner, .adsbygoogle, object[width="300"][height="300"], object[width="100%"][height="300"], img[width="728"][height="90"], img[width="468"][height="60"], img[width="240px"][height="400px"], iframe[width="728"][height="90"] { display: none!important; }
 iframe[width="300"][height="250"], iframe[width="240"][height="400"], iframe[width="100%"][height="120"], .text_ads, .text_ad, .textAd, .text-ads, .text-ad-links, .text-ad, .pub_728x90, .pub_300x250m, .pub_300x250, .share-container, .ad_wrapper, .adResult, .side-ad, a[href*="://kingandqueenpro.com/r/?"], a[href^="https://redirect.ero-advertising.com"] > img, object[width="640"][height="160"], object[width="640"][height="100"], object[width="300"][height="60"], object[width="260"][height="130"], object[width="200"][height="200"], object[width="1000"][height="270"], object[width="1000"][height="250"], img[width="240"][height="400"], iframe[width="240"][height="300"], iframe[width="100%"][height="60"], embed[width="640"][height="160"] { display: none!important; }
-</style><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="canonical" href="https://www.sudokudragon.com/sudoku.htm">
-
-<title>Sudoku</title>
-<meta name="keywords" content="sudoku,sudoku puzzle,sudoku game">
-<meta name="description" content="All about Sudoku, guides, history, Sudoku rules and how to solve the puzzle">
-<link rel="stylesheet" type="text/css" href="Sudoku_files/styles2.css"> 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script type="text/javascript" async="" src="Sudoku_files/analytics.js"></script><script type="text/javascript" async="async" src="Sudoku_files/js.js"></script>
-<script type="text/javascript">
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-1387932-1');
-</script>
+</style><style>@media print {#ghostery-purple-box {display:none !important}}</style>
 
 <script type="text/javascript">
 /**
@@ -700,10 +700,10 @@ display:none;
 }
 </style>
 <!-- Ezoic Ad Testing Code
-<script src="//g.ezoic.net/ezoic/ezoiclitedata.go?did=85043"></script>
+<script sudoku="//g.ezoic.net/ezoic/ezoiclitedata.go?did=85043"></script>
  Ezoic Ad Testing Code-->
 
-<script type="text/javascript" async="async" src="Sudoku_files/adsbygoogle.js"></script>
+<script type="text/javascript" async="async" src="Sudoku%20Puzzle%20solving%20strategies_files/adsbygoogle.js"></script>
 <script type="text/javascript">(adsbygoogle = window.adsbygoogle || []).push({});</script>
 
 
@@ -712,7 +712,7 @@ display:none;
 </head>
 
 <body>
-<img src="Sudoku_files/ptopcorner2.png" id="topbarleft" alt="Sudoku Dragon">
+<img src="Sudoku%20Puzzle%20solving%20strategies_files/ptopcorner2.png" id="topbarleft" alt="Sudoku Dragon">
 <div id="topbarmiddle">
 	<div id="topbarimage"></div>
 </div>
@@ -729,27 +729,99 @@ display:none;
 <div id="cookieconsent" style="visibility: visible; display: block;" class="consentpopup">Because we display Google adverts on this page we uses cookies, is that OK? <a href="#" onclick="f_AddConsentCookie ();	f_HideConsentForm ();">Yes, I give consent</a>. See our <a href="https://www.sudokudragon.com/privacy.htm">privacy and cookie policy</a></div>
 
 <nav id="navtabs"><a href="https://www.sudokudragon.com/index.htm" title="All about Sudoku" class="navsel">Sudoku </a>&nbsp;<a href="https://www.sudokudragon.com/dragonfeatures.htm" title="The many featrues of Sudoku Dragon">Dragon </a>&nbsp;<a href="https://www.sudokudragon.com/daily.php" title="New Sudoku every day">Daily </a>&nbsp;<a href="https://www.sudokudragon.com/online.php" title="Play Sudoku online">Online </a>&nbsp;<a href="https://www.sudokudragon.com/helpindex.htm" title="Help and advice">Help </a>&nbsp;<a href="https://www.sudokudragon.com/help/helpindex.htm" title="Manual">Manual </a>&nbsp;</nav>
-<nav id="navlist"><a href="https://www.sudokudragon.com/index.htm" title="Sudoku">Introduction </a><b>Sudoku</b><a href="https://www.sudokudragon.com/sudokuhistory.htm" title="History of Sudoku">History </a><a href="https://www.sudokudragon.com/sudokustrategy.htm" title="Sudoku strategies">Strategy </a><a href="https://www.sudokudragon.com/advancedstrategy.htm" title="Advanced Sudoku strategies">Advanced </a><a href="https://www.sudokudragon.com/sudokutheory.htm" title="Theory of Sudoku">Theory </a><a href="https://www.sudokudragon.com/sudokuguess.htm" title="Guessing a Sudoku Square">Guessing </a><a href="https://www.sudokudragon.com/symmetry.htm" title="symmetry of Sudoku Puzzles">Symmetry </a><a href="https://www.sudokudragon.com/sudokuvariants.htm" title="Different types of Sudoku puzzles">Variants </a><a href="https://www.sudokudragon.com/sudokututorials.htm" title="Guide to solving Sudoku puzzles">Guides </a><a href="https://www.sudokudragon.com/sudokuguess.htm" title="Guessing a Sudoku Square">Guessing </a><a href="https://www.sudokudragon.com/symmetry.htm" title="Sudoku Puzzle Symmetry">Symmetry </a></nav>
+<nav id="navlist"><a href="https://www.sudokudragon.com/index.htm" title="Sudoku">Introduction </a><a href="https://www.sudokudragon.com/sudoku.htm" title="Sudoku puzzle">Sudoku </a><a href="https://www.sudokudragon.com/sudokuhistory.htm" title="History of Sudoku">History </a><b>Strategy</b><a href="https://www.sudokudragon.com/advancedstrategy.htm" title="Advanced Sudoku strategies">Advanced </a><a href="https://www.sudokudragon.com/sudokutheory.htm" title="Theory of Sudoku">Theory </a><a href="https://www.sudokudragon.com/sudokuguess.htm" title="Guessing a Sudoku Square">Guessing </a><a href="https://www.sudokudragon.com/symmetry.htm" title="symmetry of Sudoku Puzzles">Symmetry </a><a href="https://www.sudokudragon.com/sudokuvariants.htm" title="Different types of Sudoku puzzles">Variants </a><a href="https://www.sudokudragon.com/sudokututorials.htm" title="Guide to solving Sudoku puzzles">Guides </a><a href="https://www.sudokudragon.com/sudokuguess.htm" title="Guessing a Sudoku Square">Guessing </a><a href="https://www.sudokudragon.com/symmetry.htm" title="Sudoku Puzzle Symmetry">Symmetry </a></nav>
 
 </nav>
 <main id="main">
 
-<h1>Sudoku Puzzle</h1>
+<h1>Sudoku Strategy</h1>
 
-<img src="Sudoku_files/asudoku2.gif" alt="Sudoku solving 4x4" class="imgfloatleft" width="80" height="80"> <p class="dropfont">Sudoku
- is an intriguing puzzle of patterns and cryptic rules. Regular Sudoku 
-consists of a square grid to be filled in with numbers <b>1</b> to <b>9</b>.
- The puzzle is to place these symbols in the correct place to complete 
-the grid. Sudokus have been developed in many forms, they do need not be
- number based and can be <a class="" href="https://www.sudokudragon.com/sudokuvariants.htm#XL101" title="Word Sudoku">letters</a> or colors or shapes or whatever you like; it is a very varied type of puzzle. </p>
+<div class="tipbox">
+<h4>Today's Dragon Tip</h4>
+<b>Against the clock</b><br>When you're playing Sudoku, a timer is 
+automatically kept running so you can easily time your solution time and
+ compare your times with others.<br> <a class="cl" href="https://www.sudokudragon.com/dragonfeatures.htm">Read More</a>
+</div>
+
+<p class="dropfont">There are only a few strategies that you need to know in order to solve Sudoku puzzles. Please take a look at our <a class="cl" href="https://www.sudokudragon.com/sudoku.htm">Sudoku introduction</a> page for background on terminology and also our <a class="cl" href="https://www.sudokudragon.com/sudokutheory.htm">theory page</a>. <a class="cl" href="https://www.sudokudragon.com/download.htm">Sudoku Dragon</a> comes with a range of <a class="" href="https://www.sudokudragon.com/help/helptutorialchoice.htm" title="Choosing a guide in Sudoku Dragon">guides</a> that take you through these strategies step by step. You can share your tips and experiences on our <a class="cl" href="https://www.sudokudragon.com/forum/solutionforum.htm">strategy message forum</a>. There follows a summary of the techniques you may find useful up to 'advanced' level.</p>
+
+<div id="XL2020" class="hrefanchor"><div style="overflow:hidden"><h2>Only choice rule</h2>
+<p class="dropfont">There may be only one possible choice for a particular Sudoku square. In the simplest case you have a group (<a class="" href="https://www.sudokudragon.com/sudoku.htm#XL2101">row</a>, <a class="" href="https://www.sudokudragon.com/sudoku.htm#XL2103">column</a> or <a class="" href="https://www.sudokudragon.com/sudoku.htm#XL2105">region</a>)
+ that has eight squares allocated leaving only one remaining choice 
+available; so the remaining number must go in that empty square. </p>
+<p><img src="Sudoku%20Puzzle%20solving%20strategies_files/gridonlyBa.png" alt="Only possible Sudoku square allocation" class="imgfloatleft" width="244" height="244">Looking at the second row (<b>B</b>) all the squares except the first one <b>Ba</b> have been allocated so the missing number <b>4</b> has no choice but to go in the square <span style="background-color:#8494f7;font-weight:bold;padding:3px;">Ba</span>. You can use this technique by scanning for 8 allocated squares in all rows, columns or regions.</p>
+
+<div class="tutbox">
+<img src="Sudoku%20Puzzle%20solving%20strategies_files/sudoku.png" alt="Sudoku Tutorial" class="imgfloatleft" width="40">
+<span style="font-size:130%">F</span>or a further in-depth guide <img alt="guide" src="Sudoku%20Puzzle%20solving%20strategies_files/arun2.gif" height="18"><a class="linkbutton" href="https://www.sudokudragon.com/guideonlychoice.htm">&nbsp;click here</a></div>
+</div>
+</div>
+
+<div id="XL2111" class="hrefanchor"><div style="overflow:hidden"><h2>Single possibility rule</h2>
+<p class="dropfont">When you look at individual squares you will often find that there is only one possibility left for the square. <span class="notes"><b>Note</b>: If there are eight squares solved in the group then this is just the same as the <a class="" href="https://www.sudokudragon.com/sudokustrategy.htm#XL2020">only choice</a> rule.</span>
+ Because of the way that groups intersect you may have a group with more
+ than one unallocated square and yet only one possibility exists for one
+ of the squares. So there is only one possibility for that square, and 
+the number must go there.</p>
+<p><img src="Sudoku%20Puzzle%20solving%20strategies_files/gridsingleposs.png" alt="Single possibility strategy" class="imgfloatleft" width="244" height="244">
+In this partially solved Sudoku there are quite a few readily solvable squares. Looking at the purple square <span style="background-color:#8494f7;font-weight:bold;padding:3px;">Da</span> and running through possibilities: 1;2;3;4;5 and 8 that are allocated in column <b>a</b> leaves only 6; 7 and 9 as possibilities. But in row <b>D</b> there is already a <b>6</b> and <b>9</b> so that leaves <b>7</b> as the single possibility for square <b>Da</b>.
+ The single possibility rule can be used to solve all the puzzle squares
+ highlighted in green, so that makes it a very useful technique to have 
+up your sleeve. To use this technique you choose a promising square and 
+mentally run through each number in turn that might go in it, if there 
+is only one number left then that number must go in the square.</p>
+
+<div class="tutbox">
+<img src="Sudoku%20Puzzle%20solving%20strategies_files/sudoku.png" alt="Sudoku Tutorial" class="imgfloatleft" width="40">
+<span style="font-size:130%">F</span>or a further in-depth guide <img alt="guide" src="Sudoku%20Puzzle%20solving%20strategies_files/arun2.gif" height="18"><a class="linkbutton" href="https://www.sudokudragon.com/guidesingleposs.htm">&nbsp;click here</a></div>
+</div>
+</div>
+
+<div id="XL2067" class="hrefanchor">
+<h2>Only square rule</h2>
+<p class="dropfont">Often you will find within a group of Sudoku squares
+ that there is only one place that can take a particular number. For 
+example if a group has seven squares allocated with only two numbers 
+left to allocate it is often the case that an intersecting (or shared) 
+group forces a number to go in one of the squares and not the other one.
+ You are left with an <b>only square</b> within a group for a number to 
+go in. This is different to the 'single possibility' rule where we 
+looked at squares on their own rather than as a group.</p>
+<p><img src="Sudoku%20Puzzle%20solving%20strategies_files/gridforceAc.png" alt="Forced allocation of Sudoku square" class="imgfloatleft" width="244" height="244">
+In this case the highlighted column <b>c</b> has seven numbers allocated. The missing numbers are 1 and 3. But you can see that there is already a <b>3</b> in row <b>I</b> (square <b>If</b>) so a <b>3</b> cannot go in square <b>Ic</b>, the <b>3</b> must go in the other square <span style="background-color:#7BBD9C;font-weight:bold;padding:3px;">Ac</span> it is the <b>only square</b> in column <b>c</b> where a <b>3</b> can be allocated.</p>
+<p>You will often find that the same square can be solved by the 'single
+ possibility' rule as well as the 'only square' rule. It doesn't matter 
+which rule you use, as long as the square is solved. <span class="notes"><b>Note</b>:
+ Whenever there are eight allocated in a group with only one remaining 
+empty you can assign a symbol by applying either the 'only choice', 
+'single possibility' or 'only square' rules as all of them come down to 
+the same thing.  Sudoku allows squares to be solved in different ways 
+using different strategies.</span></p>
+
+<div class="tutbox">
+<img src="Sudoku%20Puzzle%20solving%20strategies_files/sudoku.png" alt="Sudoku Tutorial" class="imgfloatleft" width="40">
+<span style="font-size:130%">F</span>or a further in-depth guide <img alt="guide" src="Sudoku%20Puzzle%20solving%20strategies_files/arun2.gif" height="18"><a class="linkbutton" href="https://www.sudokudragon.com/guideonlysquare.htm">&nbsp;click here</a></div>
+
+</div>
+
+<br style="clear:left">
+<p style="margin:10px"> </p><div class="colbox dropfont" style="background:#fff7e0">
+Sudoku Dragon offers the best range of features for both the newbie and 
+expert. It will solve and generate puzzles of all sorts of sizes. <a class="linkbutton" href="https://www.sudokudragon.com/index.htm">Read more...</a>
+</div>
+
+&nbsp;<p></p>
 
 
-<div class="colbox" style="background-color:#fff8e0;float:right;width:190px;font-size:85%"><img src="Sudoku_files/sudoku.png" alt="sudoku" class="imgfloatleft" width="40" height="40">
+<div id="XL2114" class="hrefanchor">
+<h2>Two out of three rule</h2>
+
+<div class="colbox" style="background-color:#fff8e0;float:right;width:190px;font-size:85%"><img src="Sudoku%20Puzzle%20solving%20strategies_files/sudoku.png" alt="sudoku" class="imgfloatleft" width="40" height="40">
 <span class="dropfontletter">F</span>or generation and solution of Sudoku puzzles download and install Sudoku Dragon.<br>
 It is the complete Sudoku package, including hints, guides, and many new puzzle types.
 <a class="linkbutton" href="https://www.sudokudragon.com/download.htm"><b>Download</b></a> our Sudoku puzzle solver for a free 23 day trial.<br>
 <div style="background:#FFFDF8" class="colbox">
-<img src="Sudoku_files/flower.png" class="imgfloatleft" alt="">
+<img src="Sudoku%20Puzzle%20solving%20strategies_files/flower.png" class="imgfloatleft" alt="">
 <p class="dropfont">At the incredible value of just <b>$9</b> SudokuDragon offers forever usage (no subscription, no adverts), download for <a class="linkbutton" href="https://www.sudokudragon.com/download.htm">free trial here</a>.</p>
 </div>
 
@@ -757,178 +829,189 @@ It is the complete Sudoku package, including hints, guides, and many new puzzle 
 
 
 
-<div class="imgfloatalwaysright" style="width:120px"><img src="Sudoku_files/pshudubig.gif" alt="Sudoku in Japanese" width="115" height="58"> <br><span style="font-size:80%">Sudoku in Japanese</span></div>
+<p class="dropfont">The next useful solution strategy builds on the <a class="" href="https://www.sudokudragon.com/sudokustrategy.htm#XL2067">Only Square</a>
+ rule. Some Sudoku authors refer to it as 'slicing and slotting'. It is a
+ quick way of solving squares as it can be done in your head by scanning
+ the puzzle grid.  It almost always finds a square or two that can be 
+solved. At the heart of the technique is to take groups of three rows 
+and columns in turn, working methodically through the whole grid.  First
+ look for all the 1s then all the 2s, 3s etc. all the way through to the
+ 9s. Here's an example of how it works, for more details look at our <a class="cl" href="https://www.sudokudragon.com/forum/twothreestrategy.htm">2 out of 3 strategy page</a> or <a class="cl" href="https://www.sudokudragon.com/download.htm">download our puzzle solver</a> and the free guides.</p>
+<p><img src="Sudoku%20Puzzle%20solving%20strategies_files/grid2outof3.png" alt="Two out of Three strategy" class="imgfloatleft" width="244" height="244">
+Look at the top three rows where the <b>1</b>s are located - they are in row <b>A</b> column <b>e</b> (<b>Ae</b>) and Row <b>C</b> column <b>a</b> (<b>Ca</b>)
+There is no <b>1</b> in row <b>B</b>, it must go in one of the blank squares. Because of the <b>1</b> in <b>Ae</b> it can not go in any other of the squares in region <b>Ad</b> that is <b>Bd; Be</b> or <b>Bf</b>. By elimination there is only one place <b>1</b> can go in row <b>B</b> and that is in the highlighted square <span style="background-color:#8494f7;font-weight:bold;padding:3px;">Bi</span>. 
+Using the same logic for the following three rows <b>D; E; F</b> there is again two of them with a <b>1</b> in them: squares <b>Eh</b> and <b>Ff</b>. There is a <b>1</b> missing from row <b>D</b> and because of the <b>1</b> in <b>Eh</b> it can't be in <b>Di</b>, <b>1</b> must be assigned to <b>Dc</b>.  For the last three rows there are already three <b>1</b>s <b>Gd; Hb</b> and <b>Ig</b> so there is no <b>1</b> left to be allocated.</p>
+<p>You can then look at the <b>2</b>s in these three sets of three rows. In rows <b>A; B; C</b> there are <b>2</b>s in <b>Ai</b> and <b>Cb</b> so there is a <b>2</b> missing in row <b>B</b>, however in this case there are three unallocated squares <b>Bd; Be</b> and <b>Bf</b> so it can't be quickly decided in which one of these the <b>2</b> should go.
+The same happens in rows <b>D; E; F</b> there are two <b>2</b>s but both <b>Ed</b> and <b>Ef</b> are possible. Finally in <b>G; H; I</b> there are two <b>2</b>'s <b>Gg</b> and <b>Hc</b> and so there is a <b>2</b> missing in row <b>I</b>. The existing <b>2</b>'s mean there is only one place it can go -  square <b>Id</b>. You can then continue this scan through all rows then all columns in groups of three and then through all the numbers <b>1</b> through <b>9</b>.
+ Whenever you  allocate a  square this may, in turn, unlock other 
+squares so it is worth restarting the same procedure over for the whole 
+grid.</p>
 
-<p class="dropfont">There is just one simple rule controlling where you 
-can place numbers in the regular Sudoku puzzle. A symbol must occur once
- and only once in each group of nine grid squares. The groups of nine 
-squares include the <a class="" href="https://www.sudokudragon.com/sudoku.htm#XL2101">rows</a>, <a class="" href="https://www.sudokudragon.com/sudoku.htm#XL2103">columns</a> and <a class="" href="https://www.sudokudragon.com/sudoku.htm#XL2105">regions</a> within the puzzle. Such a simple rule leads to all the amazing variability of Sudoku puzzles.</p>
-
-<p class="dropfont">Take a look at our page on the <a class="" href="https://www.sudokudragon.com/sudokuhistory.htm" title="The origin of Sudoku through 2,000 years">history of Sudoku</a>, <a class="" href="https://www.sudokudragon.com/sudokustrategy.htm">Sudoku solution strategy</a> and <a class="" href="https://www.sudokudragon.com/sudokutheory.htm" title="Some theory behind the Sudoku puzzle">theory</a>.</p>
+<div class="downbox">
+To download this puzzle and<br> see it in Sudoku Dragon <img alt="download Sudoku puzzle" src="Sudoku%20Puzzle%20solving%20strategies_files/pdownpuzz.png" height="15"><a class="linkbutton" href="https://www.sudokudragon.com/puzzledownload.php?path=examplepuzzles/StrategyShGroup.sdk">click here...</a>
+</div>
 
 
-<h2>Sudoku Terminology</h2>
+<p>The procedure is to scan rows and columns in groups of three and look
+ to see where if anywhere the number being scanned has been allocated. 
+If you find two out of the three then you know that the missing number 
+can only go in only one of three squares in this row (or column), and 
+more often than not only one of these is possible and must be allocated 
+there. It will find squares that you could also have found using the 
+only choice, only square and single possibility strategies. The way it 
+works is that three rows or columns consist of three regions each of 
+these can only take the symbol once. </p>
+<p>When using the Sudoku Dragon software you can use the <a class="" href="https://www.sudokudragon.com/tourautoallocate.htm" title="Solving simple squares quickly">automatic allocation</a>
+ feature to automatically find and solve squares that can be solved with
+ the 'only choice', 'single possibility' and 'only square' rules, 
+leaving you free to concentrate on solving the harder squares.</p>
 
-<p class="dropfont">First let's introduce the terms used on this web site, as not everyone uses the same convention.</p>
-<p class="dropfont">The whole puzzle area is called the <b>grid</b>, it is divided into <b>rows</b> (horizontal lines) and <b>columns</b> (vertical lines) made up of individual Sudoku <b>squares</b>.</p>
+<div class="tutbox">
+<img src="Sudoku%20Puzzle%20solving%20strategies_files/sudoku.png" alt="Sudoku Tutorial" class="imgfloatleft" width="40">
+<span style="font-size:130%">F</span>or a further in-depth guide <img alt="guide" src="Sudoku%20Puzzle%20solving%20strategies_files/arun2.gif" height="18"><a class="linkbutton" href="https://www.sudokudragon.com/guidetwooutofthree.htm">&nbsp;click here</a></div>
 
-<div id="XL2101" class="hrefanchor"><div><img src="Sudoku_files/gridrowC.png" alt="Sudoku row" class="imgfloatleft" width="197" height="197"><h3>Rows</h3>
-To save confusion we use letters rather than numbers to refer to rows 
-and columns. The names are shown in the grid heading. In this Sudoku 
-grid row <b>C</b> (capital C) is highlighted. <span class="notes"><b>Note</b>:
- If we used numbers we would end up having to say things like in row 3 
-there is only one place for a 5 while in column 2 there are 3. Confusing
- isn't it? Using letters for grid references makes it easier to follow.</span></div>
 </div>
 
 <br style="clear:left">
-<div id="XL2103" class="hrefanchor"><div><img src="Sudoku_files/gridcole.png" alt="Sudoku column" class="imgfloatleft" width="197" height="197"><h3>Columns</h3>
-Sudoku columns are given a lower case letter.<br>
-Column <b>e</b> (small e) is highlighted.<br>
-Using row and column letters lets us unambiguously refer to squares. For example square <b>He</b> is row <b>H</b> column <b>e</b>, this Sudoku square has a <b>2</b> allocated in the example puzzle.</div>
+<div id="XL2100" class="hrefanchor">
+<h2>Sub-group exclusion rule</h2>
+<p class="dropfont">More rarely needed in Sudoku, but exceptionally useful is the <b>sub-group exclusion</b>
+ rule. This takes a lot more explanation as instead of 'forcing' a 
+number in a square, it is an application of logic that knocks out 
+options that at first sight looked possible. By excluding one 
+possibility for a square may mean there is only one remaining 
+possibility, so the square can be safely set to the remaining option. 
+Here's an example of the sub-group rule.</p>
+<div class="colbox dropfont" style="background:#fff7e0">
+We think we provide everything you need to investigate this fascinating 
+puzzle, please look around our web site for free daily puzzles; history 
+of Sudoku; Theory; Strategies; Message boards; Powerful puzzle solver. <a class="linkbutton" href="https://www.sudokudragon.com/sudoku.htm">Read more...</a>
+</div>
+
+
+
+<div style="overflow:hidden">
+<p><img src="Sudoku%20Puzzle%20solving%20strategies_files/gridsubgroup.png" alt="Subgroups" class="imgfloatleft" width="242" height="242"></p>
+<p>A <b>sub-group</b> is a term used to describe three squares in a row or column that intersect a Sudoku <a class="" href="https://www.sudokudragon.com/sudoku.htm#XL2105">region</a>.  Every row and column has three sub-groups in the three regions it crosses. In this example the region <b>Aa</b> has been color coded to show the three subgroups it forms with columns <b>a; b</b> and <b>c</b>.  The three <span style="background-color:#8494f7;font-weight:bold;padding:3px;">purple squares</span> are the sub-group intersecting region <b>Aa</b> and column <b>a</b>; the <span style="background-color:#ff8429;font-weight:bold;padding:3px;">orange squares</span> the sub-group with column <b>b</b> and the <span style="background-color:#8cefa5;font-weight:bold;padding:3px;">green ones</span> the sub-group with column <b>c</b>. The region also has three sub-groups with the rows <b>A; B</b> and <b>C</b>. Every square in the grid belongs to two sub-groups - one for the column it is in and one for the row it is in.</p>
+<p>The sub-group exclusion strategy is when you can prove that a number 
+occurs in one of the sub-group squares even though it can't be deduced 
+which of the three sub-group squares it does go in. If you then look 
+beyond that sub-group to the row or column  it is in, you can exclude 
+that number from the other intersecting squares. This may not solve a 
+square, but it narrows down the possibilities. A couple of examples 
+follow to explain it. </p>
+</div>
+</div>
+
+<div style="overflow:hidden">
+<p>Our <a class="cl" href="https://www.sudokudragon.com/download.htm">Sudoku Dragon</a> has a free tutorial that explains what is going on step by step.</p>
+<p><img src="Sudoku%20Puzzle%20solving%20strategies_files/gridshgroup.png" alt="Subgroup exclusion Sudoku rule" class="imgfloatleft" width="242" height="242">Here is a brief example using the <a class="" href="https://www.sudokudragon.com/sudokutheory.htm" title="Small learning grid size of just 4x4=16 squares">simpler 4x4 puzzle size</a>,
+ so there are only four possibilities to think about instead of nine. 
+Sudoku Dragon has been used with possibilities enabled and exclusions 
+switched on so that the grid directly shows the squares where the 
+exclusion rule comes into play.</p>
+<p>First look at column <b>d</b>, you'll see that the <b>1</b> must go in <b>Cd</b> and that's the only place it can go in the region <b>Cc</b>. Applying the subgroup rule for the subgroup shared between column <b>d</b> and region <b>Cc</b> (highlighted in <span style="background-color:#ADC9FF;font-weight:bold;padding:3px;">blue</span>) means that <b>1</b> can only occur in this blue subgroup and can not go in any other square in the region, so  a <b>1</b> can not go in squares <b>Cc</b> or <b>Dc</b>, so that is why <b>1</b> is shown as with a 'not possible' darker background by the puzzle solver.  Moreover because <b>Dc</b> could only take a <b>1</b> or <b>4</b> it's now certain that <b>4</b> must go here.</p>
+
+<p>The other subgroup we could have used in this Sudoku puzzle example is the one shared between column <b>a</b> and region <b>Cb</b> (highlighted in <span style="background-color:#E48A60;font-weight:bold;padding:3px;">red</span>). Here we can tell that <b>4</b> must be allocated in <b>Ca</b> as that is the only place in column <b>a</b> that can take it. So using the subgroup rule <b>4</b> can not go in either <b>Cb</b> or <b>Db</b>, and so we can safely assign <b>1</b> to <b>Db</b>. <span class="notes"><b>Note</b>:  <a class="" href="https://www.sudokudragon.com/sudokutheory.htm" title="Small learning grid size of just 4x4=16 squares">4x4</a> Sudoku examples do not really show the full power of the rule as simpler rules could have been used to solve these squares.</span></p>
+</div>
+<p><img src="Sudoku%20Puzzle%20solving%20strategies_files/gridshgroup9.png" alt="Subgroup exclusion Sudoku rule" class="imgfloatleft imgresize" width="410" height="410">Scaling up to a regular 9x9 Sudoku example, the subgroup exclusion happens in the central region <b>Dd</b>. It is the sub-group of the central region with the <span style="background-color:#f7ff84;font-weight:bold;padding:3px;">highlighted row F</span> that is of interest. Look at the squares in row <b>F</b> that a '5' can go, it can't go in <b>Fa</b> (because of Aa) nor in <b>Fh</b> (because of Dh) nor in <b>Fi</b> (because of Bi). That only leaves <b>Fd</b> and <b>Ff</b> both of which occur as a shared sub-group with the central region <b>Dd</b>. The subgroup exclusion rule requires that a '5' can not go in the remaining shared squares in that region highlighted in red: <span style="background-color:#ff7d63;font-weight:bold;padding:3px;"><b>Ed</b> or <b>Ef</b></span>.</p>
+
+
+<div class="tutbox">
+<img src="Sudoku%20Puzzle%20solving%20strategies_files/sudoku.png" alt="Sudoku Tutorial" class="imgfloatleft" width="40">
+<span style="font-size:130%">F</span>or a further in-depth guide <img alt="guide" src="Sudoku%20Puzzle%20solving%20strategies_files/arun2.gif" height="18"><a class="linkbutton" href="https://www.sudokudragon.com/guidesharedsubgroup.htm">&nbsp;click here</a></div>
+
+
+<br style="clear:left">
+<div id="XL2102" class="hrefanchor">
+<h2>Hidden Twin exclusion rule</h2>
+<p class="dropfont">You may find you need to use the twin (or triplet) 
+exclusion rules in order to solve more challenging Sudoku puzzles. It is
+ the strategy to use when simpler strategies have been applied and you 
+are still stuck. In essence it is all about spotting matching patterns 
+of possibilities in a group (row, column or region). Spotting these 
+groups takes time and it is difficult to keep track of these in your 
+head, so this is where you need pencil and paper (or the <a class="cl" href="https://www.sudokudragon.com/download.htm">Sudoku Dragon puzzle solver</a>).</p> 
+<p>If you have two or more unallocated squares in a region and there are
+ two numbers that can only go in the same two squares and no others in 
+that group you have a twin. This does not directly help to allocate 
+squares as the number could go in either of them. However, if the two 
+squares have another possible number then this number can be safely 
+eliminated as an option. It is excluded because of the presence of the <b>hidden twin</b> in the group. Studying an example is the best way to get your mind around this rule.</p>
+<p><img src="Sudoku%20Puzzle%20solving%20strategies_files/gridextwin4.png" alt="Hidden Twin exclusion Sudoku rule" class="imgfloatleft" width="242" height="242">
+Look at this 4x4 grid. There are a lot of easier squares that could be 
+filled in, but we've ignored them as we are illustrating the hidden twin
+ rule.  Look at the green region <span style="background-color:#D1EDD1;font-weight:bold;padding:3px;"> Aa</span>, none of the squares have yet been allocated. Both <b>2</b> and <b>3</b>
+ must go somewhere in the region but it turns out that there are only 
+two possible squares. So we have detected a twin {2,3} in squares <b>Aa</b> and <b>Ba</b>. Because of this twin the possibility of a <b>1</b> in
+ square <b>Aa</b> can  be knocked out. Also square <b>Ba</b> looked like it might be a <b>4</b>
+ but this too can be excluded due to the same {2, 3} twin. How does this
+ work? There are only two ways that the twin of {2, 3} can be allocated,
+ either the <b>2</b> in <b>Aa</b> and <b>3</b> in <b>Ba</b> or alternatively <b>3</b> in <b>Aa</b> and <b>2</b> in <b>Ba</b>. These are the only two ways that {2, 3} can be set in this region. So in both of the two possible ways the squares <b>Aa</b> and <b>Ba</b> are allocated. This does not allow the possibility of the <b>1</b> being allocated in <b>Aa</b> or the <b>4</b> being allocated in <b>Ba</b>
+ - they must be allocated somewhere elsewhere in the group. Whenever 
+there are the same number of possibilities restricted to the same number
+ of squares this logic can be applied. [See the <a class="cl" href="https://www.sudokudragon.com/sudokutheory.htm">theory page</a> for further explanation.] <span class="notes"><b>Note</b>:
+ The rule for twins extends to triplets too.  If you find that three 
+symbols have only three shared possible squares in a group (row, column 
+or region) then all other possibilities in these three squares can be 
+discounted. And on it goes, the same sort of rule applies to 
+quadruplets, quintuplets etc. but these are very rarely found in real 
+Sudoku puzzles.</span></p>
+<p>Our <a class="cl" href="https://www.sudokudragon.com/download.htm">Sudoku Dragon</a> software has a free tutorial that explains twins in more detail with an animated guide.</p>
+<p>This rule is named the <a class="" href="https://www.sudokudragon.com/sudokustrategy.htm#XL2102">hidden twin rule</a> as the twins are only found by considering other squares in the group. Discovering the twins is the challenge.</p>
+
+<div class="tutbox">
+<img src="Sudoku%20Puzzle%20solving%20strategies_files/sudoku.png" alt="Sudoku Tutorial" class="imgfloatleft" width="40">
+<span style="font-size:130%">F</span>or a further in-depth guide <img alt="guide" src="Sudoku%20Puzzle%20solving%20strategies_files/arun2.gif" height="18"><a class="linkbutton" href="https://www.sudokudragon.com/guidehiddentwins.htm">&nbsp;click here</a></div>
+
 </div>
 
 <br style="clear:left">
-<div id="XL2105" class="hrefanchor"><div><img src="Sudoku_files/gridblockAa.png" alt="sudoku region" class="imgfloatleft" width="197" height="197"><h3>Regions</h3>
-A <b>region</b> is a block of nine adjacent Sudoku squares, in the example puzzle the top left region <b>Aa</b> is highlighted. The whole grid is made up of nine <b>regions</b>. Some Sudoku sites use the term 'mini-grid'; 'box'  or 'sub-grid' for 'region'. We think <b>region</b> is simpler and easier. A region is referenced by the top-left square, so <b>region Dd</b>
- is the central region. A symbol must occur once and once only in each 
-of the regions within the grid as well as each row and column. This was 
-one of the <a class="cl" href="https://www.sudokudragon.com/sudokuhistory.htm">innovations</a> that made Sudoku such an interesting puzzle to solve.</div>
+
+<div id="XL2104" class="hrefanchor">
+<h2>Naked Twin exclusion rule</h2>
+<p><img src="Sudoku%20Puzzle%20solving%20strategies_files/gridexntwin4.png" alt="Naked exclusion Sudoku rule" class="imgfloatleft" width="242" height="242">
+Another way to exclude possibilities in a group is with  <b>naked twins</b>.
+ In this case the twin squares are evident on their own (and so they are
+ termed 'naked' to distinguish them from the previous 'hidden' case) and
+ these are used to exclude possibilities in other squares in the same 
+group. Here's how it works.</p>
+
+<p>This 4x4 Sudoku has the region <b>Ca</b> highlighted in green. The 'naked twins' are located in <b>Ca</b> and <b>Cb</b> with possibilities {2, 3}. Because these two squares have no other possibilities we can deduce that a <b>2</b> must go in <b>Ca</b> and <b>3</b> in <b>Cb</b> or else <b>3</b> in <b>Ca</b> and <b>2</b> in <b>Cb</b>, there are no other alternatives for these two squares. So looking at square <b>Da</b> the naked twin rule excludes <b>2</b> from occurring here (because we have just shown that region <b>Ca</b> must have a <b>2</b> in either <b>Ca</b> or <b>Cb</b>). As <b>Da</b> is now left with one possibility a <b>1</b> can be safely allocated there. For the same reason the naked twin also eliminates <b>2</b> from square <b>Cc</b> and a <b>4</b> must go there.</p>
+
+<div class="tutbox">
+<img src="Sudoku%20Puzzle%20solving%20strategies_files/sudoku.png" alt="Sudoku Tutorial" class="imgfloatleft" width="40">
+<span style="font-size:130%">F</span>or a further in-depth guide <img alt="guide" src="Sudoku%20Puzzle%20solving%20strategies_files/arun2.gif" height="18"><a class="linkbutton" href="https://www.sudokudragon.com/guidenakedtwins.htm">&nbsp;click here</a></div>
+
+</div>
+<br style="clear:left">
+<div id="XL2106" class="hrefanchor">
+<h2>General permutation rule</h2>
+<p class="dropfont">The two 'twin' rules are particular examples of the general Sudoku logic. It is all down to <a class="cl" href="https://www.sudokudragon.com/sudokutheory.htm">permutations</a>. Each Sudoku group is a <a class="" href="https://www.sudokudragon.com/sudokutheory.htm" title="Using permutation theory to understand Sudoku">permutation</a>
+ of the numbers 1 to 9 (for a 9x9 grid). If you can identify a group 
+within this permutation that is restricted to the same number of squares
+ then you have a Sudoku permutation rule. <span class="notes"><b>Note</b>:
+ In fact the 'only square'; 'single possibility' and 'only choice' are 
+just special cases of this general rule - only one square is involved in
+ this case.</span> This general rule has more exotic applications.</p>
+<p>The twin, triplet, quadruplet rules just reflect different number of possibilities (2,3,4...). However there are also <b>chains</b>.
+  A chain can take in any number of squares, for example if three 
+squares in a group allow just the possibilities {1,7}; {4,7} and {1,4} 
+there is a closed chain of three symbols {1,4,7} which is neither a twin
+ nor a triplet. Detecting this chain lets you safely exclude a possible 
+1, 4 and 7 elsewhere in the same group. So the logic applies equally for
+ chains as it does for twins, there are 'naked chains' and 'hidden 
+chains'.</p>
 </div>
 
-<h3 style="clear:left">Groups</h3>
+<br style="clear:left">
 
-<p>A 'group' is a general term for a group of nine squares in either a row, a column or a region. </p>
-
-<h3>Rules</h3>
-There is only one simple rule in Sudoku: each Sudoku group of nine squares must have a unique occurrence of each of the numbers <b>1</b> through <b>9</b>.
-
-<h1>How to solve Sudoku puzzles</h1>
-<img src="Sudoku_files/pnum9.jpg" alt="Number 9" class="imgfloatalwaysleft" width="150" height="150">
-<div class="rightgoogle">
-<!-- SDKSideR -->
-<ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-0075574414120639" data-ad-slot="4966372774"></ins>
-</div>
-
-
-<p class="dropfont">The process of solving a <a class="" href="https://www.sudokudragon.com/help/helpsudoku.htm">Sudoku puzzle</a>
- is to fill in the empty squares. Each puzzle has a single, 'correct' 
-solution, each unallocated square has one correct value from the 9 
-possible values.</p>
-
-<p>Sometimes it is fairly obvious what number must go in a square while 
-other squares require a great deal of mental torture to solve. To work 
-through all the possibilities it can take half an hour to solve one 
-square! Much like placing a single piece in a jigsaw, there must be a 
-place for a number to go but spotting the correct place may be easy or 
-takes an age to do.</p>
-<p>There is no correct sequence of square allocations to make, different
- people use their own strategies to solve a Sudoku puzzle and so will 
-solve the squares in a different sequence. However, the end result is 
-always the same, there is only one unique solution, just many ways of 
-getting there.</p>
-
-<p>There are a number of standard techniques or strategies to help solve a Sudoku puzzle. We have guides built into our <a class="cl" href="https://www.sudokudragon.com/download.htm">Sudoku solver</a> demonstrating these strategies. We also have a <a class="" href="https://www.sudokudragon.com/sudokustrategy.htm">Sudoku strategy</a> page containing a description of all the commonly used methods: <a class="" href="https://www.sudokudragon.com/sudokustrategy.htm#XL2020">only choice</a>, <a class="" href="https://www.sudokudragon.com/sudokustrategy.htm#XL2067">only square</a>,  <a class="" href="https://www.sudokudragon.com/sudokustrategy.htm#XL2111">single possibility</a>, excluded <a class="" href="https://www.sudokudragon.com/sudokustrategy.htm#XL2102">hidden twins</a>, <a class="" href="https://www.sudokudragon.com/sudokustrategy.htm#XL2104">naked twins</a>, <a class="" href="https://www.sudokudragon.com/sudokustrategy.htm#XL2100">sub-groups</a> and  <a class="" href="https://www.sudokudragon.com/sudokustrategy.htm#XL2108">X-Wing</a>. The more <a class="cl" href="https://www.sudokudragon.com/advancedstrategy.htm">advanced strategies</a> are explained  on a separate page: <a class="" href="https://www.sudokudragon.com/advancedstrategy.htm#XL115" title="Hook or X-Y Wing advanced Sudoku solution strategy">X-Y Wing</a> and <a class="" href="https://www.sudokudragon.com/advancedstrategy.htm#XL113" title="Analysis of alternate pairs of squares to solve Sudoku">Alternate Pairs</a>.  There is a page on <a class="cl" href="https://www.sudokudragon.com/sudokutheory.htm">Sudoku theory</a> too.</p>
-<p>You can visit our <a class="cl" href="https://www.sudokudragon.com/forum/forumindex.htm">online discussion forums</a>. <a class="cl" href="https://www.sudokudragon.com/download.htm">Sudoku Dragon</a> comes complete with <a class="" href="https://www.sudokudragon.com/help/helptutorialchoice.htm" title="Choosing a guide in Sudoku Dragon">guides</a> that take you through the most useful solution strategies step by step.</p>
-
-<h2>Making mistakes</h2>
-
-<img src="Sudoku_files/gridsmall2.png" alt="Sudoku Puzzle" class="imgfloatalwaysleft">
-
-<p>If you make an incorrect allocation of a number in a Sudoku puzzle then the puzzle becomes <a class="" href="https://www.sudokudragon.com/unsolvable.htm" title="Sudoku puzzles that can not be solved">'unsolvable'</a>.
- At some later stage you will find an insurmountable contradiction, a 
-number would have to be placed in two squares in the same row, column or
- region violating the Sudoku rule or else you'll find a square that 
-can't take any of the numbers according to the rule. To correct the 
-mistake you need to backtrack through the allocations that you have made
- until you find the one in error. Often this is because you overlooked 
-another possibility for a square and thought it was the only choice. <a class="cl" href="https://www.sudokudragon.com/download.htm">Sudoku Dragon</a>
- immediately alerts you when a puzzle becomes unsolvable or you make an 
-allocation that breaks the Sudoku rules. The program lets you backtrack 
-easily with 'undo' to go back to a solvable state.</p>
-
-
-<h2>Creating Puzzles</h2>
-
-<img src="Sudoku_files/knot.png" alt="knot" class="imgfloatalwaysleft" width="150" height="150">
-<p class="dropfont">Skill is required to create a challenging Sudoku 
-puzzle. It is not just a matter of randomly allocating numbers to 
-squares. Firstly, to ensure that there is only one unique solution 
-requires that there is the correct number of initial 'exposed' squares 
-to begin with. If there were only a handful there would be many ways to 
-allocate all the squares - but all Sudoku puzzles can have only a 
-single, unique solution. The challenge is to reveal just enough squares 
-to make the solution both unique and challenging. The pattern of squares
- can make a <a class="" href="https://www.sudokudragon.com/symmetry.htm" title="Mirror and rotational symmetry of Sudoku">pleasing arrangement</a>
- , and this should be taken into account when creating a Sudoku puzzle. 
-In general the more revealed squares there are the easier the puzzle 
-will be to solve. If the revealed squares are distributed evenly 
-throughout the puzzle, then it will be easier to solve than if regions 
-have very few filled squares. Some of the toughest puzzles have a couple
- of regions with no squares revealed at all, or when a particular number
- does not occur in the whole Sudoku puzzle. Solution strategies are 
-discussed in our <a class="cl" href="https://www.sudokudragon.com/forum/forumindex.htm">online forums</a> and <a class="" href="https://www.sudokudragon.com/sudokustrategy.htm">strategy page</a>.</p>
-
-<p class="dropfont">When Sudoku was published by the <a class="cl" href="https://www.sudokudragon.com/sudokuhistory.htm">Nikoli magazine in Japan</a>
- they decided to add some extra spice to form true Sudoku puzzles. They 
-decided to make the pattern of revealed squares should be <a class="" href="https://www.sudokudragon.com/symmetry.htm" title="Mirror and rotational symmetry of Sudoku">symmetric</a>.
-  Most puzzles that you come across are symmetric. If you turn the 
-Sudoku on its side or upside down the pattern of initial squares is 
-repeated (but not the numbers).  Sudoku Dragon supports both a symmetric
- and a random pattern of initial squares. The random pattern can make 
-the games more challenging to solve although it may be less 
-aesthetically appealing to look at.</p>
-
-<h2>Sudoku Puzzle Difficulty</h2>
-
-<p>A good Sudoku puzzle has to have just the right level of difficulty. 
- This decision is tricky because there are many solution strategies and 
-different people will naturally find puzzles more challenging than 
-others.  The vital measure in establishing the level of puzzle 
-difficulty is working out which Sudoku strategies are needed to solve 
-it. The easier puzzles require the basic <a class="" href="https://www.sudokudragon.com/sudokustrategy.htm#XL2067">only square</a>; <a class="" href="https://www.sudokudragon.com/sudokustrategy.htm#XL2111">single possibility</a> and <a class="" href="https://www.sudokudragon.com/sudokustrategy.htm#XL2020">only choice</a> rules. 
-Moderate puzzles require some application of the <a class="" href="https://www.sudokudragon.com/sudokustrategy.htm#XL2102">twin</a> and <a class="" href="https://www.sudokudragon.com/sudokustrategy.htm#XL2100">excluded choice</a> rules. Truly challenging puzzles require the discovery of <a class="" href="https://www.sudokudragon.com/sudokustrategy.htm#XL2108">X-Wings</a>, 
-<a class="" href="https://www.sudokudragon.com/advancedstrategy.htm#XL115" title="Hook or X-Y Wing advanced Sudoku solution strategy">X-Y Wings</a>, <a class="" href="https://www.sudokudragon.com/advancedstrategy.htm#XL113" title="Analysis of alternate pairs of squares to solve Sudoku">alternate pairs</a> or may be even some use of trial and error: <a class="" href="https://www.sudokudragon.com/sudokuguess.htm" title="Guessing or back tracking to solve a Sudoku">backtracking</a> after following a blind alley or two before the correct solution is attained.</p>
-
-<h2>Sudoku and Jigsaws</h2>
-
-<img src="Sudoku_files/gridsmall3.png" alt="Sudoku Puzzle" class="imgfloatalwaysleft">
-
-<p class="dropfont">The closest puzzle to compare to Sudoku is perhaps 
-the humble jigsaw. There are similarities both in the way it works and 
-the pleasure gained by solving it. In a jigsaw there are lots of pieces 
-to fit in to a rectangular pattern, there is only one solution and each 
-piece can only go in one place. Sudoku is also a matter of putting 
-things in the right place. If you like doing jigsaws you'll enjoy Sudoku
- too.</p>
-
-<p class="dropfont">To solve a jigsaw everyone will put the pieces 
-together in different orders. Most people will hunt and separate the 
-edge pieces and then join these up before tackling pieces with distinct 
-markings and then join these up. When nearing the completion of a 
-jigsaw, particularly with problem areas such as large expanses of clear 
-blue sky, you may look out for pieces of a particular shape and size. 
-There are different strategies to apply depending on the stage of 
-completeness and that makes jigsaws interesting.</p>
-<p>Sudoku is just the same, there are strategies to use at the different
- stages of solving the puzzle. Some of these can become a tough trial 
-and error process just like a jigsaw.</p>
-
-<p>The joy of successfully completing a jigsaw is akin to that of 
-solving a Sudoku puzzle, when the final square has been filled in, the 
-satisfaction of correct completion is like stepping back to enjoy the 
-whole picture when the final piece has been placed in a jigsaw. 
-Everything is in its proper place. </p>
-
-
-<h2>Sudoku puzzle types</h2>
-
-<div class="colbox" style="background-color:#fff8e0;float:right;width:190px;font-size:85%"><img src="Sudoku_files/sudoku.png" alt="sudoku" class="imgfloatleft" width="40" height="40">
+<div class="colbox" style="background-color:#fff8e0;float:right;width:190px;font-size:85%"><img src="Sudoku%20Puzzle%20solving%20strategies_files/sudoku.png" alt="sudoku" class="imgfloatleft" width="40" height="40">
 <span class="dropfontletter">F</span>or generation and solution of Sudoku puzzles download and install Sudoku Dragon.<br>
 It is the complete Sudoku package, including hints, guides, and many new puzzle types.
 <a class="linkbutton" href="https://www.sudokudragon.com/download.htm"><b>Download</b></a> our Sudoku puzzle solver for a free 23 day trial.<br>
 <div style="background:#FFFDF8" class="colbox">
-<img src="Sudoku_files/flower.png" class="imgfloatleft" alt="">
+<img src="Sudoku%20Puzzle%20solving%20strategies_files/flower.png" class="imgfloatleft" alt="">
 <p class="dropfont">At the incredible value of just <b>$9</b> SudokuDragon offers forever usage (no subscription, no adverts), download for <a class="linkbutton" href="https://www.sudokudragon.com/download.htm">free trial here</a>.</p>
 </div>
 
@@ -936,84 +1019,107 @@ It is the complete Sudoku package, including hints, guides, and many new puzzle 
 
 
 
-<p>Starting from the standard Sudoku rule there are many ways to create a
- range of different types of puzzle. First of all you can change the 
-size of the grid. Using the regular 9x9 grid is just one option. The 
-simpler <a class="" href="https://www.sudokudragon.com/sudokutheory.htm" title="Small learning grid size of just 4x4=16 squares">4x4 grid</a>
- is useful for learning the basics of Sudoku and we use it for some of 
-our guides. With 4x4 there are only four symbols and four regions to 
-consider, and so 4x4 can never make a hard puzzle.</p>
-<p>Stepping up to larger sizes a grid of <a class="" href="https://www.sudokudragon.com/tourbiggrid.htm" title="Large 16x16 puzzle size">16x16</a>
- makes a real challenge, because there are now 16 squares with 16 
-possibilities for each square.
-With this size there are not enough digits so the letters 'A' through 
-'I' or 'hexadecimal' digits will do admirably instead. Sudoku Dragon 
-supports puzzles of this size. The <a class="" href="https://www.sudokudragon.com/sudokuvariants.htm" title="Different sizes of Sudoku puzzles">sudoku grid size</a>
- can be arbitrarily increased further to 25x25 and 36x36 and so on, but 
-16x16 with a total of 256 squares to complete is surely challenging 
-enough; after that the puzzle has too many possibilities to carry around
- in the average sized head.</p>
-<p>You can also use rectangular regions to make up the grid rather than 
-squares. Sudoku Dragon supports seven rectangular grids including: 2x3 
-grid (about the most common rectangular size you will find) and the 4x5 
-(or 20x20) monster sized grid. Here's an example of 2x5 rectangles 
-making up a 10x10 puzzle.</p>
+<div id="XL2108" class="hrefanchor">
+<h2>X-Wing and Swordfish</h2>
+<p class="dropfont">One of the more complex Sudoku strategies is the 
+'X-Wing' and its cousin the 'Swordfish'.  These rules are useful for 
+solving the really difficult Sudoku puzzles when all else has been tried
+ and failed.</p>
+<p>In looking for twins and permutations we restricted ourselves to looking at possibilities within a single group. The <a class="" href="https://www.sudokudragon.com/sudokustrategy.htm#XL2100">shared sub-group</a> rule is the simplest example of a rule where two groups are looked at to eliminate possibilities. The <b>X-Wing</b>
+ requires looking at multiple groups as well. A better name for this 
+strategy might be 'Box' as you are looking for four squares forming the 
+corners of a box. These squares must be the only permitted squares for 
+that number in that row (or column) for one particular symbol. This box 
+arrangement forms a two dimensional link. If the symbol spotted occurs 
+in the top left corner of the box it must then also occur in the bottom 
+right corner of the box. The only other alternative is that it occurs in
+ the top right corner in which case it must then occur in the bottom 
+left corner. No other option is possible for these four squares and this
+ number. Just as with the sub-group rule, this can knock out 
+possibilities somewhere else in the Sudoku grid.</p>
+<img src="Sudoku%20Puzzle%20solving%20strategies_files/gridexwing.png" alt="X-Wing Sudoku rule" class="imgfloatleft imgresize" width="437" height="437">
+<p class="dropfont">Here's an example (and good X-Wings are hard to find). Sudoku Dragon has highlighted all the squares where a <b>4</b> is allocated or looks like it can be allocated. The rows <b>C</b> and <b>G</b> are crucial. They both have only two squares that can take a <b>4</b>: <span style="background-color:#8494f7;font-weight:bold;padding:3px;">Ca, Cf, Ga and Gf</span> - highlighted in <span style="background-color:#8494f7">blue</span> - this is the vital starting point. Moreover these <b>4</b>s form the corners of a rectangular box (highlighted in <span style="background-color:#ff8429">orange</span>). How is this useful? Well, because there must the <b>4</b> in column <b>a</b> must either go in <b>Ca</b> or <b>Ga</b> and nowhere else in that column. Similarly in column <b>f</b> (the <b>4</b> must be in either  <b>Cf</b> or <b>Gf</b> and so we can exclude all the other <b>4</b>s from these two columns. So all the yellow highlighted squares <span style="background-color:#f7ff8c;font-weight:bold;padding:3px;">Aa, Ba, Bf and Ha</span> can have the possibility of <b>4</b> safely discounted. If you are lucky then eliminating the <b>4</b>s will mean you can allocate one of these excluded squares or at least a square in the same group as them. <span class="notes"><b>Note</b>: The term X-Wing is probably derived from the name of Star Wars fighter which had an X shaped cross-section.</span></p>
 
-<p class="centred"><img src="Sudoku_files/puzzle2x5.png" alt="Puzzle 2x5 grid" class="" width="250" height="255"></p>
 
-<p>Our <a class="" href="https://www.sudokudragon.com/sudokuvariants.htm" title="All the various types of Sudoku including Wordoku, Samurai and X-Sudoku">Theme and Variations page</a> describes the many different types of Sudoku available. These include <a class="" href="https://www.sudokudragon.com/sudokuvariants.htm#XL357" title="Chinese Sudoku">Chinese numbers</a>; <a class="" href="https://www.sudokudragon.com/sudokuvariants.htm#XL101" title="Word Sudoku">Word Sudoku</a>; <a class="" href="https://www.sudokudragon.com/sudokuvariants.htm#XL105" title="Diagonal or X-Sudoku">X Sudoku</a> and Super-Sudokus or <a class="" href="https://www.sudokudragon.com/samuraisudoku.htm" title="Monster sized Samurai">Samurai Sudoku</a> with their overlapping 3x3 puzzles that have five overlapping puzzles to solve in one large puzzle.</p>
-
-<h2>How many possible puzzles?</h2>
-
-<div id="XL2199" class="hrefanchor"><p>As there are so many Sudokus printed these days, surely all the <a class="" href="https://www.sudokudragon.com/forum/how-many-puzzles.htm" title="How many Sudoku puzzles are there?">possible grids</a> have now been solved? Well you may think so.</p>
-<p>After a little thought it is clear there are quite a few new puzzles 
-left and we are unlikely to run out of Sudokus in the near future. For 
-each row in isolation there are 9! (shorthand for nine factorial) 
-possible <a class="" href="https://www.sudokudragon.com/sudokutheory.htm" title="Using permutation theory to understand Sudoku">permutations</a>
- of numbers for the squares which gives 362,880 possible orderings for 
-just one row. Each of these rows can be combined with 8 other rows, and 
-temporarily ignoring the Sudoku rule for columns there would be 9! to 
-the power 9 which works out to be about 10 to the power 50 possible 
-grids (that's 10 with 50 zeroes after it).</p>
-<p><b style="word-break:break-all">109,110,688, 415,571,316, 480,344,899, 355,894,085, 582,848,000, 000,000</b></p>
-<p>Applying the Sudoku rule to columns as well as rows reduces this 
-figure substantially. Just considering unique solutions for rows and 
-columns and not regions means that the second row only 8 options to 
-choose from for each square and 7 for the third etc.  so this gives a 
-much smaller number.</p>
-<p>More grids can be knocked out if regions are taken into account as 
-well as rows and columns. Fortunately some clever people have used super
- sized calculators to do the maths and claim there are <b>6,670,903,752,021,072,936,960</b>
- unique Sudoku grids of size 9x9. As this is roughly the number of stars
- in the observable universe, that is plenty to be getting on with.</p>
-<p>But if you then start determining symmetries including rotations and 
-swaps then the number of 'effectively different' puzzles goes down to 
-5,472,730,538. This large number means that is you solved one puzzle 
-every second you would not need to repeat the same one in over a hundred
- years. These puzzles would all require different strategies to be used 
-for their solution.<br> See: <a class="ExtLink" href="http://www.afjarvis.staff.shef.ac.uk/sudoku/sudgroup.html">For more mathematical analysis <span class="ExtArr">➚</span></a> and <a class="ExtLink" href="http://pi.math.cornell.edu/~mec/Summer2009/Mahmood/Count.html">Some mathematical analysis into the actual number of possible puzzles <span class="ExtArr">➚</span></a>.</p>
+<div class="downbox">
+To download this puzzle and<br> see it in Sudoku Dragon <img alt="download Sudoku puzzle" src="Sudoku%20Puzzle%20solving%20strategies_files/pdownpuzz.png" height="15"><a class="linkbutton" href="https://www.sudokudragon.com/puzzledownload.php?path=examplepuzzles/StrategyXWing.sdk">click here...</a>
 </div>
 
 
-<p class="colbox dropfont" style="background-color:#f6f8ff;font-size:90%"><img src="Sudoku_files/sudoku.png" alt="sudokudragon" class="imgfloatleft" width="40" height="40">
-For information about the history of Sudoku, please see our <a class="" href="https://www.sudokudragon.com/sudokuhistory.htm" title="The origin of Sudoku through 2,000 years">History page</a>. For help on solving Sudoku puzzles visit our <a class="" href="https://www.sudokudragon.com/sudokustrategy.htm">Strategy page</a> or our <a class="" href="https://www.sudokudragon.com/sudokutheory.htm" title="Some theory behind the Sudoku puzzle">theory page</a>.</p>
+<div class="tutbox">
+<img src="Sudoku%20Puzzle%20solving%20strategies_files/sudoku.png" alt="Sudoku Tutorial" class="imgfloatleft" width="40">
+<span style="font-size:130%">F</span>or a further in-depth guide <img alt="guide" src="Sudoku%20Puzzle%20solving%20strategies_files/arun2.gif" height="18"><a class="linkbutton" href="https://www.sudokudragon.com/guidexwing.htm">&nbsp;click here</a></div>
+
+</div>
+
+<br style="clear:left">
+<!-- SDKH -->
+<ins class="adsbygoogle" style="display:inline-block;width:336px;height:280px" data-ad-client="ca-pub-0075574414120639" data-ad-slot="4141971572"></ins>
+
+
+<p><img src="Sudoku%20Puzzle%20solving%20strategies_files/gridsword.png" alt="Swordfish Sudoku rule" class="imgfloatleft imgresize" width="437" height="437">
+Believe it or not the complexity does not end at the X-Wing, the <b>Swordfish</b>
+ is a further refinement of the X-Wing. Instead of four squares forming a
+ box of possible allocations the Swordfish rule uses six squares. In the
+ example puzzle there are not just two pairs of squares for <b>9</b> but three pairs: in columns <b>b</b>; <b>e</b> and <b>h</b>. These squares are highlighted in  <span style="background-color:#8494f7">blue/purple</span> color. They are linked by rows to form a box with an extension 'sword' jutting out on one side : hence the term <b>Swordfish</b>. The other squares forming the swordfish are highlighted in <span style="background-color:#ff8429">orange</span> and <span style="background-color:#f7ff8c">yellow</span>. Because all these three columns have coinciding end squares the rule applies again. Any <b>9</b>s that we find in rows that link the columns can be safely excluded because we know that a <b>9</b>
+ must occur in one of the two highlighted squares in that row; they 
+can't be allocated elsewhere. These excluded squares are highlighted in 
+yellow (<span style="background-color:#f7ff8c;font-weight:bold;padding:3px;">Fc; Gf and Fg</span>).</p>
+<p>Of course, the Swordfish is not the end of the matter we can extend 
+the logic to four interlinking pairs of possibilities and then five 
+etc.. You'll feel a real sense of achievement if you locate a Swordfish 
+and use it to solve a Sudoku puzzle.</p>
+
+<div class="downbox">
+To download this puzzle and<br> see it in Sudoku Dragon <img alt="download Sudoku puzzle" src="Sudoku%20Puzzle%20solving%20strategies_files/pdownpuzz.png" height="15"><a class="linkbutton" href="https://www.sudokudragon.com/puzzledownload.php?path=examplepuzzles/StrategySwordfish.sdk">click here...</a>
+</div>
+
+
+<div class="tutbox">
+<img src="Sudoku%20Puzzle%20solving%20strategies_files/sudoku.png" alt="Sudoku Tutorial" class="imgfloatleft" width="40">
+<span style="font-size:130%">F</span>or a further in-depth guide <img alt="guide" src="Sudoku%20Puzzle%20solving%20strategies_files/arun2.gif" height="18"><a class="linkbutton" href="https://www.sudokudragon.com/guideswordfish.htm">&nbsp;click here</a></div>
+
+<br style="clear:left">
+<h2>More advanced strategies</h2>
+<p class="dropfont">Further  complex strategies are available for 
+fiendishly difficult puzzles. They require a lot more thought and 
+analysis to learn about and use correctly.  The techniques include the <a class="" href="https://www.sudokudragon.com/advancedstrategy.htm#XL115" title="Hook or X-Y Wing advanced Sudoku solution strategy">X-Y Wing or Hook</a> and powerful <a class="" href="https://www.sudokudragon.com/advancedstrategy.htm#XL113" title="Analysis of alternate pairs of squares to solve Sudoku">Alternate Pair</a> , they are explained in full on our separate <b><a class="" href="https://www.sudokudragon.com/advancedstrategy.htm" title="Alternate pairs and other complex Sudoku solution strategies">Advanced Strategy</a></b> page.</p>
+
+<div id="XL2109" class="hrefanchor">
+<h2>Backtracking or Trial and Error</h2>
+<p class="dropfont">When all else fails, there is one technique that is 
+guaranteed to always work, indeed you can solve any Sudoku puzzle just 
+using just this one strategy alone. You just work logically through all 
+the possible alternatives in every square in order until you find the 
+allocations that work out. If you choose a wrong option at some stage 
+later you will find a logical inconsistency and have to go back, undoing
+ all allocations and then trying another option.  Because there are so 
+many alternatives (billions) you won't want to use it too often. You 
+start with a square and choose one number from the available 
+possibilities. This is a completely different type of strategy as it 
+uses 'brute force' rather than 'logic'. It is a contentious Sudoku 
+solving technique and so we have a full description of it with examples 
+on our separate <b><a class="" href="https://www.sudokudragon.com/sudokuguess.htm" title="Guessing or back tracking to solve a Sudoku"> Guessing page</a></b>.</p>
+</div>
+
 
 <p class="colbox seealsobox">
 <span style="font-size:120%">See also</span><br>
-<a class="ExtLink" href="http://news.bbc.co.uk/1/hi/magazine/4469719.stm">Background <span class="ExtArr">➚</span></a> news story about the rise in popularity of the puzzle <br>
-<a class="ExtLink" href="http://www.dailysudoku.co.uk/sudoku/">Daily Sudoku <span class="ExtArr">➚</span></a> Provides a daily puzzle but no solver.<br>
-<a class="ExtLink" href="https://www.guardian.co.uk/lifeandstyle/series/sudoku">The Guardian <span class="ExtArr">➚</span></a> Daily sudokus of various types and an active online community.
+<a class="ExtLink" href="http://www.saidwhat.co.uk/sudokus/strategy2.php">Sudoku Strategy <span class="ExtArr">➚</span></a> Some of the more complex puzzle solving strategies explained.<br>
+<a class="ExtLink" href="http://angusj.com/sudoku/hints.php">Sudoku Solution Hints <span class="ExtArr">➚</span></a> Good introduction to the various strategies for solving puzzles including X-Wing; XY-Wing.<br>
+<a class="ExtLink" href="https://www.simetric.co.uk/sudoku/step0.htm">Solving Sudoku <span class="ExtArr">➚</span></a> Detailed step by step solution of Sudoku puzzles.
 </p>
 
 <div class="colbox" style="background-color:#ebf6ff">
 
-<img src="Sudoku_files/ShareButtons3.png" alt="Share this page" class="" usemap="#sharemap" style="float:left;margin-right:8px" width="225" height="45">
-<map name="sharemap" id="sharemap"><area shape="rect" coords="0,0,44,44" target="_blank" href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.sudokudragon.com%2fsudoku.htm" alt="Facebook" title="Share on Facebook"><area shape="rect" coords="45,0,89,44" href="https://twitter.com/intent/tweet?original_referer=https%3a%2f%2fwww.sudokudragon.com%2fsudoku.htm&amp;text=&amp;tw_p=tweetbutton&amp;url=https%3a%2f%2fwww.sudokudragon.com%2fsudoku.htm" alt="Twitter" title="Share on Twitter" target="_blank"><area shape="rect" coords="90,0,134,44" target="_blank" href="https://pinterest.com/pin/create/button/?url=https%3a%2f%2fwww.sudokudragon.com%2fsudoku.htm&amp;description=" alt="Pinterest" title="Share by Pinteresting It"><area shape="rect" coords="135,0,179,44" target="_blank" href="https://www.tumblr.com/widgets/share/tool/preview?posttype=photo&amp;canonicalUrl=https%3a%2f%2fwww.sudokudragon.com%2fsudoku.htm&amp;title=&amp;show-via=Chinasage" alt="Tumblr" title="Share on Tumblr"><area shape="rect" coords="180,0,224,44" target="_blank" href="https://mix.com/add?url=https%3a%2f%2fwww.sudokudragon.com%2fsudoku.htm" alt="Mix" title="Share on Mix (Stumble upon)"></map> 
-<br>Please share your interest on Facebook, Twitter, Pinterest, Tumblr or Mix using the buttons. Please visit our (secure) <a class="linkbutton" href="https://www.sudokudragon.com/contact.php?pg=sudoku.htm">contact page</a> to leave any comments you may have.
+<img src="Sudoku%20Puzzle%20solving%20strategies_files/ShareButtons3.png" alt="Share this page" class="" usemap="#sharemap" style="float:left;margin-right:8px" width="225" height="45">
+<map name="sharemap" id="sharemap"><area shape="rect" coords="0,0,44,44" target="_blank" href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fwww.sudokudragon.com%2fsudokustrategy.htm" alt="Facebook" title="Share on Facebook" class="fbc-has-badge fbc-UID_1"><area shape="rect" coords="45,0,89,44" href="https://twitter.com/intent/tweet?original_referer=https%3a%2f%2fwww.sudokudragon.com%2fsudokustrategy.htm&amp;text=&amp;tw_p=tweetbutton&amp;url=https%3a%2f%2fwww.sudokudragon.com%2fsudokustrategy.htm" alt="Twitter" title="Share on Twitter" target="_blank"><area shape="rect" coords="90,0,134,44" target="_blank" href="https://pinterest.com/pin/create/button/?url=https%3a%2f%2fwww.sudokudragon.com%2fsudokustrategy.htm&amp;description=" alt="Pinterest" title="Share by Pinteresting It"><area shape="rect" coords="135,0,179,44" target="_blank" href="https://www.tumblr.com/widgets/share/tool/preview?posttype=photo&amp;canonicalUrl=https%3a%2f%2fwww.sudokudragon.com%2fsudokustrategy.htm&amp;title=&amp;show-via=Chinasage" alt="Tumblr" title="Share on Tumblr"><area shape="rect" coords="180,0,224,44" target="_blank" href="https://mix.com/add?url=https%3a%2f%2fwww.sudokudragon.com%2fsudokustrategy.htm" alt="Mix" title="Share on Mix (Stumble upon)"></map> 
+<br>Please share your interest on Facebook, Twitter, Pinterest, Tumblr or Mix using the buttons. Please visit our (secure) <a class="linkbutton" href="https://www.sudokudragon.com/contact.php?pg=sudokustrategy.htm">contact page</a> to leave any comments you may have.
 </div>
 
 
-<div class="colbox" style="background-color:#e3ece2"><img src="Sudoku_files/pwrite.gif" alt="contribute" class="imgfloatleft"><p class="dropfont">Any comments on this page? <a class="linkbutton" href="https://www.sudokudragon.com/login.php?id=2&amp;templateid=2&amp;name=Puzzle%20Introduction">Click here</a> to contribute.</p></div>
+
+<div class="colbox" style="background-color:#e3ece2"><img src="Sudoku%20Puzzle%20solving%20strategies_files/pwrite.gif" alt="contribute" class="imgfloatleft"><p class="dropfont">Any comments on this page? <a class="linkbutton" href="https://www.sudokudragon.com/login.php?id=3&amp;templateid=3&amp;name=Puzzle%20Strategy">Click here</a> to contribute.</p></div>
 
 
 <p class="smallfont">Copyright © 2005-2019 Sudoku Dragon</p>
@@ -1023,4 +1129,5 @@ For information about the history of Sudoku, please see our <a class="" href="ht
 
 
 
-</body></html>
+																																																				  
+<div class="fbc-badge js-fbc-UID_1 fbc-badge-small fbc-badge-disabled fbc-badge-share"><div class="fbc-badge-fence"></div><div class="fbc-badge-tooltip">Facebook Container has disabled this button and blocked Facebook from tracking your visit to this page.</div><div class="fbc-badge-prompt"></div></div></body></html>

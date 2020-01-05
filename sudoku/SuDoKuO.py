@@ -3,17 +3,15 @@
 
 #  - ported to py3 with the 2to3 tool
 
-###
-# ToDo ------
-#    Many calls of type (csp[0],cps[1]) should be replaced by cps
-
-# Build-in modules
 import copy
 import logging
-# Third party modules
-#   none
-# Own modules
-import SuDoKuX # Xtra functions, made by others, but collected by me ...
+
+import SuDoKuX # xtra functions, made by others, but collected by me ...
+
+""" The Classes of SuDoKu
+Here we define the classes that we use to wotk with SuDoKu
+This is the big one - where all the coding is implemented!
+"""
 
 # __author__ = "Martin Hvidberg"
 # __copyright__ = ""
@@ -23,6 +21,10 @@ __version__ = "0.4.0"
 # __maintainer__ = "Martin Hvidberg"
 # __email__ = "martin@hvidberg.net"
 # __status__ = "Development"
+
+###
+# ToDo ------
+#    Many calls of type (csp[0],cps[1]) should be replaced by cps
 
 # create logger
 log = logging.getLogger('sudoku.obj')
@@ -122,7 +124,7 @@ XXXX                    self.solution = [[int(SuDoKuX.sudoku99_NEW_XXX_(str_ini)
         return [self.get(i,j) for i,j in self._cps_this_box(k,l)]
     
     #------ all-rows, -cols and -box functions ---------------------------------
-    # return lists of cps or value, representing all rows, etc in the sudoku   
+    # return lists of cps or value, representing all rows, etc in the sudoku
     
     def _cps_rows(self):
         """ Return list of lists of cps (coordinate pairs), representing all rows in the SuDoKu """

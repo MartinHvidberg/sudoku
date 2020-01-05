@@ -1,6 +1,11 @@
 
 import sys
 
+""" A non-OOP form of working 
+This module exersises a simpler (non-OOP) way of working with SuDoKus
+Mainly used to quickly test algorithms/code from other writers.
+"""
+
 def show_small(str_sdk):
     def p(i,j):
         return str(str_sdk[(i*9)+j])

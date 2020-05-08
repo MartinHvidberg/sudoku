@@ -9,7 +9,7 @@ import logging
 import SuDoKuX # xtra functions, made by others, but collected by me ...
 
 """ The Classes of SuDoKu
-Here we define the classes that we use to wotk with SuDoKu
+Here we define the classes that we use to work with SuDoKu
 This is the big one - where all the coding is implemented!
 """
 
@@ -29,7 +29,7 @@ __version__ = "0.4.0"
 # create logger
 log = logging.getLogger('sudoku.obj')
 
-# Extended exception handeling
+# Extended exception handling
 class CustomException(Exception):
     def __init__(self, value):
         self.parameter = value

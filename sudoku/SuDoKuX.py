@@ -1,6 +1,6 @@
 
 """ External (X-ternal) code
-Small and big pieces of code, copied from the inernet or elsewhere
+Small and big pieces of code, copied from the internet or elsewhere
 This may be called from the other modules for test or to confirm solvability etc.
 """
 
@@ -114,7 +114,7 @@ import sys
 # givens = [9 * j + int(k) - 1 for j, k in enumerate(sys.argv[1]) if '0' < k]
 # try:
 #     search(givens, [9] * len(q2w), set(), set())
-# except Exception, e:
+# except Exception as e:
 #     print
 #     ''.join(str(w % 9 + 1) for w in sorted(e.message))
 

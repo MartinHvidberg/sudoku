@@ -2,7 +2,7 @@
 import sys
 
 """ A non-OOP form of working 
-This module exersises a simpler (non-OOP) way of working with SuDoKus
+This module exercises a simpler (non-OOP) way of working with SuDoKus
 Mainly used to quickly test algorithms/code from other writers.
 """
 

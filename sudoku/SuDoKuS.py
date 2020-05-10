@@ -2,14 +2,6 @@
 """ Solvers - Computer centric solvers
 Functions that solve SuDoKus, like a computer, are located here.
 These are used to confirm solvability, solutions, unique solutions, multiple solutions, etc.
-Nomenclature:
-lst_sdk = The SoDuKo. List of 81 integers [0..9] where 0 means empty
-lst_pcm = Pencil-marks. List of 81 set of int [1..9]
-sdk     = The SuDoKu with pencil-marks and other meta-data. {s: lst_sdk, p: lst_pcm, ...}
-_i functions operate directly on the 'inner' variables, e.g. lst_pcm
-n: Number of the cell in a 81 count of cells [0..80]
-i: number of col (all cells on same vertical line) [0..8]
-j: number of row (all cells on same horizontal line) [0..8]
 """
 
 import logging
@@ -21,6 +13,9 @@ log_fil = logging.FileHandler(f"{__file__.rsplit('.',1)[0]}.log", mode='w')
 log_fil.setFormatter(logging.Formatter('%(asctime)s - [%(filename)s:%(lineno)s %(funcName)s] - %(levelname)s - %(message)s'))
 log.addHandler(log_fil)
 log.info(f"Initialise: {__file__}")
+
+
+# ====== ROLF implimentatio =============
 
 def same_row(n,m): return (n//9 == m//9)
 
@@ -204,9 +199,10 @@ def is_dead_end(sdk_l):
 #     :return:
 #     """
 
-def r_solver(sdk_l):
-    """ Recursive solver
-    Go for the pencil marks... Go for the field with max pencil marks, i.e. minimum possible openings.
+def rolf(sdk_l):
+    """ Recursive solver - Recursive Of Legal Field
+    Go for the pencil marks...
+    First take the field with min pencil marks, i.e. minimum possible openings.
     Call this function (recursively) with the (few) options.
     Any branch with 9 pencil-marks to an empty cell is dead...
     :param lst_sdk: The input SoDuKo as a standard list of integers, length = 81
@@ -214,8 +210,8 @@ def r_solver(sdk_l):
     :param lst_sol: List of solutions, found until this point - can be an empty list
     :return: lst_sol. A, potentially updated, list of solutions - can be an empty list
     """
-    if not is_valid(sdk_l) : raise RuntimeError("Not a valid sdk in: r_solver()")
-    log.info(f"r_solver(): {len([n for n in sdk_l['s'] if n != 0])}")
+    if not is_valid(sdk_l) : raise RuntimeError("Not a valid sdk in: rolf()")
+    log.info(f"rolf(): {len([n for n in sdk_l['s'] if n != 0])}")
     # if len(list_empty_fields_id(sdk_l)) > 0:
     #     print(f"{len(list_empty_fields_id(sdk_l))} left")
     # Check if we have a solved SoDuKo
@@ -231,12 +227,20 @@ def r_solver(sdk_l):
     num_here = find_min_p_cell(sdk_l)
     num_guess = guess(num_here, sdk_l)
     sdk_l = place(num_guess, num_here, sdk_l)
-    sdk_l, bol_rb = r_solver(sdk_l)
+    sdk_l, bol_rb = rolf(sdk_l)
     # if roll-back, undo last guess
     if bol_rb:  # We hit a problem, and need to roll-back
         log.debug(f"roll-back guess:{num_guess}")
         sdk_l = un_place(num_here, sdk_l)
     return sdk_l, False
+
+# ------ ROLF ends here --------------
+
+# ====== Mini R - implementation =============
+
+
+
+# ------ Mini R ends here -------------
 
 if __name__ == "__main__":
     #lst_sdk = str2loi(".4.8.52...2..4..5.5.......4.9...312.1.6.78..337.9.4.8......67....8359.1..19..76..")
@@ -249,6 +253,6 @@ if __name__ == "__main__":
     #lst_sdk = str2loi("906070403,000400200,070023010,500000100,040208060,003000005,030700050,007005000,405010708")  # multi solution A (many empty=
     sdk = loi2sdk(lst_sdk)
     print(f"Start\n{show_small(sdk)}")
-    sdk, bol = r_solver(sdk)
+    sdk, bol = rolf(sdk)
     print(f"Done\n{show_small(sdk)}")
 

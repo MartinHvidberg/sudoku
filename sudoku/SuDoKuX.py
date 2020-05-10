@@ -56,7 +56,7 @@ import sys
 #     but faster
 # '''
 # import sys
-#
+# for python 3 please change all '/' to '//', I think ...
 # w2q = [[n / 9, n / 81 * 9 + n % 9 + 81, n % 81 + 162, n % 9 * 9 + n / 243 * 3 + n / 27 % 3 + 243] for n in xrange(729)]
 # q2w = []
 # for y, (s0, s1, s2, s3) in enumerate(w2q):
@@ -124,12 +124,14 @@ def same_row(i,j): return (i//9 == j//9)
 def same_col(i,j): return (i-j) % 9 == 0
 def same_block(i,j): return (i//27 == j//27 and i%9//3 == j%9//3)
 
-def r(a):
+def r(a, find_all=False):
     i = a.find('0')
     if i == -1:
-        # sys.exit(a)
-        print(f"solution: {a}")
-        return
+        if find_all:
+            print(f"solution: {a}")
+            return
+        else:
+            sys.exit(a)
 
     excluded_numbers = set()
     for j in range(81):
@@ -139,7 +141,7 @@ def r(a):
     for m in '123456789':
         if m not in excluded_numbers:
             # At this point, m is not excluded by any row, column, or block, so let's place it and recurse
-            r(a[:i]+m+a[i+1:])
+            r(a[:i]+m+a[i+1:], find_all)
 
 
 if __name__ == '__main__' :
@@ -147,5 +149,5 @@ if __name__ == '__main__' :
     i = '8..5.9..67..3.1..2..3...8....12.34..9...6...3..68.47....4...5..2..4.5..76..9.2..4'  # Classic
     i = '9265714833514862798749235165823671941492583677631..8252387..651617835942495612738'  # double-solution
     print(f"input ->: {i}")
-    o = r(i.replace('.','0'))
+    o = r(i.replace('.','0'), True)
 

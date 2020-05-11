@@ -199,7 +199,7 @@ def is_dead_end(sdk_l):
 #     :return:
 #     """
 
-def rolf(sdk_l):
+def _rolf(sdk_l):
     """ Recursive solver - Recursive Of Legal Field
     Go for the pencil marks...
     First take the field with min pencil marks, i.e. minimum possible openings.
@@ -210,14 +210,15 @@ def rolf(sdk_l):
     :param lst_sol: List of solutions, found until this point - can be an empty list
     :return: lst_sol. A, potentially updated, list of solutions - can be an empty list
     """
-    if not is_valid(sdk_l) : raise RuntimeError("Not a valid sdk in: rolf()")
-    log.info(f"rolf(): {len([n for n in sdk_l['s'] if n != 0])}")
+    if not is_valid(sdk_l):
+        raise RuntimeError("Not a valid sdk in: _rolf()")
+    log.info(f"_rolf(): {len([n for n in sdk_l['s'] if n != 0])}")
     # if len(list_empty_fields_id(sdk_l)) > 0:
     #     print(f"{len(list_empty_fields_id(sdk_l))} left")
     # Check if we have a solved SoDuKo
     if is_solved(sdk_l):
-        sdk_l['sol'].add(''.join(str(i) for i in lst_sdk))  # add as string
-        print(f"Solution...")
+        sdk_l['sol'].add(''.join(str(i) for i in sdk_l['s']))  # add as string
+        ##print(f"Solution...")
         return sdk_l, False
     # Check if we have an empty field with no remaining options, i.e. an unsolvable situation
     if is_dead_end(sdk_l):
@@ -227,18 +228,57 @@ def rolf(sdk_l):
     num_here = find_min_p_cell(sdk_l)
     num_guess = guess(num_here, sdk_l)
     sdk_l = place(num_guess, num_here, sdk_l)
-    sdk_l, bol_rb = rolf(sdk_l)
+    sdk_l, bol_rb = _rolf(sdk_l)
     # if roll-back, undo last guess
     if bol_rb:  # We hit a problem, and need to roll-back
         log.debug(f"roll-back guess:{num_guess}")
         sdk_l = un_place(num_here, sdk_l)
     return sdk_l, False
 
+def rolf(sdk):
+    if isinstance(sdk, str):
+        sdk = loi2sdk(sdk)
+        res = _rolf(sdk)
+    return res[0]['sol']
+
 # ------ ROLF ends here --------------
 
 # ====== Mini R - implementation =============
 
+#def same_row(i,j): return (i//9 == j//9)
+#def same_col(i,j): return (i-j) % 9 == 0
+#def same_box(i,j): return (i//27 == j//27 and i%9//3 == j%9//3)
 
+g_lst_sol = list()  # Global variable list of solutions
+
+def r(a, max=1):
+    """ recursively find solutions to the sudoku
+    :param a: the input sudoku
+    :param max: Max solutions. 0 is find all solutions.
+    :return: list of solutions
+    """
+    i = a.find('0')
+    if i == -1:
+        g_lst_sol.append(a)
+        if len(g_lst_sol) >= max:
+            return
+
+    excluded_numbers = set()
+    for j in range(81):
+        if same_row(i,j) or same_col(i,j) or same_box(i,j):
+            excluded_numbers.add(a[j])
+
+    for m in '123456789':
+        if m not in excluded_numbers:
+            r(a[:i]+m+a[i+1:], max)
+
+def minr(lst_sdk):
+    g_lst_sol = list()
+    lst_ret = [s for s in r(lst_sdk, 1)]
+    g_lst_sol = list()
+    return lst_ret
+
+# r("305790081000008000010200739200060890001000200008502000500047003603005900009603000")
 
 # ------ Mini R ends here -------------
 
@@ -253,6 +293,14 @@ if __name__ == "__main__":
     #lst_sdk = str2loi("906070403,000400200,070023010,500000100,040208060,003000005,030700050,007005000,405010708")  # multi solution A (many empty=
     sdk = loi2sdk(lst_sdk)
     print(f"Start\n{show_small(sdk)}")
-    sdk, bol = rolf(sdk)
+    sdk, bol = _rolf(sdk)
     print(f"Done\n{show_small(sdk)}")
+
+    g_lst_sol = list()
+    str_sdk = "8..317..9.9..2..7.4..8.9..5.39...71...........86..139.3..1.5..6.6..4..5.1..682..7".replace('.','0')
+    # print(g_lst_sol)
+    print(f'r: {r(str_sdk, 1)}')
+    print(f'm: {minr(str_sdk)}')
+    print(g_lst_sol)
+    print(len(g_lst_sol))
 

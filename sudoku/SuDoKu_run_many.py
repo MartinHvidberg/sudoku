@@ -17,7 +17,7 @@ count = 0 # Total
 cnt_s = 0 # Solved
 cnt_u = 0 # Unsloved
 #with open("../data/SolvedLG.txt") as f:
-with open("../data/top95.txt") as f:    
+with open("../data/top95.txt") as f:
 #with open("../data/1000sudoku_plain.txt") as f:    
     for line in f:
         count += 1

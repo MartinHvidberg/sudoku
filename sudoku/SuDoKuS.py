@@ -58,13 +58,12 @@ def loi2sdk(loi_in):
     dic_ret['s'] = loi_in  # The actual SuDoKu (81x integers)
     dic_ret['p'] = pncl_make_i(loi_in)  # Pencil marks
     dic_ret['sol'] = set()  # Set of solutions found, so far
-    dic_ret['bum'] = False  # True if we hit a dead end
     return dic_ret
 
 def is_valid(obj):
     if not isinstance(obj, dict):
         return False
-    if not all([k in obj.keys() for k in ['s', 'p', 'sol', 'bum']]):
+    if not all([k in obj.keys() for k in ['s', 'p', 'sol']]):
         return False
     return True
 
@@ -101,7 +100,7 @@ def place(num_valu, num_cell, sdk_l):
     and update all pencil-marks """
     if not is_valid(sdk_l) : raise RuntimeError("Not a valid sdk in: place()")
     sdk_l['s'] = set_cell_i(num_cell, num_valu, sdk_l['s'])
-    sdk_l['p'] = pncl_rem(num_cell, num_valu, sdk_l['p'])  # SSS This can be speeded up
+    sdk_l['p'] = _pncl_clearas(num_cell, num_valu, sdk_l['p'])  # SSS This can be speeded up
     sdk_l['p'][num_cell] = set()  # and clear all own pencil-marks
     return sdk_l
 
@@ -138,24 +137,40 @@ def pncl_make_i(lst_s):
     return lst_p
 
 def pncl_make(sdk_l):
-    """ Re-do, from scratch, all pencilmarks, based on present SuDoKu values
+    """ Re-do, from scratch, all pencil-marks, based on present SuDoKu values
     Used initially, and after each roll-back. """
     sdk_l['p'] = pncl_make_i(sdk_l['s'])
     return sdk_l
 
-def pncl_rem(num_cell, num_valu, lst_pnc_l):
-    """ Remove all pencil-marks, as if num_cell is given num_valu
+def _pncl_clearas(num_cell, num_valu, lst_pnc_l):
+    """ inner function: Clear all pencil-marks, as if num_cell is given num_valu
     return updated list """
     for m in range(81):  # update pencil-marks
         if same_col(m, num_cell) or same_row(m, num_cell) or same_box(m, num_cell):
             lst_pnc_l[m].discard(num_valu)
     return lst_pnc_l
 
+def pncl_clearas(num_cell, num_valu, sdk_l):
+    """ Clear all pencil-marks, as if num_cell is given num_valu
+    return updated sdk """
+    sdk_l['p'] = _pncl_clearas(sdk_l['p'])
+    return sdk_l
+
+def pncl_rem(num_cell, num_valu, sdk_l):
+    """ Remove a single pencil-mark, from a single cell """
+    set_n = sdk_l['p'][num_cell]
+    set_n.discard(num_valu)
+    sdk_l['p'][num_cell] = set_n
+   
 def find_min_p_count(sdk_l):
+    """ Return a number, indicating the lowest number of pencil-marks
+    remaining in any empty cell in the SuDoKu """
     lst_empty = list_empty_fields_id(sdk_l)
     return min([len(sdk_l['p'][n]) for n in lst_empty])
 
 def find_min_p_cell(sdk_l):
+    """ return the number of a cell, pointing at a cell which have
+    the minimum of pencil-marks, as defined by find_min_p_count() """
     lst_empty = list_empty_fields_id(sdk_l)
     num_min_p_count = find_min_p_count(sdk_l)
     for num_cand in lst_empty:
@@ -171,6 +186,13 @@ def guess(num_cell, sdk_l):
             return None  # Empty cell with no options left, i.e. a dead end...
     else:
         return sdk_l['s'][num_cell]  # cell is all ready filled, no need to guess
+
+def enough_solved(sdk_l, n_l):
+    """ Return True if the SuDoKu is solved enough, otherwise False
+    n is required number of solutions. 0 = no limit """
+    if not is_valid(sdk_l): raise RuntimeError("Not a valid sdk in: is_solved()")
+    bol_enough = n_l > 0 and len(sdk_l['sol']) >= n_l
+    return bol_enough or is_solved(sdk_l)
 
 def is_solved(sdk_l):
     """ Return True if the SuDoKu is full (no 0 left), otherwise False """
@@ -278,29 +300,59 @@ def minr(lst_sdk):
     g_lst_sol = list()
     return lst_ret
 
-# r("305790081000008000010200739200060890001000200008502000500047003603005900009603000")
-
 # ------ Mini R ends here -------------
+
+# ------ Procedural - Non-recursive -------------
+
+def p(str_sdk, mode=1):
+    """ Solve a SuDoKu - the procedural approach
+    :param sdk: a SuDoKu in our internal sdk format
+    :param mode: Number of solutions to find. 0 = all, default is 1
+    :return: the sdk, in solved state, depending on mode
+    """
+    print(f"Hi: {str_sdk}")
+    lst_sdk = str2loi(str_sdk)
+    sdk = loi2sdk(lst_sdk)
+    if is_valid(sdk):
+        while not enough_solved(sdk):
+            next_cell = find_min_p_cell(sdk)  # find empty cell to work with
+            next_valu = guess(next_cell, sdk)  # guess a value
+            sdk = place(next_valu, next_cell, sdk)  # insert the guess
+            if is_dead_end(sdk):
+                un_place(next_cell, next_valu, sdk)
+                pncl_rem(next_cell, next_valu, sdk)  # remove the pencil-mark
+                # bummer - we cant be sure that this value is not legal in some other situation...
+                raise RuntimeError("Bummer...")
+    return sdk
+
+# ------ Procedural - Ends here -------------
 
 if __name__ == "__main__":
     #lst_sdk = str2loi(".4.8.52...2..4..5.5.......4.9...312.1.6.78..337.9.4.8......67....8359.1..19..76..")
     #lst_sdk = str2loi("305790081,000008000,010200739,200060890,001000200,008502000,500047003,603005900,009603000")  # 1
-    lst_sdk = str2loi("000390500,908000603,000000009,000063200,070020006,600010800,000000700,300007000,009100300")  # 2
+    # lst_sdk = str2loi("000390500,908000603,000000009,000063200,070020006,600010800,000000700,300007000,009100300")  # 2
     #lst_sdk = str2loi("")  # 3
     #lst_sdk = str2loi("")  # 4
     #lst_sdk = str2loi("")  # 5
     #lst_sdk = str2loi("295743861,431865900,876192543,387459216,612387495,549216738,763524189,928671354,154938600")  # multi solution A
     #lst_sdk = str2loi("906070403,000400200,070023010,500000100,040208060,003000005,030700050,007005000,405010708")  # multi solution A (many empty=
-    sdk = loi2sdk(lst_sdk)
-    print(f"Start\n{show_small(sdk)}")
-    sdk, bol = _rolf(sdk)
-    print(f"Done\n{show_small(sdk)}")
+    # sdk = loi2sdk(lst_sdk)
 
+    ## ROLF
+    # print(f"Start\n{show_small(sdk)}")
+    # sdk, bol = _rolf(sdk)
+    # print(f"Done\n{show_small(sdk)}")
+
+    ## Recursive
     g_lst_sol = list()
     str_sdk = "8..317..9.9..2..7.4..8.9..5.39...71...........86..139.3..1.5..6.6..4..5.1..682..7".replace('.','0')
-    # print(g_lst_sol)
-    print(f'r: {r(str_sdk, 1)}')
-    print(f'm: {minr(str_sdk)}')
-    print(g_lst_sol)
+    str_sdk = "9.6.7.4.3...4..2...7..23.1.5.....1...4.2.8.6...3.....5.3.7...5...7..5...4.5.1.7.8".replace('.','0')
+    print(f"list of solutions: {g_lst_sol}")
+    r(str_sdk, 1)
     print(len(g_lst_sol))
+    print(g_lst_sol)
 
+    # ## Procedural (non-recursive)
+    # print("Procedural...")
+    # sdk = p(lst_sdk)
+    # print(sdk)

@@ -1,8 +1,18 @@
 
 import os
 import datetime
+import logging
 
 import various_recusive.r1_my
+import various_recusive.r2_my
+
+logging.basicConfig(
+    # format="%(asctime)s - %(levelname)s - %(message)s",  # minimum
+    format="%(asctime)s - [%(filename)s:%(lineno)d] - %(levelname)s - %(message)s",  # verbose
+    filename="speed_comp_others.log",
+    filemode="w",
+    level=logging.DEBUG)
+log = logging.getLogger(__name__)
 
 def load_sudokus(str_dir):
     lst_ret = list()
@@ -38,18 +48,43 @@ def loc2aoi(str_sudoku):
         lst_ou.append(lst_in)
     return lst_ou
 
+def aoi2loc(aoi_in):
+    """ Array of integer 2 list of char """
+    str_ret = str()
+    for r in aoi_in:
+        for c in r:
+            str_ret += str(c)
+    return str_ret
+
 def run_r1(lst_s_l):
     for str_sdk in lst_s_l:
+        # format input
         aoi_sdk = loc2aoi(str_sdk)
-        dtm_start = datetime.datetime.now()
-        bol_sol = various_recusive.r1_my.main(aoi_sdk)
-        dur_sol = datetime.datetime.now() - dtm_start
-        print(f"r1: {str_sdk.replace('0','.')} sol: {bol_sol} in {round(dur_sol.total_seconds()*1000)} ms")
+        # run SuDoKu
+        dtm_start = datetime.datetime.now()  # ---->
+        aoi_ret = various_recusive.r1_my.main(aoi_sdk)
+        dur_sol = datetime.datetime.now() - dtm_start  # <----
+        # format output
+        loc_res = aoi2loc(aoi_ret)
+        str_report = f"\n# r1 >> {str_sdk.replace('0','.')} << {loc_res} : in {round(dur_sol.total_seconds()*1000)} ms "
+        log.info(str_report)
 
+def run_r2(lst_s_l):
+    for str_sdk in lst_s_l:
+        # run SuDoKu
+        dtm_start = datetime.datetime.now()  # ---->
+        aoi_ret = various_recusive.r2_my.main(str_sdk)
+        dur_sol = datetime.datetime.now() - dtm_start  # <----
+        # format output
+        # format output
+        loc_res = aoi2loc(aoi_ret)
+        str_report = f"\n# r2 >> {str_sdk.replace('0','.')} << {loc_res} : in {round(dur_sol.total_seconds()*1000)} ms "
+        log.info(str_report)
 
 def run_all_solvers(lst_s):
-    #print(f"all sudokus: {type(lst_s)}: {lst_s}")
+    log.info("run_all_solvers(lst_s)")
     run_r1(lst_s)
+    run_r2(lst_s)
 
 if __name__ == "__main__":
     lst_sudokus = load_sudokus(r"../data/speed")

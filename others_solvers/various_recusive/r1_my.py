@@ -1,3 +1,7 @@
+import logging
+
+log = logging.getLogger(__name__)
+log.info("Start module...")
 
 ### https://www.codesdope.com/blog/article/solving-sudoku-with-backtracking-c-java-and-python/
 
@@ -81,7 +85,7 @@ def main(sdk_l):
     global matrix
     matrix = sdk_l
     if solve_sudoku():
-        return True  # print_sudoku()
+        return matrix  # print_sudoku()
     else:
         return False  # print("No solution")
 

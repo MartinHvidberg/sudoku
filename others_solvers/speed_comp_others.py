@@ -5,6 +5,7 @@ import logging
 
 import various_recusive.r1_my
 import various_recusive.r2_my
+import various_non_recursive.nr1_my
 
 logging.basicConfig(
     # format="%(asctime)s - %(levelname)s - %(message)s",  # minimum
@@ -66,7 +67,7 @@ def run_r1(lst_s_l):
         dur_sol = datetime.datetime.now() - dtm_start  # <----
         # format output
         loc_res = aoi2loc(aoi_ret)
-        str_report = f"\n# r1 >> {str_sdk.replace('0','.')} << {loc_res} : in {round(dur_sol.total_seconds()*1000)} ms "
+        str_report = f"\n# r1 > {str_sdk.replace('0','.')} < {loc_res} : in {round(dur_sol.total_seconds()*1000)} ms "
         log.info(str_report)
 
 def run_r2(lst_s_l):
@@ -78,13 +79,27 @@ def run_r2(lst_s_l):
         # format output
         # format output
         loc_res = aoi2loc(aoi_ret)
-        str_report = f"\n# r2 >> {str_sdk.replace('0','.')} << {loc_res} : in {round(dur_sol.total_seconds()*1000)} ms "
+        str_report = f"\n# r2 > {str_sdk.replace('0','.')} < {loc_res} : in {round(dur_sol.total_seconds()*1000)} ms "
+        log.info(str_report)
+
+def run_n1(lst_s_l):
+    for str_sdk in lst_s_l:
+        # format input
+        aoi_sdk = loc2aoi(str_sdk)
+        # run SuDoKu
+        dtm_start = datetime.datetime.now()  # ---->
+        aoi_ret = various_non_recursive.nr1_my.main(aoi_sdk)
+        dur_sol = datetime.datetime.now() - dtm_start  # <----
+        # format output
+        loc_res = aoi2loc(aoi_ret)
+        str_report = f"\n# n1 > {str_sdk.replace('0','.')} < {loc_res} : in {round(dur_sol.total_seconds()*1000)} ms "
         log.info(str_report)
 
 def run_all_solvers(lst_s):
     log.info("run_all_solvers(lst_s)")
     run_r1(lst_s)
     run_r2(lst_s)
+    run_n1(lst_s)
 
 if __name__ == "__main__":
     lst_sudokus = load_sudokus(r"../data/speed")

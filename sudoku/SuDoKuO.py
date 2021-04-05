@@ -13,34 +13,27 @@ Here we define the classes that we use to work with SuDoKu
 This is the big one - where all the coding is implemented!
 """
 
-# __author__ = "Martin Hvidberg"
-# __copyright__ = ""
-# __credits__ = []
-# __license__ = "GPL"
 __version__ = "0.4.0"
-# __maintainer__ = "Martin Hvidberg"
-# __email__ = "martin@hvidberg.net"
-# __status__ = "Development"
 
-###
-# ToDo ------
-#    Many calls of type (csp[0],cps[1]) should be replaced by cps
+# ToDo []: Many calls of type (csp[0],cps[1]) should be replaced by cps
+# ToDo []: Reduce to basic functionality, then make child object with SLAM and grandchild with SLAP !?!
 
 # create logger
 log = logging.getLogger('sudoku.obj')
 
-# Extended exception handling
-class CustomException(Exception):
+
+class CustomException(Exception):  # Extended exception handling
     def __init__(self, value):
         self.parameter = value
     def __str__(self):
         return repr(self.parameter)
 
+
 class SuDoKu(object):
     """ My SuDoKu class """
     
     DIGS = tuple([n+1 for n in range(9)])
-    STPS = ['Free gifts', 'Crosshatching', 'Naked singles', 'Locked Cand.']
+    STPS = ['Free gifts', 'Crosshatching', 'Naked singles', 'Locked Cand.']  # ToDo []: Consider tuple, or do we need to change it?
     
     def __init__(self, str_ini, lst_hardess = STPS):
         """ initialises a SuDoKu object """

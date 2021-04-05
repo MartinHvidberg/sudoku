@@ -131,6 +131,7 @@ def r(a, find_all=False):
             print(f"solution: {a}")
             return
         else:
+            print(f"solution: {a}")
             sys.exit(a)
 
     excluded_numbers = set()
@@ -149,5 +150,10 @@ if __name__ == '__main__' :
     i = '8..5.9..67..3.1..2..3...8....12.34..9...6...3..68.47....4...5..2..4.5..76..9.2..4'  # Classic
     i = '9265714833514862798749235165823671941492583677631..8252387..651617835942495612738'  # double-solution
     print(f"input ->: {i}")
+    print("\nTrue")
     o = r(i.replace('.','0'), True)
+    print(f"o: {o}")
+    print("\nFalse")
+    o = r(i.replace('.','0'), False)
+    print(f"o: {o}")
 

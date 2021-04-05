@@ -1,8 +1,10 @@
 
 """ Solvers - Computer centric solvers
 Functions that solve SuDoKus, like a computer, are located here.
-These are used to confirm solvability, solutions, unique solutions, multiple solutions, etc.
+These are used to confirm solvebility, solutions, unique solutions, multiple solutions, etc.
 """
+
+# ToDo []: We have SuDoKus in lst_sdk and dic_sdk format - Next to always dic would be nice ...
 
 import logging
 
@@ -15,7 +17,7 @@ log.addHandler(log_fil)
 log.info(f"Initialise: {__file__}")
 
 
-# ====== ROLF implimentatio =============
+# ====== ROLF implementation =============
 
 def same_row(n,m): return (n//9 == m//9)
 
@@ -60,10 +62,11 @@ def loi2sdk(loi_in):
     dic_ret['sol'] = set()  # Set of solutions found, so far
     return dic_ret
 
-def is_valid(obj):
-    if not isinstance(obj, dict):
+def is_valid(dic_sdk):
+    """ Check if a sdk is valid"""
+    if not isinstance(dic_sdk, dict):
         return False
-    if not all([k in obj.keys() for k in ['s', 'p', 'sol']]):
+    if not all([k in dic_sdk.keys() for k in ['s', 'p', 'sol']]):
         return False
     return True
 
@@ -88,16 +91,19 @@ def show_small(sdk_l):
 
 def set_cell_i(n, v, lst_sdk_l):
     """ Set cell number n to value v """
+    # ToDo []: explain input types - is it int, int, loi_sdk?
     lst_sdk_l[n] = v
     return lst_sdk_l
 
 def set_cell(n, v, sdk_l):
+    # ToDo []: explain input types - is it int, int, dic_sdk?
     sdk_l['s'] = set_cell_i(n, v, sdk_l['s'])
     return sdk_l
 
 def place(num_valu, num_cell, sdk_l):
     """ Place value num_valu in cell num_cell,
     and update all pencil-marks """
+    # ToDo []: explain input types - is it int, int, dic_sdk?
     if not is_valid(sdk_l) : raise RuntimeError("Not a valid sdk in: place()")
     sdk_l['s'] = set_cell_i(num_cell, num_valu, sdk_l['s'])
     sdk_l['p'] = _pncl_clearas(num_cell, num_valu, sdk_l['p'])  # SSS This can be speeded up
@@ -107,6 +113,7 @@ def place(num_valu, num_cell, sdk_l):
 def un_place(num_cell, sdk_l):
     """ Un-Place (return to 0) value in cell num_cell,
     and update all pencil-marks """
+    # ToDo []: explain input types - is it int, int, dic_sdk?
     if not is_valid(sdk_l) : raise RuntimeError("Not a valid sdk in: place()")
     set_cell(num_cell, 0, sdk_l)  # re-set cell to empty
     sdk_l = pncl_make(sdk_l)  # re-build pencil marks

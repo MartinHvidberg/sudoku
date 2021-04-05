@@ -116,7 +116,7 @@ if __name__ == '__main__':
         print('Usage: python sudoku.py puzzle')
         print('    where puzzle is an 81 character string representing the puzzle read left-to-right, top-to-bottom, and 0 is a blank')
         #r('13........2...9......8..7..6....48....5.2...........4.....3...27..5.....8........'.replace('.','0'))
-        str_sdk = '.......12........3..23..4....18....5.6..7.8.......9.....85.....9...4.5..47...6...'.replace('.','0') # Platinum Blonde
+        str_sdk = '.......12........3..23..4....18....5.6..7.8.......9.....85.....9...4.5..47...6...'.replace('.','0') # Platinum Blonde - Seems to have a HUGE number of solutions ...
         print(show_small(str_sdk))
         set_solved = m(str_sdk, list(), set())
         print(f"Solutions: {set_solved}")

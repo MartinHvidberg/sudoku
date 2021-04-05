@@ -1,7 +1,7 @@
 
 
 """
-Playing around with posibilities, the real stuff is in SuDoKu_normalize.py
+Playing around with posibilities, the real stuff is in SuDoKu_Norm.py
 """
 
 

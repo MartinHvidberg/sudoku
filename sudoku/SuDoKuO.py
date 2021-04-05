@@ -60,7 +60,7 @@ class SuDoKu(object):
             self.v = self.validate() # Validate that the fill is legal
             if self.v: # If it's valid, so far, check it it's solvable
                 try:
-XXXX                    self.solution = [[int(SuDoKuX.sudoku99_NEW_XXX_(str_ini)[j*9+i].replace('.','0')) for i in range(9)] for j in range(9)] # Solve using brute force, to see if solution(s) exist
+                    self.solution = [[int(SuDoKuX.sudoku99_NEW_XXX_(str_ini)[j*9+i].replace('.','0')) for i in range(9)] for j in range(9)] # Solve using brute force, to see if solution(s) exist
                     log.info("Input is Solvable, but was not checked for uniqueness...")
                 except:
                     self.solution = self.m # If not solvable, keep the init values to avoid a Null variable.
@@ -81,10 +81,10 @@ XXXX                    self.solution = [[int(SuDoKuX.sudoku99_NEW_XXX_(str_ini)
     def _set(self, k, l, v):
         """ Set cell k,l in .m to v, and clear relevant pencil marks."""
         for inp in [k,l,v-1]:
-            if not isinstance(inp,int) or inp<0 or inp>8:
-                raise CustomException("_set() takes three integers k, l and v, k and l must all be in [0..8], v must be in [1..9]. Recieved: "+str(k)+", "+str(l)+", "+str(v))
+            if not isinstance(inp,int) or inp < 0 or inp > 8:
+                raise CustomException("_set() takes three integers k, l and v: k and l must all be in [0..8], v must be in [1..9]. Recieved: "+str(k)+", "+str(l)+", "+str(v))
         self.m[k][l] = v
-        self.p[k][l] = set() # the k,l cell's own pencil marks
+        self.p[k][l] = set() # the k,l cell's own pencil marks. The cell now has a value, all other values are excluded.
         for c in range(9): # row, and col pencil marks
             self.p[k][c].discard(v)
             self.p[c][l].discard(v)
@@ -185,13 +185,15 @@ XXXX                    self.solution = [[int(SuDoKuX.sudoku99_NEW_XXX_(str_ini)
     def only_n_notin_col(self,lst_cps,n):
         """ Return the cps list, but only cells  where value n is NOT in the same col """
         return [cps for cps in lst_cps if n not in self.this_col(cps[0],cps[1])]
+
+    # ToDo []: For completeness, why only x_in_row(), x_in_col() but not x_in_box()?
     
     def only_cps_in_cps(self,lst_cpsa,lst_cpsb):
-        """ Return the cpsa list, but only cells that are Also in the cpsb list """
+        """ Return the cps-a list, but only cells that are Also in the cps-b list """
         return list(set(lst_cpsa) & set(lst_cpsb))
     
     def only_cps_notin_cps(self,lst_cpsa,lst_cpsb):
-        """ Return the cpsa list, but only cells that are Not in the cpsb list """
+        """ Return the cps-a list, but only cells that are Not in the cps-b list """
         return list(set(lst_cpsa) - set(lst_cpsb))
     
     def only_pen_n_in_cell(self,n,lst_cps):
@@ -199,7 +201,7 @@ XXXX                    self.solution = [[int(SuDoKuX.sudoku99_NEW_XXX_(str_ini)
         return [cps for cps in lst_cps if n in self.p[cps[0]][cps[1]]]
     
     #------ Subdeviding functions ----------------------------------------------
-    # take a list of cps, and returns that list. But subdevided into pieces.
+    # take a list of cps, and returns that list. But subdivided into pieces.
     # takes list, but returns list of lists.
     
     def rows_in_box(self, lst_in):
@@ -270,7 +272,7 @@ XXXX                    self.solution = [[int(SuDoKuX.sudoku99_NEW_XXX_(str_ini)
                 if self.get(i,j) != 0:
                     self.p[i][j] = set()
                 else:
-                    # marks = set([1,2,3,4,5,6,7,8,9]) Performance can be improved using litteral.
+                    # marks = set([1,2,3,4,5,6,7,8,9]) Performance can be improved using literal.
                     marks = {1,2,3,4,5,6,7,8,9}
                     fixed = set(self.this_col(i,j)) | set(self.this_row(i,j)) | set(self.this_box(i,j))
                     self.p[i][j] = marks - fixed      
@@ -307,7 +309,7 @@ XXXX                    self.solution = [[int(SuDoKuX.sudoku99_NEW_XXX_(str_ini)
                 self.p[cps[0]][cps[1]] = self.p[cps[0]][cps[1]]-set([num_n])
     
     # more functions
-    def _cps_to_val(self,obj_in):
+    def _cps_to_val(self, obj_in):
         """ Takes a coordinate pair (a tuple) or a list of them. Returns the value in that cell, or a list of them """
         if isinstance(obj_in, tuple):
             return self.get(obj_in[0],obj_in[1])
@@ -327,7 +329,7 @@ XXXX                    self.solution = [[int(SuDoKuX.sudoku99_NEW_XXX_(str_ini)
         return empty == 0
     
     def validate(self):
-        """ Return True if the sudoku is valid, otherwise returns False """
+        """ Return True if the SuDoKu is valid, otherwise returns False """
         bol_valid = True # Until proven guilty
         # XXX Consider checking for values not being single digit numbers
         for area in self.areas(): # check row, col and box doublets

@@ -3,7 +3,7 @@ Sort of on overview of strategies applicable to a human brain.
 (!) = Name used in "The Mathematics of Sudoku" by Tom Davis (http://www.geometer.org/mathcircles/sudoku.pdf)
 (§) = Name used in "Sudopedia" (http://sudopedia.enjoysudoku.com/Solving_Technique.html)
 
-:: Basic / Tofu ::
+:: 1 Basic / Tofu ::
 	
 	: Without penciling :
 	
@@ -32,7 +32,7 @@ Sort of on overview of strategies applicable to a human brain.
 	* Naked Triples (triples)
 	* Naked Quads
 	
-:: 3 / Sumo :: (When we have a  'gridlock'? Seek definition, inklude/exclude hidden pairs?)
+:: 3 / Sumo :: (When we have a  'gridlock'? Seek definition, include/exclude hidden pairs?)
 	
 	* Hidden Pairs "Naked and Hidden Pairs, Triplets, Quads, ..." !5
 	* Hidden Triples
@@ -42,7 +42,7 @@ Sort of on overview of strategies applicable to a human brain.
 	
 	* Pointing pairs, pointing triples (whatever that is?)
 	
-:: Advanced / Ninja ::
+:: 3+ / Advanced / Ninja ::
 
 	.Fishy Exclusions, advanced disjoint subsets. 
 	* X-Wings (N=2) !6
@@ -51,7 +51,9 @@ Sort of on overview of strategies applicable to a human brain.
 	
 	XY-Wing !7 (Not to be confused with X-Wing)
 	XYZ-Wing 
-	
+
+:: 3++ / Beyond fishy / Samurai ::
+
 	.Beyond even fishy.
 	BUG (Bivalue Universal Grave) Removal
 	
@@ -66,7 +68,9 @@ Sort of on overview of strategies applicable to a human brain.
 	Non-Unique Rectangles
 	Forcing patterns
 	Forcing Chains !11 (seems to be group of XY-Wing and XYZ-Wing?)
-	
+
+:: Luck is not a strategy ::
+
 	.Guessing !12 included.
 	Nishio (Two candidate cell - Do you feel lucky?)
 

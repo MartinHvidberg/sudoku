@@ -105,9 +105,9 @@ def pcl(str_sdk, i, j):
 
 def m(str_sdk, lst_pnc, set_solutions):
     """
-    Go for the pencil marks... Go for the field with max pencil marks, i.e. minimum possible openings.
+    Go for the pencil marks... Go for the field with minimum pencil marks, i.e. minimum possible openings.
     Call this function (recursively) with the (few) options.
-    Any branch with 9 pencil-marks to any empty cell is dead...
+    Any branch with 0 pencil-marks to any empty cell is dead...
     :param str_sdk: string of digits, 81 long, 0 = empty
     :param lst_pnc: list of sets of pencil-mark digits, 81 long
     :return: list of solutions, so far
@@ -121,18 +121,18 @@ def m(str_sdk, lst_pnc, set_solutions):
         #print(show_small(str_sdk))
         set_solutions.update(str_sdk)
         return set_solutions
-    if lst_pnc == []:  # Pencil marks is empty
+    if lst_pnc == []:  # Pencil marks is empty, we must be just started ..
         for n in range(81):
-            lst_pnc.append(pencil(str_sdk, n // 9, n % 9))
+            lst_pnc.append(pcl(str_sdk, n // 9, n % 9))
     ##print(f"pencil marks: {lst_pnc}")
     lst_openings = [n for n in range(81) if str_sdk[n] == '0']
-    num_max_pencmarks = max([len(lst_pnc[n]) for n in lst_openings])  # max pencil-marks in any open cell
-    ##print(f"num max() pencil marks: {num_max_pencmarks}")
-    if num_max_pencmarks == 9:  # No solution possible
+    num_min_pencmarks = min([len(lst_pnc[n]) for n in lst_openings])  # minimum pencil-marks in any open cell
+    ##print(f"num min() pencil marks: {num_min_pencmarks}")
+    if num_min_pencmarks == 0:  # No solution possible
         return set_solutions
-    num_next_move = [n for n in lst_openings if len(lst_pnc[n]) == num_max_pencmarks][0]  # first cell to have max pencil-marks
+    num_next_move = [n for n in lst_openings if len(lst_pnc[n]) == num_min_pencmarks][0]  # first cell to have min pencil-marks
     ##print(f"Next move: {num_next_move}")
-    for num_option in [n for n in range(1,10) if str(n) not in lst_pnc[num_next_move]]:
+    for num_option in [n for n in range(1,10) if str(n) in lst_pnc[num_next_move]]:
         #print(f"Trying cell: {num_next_move} = {num_option}")
         # update the cells and pencil marks
         str_sdk = str_sdk[:num_next_move] + str(num_option) + str_sdk[num_next_move+1:]
@@ -140,13 +140,13 @@ def m(str_sdk, lst_pnc, set_solutions):
         lst_pnc_to_update = list()
         for n in range(81):
             if (str_sdk[n] == '0') and (same_row(n, num_next_move) or same_col(n, num_next_move) or same_box(n, num_next_move)):
-                lst_pnc_to_update.append(n)
+                lst_pnc_to_update.append(n)  # these are the n in [0..80] we need to re-pencil
         ##print(f"pncs to update: {lst_pnc_to_update}")
         ##print(f"in {str(type(lst_pnc))} length {len(lst_pnc)} > {lst_pnc}")
         for n in lst_pnc_to_update:
             set_pnc = lst_pnc[n]
             #print(f"2update: {n} = {set_pnc}")
-            set_pnc.update()
+            set_pnc.discard(num_option)  # fjern '4', i vores tilfælde ...
             lst_pnc[n] = set_pnc
         set_solutions.update(m(str_sdk, lst_pnc, set_solutions))
     return set_solutions

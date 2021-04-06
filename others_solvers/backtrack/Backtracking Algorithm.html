@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<!--[if !IE]>
+	<html class="no-js non-ie" lang="en-US"
+	itemscope 
+	itemtype="http://schema.org/Article" 
+	prefix="og: http://ogp.me/ns#" > <![endif]-->
+<!--[if IE 7 ]>
+	<html class="no-js ie7" lang="en-US"
+	itemscope 
+	itemtype="http://schema.org/Article" 
+	prefix="og: http://ogp.me/ns#" > <![endif]-->
+<!--[if IE 8 ]>
+	<html class="no-js ie8" lang="en-US"
+	itemscope 
+	itemtype="http://schema.org/Article" 
+	prefix="og: http://ogp.me/ns#" > <![endif]-->
+<!--[if IE 9 ]>
+	<html class="no-js ie9" lang="en-US"
+	itemscope 
+	itemtype="http://schema.org/Article" 
+	prefix="og: http://ogp.me/ns#" > <![endif]-->
+<!--[if gt IE 9]><!-->
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js flexbox canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" itemscope="" itemtype="http://schema.org/Article" prefix="og: http://ogp.me/ns#" style="height: 100%;" lang="en-US"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="Backtracking%20Algorithm_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-24638485-49');
+</script>
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Backtracking Algorithm – Sudoku Solver | 101 Computing</title>
+		<link rel="shortcut icon" href="https://www.101computing.net/wp/wp-content/themes/responsive-child/favicon.ico">
+		<link rel="profile" href="http://gmpg.org/xfn/11">
+		<link rel="pingback" href="https://www.101computing.net/wp/xmlrpc.php">
+
+		<title>Backtracking Algorithm – Sudoku Solver – 101 Computing</title>
+<meta property="og:image" content="https://www.101computing.net/wp/wp-content/uploads/sudoku-grid-300x300.png">
+<!-- All in One SEO Pack 2.4.3.1 by Michael Torbert of Semper Fi Web Design[1241,1300] -->
+<meta name="description" content="The purpose of this Python challenge is to demonstrate the use of a backtracking algorithm to solve a Sudoku puzzle. Did You Know? The objective of a Sudoku">
+
+<meta name="keywords" content="algorithm,backtracking,recursion,computer science,computing concepts,python - advanced,python challenges">
+
+<link rel="canonical" href="file:///home/martin/repos/sudoku/others_solvers/101/Backtracking%20Algorithm%20%E2%80%93%20Sudoku%20Solver%20|%20101%20Computing_files/a.html">
+<meta property="og:title" content="Backtracking Algorithm – Sudoku Solver | 101 Computing">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.101computing.net/backtracking-algorithm-sudoku-solver/">
+<meta property="og:image" content="/wp/wp-content/uploads/sudoku-grid.png">
+<meta property="og:site_name" content="101 Computing">
+<meta property="og:description" content="The purpose of this Python challenge is to demonstrate the use of a backtracking algorithm to solve a Sudoku puzzle. Did You Know? The objective of a Sudoku puzzle is to fill a 9×9 grid with digits so that each column, each row, and each of the nine 3×3 subgrids that compose the grid (also called &quot;boxes&quot;) contains all of the digits from 1 to 9. A Sudoku puzzle is a partially completed grid, which for a well-posed puzzle has a single solution. Backtracking Algorithm A backtracking algorithm is a recursive algorithm that attempts to solve a given problem by testing all possible paths towards a solution until a solution is found. Each time a path is tested, if a solution is not found, the algorithm backtracks to test another possible path and so on till a solution is found or all paths have been tested. The typical scenario where a backtracking algorithm is when you try to find your way out in a maze. Every time you reach a dead-end, you backtrack to try another path untill you find the">
+<meta property="article:published_time" content="2017-12-14T22:19:13Z">
+<meta property="article:modified_time" content="2019-03-21T15:35:00Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Backtracking Algorithm – Sudoku Solver | 101 Computing">
+<meta name="twitter:description" content="The purpose of this Python challenge is to demonstrate the use of a backtracking algorithm to solve a Sudoku puzzle. Did You Know? The objective of a Sudoku puzzle is to fill a 9×9 grid with digits so that each column, each row, and each of the nine 3×3 subgrids that compose the grid (also called &quot;boxes&quot;) contains all of the digits from 1 to 9. A Sudoku puzzle is a partially completed grid, which for a well-posed puzzle has a single solution. Backtracking Algorithm A backtracking algorithm is a recursive algorithm that attempts to solve a given problem by testing all possible paths towards a solution until a solution is found. Each time a path is tested, if a solution is not found, the algorithm backtracks to test another possible path and so on till a solution is found or all paths have been tested. The typical scenario where a backtracking algorithm is when you try to find your way out in a maze. Every time you reach a dead-end, you backtrack to try another path untill you find the">
+<meta name="twitter:image" content="/wp/wp-content/uploads/sudoku-grid.png">
+<meta itemprop="image" content="/wp/wp-content/uploads/sudoku-grid.png">
+<!-- /all in one seo pack -->
+<link rel="alternate" type="application/rss+xml" title="101 Computing » Feed" href="https://www.101computing.net/feed/">
+<link rel="alternate" type="application/rss+xml" title="101 Computing » Comments Feed" href="https://www.101computing.net/comments/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"https:\/\/www.101computing.net\/wp\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.4.24"}};
+			!function(a,b,c){function d(a){var c,d,e,f=b.createElement("canvas"),g=f.getContext&&f.getContext("2d"),h=String.fromCharCode;return g&&g.fillText?(g.textBaseline="top",g.font="600 32px Arial","flag"===a?(g.fillText(h(55356,56806,55356,56826),0,0),f.toDataURL().length>3e3):"diversity"===a?(g.fillText(h(55356,57221),0,0),c=g.getImageData(16,16,1,1).data,g.fillText(h(55356,57221,55356,57343),0,0),c=g.getImageData(16,16,1,1).data,e=c[0]+","+c[1]+","+c[2]+","+c[3],d!==e):("simple"===a?g.fillText(h(55357,56835),0,0):g.fillText(h(55356,57135),0,0),0!==g.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag"),unicode8:d("unicode8"),diversity:d("diversity")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag&&c.supports.unicode8&&c.supports.diversity||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="Backtracking%20Algorithm_files/wp-emoji-release_002.js" type="text/javascript"></script><script src="Backtracking%20Algorithm_files/wp-emoji-release.js" type="text/javascript"></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="flick-css" href="Backtracking%20Algorithm_files/flick.css" type="text/css" media="all">
+<link rel="stylesheet" id="mailchimpSF_main_css-css" href="Backtracking%20Algorithm_files/a.css" type="text/css" media="all">
+<!--[if IE]>
+<link rel='stylesheet' id='mailchimpSF_ie_css-css'  href='https://www.101computing.net/wp/wp-content/plugins/mailchimp/css/ie.css?ver=4.4.24' type='text/css' media='all' />
+<![endif]-->
+<link rel="stylesheet" id="crayon-css" href="Backtracking%20Algorithm_files/crayon.css" type="text/css" media="all">
+<link rel="stylesheet" id="crp-style-rounded-thumbs-css" href="Backtracking%20Algorithm_files/default-style.css" type="text/css" media="all">
+<style id="crp-style-rounded-thumbs-inline-css" type="text/css">
+
+.crp_related a {
+  width: 150px;
+  height: 150px;
+  text-decoration: none;
+}
+.crp_related img {
+  max-width: 150px;
+  margin: auto;
+}
+.crp_related .crp_title {
+  width: 150px;
+}
+                
+</style>
+<link rel="stylesheet" id="hupso_css-css" href="Backtracking%20Algorithm_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="ce_responsive-css" href="Backtracking%20Algorithm_files/video-container.css" type="text/css" media="all">
+<link rel="stylesheet" id="responsive-style-css" href="Backtracking%20Algorithm_files/style_002.css" type="text/css" media="all">
+<link rel="stylesheet" id="responsive-media-queries-css" href="Backtracking%20Algorithm_files/responsive.css" type="text/css" media="all">
+<link rel="stylesheet" id="responsive-child-style-css" href="Backtracking%20Algorithm_files/style_003.css" type="text/css" media="all">
+<link rel="stylesheet" id="fontawesome-style-css" href="Backtracking%20Algorithm_files/font-awesome.css" type="text/css" media="all">
+<script type="text/javascript" src="Backtracking%20Algorithm_files/jquery_002.js"></script>
+<script type="text/javascript" src="Backtracking%20Algorithm_files/jquery-migrate.js"></script>
+<script type="text/javascript" src="Backtracking%20Algorithm_files/scrollTo.js"></script>
+<script type="text/javascript" src="Backtracking%20Algorithm_files/jquery.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var mailchimpSF = {"ajax_url":"https:\/\/www.101computing.net\/"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Backtracking%20Algorithm_files/mailchimp.js"></script>
+<script type="text/javascript" src="Backtracking%20Algorithm_files/core.js"></script>
+<script type="text/javascript" src="Backtracking%20Algorithm_files/datepicker.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var quicktagsL10n = {"closeAllOpenTags":"Close all open tags","closeTags":"close tags","enterURL":"Enter the URL","enterImageURL":"Enter the URL of the image","enterImageDescription":"Enter a description of the image","textdirection":"text direction","toggleTextdirection":"Toggle Editor Text Direction","dfw":"Distraction-free writing mode","strong":"Bold","strongClose":"Close bold tag","em":"Italic","emClose":"Close italic tag","link":"Insert link","blockquote":"Blockquote","blockquoteClose":"Close blockquote tag","del":"Deleted text (strikethrough)","delClose":"Close deleted text tag","ins":"Inserted text","insClose":"Close inserted text tag","image":"Insert image","ul":"Bulleted list","ulClose":"Close bulleted list tag","ol":"Numbered list","olClose":"Close numbered list tag","li":"List item","liClose":"Close list item tag","code":"Code","codeClose":"Close code tag","more":"Insert Read More tag"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Backtracking%20Algorithm_files/quicktags.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var CrayonSyntaxSettings = {"version":"_2.7.2_beta","is_admin":"0","ajaxurl":"https:\/\/www.101computing.net\/wp\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"Press %s to Copy, %s to Paste","minimize":"Click To Expand Code"};
+var CrayonTagEditorSettings = {"home_url":"https:\/\/www.101computing.net","css":"crayon-te","css_selected":"crayon-selected","code_css":"#crayon-code","url_css":"#crayon-url","url_info_css":"#crayon-te-url-info","lang_css":"#crayon-lang","title_css":"#crayon-title","mark_css":"#crayon-mark","range_css":"#crayon-range","inline_css":"crayon-inline","inline_hide_css":"crayon-hide-inline","inline_hide_only_css":"crayon-hide-inline-only","hl_css":"#crayon-highlight","switch_html":"#content-html","switch_tmce":"#content-tmce","tinymce_button_generic":".mce-btn","tinymce_button":"a.mce_crayon_tinymce,.mce-i-crayon_tinymce","tinymce_button_unique":"mce_crayon_tinymce","tinymce_highlight":"mce-active","submit_css":"#crayon-te-ok","cancel_css":"#crayon-te-cancel","content_css":"#crayon-te-content","dialog_title_css":"#crayon-te-title","submit_wrapper_css":"#crayon-te-submit-wrapper","data_value":"data-value","attr_sep":":","css_sep":"_","fallback_lang":"default","add_text":"Add Code","edit_text":"Edit Code","quicktag_text":"crayon","submit_add":"Add","submit_edit":"Save","bar":"#crayon-te-bar","bar_content":"#crayon-te-bar-content","extensions":{"scpt":"applescript","applescript":"applescript","swf":"as","fla":"as","cs":"c#","h":"c++","hh":"c++","hpp":"c++","hxx":"c++","h++":"c++","cc":"c++","cpp":"c++","cxx":"c++","c++":"c++","pas":"delphi","java":"java","class":"java","jar":"java","mv":"miva","mvc":"miva","mvt":"miva","m":"objc","mm":"objc","psc":"papyrus","pl":"perl","py":"python","pyw":"python","pyc":"python","pyo":"python","pyd":"python","rb":"ruby","rbx":"ruby","rhtml":"ruby","vbs":"vb"}};
+var CrayonSyntaxSettings = {"version":"_2.7.2_beta","is_admin":"0","ajaxurl":"https:\/\/www.101computing.net\/wp\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"Press %s to Copy, %s to Paste","minimize":"Click To Expand Code"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Backtracking%20Algorithm_files/crayon.js"></script>
+<script type="text/javascript" src="Backtracking%20Algorithm_files/responsive-modernizr.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.101computing.net/wp/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.101computing.net/wp/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Backtracking Algorithm – Magic Square Solver" href="https://www.101computing.net/backtracking-algorithm-magic-square-solver/">
+<link rel="next" title="Backtracking Maze – Path Finder" href="https://www.101computing.net/backtracking-maze-path-finder/">
+<meta name="generator" content="WordPress 4.4.24">
+<link rel="shortlink" href="https://www.101computing.net/?p=5677">
+<link rel="alternate" type="application/json+oembed" href="https://www.101computing.net/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.101computing.net%2Fbacktracking-algorithm-sudoku-solver%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://www.101computing.net/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.101computing.net%2Fbacktracking-algorithm-sudoku-solver%2F&amp;format=xml">
+
+<!-- Contact Us Form -->
+<style type="text/css">
+.cuf_input {display:none !important; visibility:hidden !important;}
+#contactsubmit:hover, #contactsubmit:focus {
+	background: #849F00 repeat-x;
+	color: #FFF;
+	text-decoration: none;
+}
+#contactsubmit:active {background: #849F00}
+#contactsubmit {
+	color: #FFF;
+	background: #738c00 repeat-x;
+	display: block;
+	float: left;
+	height: 28px;
+	padding-right: 23px;
+	padding-left: 23px;
+	font-size: 12px;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-weight: bold;
+	text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.2);
+	filter: dropshadow(color=rgba(0, 0, 0, 0.2), offx=0, offy=1);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-transition: background 300ms linear;
+-moz-transition: background 300ms linear;
+-o-transition: background 300ms linear;
+transition: background 300ms linear;
+-webkit-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+-moz-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+text-align:center
+}
+.cuf_field {
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	background:#fff;
+	border:1px solid #A9B3BC;
+	padding:8px;
+	width:100%;
+	margin-top:5px;
+margin-bottom:15px;
+	outline:none
+}
+#tinyform {
+clear: both;
+	width:500px;
+	margin-left:auto;
+	margin-right:auto;
+	/*margin-top:30px;*/
+	padding:20px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	border-radius:5px;
+	-webkit-box-shadow:0px 0px 10px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow:0px 0px 10px 0px rgba(0,0,0,0.2);
+	box-shadow:0px 0px 10px 0px rgba(0,0,0,0.2);
+	border:4px solid #FFF;
+	-webkit-transition:all 200ms linear;
+	-moz-transition:all 200ms linear;
+	-o-transition:all 200ms linear;
+	transition:all 200ms linear;
+}
+.cuf_textarea {
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	background:#fff;
+	border:1px solid #A9B3BC;
+	padding:8px;
+	width:100%;
+	margin-top:5px;
+	outline:none;
+margin-bottom:15px;
+}
+</style>
+<script type="text/javascript">
+        jQuery(function($) {
+            $('.date-pick').each(function() {
+                var format = $(this).data('format') || 'mm/dd/yyyy';
+                format = format.replace(/yyyy/i, 'yy');
+                $(this).datepicker({
+                    autoFocusNextInput: true,
+                    constrainInput: false,
+                    changeMonth: true,
+                    changeYear: true,
+                    beforeShow: function(input, inst) { $('#ui-datepicker-div').addClass('show'); },
+                    dateFormat: format.toLowerCase(),
+                });
+            });
+            d = new Date();
+            $('.birthdate-pick').each(function() {
+                var format = $(this).data('format') || 'mm/dd';
+                format = format.replace(/yyyy/i, 'yy');
+                $(this).datepicker({
+                    autoFocusNextInput: true,
+                    constrainInput: false,
+                    changeMonth: true,
+                    changeYear: false,
+                    minDate: new Date(d.getFullYear(), 1-1, 1),
+                    maxDate: new Date(d.getFullYear(), 12-1, 31),
+                    beforeShow: function(input, inst) { $('#ui-datepicker-div').removeClass('show'); },
+                    dateFormat: format.toLowerCase(),
+                });
+
+            });
+
+        });
+    </script>
+
+<script data-cfasync="false" src="Backtracking%20Algorithm_files/6412e3-8c8b-46e9-978b-10be3d9c65e1.js" type="text/javascript"></script>
+	<script>
+		jQuery(document).ready(function(){
+		var copyright_text = "";
+		var cyberchimps_link = "";
+		var siteurl = "https://www.101computing.net/wp"; 
+		if(copyright_text == "")
+		{
+			jQuery(".copyright #copyright_link").text(" "+"Default copyright text");
+		}
+		else{ 
+			jQuery(".copyright #copyright_link").text(" "+copyright_text);
+		}
+		jQuery(".copyright #copyright_link").attr('href',siteurl);
+		if(cyberchimps_link == 1)
+		{
+			jQuery(".powered").css("display","block");
+		}
+		else{
+			jQuery(".powered").css("display","none");
+		}
+		});
+	</script>
+<!-- We need this for debugging -->
+<!-- Responsive 3.8 -->
+<!-- Responsive-child 1.9.5.3 -->
+<link rel="icon" href="https://www.101computing.net/wp/wp-content/uploads/101-1-100x100.png" sizes="32x32">
+<link rel="icon" href="https://www.101computing.net/wp/wp-content/uploads/101-1.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://www.101computing.net/wp/wp-content/uploads/101-1.png">
+<meta name="msapplication-TileImage" content="https://www.101computing.net/wp/wp-content/uploads/101-1.png">
+<!-- Custom CSS Styles -->
+<style type="text/css" media="screen">
+1
+</style>
+	<link type="text/css" rel="stylesheet" charset="UTF-8" href="Backtracking%20Algorithm_files/translateelement.css"><script type="text/javascript" charset="UTF-8" src="Backtracking%20Algorithm_files/main.js"></script><style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style><script type="text/javascript" charset="UTF-8" src="Backtracking%20Algorithm_files/element_main.js"></script><link type="text/css" rel="stylesheet" charset="UTF-8" href="Backtracking%20Algorithm_files/translateelement_002.css"><script type="text/javascript" charset="UTF-8" src="Backtracking%20Algorithm_files/main_002.js"></script><script type="text/javascript" charset="UTF-8" src="Backtracking%20Algorithm_files/element_main_002.js"></script></head>
+
+<body class="single single-post postid-5677 single-format-standard default-layout" style="position: relative; min-height: 100%; top: 0px;">
+
+<div id="container" class="hfeed">
+
+	<div class="skip-container cf">
+		<a class="skip-link screen-reader-text focusable" href="#main">↓ Skip to Main Content</a>
+	</div><!-- .skip-container -->
+	<div id="header">
+
+		
+		
+		
+		
+			<div id="logo">
+				<a href="https://www.101computing.net/"><img src="Backtracking%20Algorithm_files/101-computing-dot-net.png" alt="101 Computing" width="280" height="100"></a>
+			</div><!-- end of #logo -->
+		
+		
+		
+		<div class="navWrapperRight">
+		<ul class="social-icons"><li class="twitter-icon"><a href="http://twitter.com/@101Computing"><img src="Backtracking%20Algorithm_files/twitter-icon.png" alt="Twitter" width="24" height="24"></a></li><li class="facebook-icon"><a href="http://www.facebook.com/101Computing"><img src="Backtracking%20Algorithm_files/facebook-icon.png" alt="Facebook" width="24" height="24"></a></li><li class="youtube-icon"><a href="https://www.youtube.com/c/101computing"><img src="Backtracking%20Algorithm_files/youtube-icon.png" alt="YouTube" width="24" height="24"></a></li></ul><!-- .social-icons --><div class="tagLine">
+Get ready for the new computing curriculum. Find new computing 
+challenges to boost your programming skills or spice up your teaching of
+ computer science.
+</div>
+		</div>
+		
+				<div class="main-nav"><div id="responsive_current_menu_item">Backtracking Algorithm – Sudoku Solver</div><div id="responsive_current_menu_item">Backtracking Algorithm – Sudoku Solver</div><ul id="menu-header-navigation-bar" class="menu"><li id="menu-item-18" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-18"><a href="https://www.101computing.net/">Home</a></li>
+<li id="menu-item-137" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-137"><a href="https://www.101computing.net/category/computing-concepts/">Computing Concepts</a>
+<ul class="sub-menu">
+	<li id="menu-item-10685" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-10685"><a href="https://www.101computing.net/category/quiz/">View all quizzes</a></li>
+	<li id="menu-item-8405" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8405"><a href="https://www.101computing.net/category/gcse-concepts/">GCSE Concepts &amp; Quizzes</a></li>
+	<li id="menu-item-8401" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8401"><a href="https://www.101computing.net/category/a-level-concepts/">A Level Concepts &amp; Quizzes</a></li>
+	<li id="menu-item-8407" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8407"><a href="https://www.101computing.net/category/lmc/">Little Man Computer (LMC)</a></li>
+	<li id="menu-item-8404" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-8404"><a href="https://www.101computing.net/category/databases/">Database Concepts</a></li>
+	<li id="menu-item-11966" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11966"><a href="https://www.101computing.net/category/cryptography/">Cryptography</a></li>
+</ul>
+</li>
+<li id="menu-item-3053" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3053"><a href="https://www.101computing.net/category/bbc-microbit/">BBC micro:bit</a></li>
+<li id="menu-item-16" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-has-children menu-item-16"><a href="https://www.101computing.net/category/python-challenges/">Python Challenges</a>
+<ul class="sub-menu">
+	<li id="menu-item-845" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-845"><a href="https://www.101computing.net/category/python-beginner/">Python – Beginner</a></li>
+	<li id="menu-item-846" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-846"><a href="https://www.101computing.net/category/python-intermediate/">Python – Intermediate</a></li>
+	<li id="menu-item-844" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-844"><a href="https://www.101computing.net/category/python-advanced/">Python – Advanced</a></li>
+</ul>
+</li>
+<li id="menu-item-17" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-17"><a href="https://www.101computing.net/category/scratch/">Scratch</a></li>
+<li id="menu-item-14" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-14"><a href="https://www.101computing.net/category/html-css-javascript/">HTML, CSS &amp; JavaScript</a></li>
+<li id="menu-item-31" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-31"><a href="https://www.101computing.net/category/free-computing-resources/">Downloads</a></li>
+<li id="menu-item-4267" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4267"><a>Books</a>
+<ul class="sub-menu">
+	<li id="menu-item-9266" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9266"><a href="https://www.101computing.net/101-extra-python-challenges/">101 Extra Python Challenges</a></li>
+	<li id="menu-item-4268" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4268"><a href="https://www.101computing.net/101-python-challenges/">101 Python Challenges</a></li>
+	<li id="menu-item-4269" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4269"><a href="https://www.101computing.net/101-computing-challenges/">101 Computing Challenges</a></li>
+</ul>
+</li>
+<li id="menu-item-1556" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1556"><a href="https://www.101computing.net/contact-us/">Contact</a></li>
+</ul><a id="responsive_menu_button"></a><a id="responsive_menu_button"></a></div>
+		
+		
+	</div><!-- end of #header -->
+
+	<div id="wrapper" class="clearfix">
+<div id="content-outer">
+<div id="content" class="grid col-620" role="main">
+
+	
+	
+		
+						<div id="post-5677" class="post-5677 post type-post status-publish format-standard has-post-thumbnail hentry category-computer-science category-computing-concepts category-python-advanced category-python-challenges tag-algorithm tag-backtracking tag-recursion">
+				
+				
+	<h1 class="entry-title post-title responsive">Backtracking Algorithm – Sudoku Solver</h1>
+
+<div class="post-meta">
+	<i class="fa fa-calendar" aria-hidden="true"></i><span class="meta-prep meta-prep-author posted">Posted on </span><a href="https://www.101computing.net/backtracking-algorithm-sudoku-solver/" title="Backtracking Algorithm – Sudoku Solver" rel="bookmark"><time class="timestamp updated" datetime="2017-12-14T22:19:13+00:00">December 14, 2017</time></a><span class="byline"> by </span><span class="author vcard"><a class="url fn n" href="https://www.101computing.net/author/101cc/" title="View all posts by Administrator"><span class="author-gravtar"></span>Administrator</a></span>		<span class="posted-in">
+Posted in <a href="https://www.101computing.net/category/computer-science/">Computer Science</a>, <a href="https://www.101computing.net/category/computing-concepts/">Computing Concepts</a>, <a href="https://www.101computing.net/category/python-advanced/">Python - Advanced</a>, <a href="https://www.101computing.net/category/python-challenges/">Python Challenges</a>		</span>
+
+	</div><!-- end of .post-meta -->
+
+				<div class="post-entry">
+					<p>The purpose of this Python challenge is to demonstrate the use of a <strong>backtracking algorithm</strong> to solve a Sudoku puzzle.</p>
+<p></p><h4>Did You Know?</h4><br>
+The objective of a Sudoku puzzle is to fill a 9×9 grid with digits so 
+that each column, each row, and each of the nine 3×3 subgrids that 
+compose the grid (also called “boxes”) contains all of the digits from 1
+ to 9. A Sudoku puzzle is a partially completed grid, which for a 
+well-posed puzzle has a single solution.<p></p>
+<p><img src="Backtracking%20Algorithm_files/sudoku-grid.png" alt="sudoku-grid" class="aligncenter size-full wp-image-5675" srcset="Backtracking%20Algorithm_files/sudoku-grid-300x301.png 300w, Backtracking%20Algorithm_files/sudoku-grid.png 394w" sizes="(max-width: 394px) 100vw, 394px" width="394" height="395"></p>
+<p></p><h4>Backtracking Algorithm</h4><br>
+A <strong>backtracking algorithm</strong> is a <strong>recursive algorithm</strong>
+ that attempts to solve a given problem by testing all possible paths 
+towards a solution until a solution is found. Each time a path is 
+tested, if a solution is not found, the algorithm <strong>backtracks</strong> to test another possible path and so on till a solution is found or all paths have been tested.<p></p>
+<p>The typical scenario where a backtracking algorithm is when you try 
+to find your way out in a maze. Every time you reach a dead-end, you 
+backtrack to try another path untill you find the exit or all path have 
+been explored.</p>
+<p>Backtracking algorithms can be used for other types of problems such as solving a <a href="https://www.101computing.net/backtracking-algorithm-magic-square-solver/" rel="noopener" target="_blank">Magic Square Puzzle</a> or a Sudoku grid.</p>
+<p>Backtracking algorithms rely on the use of a<strong> recursive function</strong>. A recursive function is a function that calls itself until a condition is met. </p>
+<p>Note that there are other approaches that could be used to solve a 
+Sudoku puzzle. The Backtracking approach may not always be the most 
+effective but is used in this challenge to demonstrate how a 
+backtracking algorithm behaves and how it can be implemented using 
+Python.</p>
+<p></p><h4>Python Code</h4><p></p>
+<p><iframe src="Backtracking%20Algorithm_files/c3224e0644.html" marginwidth="0" marginheight="0" allowfullscreen="" width="100%" height="500" frameborder="0"></iframe></p>
+<p></p><h4>Extra Challenge:</h4><br>
+An extra challenge would be to design <a href="https://www.101computing.net/sudoku-generator-algorithm/" rel="noopener" target="_blank">an algorithm used to create a Sudoku Grid</a>. The generated Sudoku grid should have enough clues (numbers in cells) to be solvable resulting in a unique solution.<p></p>
+<div style="padding-bottom:0px; padding-top:0px;" class="hupso-share-buttons"><!-- Hupso Share Buttons - https://www.hupso.com/share/ --><a class="hupso_toolbar" href="https://www.hupso.com/share/"><img src="Backtracking%20Algorithm_files/ShareThisPost.png" style="border: 0px none; padding-top: 5px; float: left; padding-right: 5px; margin: 0px; background-color: transparent; outline: currentcolor none medium; box-shadow: none; max-width: none;" alt="Share Button"></a><script type="text/javascript">var hupso_services_t=new Array("Twitter","Facebook","Google Plus","Reddit","Email");var hupso_background_t="#EAF4FF";var hupso_border_t="#66CCFF";var hupso_toolbar_size_t="medium";var hupso_twitter_via = "101Computing";var hupso_image_folder_url = "";var hupso_twitter_via="101Computing";var hupso_url_t="";var hupso_title_t="Backtracking Algorithm - Sudoku Solver";</script><script type="text/javascript" src="Backtracking%20Algorithm_files/share_toolbar.js"></script><div id="hupso_toolbar_0" class="hupso_c"><div id="toolbar_hupso_toolbar_0" style="display: inline-block;"><a href="file:///share/add.php?service=twitter&amp;title=Backtracking%20Algorithm%20-%20Sudoku%20Solver&amp;url=file%3A%2F%2F%2Fhome%2Fmartin%2Frepos%2Fsudoku%2Fothers_solvers%2F101%2FBacktracking%2520Algorithm%2520%25E2%2580%2593%2520Sudoku%2520Solver%2520%7C%2520101%2520Computing.html&amp;via=101Computing" target="_blank"><img onmouseover="this.style.opacity=0.8;" onmouseout="this.style.opacity=1;" style="padding-right: 5px; padding-top: 5px; margin: 0; background-color:transparent; display:inline-block; border:0px; outline: none; width:24px; height:24px; box-shadow: none; max-width:none;" src="Backtracking%20Algorithm_files/twitter_002.png" alt="Twitter" title="Twitter"></a><a href="file:///share/add.php?service=facebook&amp;title=Backtracking%20Algorithm%20-%20Sudoku%20Solver&amp;url=file%3A%2F%2F%2Fhome%2Fmartin%2Frepos%2Fsudoku%2Fothers_solvers%2F101%2FBacktracking%2520Algorithm%2520%25E2%2580%2593%2520Sudoku%2520Solver%2520%7C%2520101%2520Computing.html" target="_blank"><img onmouseover="this.style.opacity=0.8;" onmouseout="this.style.opacity=1;" style="padding-right: 5px; padding-top: 5px; margin: 0; background-color:transparent; display:inline-block; border:0px; outline: none; width:24px; height:24px; box-shadow: none; max-width:none;" src="Backtracking%20Algorithm_files/facebook_002.png" alt="Facebook" title="Facebook"></a><a href="file:///share/add.php?service=reddit&amp;title=Backtracking%20Algorithm%20-%20Sudoku%20Solver&amp;url=file%3A%2F%2F%2Fhome%2Fmartin%2Frepos%2Fsudoku%2Fothers_solvers%2F101%2FBacktracking%2520Algorithm%2520%25E2%2580%2593%2520Sudoku%2520Solver%2520%7C%2520101%2520Computing.html" target="_blank"><img onmouseover="this.style.opacity=0.8;" onmouseout="this.style.opacity=1;" style="padding-right: 5px; padding-top: 5px; margin: 0; background-color:transparent; display:inline-block; border:0px; outline: none; width:24px; height:24px; box-shadow: none; max-width:none;" src="Backtracking%20Algorithm_files/reddit_002.png" alt="Reddit" title="Reddit"></a><a href="mailto:?Subject=Backtracking Algorithm - Sudoku Solver&amp;Body=file:///home/martin/repos/sudoku/others_solvers/101/Backtracking%20Algorithm%20%E2%80%93%20Sudoku%20Solver%20|%20101%20Computing.html"><img onmouseover="this.style.opacity=0.8;" onmouseout="this.style.opacity=1;" style="padding-right: 5px; padding-top: 5px; margin: 0; background-color:transparent; display:inline-block; border:0px; outline: none; width:24px; height:24px; box-shadow: none; max-width:none; " src="Backtracking%20Algorithm_files/email.png" alt="Email" title="Email"></a></div></div><div id="hupso_toolbar_0" class="hupso_c"><div id="toolbar_hupso_toolbar_0" style="display: inline-block;"><a href="https://www.hupso.com/share/add.php?service=twitter&amp;title=Backtracking%20Algorithm%20-%20Sudoku%20Solver&amp;url=https%3A%2F%2Fwww.101computing.net%2Fbacktracking-algorithm-sudoku-solver%2F&amp;via=101Computing" target="_blank"><img onmouseover="this.style.opacity=0.8;" onmouseout="this.style.opacity=1;" style="padding-right: 5px; padding-top: 5px; margin: 0; background-color:transparent; display:inline-block; border:0px; outline: none; width:24px; height:24px; box-shadow: none; max-width:none;" src="Backtracking%20Algorithm_files/twitter.png" alt="Twitter" title="Twitter"></a><a href="https://www.hupso.com/share/add.php?service=facebook&amp;title=Backtracking%20Algorithm%20-%20Sudoku%20Solver&amp;url=https%3A%2F%2Fwww.101computing.net%2Fbacktracking-algorithm-sudoku-solver%2F" target="_blank"><img onmouseover="this.style.opacity=0.8;" onmouseout="this.style.opacity=1;" style="padding-right: 5px; padding-top: 5px; margin: 0; background-color:transparent; display:inline-block; border:0px; outline: none; width:24px; height:24px; box-shadow: none; max-width:none;" src="Backtracking%20Algorithm_files/facebook.png" alt="Facebook" title="Facebook"></a><a href="https://www.hupso.com/share/add.php?service=reddit&amp;title=Backtracking%20Algorithm%20-%20Sudoku%20Solver&amp;url=https%3A%2F%2Fwww.101computing.net%2Fbacktracking-algorithm-sudoku-solver%2F" target="_blank"><img onmouseover="this.style.opacity=0.8;" onmouseout="this.style.opacity=1;" style="padding-right: 5px; padding-top: 5px; margin: 0; background-color:transparent; display:inline-block; border:0px; outline: none; width:24px; height:24px; box-shadow: none; max-width:none;" src="Backtracking%20Algorithm_files/reddit.png" alt="Reddit" title="Reddit"></a><a href="mailto:?Subject=Backtracking Algorithm - Sudoku Solver&amp;Body=https://www.101computing.net/backtracking-algorithm-sudoku-solver/"><img onmouseover="this.style.opacity=0.8;" onmouseout="this.style.opacity=1;" style="padding-right: 5px; padding-top: 5px; margin: 0; background-color:transparent; display:inline-block; border:0px; outline: none; width:24px; height:24px; box-shadow: none; max-width:none; " src="Backtracking%20Algorithm_files/email_002.png" alt="Email" title="Email"></a></div></div><!-- Hupso Share Buttons --></div><div class="crp_related "><br><h4>Other challenges you may enjoy...</h4><ul><li><a href="https://www.101computing.net/backtracking-algorithm-magic-square-solver/" target="_blank"><img src="Backtracking%20Algorithm_files/magic-square-150x150.png" alt="Backtracking Algorithm – Magic Square Solver" title="Backtracking Algorithm – Magic Square Solver" class="crp_thumb crp_featured" width="150" height="150"><span class="crp_title">Backtracking Algorithm – Magic Square Solver</span></a></li><li><a href="https://www.101computing.net/backtracking-maze-path-finder/" target="_blank"><img src="Backtracking%20Algorithm_files/backtracking-maze-algorithm-150x150.png" alt="Backtracking Maze – Path Finder" title="Backtracking Maze – Path Finder" class="crp_thumb crp_featured" width="150" height="150"><span class="crp_title">Backtracking Maze – Path Finder</span></a></li><li><a href="https://www.101computing.net/london-underground-journey-planner/" target="_blank"><img src="Backtracking%20Algorithm_files/tubemap-150x150.png" alt="London Underground – Journey Planner" title="London Underground – Journey Planner" class="crp_thumb crp_featured" width="150" height="150"><span class="crp_title">London Underground – Journey Planner</span></a></li><li><a href="https://www.101computing.net/a-star-search-algorithm/" target="_blank"><img src="Backtracking%20Algorithm_files/A-Star-Search-Algorithm-Graph-150x150.png" alt="A* Search Algorithm" title="A* Search Algorithm" class="crp_thumb crp_featured" width="150" height="150"><span class="crp_title">A* Search Algorithm</span></a></li></ul><div class="crp_clear"></div></div>
+					
+									</div><!-- end of .post-entry -->
+
+				<div class="navigation">
+					<div class="previous">‹ <a href="https://www.101computing.net/backtracking-algorithm-magic-square-solver/" rel="prev">Backtracking Algorithm – Magic Square Solver</a></div>
+					<div class="next"><a href="https://www.101computing.net/backtracking-maze-path-finder/" rel="next">Backtracking Maze – Path Finder</a> ›</div>
+				</div><!-- end of .navigation -->
+
+				
+	<div class="post-data">
+		Tagged with: <a href="https://www.101computing.net/tag/algorithm/" rel="tag">Algorithm</a>, <a href="https://www.101computing.net/tag/backtracking/" rel="tag">Backtracking</a>, <a href="https://www.101computing.net/tag/recursion/" rel="tag">recursion</a><br>	</div><!-- end of .post-data -->
+
+<div class="post-edit"></div>
+							</div><!-- end of #post-5677 -->
+			<!--MONUMETRIC [BTF|Pos 1] D:728x90 M:320x50,320x100 T:728x90 START-->
+
+<div id="mmt-51e76f14-ba9e-4e15-97da-a095d878751c"></div><script type="text/javascript" data-cfasync="false">$MMT = window.$MMT || {}; $MMT.cmd = $MMT.cmd || [];$MMT.cmd.push(function(){ $MMT.display.slots.push(["51e76f14-ba9e-4e15-97da-a095d878751c"]); })</script>
+
+<!--MONUMETRIC [BTF|Pos 1] D:728x90 M:320x50,320x100 T:728x90  ENDS-->
+						
+
+
+
+			
+		</div><!-- end of #content -->
+
+
+	<div id="widgets" class="grid col-300 fit" role="complementary">
+		
+		<div id="search-2" class="widget-wrapper widget_search"><form method="get" id="searchform" action="https://www.101computing.net/">
+	<label class="screen-reader-text" for="s">Search for:</label>
+	<input type="text" class="field" name="s" id="s" placeholder="search here …">
+	<input type="submit" class="submit" name="submit" id="searchsubmit" value="Go">
+</form>
+</div><div id="tbnwidget-f9317f2c-837b-4be0-af05-8506572deb9f" class="widget-wrapper Closure"><!--MONUMETRIC f9317f2c-837b-4be0-af05-8506572deb9f STARTS--><div id="mmt-f9317f2c-837b-4be0-af05-8506572deb9f"></div><script type="text/javascript" data-cfasync="false">$MMT = window.$MMT || {}; $MMT.cmd = $MMT.cmd || [];$MMT.cmd.push(function(){ $MMT.display.slots.push(["f9317f2c-837b-4be0-af05-8506572deb9f"]); })</script><!--MONUMETRIC f9317f2c-837b-4be0-af05-8506572deb9f ENDS--></div>		<div id="recent-posts-4" class="widget-wrapper widget_recent_entries">		<div class="widget-title"><h3>Recent Posts</h3></div>		<ul>
+					<li>
+				<a href="https://www.101computing.net/tutankhamun-papyrus/">Tutankhamun’s Papyrus</a>
+						</li>
+					<li>
+				<a href="https://www.101computing.net/egyptian-numerals-conversions/">Egyptian Numerals Conversions</a>
+						</li>
+					<li>
+				<a href="https://www.101computing.net/upc-barcodes/">UPC Barcodes</a>
+						</li>
+					<li>
+				<a href="https://www.101computing.net/perseverance-parachute-secret-message-encoder/">Perseverance’s Parachute Secret Message Encoder</a>
+						</li>
+					<li>
+				<a href="https://www.101computing.net/mars-perseverance-rover/">Mars Perseverance Rover</a>
+						</li>
+					<li>
+				<a href="https://www.101computing.net/wanted-poster-css-task/">Wanted Poster (CSS Task)</a>
+						</li>
+					<li>
+				<a href="https://www.101computing.net/binary-search-tree-implementation/">Binary Search Tree Implementation</a>
+						</li>
+					<li>
+				<a href="https://www.101computing.net/lossless-compression-huffman-coding-algorithm/">Lossless Compression: Huffman Coding Algorithm</a>
+						</li>
+					<li>
+				<a href="https://www.101computing.net/average-nights-sleep-survey/">Average night’s sleep survey</a>
+						</li>
+					<li>
+				<a href="https://www.101computing.net/reverse-polish-notation/">Reverse Polish Notation Parser</a>
+						</li>
+				</ul>
+		</div>		<div id="text-3" class="widget-wrapper widget_text">			<div class="textwidget"><ul><li><a href="https://www.101computing.net/category/computer-science/">View more recent posts...</a></li><li>
+<a href="https://www.101computing.net/main-index/">View all our challenges...</a></li>
+<li><a href="https://www.101computing.net/category/quiz/">Take a Quiz...</a></li>
+</ul>
+
+<a href="https://www.101computing.net/LMC/" target="_blank"><img src="Backtracking%20Algorithm_files/LMC-Simulator-icon.png" alt="LMC Simulator" class="alignnone size-full" style="margin-bottom: 4px;" width="29" height="29">LMC Simulator</a><br>
+<a href="https://www.101computing.net/flowchart/" target="_blank"><img src="Backtracking%20Algorithm_files/flowchart-studio-icon.png" alt="Flowchart Studio" class="alignnone size-full" style="margin-bottom: 4px;" width="29" height="29">Flowchart Studio</a><br>
+<a href="https://www.101computing.net/python-syntax/" target="_blank"><img src="Backtracking%20Algorithm_files/python-code-syntax-icon.png" alt="Python Syntax" class="alignnone size-full wp-image-6531" style="margin-bottom: 4px;" width="29" height="29">Python Syntax</a>
+
+
+
+
+
+</div>
+		</div><div id="text-7" class="widget-wrapper widget_text"><div class="widget-title"><h3>Our Latest Book</h3></div>			<div class="textwidget"><a href="https://www.amazon.co.uk/Extra-Python-Challenges-Solutions-Listings/dp/0244790566/" target="_blank"><img src="Backtracking%20Algorithm_files/logo-101-Extra-Python-Challenges-260.png"></a>
+<br><br>
+<a href="https://www.101computing.net/101-python-challenges-books/" class="su-button su-button-style-glass su-button-wide" style="color:#FFFFFF;background-color:#b12def;border-color:#8e24bf;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px" target="_blank"><span style="color:#FFFFFF;padding:7px 22px;font-size:17px;line-height:26px;border-color:#c86cf4;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;text-shadow:none;-moz-text-shadow:none;-webkit-text-shadow:none"><i class="fa fa-info-circle" style="font-size:17px;color:#FFFFFF"></i> View all books</span></a></div>
+		</div><div id="mailchimpsf_widget-4" class="widget-wrapper widget_mailchimpsf_widget"><div class="widget-title"><h3>Follow this blog</h3></div>	<style>
+		.widget_mailchimpsf_widget .widget-title {
+		line-height: 1.4em;
+		margin-bottom: 0.75em;
+	}
+	#mc_subheader {
+		line-height: 1.25em;
+		margin-bottom: 18px;
+	}
+	.mc_merge_var {
+		margin-bottom: 1.0em;
+	}
+	.mc_var_label,
+	.mc_interest_label {
+		display: block;
+		margin-bottom: 0.5em;
+	}
+	.mc_input {
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+		width: 100%;
+	}
+	.mc_input.mc_phone {
+		width: auto;
+	}
+	select.mc_select {
+		margin-top: 0.5em;
+		width: 100%;
+	}
+	.mc_address_label {
+		margin-top: 1.0em;
+		margin-bottom: 0.5em;
+		display: block;
+	}
+	.mc_address_label ~ select {
+		width: 100%;		
+	}
+	.mc_list li {
+		list-style: none;
+		background: none !important;
+	}
+	.mc_interests_header {
+		margin-top: 1.0em;
+		margin-bottom: 0.5em;
+	}
+	.mc_interest label,
+	.mc_interest input {
+		margin-bottom: 0.4em;
+	}
+	#mc_signup_submit {
+		margin-top: 1.5em;
+		width: 80%;
+	}
+	#mc_unsub_link a {
+		font-size: 0.75em;
+	}
+	#mc_unsub_link {
+		margin-top: 1.0em;
+	}
+	.mc_header_address,
+	.mc_email_format {
+		display: block;
+		font-weight: bold;
+		margin-top: 1.0em;
+		margin-bottom: 0.5em;
+	}
+	.mc_email_options {
+		margin-top: 0.5em;
+	}
+	.mc_email_type {
+		padding-left: 4px;
+	}
+	</style>
+	
+<div id="mc_signup">
+	<form method="post" action="#mc_signup" id="mc_signup_form">
+		<input type="hidden" id="mc_submit_type" name="mc_submit_type" value="js">
+		<input type="hidden" name="mcsf_action" value="mc_submit_signup_form">
+		<input type="hidden" id="_mc_submit_signup_form_nonce" name="_mc_submit_signup_form_nonce" value="a175049ed7">		
+		
+	<div class="mc_form_inside">
+		
+		<div class="updated" id="mc_message">
+					</div><!-- /mc_message -->
+
+		
+<div class="mc_merge_var">
+		<label for="mc_mv_EMAIL" class="mc_var_label mc_header mc_header_email">Email Address</label>
+	<input type="text" size="18" placeholder="" name="mc_mv_EMAIL" id="mc_mv_EMAIL" class="mc_input">
+</div><!-- /mc_merge_var -->
+		<div class="mc_signup_submit">
+			<input type="submit" name="mc_signup_submit" id="mc_signup_submit" value="Subscribe" class="button">
+		</div><!-- /mc_signup_submit -->
+	
+	
+				
+	</div><!-- /mc_form_inside -->
+	</form><!-- /mc_signup_form -->
+</div><!-- /mc_signup_container -->
+	</div><div id="text-4" class="widget-wrapper widget_text">			<div class="textwidget"><center><div id="google_translate_element"><div class="skiptranslate goog-te-gadget" dir="ltr" style=""><div id=":0.targetLanguage" style="white-space: nowrap;" class="goog-te-gadget-simple"><img src="Backtracking%20Algorithm_files/cleardot.gif" class="goog-te-gadget-icon" alt="" style="background-image: url(&quot;https://translate.googleapis.com/translate_static/img/te_ctrl3.gif&quot;); background-position: -65px 0px;"><span style="vertical-align: middle;"><a aria-haspopup="true" class="goog-te-menu-value" href="javascript:void(0)"><span>Select Language</span><img src="Backtracking%20Algorithm_files/cleardot.gif" alt="" width="1" height="1"><span style="border-left: 1px solid rgb(187, 187, 187);">​</span><img src="Backtracking%20Algorithm_files/cleardot.gif" alt="" width="1" height="1"><span style="color: rgb(118, 118, 118);" aria-hidden="true">▼</span></a></span><img src="Backtracking%20Algorithm_files/cleardot_002.gif" class="goog-te-gadget-icon" alt="" style="background-image: url(&quot;https://translate.googleapis.com/translate_static/img/te_ctrl3.gif&quot;); background-position: -65px 0px;"><span style="vertical-align: middle;"><a aria-haspopup="true" class="goog-te-menu-value" href="javascript:void(0)"><span>Select Language</span><img src="Backtracking%20Algorithm_files/cleardot_002.gif" alt="" width="1" height="1"><span style="border-left: 1px solid rgb(187, 187, 187);">​</span><img src="Backtracking%20Algorithm_files/cleardot_002.gif" alt="" width="1" height="1"><span style="color: rgb(118, 118, 118);" aria-hidden="true">▼</span></a></span></div></div><div class="skiptranslate goog-te-gadget" dir="ltr" style=""><div id=":0.targetLanguage"></div></div></div><script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+}
+</script><script type="text/javascript" src="Backtracking%20Algorithm_files/element.js"></script></center></div>
+		</div><div id="related-posts-by-taxonomy-2" class="widget-wrapper related_posts_by_taxonomy"><div class="widget-title"><h3>Related Posts</h3></div>
+
+
+<ul>
+			<li><a href="https://www.101computing.net/eulers-number/" title="Euler’s Number">Euler’s Number</a></li>
+			<li><a href="https://www.101computing.net/backtracking-algorithm-magic-square-solver/" title="Backtracking Algorithm – Magic Square Solver">Backtracking Algorithm – Magic Square Solver</a></li>
+			<li><a href="https://www.101computing.net/python-fractals/" title="Python Fractals">Python Fractals</a></li>
+			<li><a href="https://www.101computing.net/factorial-challenge/" title="Factorial Challenge">Factorial Challenge</a></li>
+			<li><a href="https://www.101computing.net/air-flight-route-planner/" title="Air Flight Route Planner">Air Flight Route Planner</a></li>
+	</ul>
+
+
+</div>
+			</div><!-- end of #widgets -->
+</div>
+</div><!-- end of #wrapper -->
+</div><iframe src="file://static.hupso.com/share/js/service.html?r_x=&amp;w_x=share_toolbar.js&amp;n_x=" style="width: 0px; height: 0px; border: 0px none;"></iframe><iframe src="Backtracking%20Algorithm_files/service.html" style="width: 0px; height: 0px; border: 0px none;"></iframe><!-- end of #container -->
+
+<div id="footer" class="clearfix">
+	
+	<div id="footer-wrapper">
+
+		
+		<div class="grid col-940">
+
+			<div class="grid col-780">
+									<ul id="menu-footer-menu" class="footer-menu"><li id="menu-item-98" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-98"><a href="https://www.101computing.net/">Home</a></li>
+<li id="menu-item-138" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-138"><a href="https://www.101computing.net/category/computing-concepts/">Computing Concepts</a></li>
+<li id="menu-item-93" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-93"><a href="https://www.101computing.net/category/python-challenges/">Python Challenges</a></li>
+<li id="menu-item-5935" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-5935"><a href="https://www.101computing.net/category/bbc-microbit/">BBC micro:bit</a></li>
+<li id="menu-item-94" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-94"><a href="https://www.101computing.net/category/html-css-javascript/">HTML, CSS &amp; JavaScript</a></li>
+<li id="menu-item-9267" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-9267"><a href="https://www.101computing.net/101-python-challenges-books/">Books</a></li>
+<li id="menu-item-10679" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10679"><a href="https://www.101computing.net/privacy-policy/">Privacy Policy</a></li>
+<li id="menu-item-217" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-217"><a href="https://www.101computing.net/contact-us/">Contact</a></li>
+</ul>							</div>
+			<!-- end of col-540 -->
+
+			<div class="grid col-140 fit copyright">
+							© 2021<a href="https://www.101computing.net/" title="101 Computing">
+				101 Computing			</a></div>
+			<!-- end of col-380 fit -->
+
+		</div>
+		<!-- end of col-940 -->
+		
+
+	</div>
+	<!-- end #footer-wrapper -->
+
+	</div><!-- end #footer -->
+
+<link rel="stylesheet" id="font-awesome-css" href="Backtracking%20Algorithm_files/font-awesome_002.css" type="text/css" media="all">
+<link rel="stylesheet" id="su-content-shortcodes-css" href="Backtracking%20Algorithm_files/content-shortcodes.css" type="text/css" media="all">
+<script type="text/javascript" src="Backtracking%20Algorithm_files/responsive-scripts.js"></script>
+<script type="text/javascript" src="Backtracking%20Algorithm_files/jquery_003.js"></script>
+<script type="text/javascript" src="Backtracking%20Algorithm_files/wp-embed.js"></script>
+
+
+<div id="cboxOverlay" style="display: none;"></div><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="Backtracking%20Algorithm_files/translate_24dp.png" alt="Google Translate" width="20" height="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><button type="button" id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button id="cboxSlideshow"></button><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div><iframe class="goog-te-menu-frame skiptranslate" title="Language Translate Widget" style="visibility: visible; box-sizing: content-box; width: 1046px; height: 274px; display: none;" frameborder="0"></iframe>
+<div id="cboxOverlay" style="display: none;"></div><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="Backtracking%20Algorithm_files/translate_24dp_002.png" alt="Google Translate" width="20" height="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Original text</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Contribute a better translation</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div><div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;"><div id="cboxWrapper"><div><div id="cboxTopLeft" style="float: left;"></div><div id="cboxTopCenter" style="float: left;"></div><div id="cboxTopRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxMiddleLeft" style="float: left;"></div><div id="cboxContent" style="float: left;"><div id="cboxTitle" style="float: left;"></div><div id="cboxCurrent" style="float: left;"></div><button type="button" id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button id="cboxSlideshow"></button><div id="cboxLoadingOverlay" style="float: left;"></div><div id="cboxLoadingGraphic" style="float: left;"></div></div><div id="cboxMiddleRight" style="float: left;"></div></div><div style="clear: left;"><div id="cboxBottomLeft" style="float: left;"></div><div id="cboxBottomCenter" style="float: left;"></div><div id="cboxBottomRight" style="float: left;"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div></div><div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div><iframe class="goog-te-menu-frame skiptranslate" title="Language Translate Widget" style="visibility: visible; box-sizing: content-box; width: 1046px; height: 274px; display: none;" frameborder="0"></iframe></body></html>
+<!--
+Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Page Caching using disk: enhanced 
+
+Served from: www.101computing.net @ 2021-04-03 15:35:33 by W3 Total Cache
+-->

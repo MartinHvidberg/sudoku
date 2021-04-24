@@ -39,7 +39,7 @@ def same_box(i,j): return (i//27 == j//27 and i%9//3 == j%9//3)
 
 
 def valid(str_sdk):
-    """ Return True if the SuDoKu correctly filled, i.e. no repeated values in row, col nor box.
+    """ Return True if the SuDoKu is correctly filled, i.e. no repeated values in row, col nor box.
         otherwise returns False """
     for n in range(81):
         if str_sdk[n] != '0':
@@ -112,6 +112,21 @@ def pcl(str_sdk, i, j):
     return col_pcl(str_sdk, i, j) & row_pcl(str_sdk, i, j) & box_pcl(str_sdk, i, j)
 
 
+def set_cell_value(c, v, sdk, pnc):
+    """ Sets / fill the cell number c in sdk to value v
+    also, remove value v from all relevant pencil-mark cells in pnc
+    :param c: cell number (as int or str?)
+    :param v: value to insert
+    :param sdk: the SuDoKu (list of 81)
+    :param pnc: the Pencil-marks (list of 81)
+    :return: sdk, pnc
+    """
+    sdk = sdk[:c] + str(v) + sdk[c + 1:]  # Insert the value
+    l_clearmarks = [n for n in range(81) if (n == c or (sdk[n] == '0') and (same_row(n, c) or same_col(n, c) or same_box(n, c)))]
+    pnc = [pnc[n].remove(v) if n in l_clearmarks else pnc[n] for n in range(81)]
+    return sdk, pnc
+
+
 def m_1(str_sdk, lst_pnc=list(), set_solutions=set(), itdpt=0):
     """
     Go for the pencil marks... Go for the field with minimum pencil marks, i.e. minimum possible openings.
@@ -166,24 +181,50 @@ def m_1(str_sdk, lst_pnc=list(), set_solutions=set(), itdpt=0):
             set_pnc.discard(str(num_option))  # Pencil marks are noted as string
             log.debug(f"m({itdpt}): updated: {n} = {set_pnc}")
             lst_pnc[n] = set_pnc
-        set_solutions.update(m(str_sdk, lst_pnc, set_solutions, itdpt + 1))
+        set_solutions.update(m_1(str_sdk, lst_pnc, set_solutions, itdpt + 1))
         lst_pnc[num_next_move].remove(str(num_option))  # Now we have tried that, on this iteration level
     return set_solutions
 
 
-def m(sdk, l-pnc, s-sol):
-        make l-pnc if empty (this only happens at very start)
-        if sdk is Done
-            return sdk
-        if sdk is deadlock (cell with val = 0, has no pnc left)
-            return None
-        determine shortest pnc
-        select cand. cell w shortest pnc
-        for each posib. val in pnc for cand. cell
-            set cell val
-            remove relevant pnc marks
-            sol.updtae( m(sdk, l-pnc, set-sol) )
-
+def m(sdk, l_pnc, s_sol):
+    """ Solve the Sudoku, recursively. Find all solutions
+    make l_pnc if empty (initial PencilMarks, this only happens at very start)
+    if sdk is Done
+        add sdk to s_sol
+        return s_sol   <---
+    if sdk is deadlock (cell with val = 0, has no pnc left)
+        return s_sol  <---
+    determine shortest pnc
+    select cand. cell w shortest pnc
+    for each posib. val in pnc for cand. cell
+        set cell val
+        remove relevant pnc marks
+        s_sol = m(sdk, l_pnc, s_sol)  <--->
+    return s_sol  <---
+    :param sdk: 
+    :param l_pnc: 
+    :param s_sol: 
+    :return: 
+    """
+    sdk = sdk.replace('.', '0')  # because we allow '.' in input
+    if l_pnc == []:  # Pencil marks is empty, we must be just started ..
+        for n in range(81):
+            l_pnc.append(pcl(sdk, n // 9, n % 9))
+    if done(sdk):
+        s_sol.update([sdk])
+        return s_sol
+    if any([sdk[n] == 0 and l_pnc[n] == [] for n in range(81)]):  # sdk is deadlock
+        return s_sol
+    # determine shortest pnc
+    l_openings = [n for n in range(81) if sdk[n] == '0']  # ToDo integrate this and next line to one
+    i_min_pnc = min([len(l_pnc[n]) for n in l_openings])  # minimum pencil-marks in any open cell
+    # select cand. cell w shortest pnc
+    i_next_move = [n for n in l_openings if len(l_pnc[n]) == i_min_pnc][0]  # first cell to have min pencil-marks
+    # for each posib. val in pnc for cand. cell
+    for s_cellvall in l_pnc[i_next_move]:
+        sdk, pnc = set_cell_value(i_next_move, s_cellvall, sdk, l_pnc)
+        sol = m(sdk, l_pnc, s_sol)
+    return s_sol
 
 
 if __name__ == '__main__':
@@ -193,9 +234,9 @@ if __name__ == '__main__':
         print('Usage: python sudoku.py puzzle')
         print('    where puzzle is an 81 character string representing the puzzle read left-to-right, top-to-bottom, and 0 is a blank')
 
-        str_sdk = '.......12........3..23..4....18....5.6..7.8.......9.....85.....9...4.5..47...6...' # Platinum Blonde - Seems to have a HUGE number of solutions ...
-        #str_sdk = '9265714833514862798749235165823671941492583677631..8252387..651617835942495612738'  # double-solution
-        str_sdk = '13........2...9......8..7..6....48....5.2...........4.....3...27..5.....8........'
+        #str_sdk = '.......12........3..23..4....18....5.6..7.8.......9.....85.....9...4.5..47...6...' # Platinum Blonde - Seems to have a HUGE number of solutions ...
+        str_sdk = '9265714833514862798749235165823671941492583677631..8252387..651617835942495612738'  # double-solution
+        #str_sdk = '13........2...9......8..7..6....48....5.2...........4.....3...27..5.....8........'
         print(show_small(str_sdk))
         set_solved = m(str_sdk, list(), set())
         print(f"main(): Solutions: {set_solved}")

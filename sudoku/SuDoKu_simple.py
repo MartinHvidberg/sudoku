@@ -1,4 +1,5 @@
 
+import copy
 import logging
 import sys
 
@@ -122,8 +123,13 @@ def set_cell_value(c, v, sdk, pnc):
     :return: sdk, pnc
     """
     sdk = sdk[:c] + str(v) + sdk[c + 1:]  # Insert the value
-    l_clearmarks = [n for n in range(81) if (n == c or (sdk[n] == '0') and (same_row(n, c) or same_col(n, c) or same_box(n, c)))]
-    pnc = [pnc[n].remove(v) if n in l_clearmarks else pnc[n] for n in range(81)]
+    l_clearmarks = [n for n in range(81) if (sdk[n] == '0') and (same_row(n, c) or same_col(n, c) or same_box(n, c))]
+    #pnc = [pnc[n].difference_update({v}) if n in l_clearmarks else pnc[n] for n in range(81)]  Don't use - produces None
+    for n in l_clearmarks:
+        s_new = pnc[n]
+        s_new -= {v}  # Ugly but works ...
+        pnc[n] = s_new
+    pnc[c] = set()  # Clear all pencil-marks for the cell that have received the value v
     return sdk, pnc
 
 
@@ -186,44 +192,24 @@ def m_1(str_sdk, lst_pnc=list(), set_solutions=set(), itdpt=0):
     return set_solutions
 
 
-def m(sdk, l_pnc, s_sol):
-    """ Solve the Sudoku, recursively. Find all solutions
-    make l_pnc if empty (initial PencilMarks, this only happens at very start)
-    if sdk is Done
-        add sdk to s_sol
-        return s_sol   <---
-    if sdk is deadlock (cell with val = 0, has no pnc left)
-        return s_sol  <---
-    determine shortest pnc
-    select cand. cell w shortest pnc
-    for each posib. val in pnc for cand. cell
-        set cell val
-        remove relevant pnc marks
-        s_sol = m(sdk, l_pnc, s_sol)  <--->
-    return s_sol  <---
-    :param sdk: 
-    :param l_pnc: 
-    :param s_sol: 
-    :return: 
-    """
-    sdk = sdk.replace('.', '0')  # because we allow '.' in input
+def m_2(l_sdk, l_pnc=list(), s_sol=set(), itdpt=0):
+    l_sdk = l_sdk.replace('.', '0')  # because we allow '.' to represent 'empty' in input
     if l_pnc == []:  # Pencil marks is empty, we must be just started ..
         for n in range(81):
-            l_pnc.append(pcl(sdk, n // 9, n % 9))
-    if done(sdk):
-        s_sol.update([sdk])
+            l_pnc.append(pcl(l_sdk, n // 9, n % 9))
+    if done(l_sdk):  # If the SoDuKo is solved
+        log.info(f"{'.' * itdpt}: BINGO: {l_sdk}")
+        s_sol.update([l_sdk])
         return s_sol
-    if any([sdk[n] == 0 and l_pnc[n] == [] for n in range(81)]):  # sdk is deadlock
+    if any([l_sdk[n] == 0 and l_pnc[n] == [] for n in range(81)]):  # If the SuDoKu is deadlock
+        log.info(f"{'.' * itdpt}: ABORT: {l_sdk}")
         return s_sol
-    # determine shortest pnc
-    l_openings = [n for n in range(81) if sdk[n] == '0']  # ToDo integrate this and next line to one
-    i_min_pnc = min([len(l_pnc[n]) for n in l_openings])  # minimum pencil-marks in any open cell
-    # select cand. cell w shortest pnc
-    i_next_move = [n for n in l_openings if len(l_pnc[n]) == i_min_pnc][0]  # first cell to have min pencil-marks
-    # for each posib. val in pnc for cand. cell
-    for s_cellvall in l_pnc[i_next_move]:
-        sdk, pnc = set_cell_value(i_next_move, s_cellvall, sdk, l_pnc)
-        sol = m(sdk, l_pnc, s_sol)
+    for i_next_move in [n for n in range(81) if l_sdk[n] == '0']:
+        for s_cellvall in l_pnc[i_next_move]:
+            log.info(f"{'.'*itdpt}: -> val: {s_cellvall} in: {i_next_move}, on: {l_sdk}, pnc: {l_pnc}")
+            l_sdk_next, l_pnc_next = set_cell_value(i_next_move, s_cellvall, copy.deepcopy(l_sdk), copy.deepcopy(l_pnc))  # difficult to see, but deepcopy is necessary.
+            s_sol = m_2(l_sdk_next, l_pnc_next, s_sol, itdpt + 1)
+            log.info(f"{'.'*itdpt}: <- val: {s_cellvall} in: {i_next_move}, on: {l_sdk}, pnc: {l_pnc}")
     return s_sol
 
 
@@ -235,10 +221,12 @@ if __name__ == '__main__':
         print('    where puzzle is an 81 character string representing the puzzle read left-to-right, top-to-bottom, and 0 is a blank')
 
         #str_sdk = '.......12........3..23..4....18....5.6..7.8.......9.....85.....9...4.5..47...6...' # Platinum Blonde - Seems to have a HUGE number of solutions ...
-        str_sdk = '9265714833514862798749235165823671941492583677631..8252387..651617835942495612738'  # double-solution
+        #str_sdk = '8..6..9.5.............2.31...7318.6.24.....73...........279.1..5...8..36..3......' # This is known to have 5 solutions
+        str_sdk = '8..5.9..67..3.1..2..3...8....12.34..9...6...3..68.47....4...5..2..4.5..76..9.2..4'  # r() gets this fast
+        #str_sdk = '9265714833514862798749235165823671941492583677631..8252387..651617835942495612738'  # double-solution
         #str_sdk = '13........2...9......8..7..6....48....5.2...........4.....3...27..5.....8........'
         print(show_small(str_sdk))
-        set_solved = m(str_sdk, list(), set())
+        set_solved = m_2(str_sdk)
         print(f"main(): Solutions: {set_solved}")
 
         # NOTE r() have moved ...

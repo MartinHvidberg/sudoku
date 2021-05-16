@@ -25,11 +25,11 @@ __version__ = "0.1.1"
 logging.basicConfig(
     # format="%(asctime)s - %(levelname)s - %(message)s",  # minimum
     format="%(asctime)s - [%(filename)s:%(lineno)d] - %(levelname)s - %(message)s",  # verbose
-    filename=f"{__file__.rsplit('.',1)[0]}.log",
+    filename="sdk_base.log",
     filemode="w",
     level=logging.INFO)  # logging.DEBUG
-log = logging.getLogger(__name__)
-log.info("Start!")
+logbase = logging.getLogger("sdk_base")
+logbase.info("sdk_base: Start!")
 
 
 class SDK_base(object):
@@ -45,13 +45,13 @@ class SDK_base(object):
             pass # leaving the sudoku empty ...
         elif len(str_ini) == 81:
             self.g = str_ini.replace('.', '0') # Backup the original (init) givens, in string form
-            log.info(f"Input: {str_ini}")  # We allow '.' for empty in the raw input
+            logbase.info(f"Input: {str_ini}")  # We allow '.' for empty in the raw input
             for n in range(len(self.g)):
                 k, l = self.n2kl(n)
                 v = self.g[n]
                 self.set(k, l, v)
         else:
-            log.error("#101 > SuDoKu Object can't create, because ini string do not have length 0 or 81.")
+            logbase.error("#101 > SuDoKu Object can't create, because ini string do not have length 0 or 81.")
 
     # transform between n (all 81 in one [0..80] order), and k, l (the array 9x9 matrix order)
 
@@ -101,15 +101,15 @@ class SDK_base(object):
         # Convert v from str to int, if needed ...
         if isinstance(value, str) and len(value) == 1 and '0123456789'.find(value) >= 0:
             value = int(value)
-        log.info(f"set(); set({k},{l}, {value})")
+        logbase.info(f"set(); set({k},{l}, {value})")
         if all([isinstance(itm, int) for itm in [k, l, value]]):
             if all([0 <= itm <= 9 for itm in [k, l, value]]):
                 if value == 0 or value not in self.this_row(k, l):
                     if value == 0 or value not in self.this_col(k, l):
                         if value == 0 or value not in self.this_box(k, l):
                             self.m[l][k] = value  # Yes the raw m has index order [l][k]
-                            # log.info(f"------ k,l: {k},{l}, v: {value}")
-                            # log.info(f"\n{self.show_small()}")
+                            # logbase.info(f"------ k,l: {k},{l}, v: {value}")
+                            # logbase.info(f"\n{self.show_small()}")
                             return True
                         else:
                             # ToDo: Change these to non-terminating actions, like return False, this is too destructive.

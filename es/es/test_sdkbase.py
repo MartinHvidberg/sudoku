@@ -1,9 +1,11 @@
 import unittest
 import sdk_base
+#import sdk_coms as sdk_base  # To test if sdk_base functionality inherits to sdk_coms, Rename all 'sdk_base.SDK_base()'
 
-SDKI = '100000002090400050006000700050903000000070000000850040700000600030009080002000001'
-SDKC = ''  # TBD a completed SuDoKu
-SDKZ = '000000000000000000000000000000000000000000000000000000000000000000000000000000000'
+SDKI = '100000002090400050006000700050903000000070000000850040700000600030009080002000001'  # Some hard SuDoKu, Maybe 'the monster'
+SDKA = '703108459900060800000000000010290367075003008000701000002070015086350020000010000'  # A (random) SuDoKu from file 13a at http://lipas.uwasa.fi/~timan/sudoku/
+SDKC = '763128459924567831851934276418295367275643198639781542342876915186359724597412683'  # Solution to SDKA
+SDKZ = '000000000000000000000000000000000000000000000000000000000000000000000000000000000'  # A completely empty SuDoKu grid
 
 
 class MyTestCase(unittest.TestCase):
@@ -139,10 +141,10 @@ class MyTestCase(unittest.TestCase):
         # validate  - Difficult to test, as software won't let me build illegal data :-(
         # is_valid  - Quite trivial, but no excuse not to test!
         # complete
-        sdk = sdk_base.SDK_base(SDKI)
-        self.assertFalse(sdk.is_complete())
-        # sdk = sdk_base.SDK_base(SDKC)
-        # self.assertTrue(sdk.is_complete())
+        sdki = sdk_base.SDK_base(SDKI)
+        self.assertFalse(sdki.is_complete())
+        sdkc = sdk_base.SDK_base(SDKC)
+        self.assertTrue(sdkc.is_complete())
 
 
 if __name__ == '__main__':

@@ -15,10 +15,11 @@ Not in the Base Class is things like pencil-marks, solving and solubility, permu
 import logging
 import string
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 # History
-# ver. 0.1.0 SDK_base & test_sdk_base implemented
+# ver. 0.1.0 sdk_base & test_sdk_base implemented
+# ver. 0.1.1 fixed bug in is_complete()
 
 # create logger
 logging.basicConfig(
@@ -38,9 +39,6 @@ class SDK_base(object):
         """ initialises a SuDoKu object """
         self.g = ''.join([81*'0'])  # Givens: Text string of 81 chr. The original input, saved for reference
         self.m = [[0 for k in range(9)] for l in range(9)]  #  Matrix: list of 9 lists of 9 int = 9x9 matrix of [l][k]
-        # XXX self.p = [set() for n in range(81)] # Pencil-marks: List of set.
-        # XXX self.s = list() # list of solutions, i.e. correctly solved matrix(s), format as .m
-        # .s = {s=list(), single=None, multi=None}  # Solution space
         self.v = True  # Valid: Boolean - The SuDoKu is valid (empty is also valid)
         # Fill the .g and .m if input data is provided
         if len(str_ini) == 0:
@@ -52,20 +50,6 @@ class SDK_base(object):
                 k, l = self.n2kl(n)
                 v = self.g[n]
                 self.set(k, l, v)
-
-            # # ToDo: Move this part to sdk_coms, where we have a solver.
-            # if self.v: # If it's valid, so far, check if it's solvable
-            #     try:
-            #         # ToDo: This is doubtful - do the solver run x81 times? and what exactly do we prove here?
-            #         self.solution = [[int(SuDoKuX.sudoku99_NEW_XXX_(str_ini)[j*9+i].replace('.','0')) for i in range(9)] for j in range(9)] # Solve using brute force, to see if solution(s) exist
-            #         log.info("Input is Solvable, but was not checked for uniqueness...")
-            #     except:
-            #         self.solution = self.m # If not solvable, keep the init values to avoid a Null variable.
-            #         self.v = False # It looked valid, but it's not ...
-            #         log.warning("Input is NOT Solvable...")
-            # if self.v: # If it's valid, and also is solvable
-            #     self.pencil() # Fill in the pencil marks, for the valid, solvable, init matrix
-
         else:
             log.error("#101 > SuDoKu Object can't create, because ini string do not have length 0 or 81.")
 
@@ -84,7 +68,7 @@ class SDK_base(object):
 
     def validate(self):
         # Check if Valid
-        bol_val_1 = all([(isinstance(itm, int) and 0 <= itm <= 9) for itm in self.m])  # all single digit int
+        bol_val_1 = all([[(isinstance(itm, int) and 0 <= itm <= 9) for itm in line] for line in self.m])  # all single digit int
         bol_val_2 = all([len(area) == len(list(set(area))) for area in self.areas()])  # no duplicates
         self.v = all([bol_val_1, bol_val_2])
 

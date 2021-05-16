@@ -37,22 +37,24 @@ class SuDoKu(object):
     
     def __init__(self, str_ini, lst_hardess = STPS):
         """ initialises a SuDoKu object """
+        # ToDo: Overview of intended meaning og .m .v .p .rec, etc.
         self.hardness = lst_hardess
         self.m = [['0' for i in range(9)] for j in range(9)] # Empty (0 filled) matrix
-        self.p = [[set() for i in range(9)] for j in range(9)] # Empty (empty lists) pencil-matrix
+        self.p = [[set() for i in range(9)] for j in range(9)] # Empty (empty sets) pencil-matrix
         self.rec = list() # Track record of solving tactics steps
         if len(str_ini) == 0:
             pass # Creating empty sudoku ...
         elif len(str_ini) == 81:
-            log.info("Input: "+str_ini)
+            log.info(f"Input: {str_ini}")
             self.i = str_ini # Backup the original (init) fill, in string form
             try:
                 self.m = [[int(str_ini[j*9+i].replace('.','0')) for i in range(9)] for j in range(9)]
             except:
                 log.error("#102 > SuDoKu Object can't create, Check that it only contains digits, and '.'")
             self.v = self.validate() # Validate that the fill is legal
-            if self.v: # If it's valid, so far, check it it's solvable
+            if self.v: # If it's valid, so far, check if it's solvable
                 try:
+                    # ToDo: This is doubtful - do the solver run x81 times? and what exacely do we proove here?
                     self.solution = [[int(SuDoKuX.sudoku99_NEW_XXX_(str_ini)[j*9+i].replace('.','0')) for i in range(9)] for j in range(9)] # Solve using brute force, to see if solution(s) exist
                     log.info("Input is Solvable, but was not checked for uniqueness...")
                 except:

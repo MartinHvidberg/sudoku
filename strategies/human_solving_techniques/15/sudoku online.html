@@ -1,0 +1,405 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>sudoku online.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252" charset="ISO-8859-1">
+<meta content="Sudoku" name="Abstract">
+<meta content="Trevor Bond" name="Author">
+<meta content="Sudoku, Kakuro, Crosswords, Codewords, Hitori, Killer Sudoku" name="Classification">
+<meta content="Trevor Bond 2009" name="Copyright">
+<meta content="description" name="Description">
+<meta content="Global" name="Distribution">
+<meta content="Sudoku,sudoku,Su doku,su doku,tips,Michael Mepham, Daily Telegraph,Los Angeles Times,archive,competition,solving,hints,tips,strategies" name="Keywords">
+<meta content="General" name="Rating">
+<meta content="7 Days" name="Revisit-After">
+<meta content="All" name="Robots">
+	<link href="sudoku%20online_files/sudokuorgnew_002.css" rel="stylesheet" type="text/css">
+	<link href="sudoku%20online_files/submit.css" rel="stylesheet" type="text/css">
+	
+<style type="text/css" media="screen">
+@import url( ./CSS/cm2.css );
+.style1 {font-size: 8pt; font-family: verdana, sans-serif; color: #4a4a4a;}
+.style2 {font-size: 8pt; font-family: verdana, sans-serif; font-style: normal; color: #333333;}
+body {
+	background-color: #FFF;
+}
+</style>
+
+<meta content="MSHTML 6.00.6001.18023" name="GENERATOR">
+	<script type="text/javascript" src="sudoku%20online_files/NMSFieldVal.js"></script><style>@media print {#ghostery-tracker-tally {display:none !important}}</style>
+	<script type="text/javascript" src="sudoku%20online_files/pop.js"></script>
+	<script language="javascript" type="text/javascript">
+// <!--
+var SGW;
+SGW = '';
+function popMe(params) {
+	SGW = window.open(params,'_blank','resizable=no,scrollbars=yes,left=300,top=100,screenX=300,screenY=100,width=420,height=505');
+    if (!SGW.opener)
+         SGW.opener = self; 
+}
+function popupimp(params) {
+	SGW = window.open(params,'_blank','resizable=no,scrollbars=yes,left=300,top=100,screenX=300,screenY=100,width=400,height=385');
+    if (!SGW.opener)
+         SGW.opener = self; 
+}
+function IsNumeric(strChar)   //  check for valid numeric strings
+{
+	var strValidChars = "123456789";
+	var strChar;
+	var blnResult = true;
+
+	if (strChar.length == 0) return false;
+
+	if (strValidChars.indexOf(strChar) == -1)
+	   blnResult = false;
+	return blnResult;
+}
+function validateCompetition(aform)
+{   
+	var okay = true; 
+	var Solution, actualSol='', i,x,y,k=0,c;
+	var thepuzzle = aform.elements['puzstring'].value;
+	var incomplete = false;
+	
+	// These values must be filled in
+	realbgc = aform.elements["puzYourName"].style.backgroundColor;
+	if (!validation.nonBlank(aform.elements["puzYourName"],false)) okay = false;
+	if (!validation.validEmail(aform.elements["puzYourEmail"],false)) okay = false;
+	if (!validation.nonBlank(aform.elements["puzYourCountry"],false)) okay = false;
+	if ( aform.puzTimeToDo.selectedIndex == 0 )
+	{
+		aform.puzTimeToDo.style.backgroundColor = "yellow";
+		okay = false;
+	}
+	else aform.puzTimeToDo.style.backgroundColor = "white";
+	if( !okay ) alert("Some of the fields are not correct - these have been highlighted in yellow");
+	
+	for(y=1;y<10;y++)
+		for(x=1;x<10;x++,k++)
+			if( thepuzzle.charAt(k) == '.' )
+			{
+				c = aform.elements['C' + y + x].value;
+				if( c.length == 0 ) { incomplete = true; actualSol = actualSol + '0'; }
+				else if( IsNumeric(c) == false ) { incomplete = true; actualSol = actualSol + '0'; }
+				else actualSol = actualSol + c;
+			}
+			else
+				actualSol = actualSol + thepuzzle.charAt(k);
+
+	aform.elements["puzsolution2"].value = actualSol;
+	if( incomplete )
+	{
+		okay = false;
+		alert("Your solution contains either blanks or non-numbers. Please check again.");
+	}	
+	return okay;
+}
+//-->
+</script>
+
+</head>
+<body bgcolor="#000000">
+
+
+
+<div align="center">
+  <table width="761" cellspacing="0" cellpadding="0" border="0">
+  <tbody>
+  <tr height="4">
+    <td rowspan="10" width="1" valign="center" bgcolor="#a9a9a9" align="center"></td>
+    <td width="800" valign="center" height="4" bgcolor="#a9a9a9" align="center"></td>
+    <td rowspan="10" width="1" valign="center" bgcolor="#a9a9a9" align="center"></td></tr>
+  <tr height="79">
+    <td class="Header1" width="800" valign="top" height="79" background="sudoku%20online_files/menu1.html" align="center">
+    
+    <style type="text/css">
+<!--
+.style1 {color: #FFFF00}
+-->
+</style>
+<table width="800" height="120" cellspacing="0" cellpadding="0" border="0" background="sudoku%20online_files/Header.jpg">
+  <tbody><tr>
+    <td width="146" valign="top" height="105">&nbsp;</td>
+    <td width="427" height="105"></td>
+    <td width="147"><div align="center"></div></td>
+  </tr>
+  <tr>
+    <td colspan="3" valign="bottom" height="36"><table id="tabmenu" width="720" cellspacing="0" cellpadding="0" align="centre">
+        <tbody><tr valign="top" align="centre">
+          <td width="25"><span class="style1"></span></td>
+          <td class="tab" width="37" align="center"><a href="http://www.sudoku.org.uk/index.asp" class="style1">Home</a></td>
+          <td class="separator style1" width="4">&nbsp;</td>
+          <td class="tab" width="60" nowrap="nowrap" align="center"><a href="http://www.sudoku.org.uk/Puzzles/Puzzles.asp" class="style1">Puzzles</a></td>
+          <td class="separator style1" width="4">&nbsp;</td>
+          <td class="tab" width="60" align="center"><a href="http://www.sudoku.org.uk/SudokuSolver/Solvers.asp" class="style1">Solvers</a></td>
+          <td class="separator style1" width="4">&nbsp;</td>
+          <td class="tab" width="60" align="center"><a href="http://www.sudoku.org.uk/Archives.asp" class="style1">Archives</a></td>
+          <td class="separator style1" width="4">&nbsp;</td>
+          <td class="tab" width="60" align="center"><a href="http://www.sudoku.org.uk/Competitions.asp" class="style1">Competitions</a></td>
+          <td class="separator style1" width="4">&nbsp;</td>
+          <td class="tab" id="selectedtab" width="60" align="center"><a href="http://www.sudoku.org.uk/SolvingSudoku.asp" class="style1">Techniques</a></td>
+          <td class="separator style1" width="4">&nbsp;</td>
+        </tr>
+        <tr valign="top" align="centre">
+          <td><span class="style1"></span></td>
+          <td class="tab style1" align="center">&nbsp;</td>
+          <td class="separator style1">&nbsp;</td>
+          <td class="tab style1" align="center"><a href="http://www.sudoku.org.uk/News.asp" class="style1">News</a></td>
+          <td class="separator style1">&nbsp;</td>
+          <td class="tab style1" nowrap="nowrap" align="center"><a href="http://www.sudoku.org.uk/Contact.asp" class="style1">Contact</a></td>
+          <td class="separator style1">&nbsp;</td>
+          <td class="tab style1" align="center"><a href="http://www.sudoku.org.uk/PuzzlePacks.asp" class="style1">Puzzle Packs</a></td>
+          <td class="separator style1">&nbsp;</td>
+          <td class="tab style1" align="center"><a href="http://www.sudoku.org.uk/Publications.asp" class="style1">Publication</a></td>
+          <td class="separator style1">&nbsp;</td>
+          <td class="tab style1" align="center"><a href="http://www.sudoku.org.uk/Crosswords/Crosswords.asp" class="style1">Crosswords</a></td>
+          <td class="separator style1">&nbsp;</td>
+          <td class="tab style1" align="center"><a href="http://www.sudoku.org.uk/Codewords/Codewords.asp" class="style1">Codewords</a></td>
+        </tr>
+    </tbody></table></td>
+  </tr>
+  <tr>
+  </tr>
+<tr></tr>
+</tbody></table>
+
+
+    
+      </td></tr>
+  <tr height="30">
+    <td class="Background2" width="800" valign="center" height="30" background="sudoku%20online_files/MetalStrip.html" align="center">
+      <table width="740" cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+        <tr>
+          <td class="Header1" width="372">SolvingTechniques</td>
+          <td class="BodyCopyBold2" width="20" valign="center" align="center">•</td>
+          <td width="357" valign="center" align="right">
+            <table cellspacing="2" cellpadding="0" border="0">
+              <tbody>
+              <tr>
+                <td class="BodyCopyBold" width="40" valign="center" align="right"></td>
+                <td width="10"></td>
+                <td class="BodyCopyBold" width="40" valign="center" align="left"></td>
+                <td width="20"></td></tr></tbody></table></td></tr></tbody></table></td></tr>
+  <tr height="1">
+    <td width="800" valign="center" height="1" bgcolor="#3f3f3f" align="center"></td></tr>
+  <tr>
+    <td class="Background3" width="800" valign="top" background="" align="center"><table width="100%" border="0">
+      <tbody><tr>
+        <td width="754" valign="top" height="946"><table width="96%" border="0">
+          <tbody><tr>
+            <td><table width="760%" border="0">
+              <tbody><tr>
+                <td colspan="3" class="Header1">&nbsp;</td>
+              </tr>
+              <tr>
+                <td colspan="3" class="Header1">Solving Sudoku</td>
+              </tr>
+              <tr>
+                <td colspan="3" class="BodyCopyPlain1">A complete guide to solving Sudoku puzzles. Here we show you the various techniques to solve Sudoku puzzles of all levels. <br>
+                  More strategies will be added over the coming days.</td>
+                </tr>
+              <tr>
+                <td width="12%">&nbsp;</td>
+                <td width="48%">&nbsp;</td>
+                <td width="40%">&nbsp;</td>
+              </tr>
+              <tr>
+                <td colspan="3" class="Header2">Techniques for solving Sudoku</td>
+                </tr>
+            </tbody></table></td>
+          </tr>
+                <tr height="1">
+					<td width="100%" valign="middle" height="1" bgcolor="#3f3f3f" align="center"></td>
+				</tr>
+          <tr>
+            <td><table width="100%" border="0">
+              <tbody><tr>
+                <td class="BodyCopyPlain1" valign="top">
+                
+                <table width="100%" border="0">
+  <tbody><tr>
+    <td class="BodyCopyBold">Basic Strategies</td>
+    <td valign="top">&nbsp;</td>
+    <td class="Header2" valign="top">Chaining Strategies</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+    <td class="BodyCopyPlain1" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="BodyCopyPlain1" width="37%"><ul>
+      <li><a href="http://www.sudoku.org.uk/SolvingTechniques/NakedPairs.asp">Naked Pairs</a></li>
+    </ul></td>
+    <td width="7%" valign="top">&nbsp;</td>
+    <td class="BodyCopyPlain1" width="56%" valign="top"><ul>
+      <li><a href="http://www.sudoku.org.uk/SolvingTechniques/X-WingFamily.asp" class="BodyCopyPlain1">X-Wing Family</a></li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td class="BodyCopyPlain1"><ul>
+      <li><a href="http://www.sudoku.org.uk/SolvingTechniques/HiddenPairs.asp"></a><a href="http://www.sudoku.org.uk/SolvingTechniques/NakedTriples.asp">Naked Triples</a></li>
+    </ul></td>
+    <td valign="top">&nbsp;</td>
+    <td class="BodyCopyPlain1" valign="top"><ul>
+      <li><a href="http://www.sudoku.org.uk/SolvingTechniques/SwordFish.asp">Sword-Fish</a></li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td class="BodyCopyPlain1"><ul>
+      <li><a href="http://www.sudoku.org.uk/SolvingTechniques/NakedQuads.asp">Naked Quads</a></li>
+    </ul></td>
+    <td valign="top">&nbsp;</td>
+    <td class="BodyCopyPlain1" valign="top"><ul>
+      <li><a href="http://www.sudoku.org.uk/SolvingTechniques/JellyFish.asp">Jelly Fish</a></li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td class="BodyCopyPlain1"><ul>
+      <li><a href="http://www.sudoku.org.uk/SolvingTechniques/HiddenPairs.asp">Hidden Pairs</a></li>
+    </ul></td>
+    <td valign="top">&nbsp;</td>
+    <td class="BodyCopyPlain1" valign="top"><ul>
+      <li><a href="http://www.sudoku.org.uk/SolvingTechniques/SimpleColoringAndChains.asp">Simple Coloring or Chains</a></li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td class="BodyCopyPlain1"><ul>
+      <li><a href="http://www.sudoku.org.uk/SolvingTechniques/HiddenPairs.asp"></a><a href="http://www.sudoku.org.uk/SolvingTechniques/HiddenTriples.asp">Hidden Triples &amp; Quads</a></li>
+    </ul></td>
+    <td valign="top">&nbsp;</td>
+    <td class="BodyCopyPlain1" valign="top"><ul>
+      <li><a href="http://www.sudoku.org.uk/SolvingTechniques/MultiColoring.asp">Multi-Coloring</a></li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td class="BodyCopyPlain1"><ul>
+      <li><a href="http://www.sudoku.org.uk/SolvingTechniques/IntersectionRemoval.asp">Pointing Pairs/Intersection Removal</a></li>
+    </ul></td>
+    <td valign="top">&nbsp;</td>
+    <td class="BodyCopyPlain1" valign="top"><ul>
+      <li><a href="http://www.sudoku.org.uk/SolvingTechniques/Y-Wing.asp">Y-Wing Strategy</a></li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td class="BodyCopyPlain1"><ul>
+      <li><a href="http://www.sudoku.org.uk/SolvingTechniques/BoxLineReduction.asp">Box/Line Reduction</a></li>
+    </ul></td>
+    <td valign="top">&nbsp;</td>
+    <td class="BodyCopyPlain1" valign="top"><ul>
+      <li><a href="http://www.sudoku.org.uk/SolvingTechniques/XYZ-Wing.asp">XYZ-Wing Strategy</a></li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td class="BodyCopyPlain1">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+    <td class="BodyCopyPlain1" valign="top"><ul>
+      <li><a href="http://www.sudoku.org.uk/SolvingTechniques/WXYZ-Wing.asp">WXYZ-Wing</a></li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td class="BodyCopyPlain1">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+    <td class="BodyCopyPlain1" valign="top"><ul>
+      <li><a href="http://www.sudoku.org.uk/SolvingTechniques/Y-WingChains.asp">Y-Wing Chains</a></li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td class="BodyCopyPlain1">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+    <td class="BodyCopyPlain1" valign="top"><ul>
+      <li><a href="http://www.sudoku.org.uk/SolvingTechniques/XY-Chain.asp">XY-Chain Strategy</a></li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td class="BodyCopyPlain1">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+    <td class="BodyCopyPlain1" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="BodyCopyBold">Uniqueness Strategies</td>
+    <td valign="top">&nbsp;</td>
+    <td class="BodyCopyPlain1" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="BodyCopyPlain1"><ul>
+      <li><a href="http://www.sudoku.org.uk/SolvingTechniques/UniqueRectangles.asp">Unique Rectangles</a></li>
+    </ul></td>
+    <td valign="top">&nbsp;</td>
+    <td class="BodyCopyPlain1" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="BodyCopyPlain1"><ul>
+      <li><a href="http://www.sudoku.org.uk/SolvingTechniques/EmptyRectangles.asp">Empty Rectangles</a></li>
+    </ul></td>
+    <td valign="top">&nbsp;</td>
+    <td class="BodyCopyPlain1" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="BodyCopyPlain1">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+    <td class="BodyCopyPlain1" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td class="BodyCopyPlain1">&nbsp;</td>
+    <td valign="top">&nbsp;</td>
+    <td class="BodyCopyPlain1" valign="top">&nbsp;</td>
+  </tr>
+                </tbody></table>
+                
+                
+                <p align="right">&nbsp;</p>                </td>
+                </tr>
+              </tbody></table></td>
+          </tr>
+                <tr height="1">
+					<td width="100%" valign="middle" height="1" bgcolor="#3f3f3f" align="center"></td>
+				</tr>
+          <tr>
+            <td height="12">&nbsp;</td>
+          </tr>
+        </tbody></table></td>
+        <td width="61" valign="top" align="left">&nbsp;</td>
+        <td width="2" valign="top" align="center">&nbsp;</td>
+      </tr>
+    </tbody></table></td></tr>
+  
+  <tr height="1">
+    <td width="800" valign="center" height="1" bgcolor="#3f3f3f" align="center"></td></tr>
+  <tr height="30">
+    <td class="Background2" width="800" valign="center" height="30" background="sudoku%20online_files/MetalStrip.html" align="center"><table width="740" cellspacing="0" cellpadding="0" border="0"><tbody><tr><td width="357" valign="center" align="right"><table width="740" cellspacing="0" cellpadding="0" border="0">
+      <tbody>
+        <tr>
+          <td class="Header1" width="372">SolvingTechniques</td>
+          <td class="BodyCopyBold2" width="20" valign="center" align="center">•</td>
+          <td width="357" valign="center" align="right"><table cellspacing="2" cellpadding="0" border="0">
+              <tbody>
+                <tr>
+                  <td class="BodyCopyBold" width="40" valign="center" align="right"></td>
+                  <td width="10"></td>
+                  <td class="BodyCopyBold" width="40" valign="center" align="left"></td>
+                  <td width="20"></td>
+                </tr>
+              </tbody>
+          </table></td>
+        </tr>
+      </tbody>
+    </table></td></tr></tbody></table></td></tr>
+  <tr height="79">
+    <td width="800" valign="center" height="79" background="sudoku%20online_files/Footer2.html" align="center"></td></tr>
+  <tr height="4">
+    <td width="800" valign="center" height="4" bgcolor="#FFFFFF" background="" align="center"></td></tr></tbody></table>
+<br>
+<link href="sudoku%20online_files/sudokuorgnew.css" rel="stylesheet" type="text/css">
+Website Design by <a class="sml3" title="http://www.splashsoftware.co.uk/" href="http://www.splashsoftware.co.uk/" target="_self">Splash Software Ltd  </a>Copyright
+2009<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="sudoku%20online_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-368218-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+
+</div></body></html>

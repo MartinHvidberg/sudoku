@@ -215,7 +215,7 @@ def m_2(l_sdk, l_pnc=list(), s_sol=set(), itdpt=0):
 
 if __name__ == '__main__':
     if len(sys.argv) == 2 and len(sys.argv[1]) == 81:
-        m(sys.argv[1])
+        m_2(sys.argv[1])
     else:
         print('Usage: python sudoku.py puzzle')
         print('    where puzzle is an 81 character string representing the puzzle read left-to-right, top-to-bottom, and 0 is a blank')

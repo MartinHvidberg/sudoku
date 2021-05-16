@@ -1,6 +1,16 @@
 /.idea/
 /data/images/
-/sudoku/SuDoKuS.log
+/data/text/
 /xtra/
 /sudoku/check_sudokus_for_multisolutions.sol
-/others_solvers/speed_comp_others.log
+*.log
+fun_*
+
+# Too large
+data/text/rohanrao/archive_9mill_sudoku.zip
+data/text/champagne/ph_2010.zip
+data/text/champagne/ph_1910.zip
+data/text/champagne/ph_1812.zip
+data/text/bryanpark/archive.zip
+other_generators/generator/sudoku_quizzes.npy.zip
+other_generators/generator/sudoku_solutions.npy.zip

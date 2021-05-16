@@ -3,11 +3,11 @@
 
 """ The Base Classes of SuDoKu
 Here we define the basic class that we use to work with SuDoKu
-Focus in on cells and their values - only, like
-getting and setting values in cells.
-Include validation of the SuDoKu, like is it valid, is it completed?
-Extract lists of cell-references (CXS) and/or cell-values for rows and cols,
-and relatively like: all other cells in this col., etc.
+Focus is only on cells and their values:
+- Getting and setting values in cells.
+- Include validation of the SuDoKu, like is it valid, is it completed?
+- Extract lists of cell-references (cps) and/or cell-values for rows and cols,
+- and relatively like: all other cells in this col., etc.
 
 Not in the Base Class is things like pencil-marks, solving and solubility, permutations and ranking.
 """
@@ -15,7 +15,10 @@ Not in the Base Class is things like pencil-marks, solving and solubility, permu
 import logging
 import string
 
-__version__ = "0.0.1"
+__version__ = "0.1.0"
+
+# History
+# ver. 0.1.0 SDK_base & test_sdk_base implemented
 
 # create logger
 logging.basicConfig(
@@ -35,7 +38,6 @@ class SDK_base(object):
         """ initialises a SuDoKu object """
         self.g = ''.join([81*'0'])  # Givens: Text string of 81 chr. The original input, saved for reference
         self.m = [[0 for k in range(9)] for l in range(9)]  #  Matrix: list of 9 lists of 9 int = 9x9 matrix of [l][k]
-        # OLD self.m = [int(itm) for itm in self.g]  # Matrix: list of int - To be gradually manipulated towards solutions
         # XXX self.p = [set() for n in range(81)] # Pencil-marks: List of set.
         # XXX self.s = list() # list of solutions, i.e. correctly solved matrix(s), format as .m
         # .s = {s=list(), single=None, multi=None}  # Solution space
@@ -50,7 +52,6 @@ class SDK_base(object):
                 k, l = self.n2kl(n)
                 v = self.g[n]
                 self.set(k, l, v)
-            # XXX self.validate() # Validate that the fill is legal
 
             # # ToDo: Move this part to sdk_coms, where we have a solver.
             # if self.v: # If it's valid, so far, check if it's solvable
@@ -75,7 +76,7 @@ class SDK_base(object):
         # print(f"n: {n} => k,l: {k},{l}")
         return k, l
 
-    # Validity function(s)
+    # Validity and completeness function(s)
 
     def is_valid(self):
         self.validate()
@@ -86,6 +87,16 @@ class SDK_base(object):
         bol_val_1 = all([(isinstance(itm, int) and 0 <= itm <= 9) for itm in self.m])  # all single digit int
         bol_val_2 = all([len(area) == len(list(set(area))) for area in self.areas()])  # no duplicates
         self.v = all([bol_val_1, bol_val_2])
+
+    def is_complete(self):
+        if self.is_valid():
+            for l in range(9):
+                for k in range(9):
+                    if self.m[l][k] == 0:
+                        return False
+            return True  # It's valid, and holds no more zeros
+        else:
+            return False
 
     # Basic functions (get, set)
 
@@ -177,11 +188,11 @@ class SDK_base(object):
 
     def cols(self):
         """ Return a list of lists of int, representing all cols in the SuDoKu """
-        return [self.this_col(1,i) for i in range(9)]
+        return [self.this_col(k,0) for k in range(9)]
 
     def boxs(self):
         """ Return a list of lists of int, representing all boxes in the SuDoKu """
-        return [self.this_box(i*3,j*3) for i in range(3) for j in range(3)]
+        return [self.this_box(k*3,l*3) for l in range(3) for k in range(3)]
 
     def areas(self):
         """ Return a list of lists of int, representing all rows, cols and boxes in the SuDoKu """

@@ -1,8 +1,5 @@
 /.idea/
-/data/images/
-/data/text/
 /xtra/
-/sudoku/check_sudokus_for_multisolutions.sol
 *.log
 fun_*
 

@@ -114,4 +114,5 @@ if __name__ == '__main__' :
     print("\nFalse")
     o = r(i, False)
     print(f"o: {o} duration: {datetime.datetime.now() - dtt_beg}")  # Newer executes because r() uses bloody sys.exit()
+    # end
 

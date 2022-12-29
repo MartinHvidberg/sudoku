@@ -5,7 +5,7 @@
 Here we define the Computer Solving class that we use to work with SuDoKu
 Focus is only on Computer friendly algorithms for solving
 
-Not in this Class are things like human-friendly algorithms for solving, making sudokus, nor permutations or ranking.
+NOT in this Class are things like human-friendly algorithms for solving, making sudokus, nor permutations or ranking.
 """
 
 import logging

@@ -1,0 +1,366 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head>
+  <title>How To Create a Solved Sudoku</title>
+<meta name="description" content="Algosome Software Design.">
+<meta name="keywords" content="Greg, Cope, Algosome, software, design">
+<meta name="copyright" content="Algosome Software Design Copyright 2009 Greg Cope All Rights Reserved">
+<meta name="author" content="Greg Cope">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="Classification" content="Software, Software Design, Software, Website Design, Programming.">
+<meta name="audience" content="All">
+<meta name="rating" content="general">
+<meta name="distribution" content="Global">
+<meta http-equiv="Content-Language" content="EN">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="How%20To%20Create%20a%20Solved%20Sudoku_files/style.css">
+<link rel="stylesheet" type="text/css" href="How%20To%20Create%20a%20Solved%20Sudoku_files/color.css">
+<link rel="stylesheet" type="text/css" href="How%20To%20Create%20a%20Solved%20Sudoku_files/menu.css">
+
+
+<link rel="stylesheet" type="text/css" href="How%20To%20Create%20a%20Solved%20Sudoku_files/articles.css">
+<meta name="verify-v1" content="/ozd4ZBePx/Bb2nFZklnL6JRkzSHZpDiilwJjkunWb0=">
+
+
+<style>@media print {#ghostery-tracker-tally {display:none !important}}</style></head>
+
+<body>
+
+<div id="main">
+
+
+
+<div id="logo">
+   <form action="/search.html" id="cse-search-box">
+  <div style="float:right;margin:0px;padding:0px;display:inline-block;vertical-align:text-top;margin-top:10px;">
+    <input type="hidden" name="cx" value="partner-pub-1855470872648963:6445834732">
+    <input type="hidden" name="cof" value="FORID:10">
+    <input type="hidden" name="ie" value="UTF-8">
+    <input type="text" name="q" size="35" placeholder="" style="background: rgb(255, 255, 255) url(&quot;https://www.google.com/cse/static/images/1x/en/branding.png&quot;) no-repeat scroll left 9px top 50%;">
+    <input type="submit" name="sa" value="Search" style="width:60px;">
+  </div>
+<input name="siteurl" value="www.algosome.com/articles/create-a-solved-sudoku.html" type="hidden"><input name="ref" value="" type="hidden"><input name="ss" value="" type="hidden"></form>
+<script async="" src="How%20To%20Create%20a%20Solved%20Sudoku_files/analytics.js"></script><script type="text/javascript" src="How%20To%20Create%20a%20Solved%20Sudoku_files/brand"></script>
+   <h1>How To Create a Solved Sudoku</h1>
+</div>
+    <div id="content">
+<div id="menu-collapsed">
+<a href="" id="collapsed-menu-head">☰&nbsp; Algosome</a>
+<ul>
+<li><a href="https://www.algosome.com/">Home</a></li>
+<li><a href="https://www.algosome.com/software.html">Software</a></li>
+<li><a href="https://www.algosome.com/resources/resources.html">Resources</a></li>
+<li><a href="https://www.algosome.com/articles/index.php">Articles</a></li>
+<li><a href="https://www.algosome.com/contact.html">Contact</a></li>
+<li><a href="https://www.algosome.com/about.html">About</a></li>
+</ul>
+</div>
+<div id="menu">
+      	
+        <ul id="nav">
+          <li class="top"><a href="https://www.algosome.com/" class="top_link"><span>Home</span></a></li>
+          <li class="top"><a href="https://www.algosome.com/software.html" class="top_link"><span class="down">Software</span></a>
+		 
+          </li>
+          <li class="top"><a href="https://www.algosome.com/resources/resources.html" class="top_link">Resources</a>
+		
+          </li>
+         <li class="top"><a href="https://www.algosome.com/articles/index.php" class="top_link">Articles</a></li> 
+          <li class="top"><a href="https://www.algosome.com/contact.html" class="top_link">Contact</a></li>
+          <li class="top"><a href="https://www.algosome.com/about.html" class="top_link">About</a></li>
+        </ul>
+      </div>
+
+      
+<div id="column1">
+
+
+
+
+  
+
+<div class="sidebaritem">
+          <div class="sbihead">
+            <h1>latest Articles</h1>
+          </div>
+          <div class="sbicontent"><ul class="latestlinks">
+          	<li><a href="https://www.algosome.com/articles/java-prevent-hash-code-collision.html">Preventing Hash Collisions</a></li><li><a href="https://www.algosome.com/articles/java-swing-panel-animation.html">Java Swing Layout Animation</a></li><li><a href="https://www.algosome.com/articles/java-javascript-engine.html">The Java Javascript Engine</a></li><li><a href="https://www.algosome.com/articles/animated-progress-dial-java.html">Creating a Progress Dial </a></li><li><a href="https://www.algosome.com/articles/probability-sampling-category.html">Discrete Categorical Random Sampling</a></li><li><a href="https://www.algosome.com/articles/linked-list-versus-array-list.html">LinkedList versus ArrayList</a></li><li><a href="https://www.algosome.com/articles/pca-three-dimensions-point-cloud.html">PCA For 3-dimensional Point Cloud</a></li><li><a href="https://www.algosome.com/articles/gui-builder-pitfalls.html">GUI Builders Pitfalls</a></li>          </ul>
+          </div>
+        </div>
+        
+        
+<div class="sidebaritem">
+<div class="sbihead">
+<h1>Categories</h1>
+</div>
+<div class="sbilinks">
+<ul>
+<li><a href="https://www.algosome.com/articles/index.php#Bioinformatics">Bioinformatics (15)</a></li>
+<li><a href="https://www.algosome.com/articles/index.php#Books">Books (4)</a></li>
+<li><a href="https://www.algosome.com/articles/index.php#Games%20and%20Graphics">Games and Graphics (18)</a></li>
+<li><a href="https://www.algosome.com/articles/index.php#Math">Math (13)</a></li>
+<li><a href="https://www.algosome.com/articles/index.php#Programming">Programming (49)</a></li>
+<li><a href="https://www.algosome.com/articles/index.php#Statistics">Statistics (7)</a></li>
+<li><a href="https://www.algosome.com/articles/index.php#Technology">Technology (9)</a></li>
+<li><a href="https://www.algosome.com/articles/index.php#Website%20Design">Website Design (8)</a></li>
+</ul>
+
+</div>
+</div>    
+        
+      
+    	
+	<div>
+    </div>
+    
+    <div style="clear:both"></div>
+      
+
+</div>      <div id="column2">
+
+      
+ 
+      
+      
+      
+      <h1>How To Create a Solved Sudoku</h1>      <p><a href="https://www.algosome.com/articles/index.php">Articles</a>&nbsp;—&gt;&nbsp;How To Create a Solved Sudoku</p>
+
+          <!-- Place this tag where you want the +1 button to render. -->
+<!--
+<div class="g-plusone" data-annotation="none"></div>
+
+ Place this tag after the last +1 button tag. 
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/platform.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+<script src="//platform.linkedin.com/in.js" type="text/javascript">
+ lang: en_US
+</script>
+<script type="IN/Share"></script> -->
+      <div style="float:right;margin:5px">
+
+<img src="How%20To%20Create%20a%20Solved%20Sudoku_files/sudoku-game.jpg" alt="Sudoku game board" width="200" height="199">
+
+</div>
+
+<p>When I first started playing with writing a sudoku game, I took the 
+long way to create sudoku templates. Using a recursive algorithm, I 
+would slowly fill up the grid with random numbers - checking the 
+validity of the puzzle at each step. If I hit a roadblock where the 
+puzzle cannot be completed, the algorithm would backtrack until it could
+ move forward, and then move forward again. Brute force to say the 
+least. </p>
+
+<p>There is a more elegant solution however: create a solved sudoku and then shuffle it. </p>
+
+<p><b>Step 1:</b> Creating the solved sudoku is easy: just shift the row
+ above to the left by 3 unless its vertical index is equally divisible 
+by 3 (starting with index 0) in which case shift the row above by 4.</p>
+
+<div style="text-align:center"><table style="width:200px;background-color:#dddddd;margin-left:auto;margin-right:auto">
+
+<tbody><tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+
+
+
+<tr><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>1</td><td>2</td><td>3</td></tr>
+
+
+
+<tr><td>7</td><td>8</td><td>9</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+
+
+
+<tr><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>1</td></tr>
+
+
+
+<tr><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+
+
+
+<tr><td>8</td><td>9</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+
+
+
+
+
+<tr><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>1</td><td>2</td></tr>
+
+
+
+<tr><td>6</td><td>7</td><td>8</td><td>9</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+
+
+
+<tr><td>9</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+
+</tbody></table></div>
+
+<p></p>
+
+
+
+<p>
+
+<b>Step 2:</b> Shuffle the rows and columns. Of course, to do so and 
+ensure the sudoku rules maintain integrity, you can only shuffle rows 
+and columns of the same group: groups being 1-3, 4-6, and 7-9. 
+
+Demonstrated below, the columns 1 and 3 are shuffled</p>
+
+<div style="text-align:center"><table style="width:200px;background-color:#dddddd;margin-left:auto;margin-right:auto">
+
+
+
+<tbody><tr><td>•</td><td>↔</td><td>•</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+
+<tr><td>3</td><td>2</td><td>1</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+
+
+
+<tr><td>6</td><td>5</td><td>4</td><td>7</td><td>8</td><td>9</td><td>1</td><td>2</td><td>3</td></tr>
+
+
+
+<tr><td>9</td><td>8</td><td>7</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+
+
+
+<tr><td>4</td><td>3</td><td>2</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>1</td></tr>
+
+
+
+<tr><td>7</td><td>6</td><td>5</td><td>8</td><td>9</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+
+
+
+<tr><td>1</td><td>9</td><td>8</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+
+
+
+
+
+<tr><td>5</td><td>4</td><td>3</td><td>6</td><td>7</td><td>8</td><td>9</td><td>1</td><td>2</td></tr>
+
+
+
+<tr><td>8</td><td>7</td><td>6</td><td>9</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+
+
+
+<tr><td>2</td><td>1</td><td>9</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+
+
+
+</tbody></table></div>
+
+
+
+
+
+<p>Now shift by rows:</p>
+
+<div style="text-align:center"><table style="width:200px;background-color:#dddddd;margin-left:auto;margin-right:auto">
+
+<tbody><tr><td>•</td><td>9</td><td>8</td><td>7</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+
+
+
+<tr><td>↓</td><td>6</td><td>5</td><td>4</td><td>7</td><td>8</td><td>9</td><td>1</td><td>2</td><td>3</td></tr>
+
+
+
+
+
+<tr><td>•</td><td>3</td><td>2</td><td>1</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+
+
+
+<tr><td></td><td>4</td><td>3</td><td>2</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>1</td></tr>
+
+
+
+<tr><td></td><td>7</td><td>6</td><td>5</td><td>8</td><td>9</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+
+
+
+<tr><td></td><td>1</td><td>9</td><td>8</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+
+
+
+
+
+<tr><td></td><td>5</td><td>4</td><td>3</td><td>6</td><td>7</td><td>8</td><td>9</td><td>1</td><td>2</td></tr>
+
+
+
+<tr><td></td><td>8</td><td>7</td><td>6</td><td>9</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+
+
+
+<tr><td></td><td>2</td><td>1</td><td>9</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+
+</tbody></table></div>
+
+
+
+<p></p>
+
+<p>And this can be continued for as many iterations as one likes, 
+shuffling random rows and columns from a random group, resulting in a 
+pseudo-random puzzle. I am still waiting for the day when I solve a 
+puzzle and the result is the first puzzle above: not sure I would even 
+notice until it is close to being solved. 
+
+      <br></p><div id="bottom-previous-link"><a href="https://www.algosome.com/articles/counting-sudoku-solutions.html">&lt;--&nbsp;Counting Sudoku Solutions in Java</a></div><div id="bottom-next-link"><a href="https://www.algosome.com/articles/implementing-undo-redo-java.html">Custom Undo/Redo Solution in Java&nbsp;--&gt;</a></div><div style="clear:both"></div>      
+
+<br>
+
+      <div><form action="add-comment.php" method="post"><div><input type="hidden" name="article" value="create-a-solved-sudoku"></div><div><input type="submit" value="Add Comment"></div></form></div>      
+      <br><h1>Comments</h1><ul><li><b>Para Parasolian&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</b>October, 2, 2016<p></p><p style="font-size:11px;">OK,
+ I see a solved puzzle. Now how do you erase some of the cells to create
+ the puzzle? (and ensure that the result is unique, and that you have 
+erased all possible cells).</p></li><li><b>Mattias l&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;</b>December, 1, 2018<p></p><p style="font-size:11px;">I
+ also figured out this algorithm. I found this post when googling the 
+problem with it. When doing it like this the numbers 123 will always be 
+on the same row in every cell, and there is other patterns for the rows.</p></li></ul>      
+      <p><a href="https://www.algosome.com/articles/index.php">Back to Articles</a></p>
+      </div>
+    </div>
+      <div id="footer"><a href="https://www.algosome.com/privacy-policy.html">Privacy policy</a> | <a href="https://www.algosome.com/copyright.html">Copyright</a> | <a href="https://www.algosome.com/links.html">Links</a> | <a href="https://www.algosome.com/site-map.html">Sitemap</a></div>
+</div>
+
+<div style="font-size: 0.8em; color: #AAAAAA; text-align: center;">
+<br>
+© 2008-2019 Greg Cope<br>
+<br>
+</div>
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-42510997-1', 'algosome.com');
+  ga('send', 'pageview');
+
+</script>
+<script type="text/javascript" src="How%20To%20Create%20a%20Solved%20Sudoku_files/jquery-2.js"></script>
+<script type="text/javascript" src="How%20To%20Create%20a%20Solved%20Sudoku_files/responsive-menu.js"></script>
+<script>
+$('#menu-collapsed').mobileMenuCollapse({});
+</script>
+<script data-ad-client="ca-pub-1855470872648963" async="" src="How%20To%20Create%20a%20Solved%20Sudoku_files/adsbygoogle.js"></script>
+<!--  -->
+
+
+
+
+
+
+
+</body></html>

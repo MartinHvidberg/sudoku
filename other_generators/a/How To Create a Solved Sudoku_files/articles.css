@@ -1,0 +1,73 @@
+@charset "UTF-8";
+/* CSS Document */
+span.commons{
+	color:purple;
+}
+span.comment{
+	color:green;
+}
+span.stringcontents{
+	color:blue;
+}
+span.primitive{
+	color:darkblue;
+}
+span.nulls{
+	color:darkblue;
+}
+.colorcode{
+	font-size:10px;
+}
+div.code{
+	overflow:scroll;
+	width:90%;
+	height:auto;
+	line-height:7px;
+	border:thin #aaa solid;
+	padding:5px;
+}
+.newcolor{
+	color:green;
+}
+ul.latestlinks a{
+color:#CCCCCC;
+}
+p {
+    font-size:14px;
+}
+
+#bottom-next-link{
+        float: right;
+}
+
+#bottom-previous-link{
+        float: left;
+}
+
+.adsense-link-468-15{
+    text-align:center; 
+    margin:auto;
+    padding: 1em 0 1em 0;
+}
+
+@media screen and (max-width: 740px){
+        #bottom-next-link{
+                float: none;
+                width: 100%;
+                text-align:center;
+        }
+        #bottom-previous-link{
+                float: none;
+                width: 100%;
+                text-align:center;
+        }
+
+}
+
+@media screen and (max-width: 450px){
+        .adsense-link-468-15{
+            display: none;
+        }
+}
+
+

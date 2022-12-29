@@ -1,0 +1,403 @@
+/* global */
+html{height: 100%;}
+
+body
+{ font-family: verdana, arial, sans-serif;
+  padding: 0px;
+  margin: 0px;
+  font-size: .68em;//.68em;
+}
+
+p
+{ margin: 0px;
+  padding: 0 0 1em 0;
+  line-height: 1.7em;
+}
+
+h1
+{ font-family: arial, sans-serif;
+  letter-spacing: .1em;
+  background: transparent;
+ 
+}
+
+h2
+{ margin: 0px;
+  padding: 0 0 0.2em 0;
+  font-size: 100%;
+}
+
+img{border: 0;}
+
+a{outline: none;}
+
+/* image positioning - left, right and center */
+.left
+{ float: left; 
+  padding: 0px 8px 0px 0px;
+}
+
+.right
+{ float: right; 
+  padding: 0px 0px 0px 8px;
+}
+
+.center
+{ display: block;
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* block quote */
+blockquote
+{ margin: 20px 0px 20px 0px; 
+  padding: 10px 20px 0px 20px;
+  border-left: 8px solid;
+}
+
+/* unordered list */
+ul
+{ margin: 0.5em 0 0 1em;
+  padding: 0em;
+}
+
+ul li
+{ list-style-type: square;
+  margin: 0 0 1em 0; 
+  padding: 0em;
+}
+
+/* ordered list */
+ol
+{ margin: 0.5em 0 0 1em;
+  padding: 0em;
+}
+
+ol li
+{ margin: 0 0 1em 0; 
+  padding: 0;
+}
+
+/* main container */
+#main
+{ max-width: 980px;//780px;
+  margin-left: auto; 
+  margin-right: auto;
+  box-shadow: 1em 1em 0.5em;
+}
+
+/* links above the logo / footer */
+#links, #footer
+{ margin-left: auto; 
+  margin-right: auto;
+  padding: 1em 0 1em 0;
+  width: 100%;
+  height: 1.2em;
+  font-size: 94%;
+  text-transform: uppercase;
+}
+
+#links{text-align: right;}
+
+#footer{text-align: center;}
+
+#links a, #footer a{text-decoration: none;}
+
+#links a:hover, #footer a:hover{text-decoration: underline;}
+
+/* logo */
+#logo
+{ 
+    margin:0;
+    background-color: #595959;
+    margin-left: auto; 
+  margin-right: auto;
+  width: 100%;
+  height: 100px;
+  text-align: left;
+  padding: 0;
+
+}
+
+#logo h1
+{ margin: 0px;
+  padding: 2em 0 0 1em;
+  font-size: 150%;
+  letter-spacing: .2em;
+  color: #FFFFFF;
+}
+
+/* navigation menu */
+#menu
+{ height: 42px;
+  width: 100%;
+  margin-left: auto; 
+  margin-right: auto;
+}
+
+#menu ul{margin: 0px auto;} 
+
+#menu li
+{ float: left;
+  margin: 0px; 
+  padding: 0px;
+} 
+
+#menu li a 
+{ display: block; 
+  float:  left;
+  height: 37px;
+  text-decoration: none; 
+  padding: 0.1em 1em 0.1em 1em; //3px 19px 2px 19px;
+  text-transform: uppercase;
+} 
+
+/* main content */
+#content
+{ margin-left: auto; 
+  margin-right: auto;
+  width: 100%;
+  height: auto;
+  padding: 0px;
+  overflow: hidden;
+  background: transparent;
+  color: #5A6370;
+  //background-color: #595959;
+} 
+
+/* column 1 - contains sidebar items */
+#column1
+{ 
+display: inline-block;
+width: 22%;//27%;
+  float:  right;
+  padding: 1em 0em 1em 0;//16px 0px 15px 0px;
+  background-color: #595959;
+  height: 100%;
+  margin: 0;
+  
+}
+
+.sidebaritem
+{ text-align: left;
+  width: 95%;//188px;
+  float: left;
+  margin: 0.5em 0 1em 0;//0px 0px 25px 0px;
+ 
+}
+
+.sbihead
+{ height: 14px;
+  width: 100%;//195px;//188px;
+  padding: 0.4em 0.1em 0.4em 1em ;//5px 0px 5px 19px;
+  text-transform: uppercase;
+  background: #FFFFFF url(gfx/sbi_header.gif);
+  color: #484E56;
+}
+
+.sbihead h1
+{ padding: 0px; 
+  margin: 0px; 
+  font-weight: bold;
+  font-size: 112%;
+}
+
+.sbicontent{padding: 14px 8px 8px 19px;}
+
+.sbicontent p
+{ line-height: 1em;//14px; 
+  padding: 0 0 0.5em 0;//0px 0px 8px 0px;
+  color:#CCCCCC;
+}
+.sbicontent h2{
+	color:#CCCCCC;
+}
+
+.sbilinks{padding: 0px;}
+
+.sbilinks ul{margin: 0px auto;} 
+
+.sbilinks li 
+{ margin: 0px; 
+  float: left; 
+  list-style: none; 
+} 
+.sbilinks li a
+{ float: left; 
+  height: 16px;
+  text-decoration: none; 
+  padding: 0.4em 0 0.4em 1em;//5px 0px 4px 19px;
+  width: 205px;
+  border: 0px;
+  background: #FFFFFF url(gfx/link.gif);
+  color: #D1D3D7;
+} 
+.sbilinks li a:hover
+{ float: left; 
+  height: 16px;
+  text-decoration: none; 
+  padding: 0.4em 0 0.4em 1em;//5px 0px 4px 19px;
+  width: 205px;
+  border: 0px;
+  background: #B7B7B7;
+  color: #1775D5;
+} 
+
+/* column 2 - page content */
+#column2
+{ text-align: justify;
+  width: 70%;//65%;
+  float: left;
+  padding: 1em 0 1em 1em;//1em;
+  margin: auto;
+  background-color: #FFFFFF;
+  padding-right: 6%;
+  
+}
+
+#column2 h1
+{ padding: 0.5em 0 0.4em 0;//6px 0px 4px 0px; 
+  margin: 0 0 1em 0;// 0px 0px 12px 0px; 
+  border-bottom: thin solid;
+  font-size: 150%;
+  text-transform: uppercase;
+  font-weight: normal;
+  color: #1775D5;
+;
+}
+#column2 h2{
+    font-size: 1.4em;
+}
+
+.sidebaritem a, #column2 a, .sidebaritem a:hover, #column2 a:hover
+{ padding: 0px 0px 2px 0px;
+  text-decoration: none;
+  border-bottom: 1px dashed;
+}
+
+.sidebaritem a:hover, #column2 a:hover{border-bottom: 1px solid;}
+.sbicontent p, .sbicontent li{/*IE necessary*/
+	color:#CCCCCC;
+}
+.sbicontent a{/*IE necessary*/
+	color:#CCCCCC;
+}
+/* contact page - form layout */
+form{margin-top: 0px;}
+
+div.row
+{ clear: both;
+  width: 448px;
+}
+
+div.row span.formlabel 
+{ float: left;
+  width: 150px;
+  text-align: left;
+}
+
+div.row span.forminput
+{ float: right;
+  text-align: right;
+} 
+
+div.spacer
+{ clear: both;
+  width: 80px;
+}
+
+input, textarea
+{ width: 259px; 
+  font-family: verdana, arial, sans-serif;
+  border: 1px solid;
+  font-size: 100%;
+  margin: 2px;
+}
+
+.submit
+{ font-family: verdana, arial, sans-serif;
+  border: 1px solid;
+  width: 70px;
+  height: 22px;
+  cursor: pointer;
+  font-size: 100%;
+}
+
+.object_center{
+	text-align:center;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#menu-collapsed{
+    display: none;
+    padding: 0;
+    padding-left: 1em;
+    font-size: 1.5em;
+    float:left;
+    width: 100%;
+    background-image: url(gfx/menu.gif);
+    background-repeat: repeat-x;
+    margin-bottom: 2em;
+}
+
+#menu-collapsed a{
+   font-size: 1.4em;
+   color: #D1D3D7;
+  text-decoration: none;
+}
+#menu-collapsed ul{
+    padding: 1em;
+}
+#menu-collapsed li a{
+    font-size: 1.0rem;
+    color: black;
+    padding: 1em 1em 1em 1em;
+}
+#menu-collapsed ul{
+	display:none;
+	list-style-type: none;
+}
+#column2 p{
+    font-size: 1.5em;
+}
+
+#sidebar-collapsed{
+	display: none;
+	float: right;
+	padding: 1em;
+	width: 25%;
+}
+#sidebar-collapsed a{
+	font-size: 1.4em;
+	color: #D1D3D7;
+text-decoration: none;	
+}
+@media screen and (max-width: 740px){
+   #column1{
+      display: none;
+      float:none;
+      width: 95%;
+   }   
+   #column2{
+       float:none;
+	padding-left: 5%;
+	padding-right: 5%;
+	     width: 87%;
+   }
+   #menu{
+       display: none;
+   }
+    #menu-collapsed{
+        display: inline;
+    }
+	#sidebar-collapsed{
+		display: inline;
+	}
+    #logo{
+        display: none;
+    }
+    img{
+        max-width: 100%;
+    }
+}

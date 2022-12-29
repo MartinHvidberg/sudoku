@@ -9,7 +9,7 @@ Focus is only on cells and their values:
 - Extract lists of cell-references (cps) and/or cell-values for rows and cols,
 - and relatively like: all other cells in this col., etc.
 
-Not in the Base Class is things like pencil-marks, solving and solubility, permutations and ranking.
+NOT in the Base Class is things like pencil-marks, solving and solubility, permutations and ranking.
 """
 
 import logging
@@ -60,6 +60,8 @@ class SDK_base(object):
         # print(f"n: {n} => k,l: {k},{l}")
         return k, l
 
+    # ToDo [] Do we also need an kl2n()
+
     # Validity and completeness function(s)
 
     def is_valid(self):
@@ -70,6 +72,7 @@ class SDK_base(object):
         # Check if Valid
         bol_val_1 = all([[(isinstance(itm, int) and 0 <= itm <= 9) for itm in line] for line in self.m])  # all single digit int
         bol_val_2 = all([len(area) == len(list(set(area))) for area in self.areas()])  # no duplicates
+        # ToDo[] Ensure unique values by col. row and box
         self.v = all([bol_val_1, bol_val_2])
 
     def is_complete(self):
@@ -132,7 +135,7 @@ class SDK_base(object):
     # CPS functions - returning various listes of Coordinate PairS
 
     def cps_this_row(self,k,l):
-        """ Return list of cps representing the row that (k,l) belongs to """
+        """ Return list of cps (coordinate pairs) representing the row that (k,l) belongs to """
         return [(i, l) for i in range(9)]
 
     def cps_this_col(self,k,l):
@@ -146,7 +149,6 @@ class SDK_base(object):
         bx = [(kk+j, ll+i) for i in range(3) for j in range(3)]
         ##print(f"kk: {kk}, ll: {ll}, bx: {bx}")
         return bx
-
 
     # Extraction part of the SuDoKu functions (area, col, row, box)
 

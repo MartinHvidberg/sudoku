@@ -13,7 +13,7 @@ NOT in the Base Class is things like pencil-marks, solving and solubility, permu
 """
 
 import logging
-import string
+# import string
 
 __version__ = "0.1.1"
 
@@ -32,7 +32,7 @@ logbase = logging.getLogger("sdk_base")
 logbase.info("sdk_base: Start!")
 
 
-class SDK_base(object):
+class SdkBase(object):
     """ Base SuDoKu class """
 
     def __init__(self, str_ini):
@@ -42,9 +42,9 @@ class SDK_base(object):
         self.v = True  # Valid: Boolean - The SuDoKu is valid (empty is also valid)
         # Fill the .g and .m if input data is provided
         if len(str_ini) == 0:
-            pass # leaving the sudoku empty ...
+            pass  # leaving the sudoku empty ...
         elif len(str_ini) == 81:
-            self.g = str_ini.replace('.', '0') # Backup the original (init) givens, in string form
+            self.g = str_ini.replace('.', '0')  # Backup the original (init) givens, in string form
             logbase.info(f"Input: {str_ini}")  # We allow '.' for empty in the raw input
             for n in range(len(self.g)):
                 k, l = self.n2kl(n)
@@ -89,11 +89,11 @@ class SDK_base(object):
 
     def get(self, k=None, l=None):
         """ get a cell or a column (k) or a line (l) or all 81 values in the matrix """
-        if k != None and l != None:
+        if k is not None and l is not None:
             return self.m[l][k]
-        elif l != None:
+        elif l is not None:
             return self.m[l]
-        elif k != None:
+        elif k is not None:
             return 'k'
         else:
             return self.m
@@ -134,15 +134,15 @@ class SDK_base(object):
 
     # CPS functions - returning various listes of Coordinate PairS
 
-    def cps_this_row(self,k,l):
+    def cps_this_row(self, k, l):
         """ Return list of cps (coordinate pairs) representing the row that (k,l) belongs to """
         return [(i, l) for i in range(9)]
 
-    def cps_this_col(self,k,l):
+    def cps_this_col(self, k, l):
         """ Return list of cps (coordinate pairs), representing the col that (k,l) belongs to """
         return [(k, i) for i in range(9)]
     
-    def cps_this_box(self,k,l):
+    def cps_this_box(self, k, l):
         """ Return list of cps (coordinate pairs), representing the box that (k,l) belongs to """
         kk = (k//3)*3
         ll = (l//3)*3
@@ -152,21 +152,19 @@ class SDK_base(object):
 
     # Extraction part of the SuDoKu functions (area, col, row, box)
 
-    def this_row(self,k,l):
+    def this_row(self, k, l):
         """ Return list of digits, representing the row that (k,l) belongs to """
         return self.m[l] # Not using ._cps_ since this is simpler and faster
 
-    def this_col(self,k,l):
+    def this_col(self, k, l):
         """ Return list of digits, representing the col that (k,l) belongs to """
-        #ret = [itm[k] for itm in self.m] # Not using .cps_ ???
         cps = self.cps_this_col(k, l)
         ret = [self.get(kk, ll) for kk, ll in cps]
-        ##print(f"this_col(); k: {k}, l: {l}, cps: {cps}, ret: {ret}")
         return ret
 
-    def this_box(self,k,l):
+    def this_box(self, k, l):
         """ Return list of digits, representing the box that (k,l) belongs to """
-        return [self.get(i,j) for i,j in self.cps_this_box(k,l)]
+        return [self.get(i, j) for i, j in self.cps_this_box(k,l)]
 
     def rows(self):
         """ Return a list of lists of int, representing all rows in the SuDoKu """
@@ -178,11 +176,11 @@ class SDK_base(object):
 
     def boxs(self):
         """ Return a list of lists of int, representing all boxes in the SuDoKu """
-        return [self.this_box(k*3,l*3) for l in range(3) for k in range(3)]
+        return [self.this_box(k*3, l*3) for l in range(3) for k in range(3)]
 
     def areas(self):
         """ Return a list of lists of int, representing all rows, cols and boxes in the SuDoKu """
-        return self.rows()+self.cols()+self.boxs()
+        return self.rows() + self.cols() + self.boxs()
 
     # Show - convert to print friendly string
 
@@ -199,6 +197,7 @@ class SDK_base(object):
             return (v + l(0) + l(1) + l(2) + v + l(3) + l(4) + l(5) + v + l(6) + l(7) + l(8) + v).strip()
 
         return q()
+
 
 if __name__ == '__main__':
     print("  -= This module can not be run, but must be called =- ")

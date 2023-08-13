@@ -11,7 +11,7 @@ Note: The Class-hierarchy is, so far, SdkBase >> SdkComs >> SdkHums. """
 
 import logging
 
-import sdk_coms
+import ec_sudoku.es.sdk_coms as sdk_coms
 
 __version__ = "0.0.1"
 

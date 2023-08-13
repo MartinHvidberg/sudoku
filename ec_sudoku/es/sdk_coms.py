@@ -13,7 +13,7 @@ import logging
 import sys
 import datetime
 
-import sdk_base
+import ec_sudoku.es.sdk_base as sdk_base
 
 __version__ = "0.0.1"
 

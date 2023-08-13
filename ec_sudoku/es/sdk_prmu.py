@@ -15,7 +15,8 @@ Note: This module do not extend the SoDuKo class, but works with it
 
 import logging
 
-import sdk_hums
+import ec_sudoku.es.sdk_hums as sdk_hums
+import ec_sudoku.es.sdk_prmu as sdk_prmu
 
 __version__ = "0.0.1"
 
@@ -115,8 +116,52 @@ def permute(sdk_in, str_fr="0123456789", str_to="0123456789"):  # XXX Should rat
     return sdk_ou
 
 
+def make8fermu(sdk_in):
+    """ From a given SuDoKu
+        Create all the 8 possible figure-permutations,
+        i.e. all the permutations that can be created with turn- and flip-operations
+        Return them in order, i a list, enduring that the normal-figure is number 0
+        """
+    set_8 = set()
+    set_8.add(sdk_in.dump_str())
+    # print(f"\nTopLeft - Vert\n{sdk_in.show_small()}")
+    sdk_in = sdk_prmu.turn_l(sdk_in)
+    set_8.add(sdk_in.dump_str())
+    print(f"\nLowerLeft - Hori\n{sdk_in.show_small()}")
+    sdk_in = sdk_prmu.turn_l(sdk_in)
+    set_8.add(sdk_in.dump_str())
+    print(f"\nLowerRight - Vert\n{sdk_in.show_small()}")
+    sdk_in = sdk_prmu.turn_l(sdk_in)
+    set_8.add(sdk_in.dump_str())
+    print(f"\nTopRight - Hori\n{sdk_in.show_small()}")
+    sdk_in = sdk_prmu.flip_v(sdk_in)
+    sdk_in = sdk_prmu.turn_l(sdk_in)
+    set_8.add(sdk_in.dump_str())
+    print(f"\nTopRight - Vert\n{sdk_in.show_small()}")
+    sdk_in = sdk_prmu.turn_r(sdk_in)
+    set_8.add(sdk_in.dump_str())
+    print(f"\nLowerRight - Hori\n{sdk_in.show_small()}")
+    sdk_in = sdk_prmu.turn_r(sdk_in)
+    set_8.add(sdk_in.dump_str())
+    print(f"\nLowerLeft - Vert\n{sdk_in.show_small()}")
+    sdk_in = sdk_prmu.turn_r(sdk_in)
+    set_8.add(sdk_in.dump_str())
+    print(f"\nTopLeft - Hori\n{sdk_in.show_small()}")
+
+    lst_tup = list()
+    for perm in set_8:
+        str_fig = ''.join([str(int(c != '.')) for c in perm])  # building the 'figure' as 0 and 1 string
+        lst_tup.append((str_fig, perm))
+    lst_tup = sorted(lst_tup)
+    return [tup[1] for tup in lst_tup]  # return only the permutations, but in figure-sorting order
+
 def normalize(sdk):
     """ Takes a SoDuKo and calculates its normal form.
-        returns the normal form """
+        returns the normal form
+        Plan:
+        - generate the 8 figures and find the 1'st
+        - transpose that permutation to numerical order [01234...9]
+        return that (and maybe the name of it, as well as the name of the input?
+        """
 
 

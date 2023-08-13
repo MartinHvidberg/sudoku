@@ -33,7 +33,9 @@ logbase.info("sdk_base: Start!")
 
 
 class SdkBase(object):
-    """ Base SuDoKu class """
+    """ Base SuDoKu class
+
+    Note: The Class-hierarchy is, so far, SdkBase >> SdkComs >> SdkHums. """
 
     def __init__(self, str_ini):
         """ initialises a SuDoKu object """
@@ -44,12 +46,7 @@ class SdkBase(object):
         if len(str_ini) == 0:
             pass  # leaving the sudoku empty ...
         elif len(str_ini) == 81:
-            self.g = str_ini.replace('.', '0')  # Backup the original (init) givens, in string form
-            logbase.info(f"Input: {str_ini}")  # We allow '.' for empty in the raw input
-            for n in range(len(self.g)):
-                k, l = self.n2kl(n)
-                v = self.g[n]
-                self.set(k, l, v)
+            self.load_str(str_ini)
         else:
             logbase.error("#101 > SuDoKu Object can't create, because ini string do not have length 0 or 81.")
 
@@ -72,7 +69,6 @@ class SdkBase(object):
         # Check if Valid
         bol_val_1 = all([[(isinstance(itm, int) and 0 <= itm <= 9) for itm in line] for line in self.m])  # all single digit int
         bol_val_2 = all([len(area) == len(list(set(area))) for area in self.areas()])  # no duplicates
-        # ToDo[] Ensure unique values by col. row and box
         self.v = all([bol_val_1, bol_val_2])
 
     def is_complete(self):
@@ -85,7 +81,18 @@ class SdkBase(object):
         else:
             return False
 
-    # Basic functions (get, set)
+    # Basic functions (get, set, get_matrix, set_matrix, load_str, dump_str, ...)
+
+    def get_matrix(self):
+        """ returns the entire SoDuKo as a LOL
+            primarily to avoid other functions to access self.m directly """
+        return self.m
+
+    def set_matrix(self, lol_m):
+        """ Inserts (overwrites) the self.m SoDuKo with the given LOL
+            primarily to avoid other functions to access self.m directly """
+        # ToDo[] There should be some serious testing here...
+        self.m = lol_m
 
     def get(self, k=None, l=None):
         """ get a cell or a column (k) or a line (l) or all 81 values in the matrix """
@@ -132,7 +139,23 @@ class SdkBase(object):
             return False
         # ToDo: insert validate() here, but remove it before production, for better performance.
 
-    # CPS functions - returning various listes of Coordinate PairS
+    def load_str(self, str_in):
+        """ Read a string of 81 digits, and fill the SuDoKu """
+        self.g = str_in.replace('.', '0')  # Backup the original (in) givens, in string form
+        logbase.info(f"Load SuDoKu from string: {str_in}")  # We allow '.' for empty in the raw input
+        for n in range(len(self.g)):
+            k, l = self.n2kl(n)
+            v = self.g[n]
+            self.set(k, l, v)
+        return self.is_valid()
+
+    def dump_str(self):
+        lst_ret = list()
+        for row in self.rows():
+            lst_ret.extend([str(c) for c in row])  # ToDo[10] Can this be turned into a 1-liner?
+        return "".join(lst_ret)
+
+    # CPS functions - returning various lists of Coordinate PairS
 
     def cps_this_row(self, k, l):
         """ Return list of cps (coordinate pairs) representing the row that (k,l) belongs to """
@@ -200,4 +223,4 @@ class SdkBase(object):
 
 
 if __name__ == '__main__':
-    print("  -= This module can not be run, but must be called =- ")
+    print("  -= This module (sdk_base) can not be run, but must be called =- ")

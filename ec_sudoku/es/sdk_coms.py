@@ -6,7 +6,8 @@ Here we define the Computer Solving class that we use to work with SuDoKu
 Focus is only on Computer friendly algorithms for solving
 
 NOT in this Class are things like human-friendly algorithms for solving, making sudokus, nor permutations or ranking.
-"""
+
+Note: The Class-hierarchy is, so far, SdkBase >> SdkComs >> SdkHums. """
 
 import logging
 import sys
@@ -67,7 +68,7 @@ def r(a, find_all=False):
 # ----------------------------------------------------------------------------------------------------------------------
 
 
-class SDK_coms(sdk_base.SdkBase):
+class SdkComs(sdk_base.SdkBase):
     """ Computer Solving SuDoKu class """
 
     def __init__(self, str_ini):
@@ -104,14 +105,14 @@ class SDK_coms(sdk_base.SdkBase):
 
 
 if __name__ == '__main__':
-    i = '13........2...9......8..7..6....48....5.2...........4.....3...27..5.....8........'.replace('.', '0') # from99 - very slow to solve (All=True: 0:02:08)
-    #  i = '8..5.9..67..3.1..2..3...8....12.34..9...6...3..68.47....4...5..2..4.5..76..9.2..4'.replace('.','0')  # Classic - ultra quickly solved (All=True: 0:00:00.01)
+    #  i = '13........2...9......8..7..6....48....5.2...........4.....3...27..5.....8........'.replace('.', '0') # from99 - very slow to solve (All=True: 0:02:08)
+    i = '8..5.9..67..3.1..2..3...8....12.34..9...6...3..68.47....4...5..2..4.5..76..9.2..4'.replace('.','0')  # Classic - ultra quickly solved (All=True: 0:00:00.01)
     #  i = '9265714833514862798749235165823671941492583677631..8252387..651617835942495612738'.replace('.','0')  # double-solution (All=True: 0:00:00.0002)
     print(f"input ->: {i}")
-    print("\nTrue")
+    print("\nSolving with find all = True")
     dtt_beg = datetime.datetime.now()
     o = r(i, True)
-    print(f"o: {o} duration: {datetime.datetime.now() - dtt_beg}")
-    print("\nFalse")
+    print(f"Done: returned: {o} duration: {datetime.datetime.now() - dtt_beg}")
+    print("\nSolving with find all = False")
     o = r(i, False)
-    print(f"o: {o} duration: {datetime.datetime.now() - dtt_beg}")  # Newer executes because r() uses bloody sys.exit()
+    print(f"Done: returned: {o} duration: {datetime.datetime.now() - dtt_beg}")  # Newer executes because r() uses bloody sys.exit()

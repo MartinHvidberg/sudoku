@@ -1,0 +1,5 @@
+
+I would like to move the test files here, like described in:
+- https://docs.python-guide.org/writing/structure/ and especially:
+- https://github.com/navdeep-G/samplemod/tree/master/tests
+But then it doesn't work :-(

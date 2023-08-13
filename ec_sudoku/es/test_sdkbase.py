@@ -1,5 +1,6 @@
 import unittest
 import sdk_base
+
 #import sdk_coms as sdk_base  # To test if sdk_base functionality inherits to sdk_coms, Rename all 'sdk_base.SDK_base()'
 
 SDKZ = '000000000000000000000000000000000000000000000000000000000000000000000000000000000'  # A completely empty SuDoKu grid
@@ -40,7 +41,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_show(self):
         sdk = sdk_base.SdkBase(SDKI)
-        print(sdk.show_small())
+        # print(sdk.show_small())
         self.assertEqual("""+---+---+---+
 |1  |   |  2|
 | 9 |4  | 5 |
@@ -145,6 +146,12 @@ class MyTestCase(unittest.TestCase):
         self.assertFalse(sdki.is_complete())
         sdkc = sdk_base.SdkBase(SDKC)
         self.assertTrue(sdkc.is_complete())
+
+    def test_dump_string(self):
+        # build sdk from string and dump string back
+        sdkc = sdk_base.SdkBase(SDKC)
+        str_val = sdkc.dump_str()
+        self.assertEqual(SDKC, str_val)
 
 
 if __name__ == '__main__':

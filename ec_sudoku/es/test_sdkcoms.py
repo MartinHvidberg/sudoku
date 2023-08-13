@@ -10,7 +10,7 @@ SDKC = '763128459924567831851934276418295367275643198639781542342876915186359724
 class MyTestCase(unittest.TestCase):
 
     def test_n_kl(self):  # Just a carry-over from _base. This should be deleted here.
-        sdk = sdk_coms.SDK_coms(SDKZ)
+        sdk = sdk_coms.SdkComs(SDKZ)
         self.assertEqual((6, 0), sdk.n2kl(6))
         self.assertEqual((4, 1), sdk.n2kl(13))
         self.assertEqual((3, 7), sdk.n2kl(66))

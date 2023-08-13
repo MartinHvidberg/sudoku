@@ -98,27 +98,25 @@ def turn_l(sdk_in):
     return sdk_ou
 
 
-def permute(self):  # XXX Should rather be called something_normalize... XXX    # old OOP based version
-    """ Permute the matrix - so the order become 123456789 """
-    str_alpha = "abcdefghi."
-    str_numrc = "123456789."
-
-    str_org = self.show_line()
-    str_origi = str()
-    for str_c in str_org.replace('.', ''):
-        if not str_c in str_origi:
-            str_origi += str_c
-    # print "local order: {}".format(str_origi)
-    trantab = str.maketrans(str_origi + '.', str_alpha)
-    str_a = str_org.translate(trantab)
-    trantab = str.maketrans(str_alpha, str_numrc)
-    str_p = str_a.translate(trantab)
-    self.m = [[int(str_p[j * 9 + i].replace('.', '0')) for i in range(9)] for j in range(9)]
-    self.clean_all_but_m()
-    return
+def permute(sdk_in, str_fr="0123456789", str_to="0123456789"):  # XXX Should rather be called something_normalize... XXX    # old OOP based version
+    """ Permute the matrix
+        Given the 'from' and 'to' strings str_fr, str_to, which each holds the digits 0..9
+        Any input occurrence of first digit in str_fr is replaced with first digit in str_to, and so forth
+        str_fr (and/or str_to) can be skipped if its "0123456789", which is often the case """
+    # ToDo[24] Check valisity of str_fr and str_to
+    str_t0 = "abcdefghij"  # temporary string that holds 10 unique, no digital, chars...
+    dic_t1 = dict(zip(list(str_fr), list(str_t0)))  # defining 1'st translation fr->t0
+    dic_t2 = dict(zip(list(str_t0), list(str_to)))  # defining 2'nd translation t0->to
+    str_in = sdk_in.dump_str()  # get the input sdk in string format
+    str_ab = str_in.translate(str.maketrans(dic_t1))  # 1'st translation
+    str_ou = str_ab.translate(str.maketrans(dic_t2))  # 2'nd translation
+    sdk_ou = sdk_hums.SdkHums("")  # create a new clone of a SDK
+    sdk_ou.load_str(str_ou)  # load the resulting output values
+    return sdk_ou
 
 
 def normalize(sdk):
     """ Takes a SoDuKo and calculates its normal form.
         returns the normal form """
+
 

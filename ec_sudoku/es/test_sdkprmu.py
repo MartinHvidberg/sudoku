@@ -116,7 +116,6 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(str_val_tr1, str(sdk_prmu.turn_l(sdktr2).show_small()))
         self.assertEqual(str_val, sdk_prmu.turn_l(sdktr1).show_small())
 
-
     def test_flips(self):
         sdk = sdk_hums.SdkHums("")
         sdk.set_matrix(lol_u)  # Brute force overwrite the matrix with this (invalid) contents
@@ -206,6 +205,18 @@ class MyTestCase(unittest.TestCase):
 
 # turn & flip
 # t_r2 = f_hv = t_l2 = f_vh = f_diagonal?
+
+    def test_permutes(self):
+        str_sdk = '763128459924567831851934276418295367275643198639781542342876915186359724597412683'
+        str_fr = "0123456789"
+        str_to = "0823456719"  # swapping 1 and 8
+        str_ref = '763821459924567138158934276481295367275643891639718542342176985816359724597482613'  # swapped 1 and 8
+        sdk = sdk_hums.SdkHums(str_sdk)
+        sdk_prm = sdk_prmu.permute(sdk, str_fr, str_to)
+        str_val = sdk_prm.dump_str()
+        self.assertEqual(str_ref, str_val)
+
+
 
 if __name__ == '__main__':
     unittest.main()

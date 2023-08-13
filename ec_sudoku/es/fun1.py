@@ -2,10 +2,6 @@
 import sdk_hums
 import sdk_prmu
 
-# sdk = sdk_hums.SdkHums('763128459924567831851934276418295367275643198639781542342876915186359724597412683')
-# print(f"dump_str: {sdk.dump_str()}")
-
-
 lol_u = [
         ['a', 'A', 'b', 'B', 'c', 'C', 'd', 'D', 'e'],
         ['E', 'f', 'F', 'g', 'G', 'h', 'H', 'i', 'I'],
@@ -17,7 +13,6 @@ lol_u = [
         ['"', '#', '{', '}', '&', '*', '/', '(', ')'],
         ['=', '?', '+', '-', '@', '£', '$', '[', ']']
     ]
-
 
 sdka = sdk_hums.SdkHums("")
 sdka.set_matrix(lol_u)  # Brute force overwrite the matrix with this (invalid) contents
@@ -31,3 +26,12 @@ print(f"flv: {sdkb.dump_str()}")
 print(f"flh: {sdkc.dump_str()}")
 print(f"trl: {sdkd.dump_str()}")
 print(f"trr: {sdke.dump_str()}")
+
+print("\n*** Permute ***")
+sdk = sdk_hums.SdkHums('763128459924567831851934276418295367275643198639781542342876915186359724597412683')
+print(f"dump_in: {sdk.dump_str()}")
+
+sdk_prm = sdk_prmu.permute(sdk, str_to="0823456719")
+print(f"dump_pu: {sdk_prm.dump_str()}")
+
+

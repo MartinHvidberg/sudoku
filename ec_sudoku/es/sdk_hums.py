@@ -22,11 +22,11 @@ __version__ = "0.0.1"
 logging.basicConfig(
     # format="%(asctime)s - %(levelname)s - %(message)s",  # minimum
     format="%(asctime)s - [%(filename)s:%(lineno)d] - %(levelname)s - %(message)s",  # verbose
-    filename="sdk_coms.log",
+    filename="sdk_hums.log",
     filemode="w",
     level=logging.INFO)  # logging.DEBUG
-logcoms = logging.getLogger("sdk_coms")
-logcoms.info("sdk_coms: Start!")
+logcoms = logging.getLogger("sdk_hums")
+logcoms.info("sdk_hums: Start!")
 
 
 class SdkHums(sdk_coms.SdkComs):

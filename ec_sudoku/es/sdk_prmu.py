@@ -116,7 +116,7 @@ def permute(sdk_in, str_fr="0123456789", str_to="0123456789"):  # XXX Should rat
     return sdk_ou
 
 
-def make8fermu(sdk_in):
+def make8frmu(sdk_in):
     """ From a given SuDoKu
         Create all the 8 possible figure-permutations,
         i.e. all the permutations that can be created with turn- and flip-operations
@@ -127,26 +127,26 @@ def make8fermu(sdk_in):
     # print(f"\nTopLeft - Vert\n{sdk_in.show_small()}")
     sdk_in = sdk_prmu.turn_l(sdk_in)
     set_8.add(sdk_in.dump_str())
-    print(f"\nLowerLeft - Hori\n{sdk_in.show_small()}")
+    # print(f"\nLowerLeft - Hori\n{sdk_in.show_small()}")
     sdk_in = sdk_prmu.turn_l(sdk_in)
     set_8.add(sdk_in.dump_str())
-    print(f"\nLowerRight - Vert\n{sdk_in.show_small()}")
+    # print(f"\nLowerRight - Vert\n{sdk_in.show_small()}")
     sdk_in = sdk_prmu.turn_l(sdk_in)
     set_8.add(sdk_in.dump_str())
-    print(f"\nTopRight - Hori\n{sdk_in.show_small()}")
+    # print(f"\nTopRight - Hori\n{sdk_in.show_small()}")
     sdk_in = sdk_prmu.flip_v(sdk_in)
     sdk_in = sdk_prmu.turn_l(sdk_in)
     set_8.add(sdk_in.dump_str())
-    print(f"\nTopRight - Vert\n{sdk_in.show_small()}")
+    # print(f"\nTopRight - Vert\n{sdk_in.show_small()}")
     sdk_in = sdk_prmu.turn_r(sdk_in)
     set_8.add(sdk_in.dump_str())
-    print(f"\nLowerRight - Hori\n{sdk_in.show_small()}")
+    # print(f"\nLowerRight - Hori\n{sdk_in.show_small()}")
     sdk_in = sdk_prmu.turn_r(sdk_in)
     set_8.add(sdk_in.dump_str())
-    print(f"\nLowerLeft - Vert\n{sdk_in.show_small()}")
+    # print(f"\nLowerLeft - Vert\n{sdk_in.show_small()}")
     sdk_in = sdk_prmu.turn_r(sdk_in)
     set_8.add(sdk_in.dump_str())
-    print(f"\nTopLeft - Hori\n{sdk_in.show_small()}")
+    # print(f"\nTopLeft - Hori\n{sdk_in.show_small()}")
 
     lst_tup = list()
     for perm in set_8:
@@ -154,6 +154,14 @@ def make8fermu(sdk_in):
         lst_tup.append((str_fig, perm))
     lst_tup = sorted(lst_tup)
     return [tup[1] for tup in lst_tup]  # return only the permutations, but in figure-sorting order
+    # return lst_tup  # return both the figures and permutations, in figure-sorting order
+
+
+def transpose(sdk):
+    """
+
+    """
+
 
 def normalize(sdk):
     """ Takes a SoDuKo and calculates its normal form.
@@ -163,5 +171,7 @@ def normalize(sdk):
         - transpose that permutation to numerical order [01234...9]
         return that (and maybe the name of it, as well as the name of the input?
         """
+    sdk_f0 = make8frmu(sdk)[0]
+    sdk_f0t0 = tranpose(sdk_f0)
 
 

@@ -11,3 +11,5 @@ Eventually I hope to be able to 'rate' a sudoku, based on how complex tactics is
 * Configuration = Just clone and run
 * Dependencies = None, other than Python
 * How to run tests = Run the included UnitTest
+
+/M

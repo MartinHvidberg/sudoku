@@ -1,7 +1,7 @@
 
 ------ 1 -------------
     Find all solutions with an efficient backtracking algorithm.
-    If there is just one solution, you are done. Otherwise if you have more than one solution, find a position at which most of the solutions differ. Add the number at this position.
+    If there is just one solution, you are done. Otherwise, if you have more than one solution, find a position at which most of the solutions differ. Add the number at this position.
     Go to 1.
 
 I doubt you can find a solution that would be much faster than this.

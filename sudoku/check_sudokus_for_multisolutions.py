@@ -8,4 +8,4 @@ with open(r"../data/text/find_doubles.txt", 'r') as fil_in:
         print(f"input ->  {line}\n      -> |{str_lin}|")
         SuDoKuX.r(str_lin, True)
 
-# The screen-output of this is also used as input to Samurai-solving, so don't change it for no reason...!
+# The screen-output of this is also used as input to Samurai-solving, so don't change it without a good reason...!

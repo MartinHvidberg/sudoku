@@ -1,17 +1,18 @@
 
 # SuDoKu - ECsoftware SuDoKu ...
 
-**SuDoKu_about**.md (and .pdf): This file
+**SuDoKu_about**.md (and .pdf): This file  (Rename? to README_SoDuKo.md)
 
 **SuDoKu**.py - Some sort of main file ...
 
-- import O
+- import None
 
 ---
 
 **SuDoKu_S**.py - Solvers: Functions that solve SuDoKus, like a computer, are located here.
 
-**SuDoKu_Scom**.py - TBP; Solvers, common functions used across several modules
+**SuDoKu_Comm**.py - Common functions used across several modules. 
+So far some printing functions
 
 **SuDoKu_X_Sextr**.py - Solvers, eXternal code (Non-ECsoftware code)
 

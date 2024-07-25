@@ -1,17 +1,14 @@
 import logging
 
 import SuDoKuO
+import SuDoKu_Comm as comm
 
 """ Sort of main module
 This is the module that executes SLAP (Solve Like A Person) solving of some SuDoKus
 Eventually in order to assess their difficulty level
 """
 
-#?#from pyasn1_modules.rfc2459 import CPSuri
-
 # Sample SoDuKos from: http://www2.warwick.ac.uk/fac/sci/moac/people/students/peter_cock/python/sudoku
-
-#  - ported to py3 with the 2to3 tool
 
 # Start message, and logging
 str_start_message = "Start"
@@ -24,7 +21,7 @@ log.addHandler(log_fil)
 log.info(str_start_message)
 
 ### Cat 1 (Free gifts only)
-#s = SuDoKuO.SuDoKu("13.475269527.6941896481273.679154.23.456289712817.35464569371.27.258639489324.657") # Extremely simple
+s = SuDoKuO.SuDoKu("13.475269527.6941896481273.679154.23.456289712817.35464569371.27.258639489324.657") # Extremely simple
 
 ### Cat 2 (Crosshatching & Free gifts)
 #s = SuDoKuO.SuDoKu(".4.8.52...2..4..5.5.......4.9...312.1.6.78..337.9.4.8......67....8359.1..19..76..") # Suposed Easy
@@ -34,7 +31,7 @@ log.info(str_start_message)
 
 ### Cat 3 (Naked singles, Crosshatching & Free gifts)
 #s = SuDoKuO.SuDoKu("..........65.138..21....54.....86....57.....46.......3........9....3.7..9..87.3.2")  # {Naked singles:14,Crosshatching:28,Free gifts:15}
-s = SuDoKuO.SuDoKu("..46...8..39....4.81..37..6..7..4....2.....3....3..6..7..51..28.8....31..9...34..") # MX 17. dec. '15. Let. LG
+#s = SuDoKuO.SuDoKu("..46...8..39....4.81..37..6..7..4....2.....3....3..6..7..51..28.8....31..9...34..") # MX 17. dec. '15. Let. LG
 #s = SuDoKuO.SuDoKu("........8.76..8....9.....6...4..2..6..1....74.8...72..1.2..3...9...4..21..8..6.3.") # ver 0.4.0 Solves or not?
 
 ### Cat 4 (Locked Cand., Naked singles, Crosshatching & Free gifts
@@ -48,11 +45,11 @@ s = SuDoKuO.SuDoKu("..46...8..39....4.81..37..6..7..4....2.....3....3..6..7..51.
 #s = SuDoKuO.SuDoKu(".......12........3..23..4....18....5.6..7.8.......9.....85.....9...4.5..47...6...") # "Platinum Blonde"
 #s = SuDoKuO.SuDoKu(".....3.17.15..9..8.6.......1....7.....9...2.....5....4.......2.5..6..34.34.2.....") # 49of50
 
-print("Pre\n",s.show_big())
+print(f"Pre\n{s.show_current()}")
 s.slap()
-print("Post\n",s.show_big())
+print(f"Post\n{s.show_current()}")
 print(s.stats())
-log.info('Stats: '+str(s.stats()))
+log.info(f"Stats: {str(s.stats())}")
 
 print("End of SuDoKu ...")
 

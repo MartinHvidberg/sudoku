@@ -51,7 +51,7 @@ print(f"Post\n{s.show_current()}")
 print(s.stats())
 log.info(f"Stats: {str(s.stats())}")
 
-print("End of SuDoKu ...")
+print("End of SuDoKu solving ...")
 
 
 #===============================================================================

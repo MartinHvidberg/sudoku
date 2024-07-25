@@ -134,4 +134,4 @@ if __name__ == '__main__':
 
     for ri in board:
         print(*ri)
-    print('solved in {} seconds'.format(elapsed_time))
+    print('solved in {} seconds'.format(round(elapsed_time,4)))

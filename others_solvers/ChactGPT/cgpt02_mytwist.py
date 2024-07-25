@@ -1,4 +1,4 @@
-### Changing it so it actually wotks.
+### Changing it so it actually works.
 # introducing deepcopy()
 
 import copy

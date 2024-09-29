@@ -36,12 +36,19 @@ class SuDoKu(object):
     STPS = ['Free gifts', 'Crosshatching', 'Naked singles', 'Locked Cand.']  # ToDo []: Consider tuple, or do we need to change it?
     
     def __init__(self, str_ini, lst_hardess = STPS):
-        """ initialises a SuDoKu object """
-        # ToDo: Overview of intended meaning og .m .v .p .rec, etc.
+        """ initialises a SuDoKu object
+            .m (2D-matrix) the 9x9 grid holding the current status of the SuDoKu
+            .i The initial (start) value of .m, for later reference, etc.
+            .p (pencil marks) the 9x9 grid holding set() of integers, holding the 'pencil marks'
+            .v ???
+            .hardness a list of strings, naming the known solving tactics, sorted from simple to advanced.
+            .rec a list (of strings?) describing the tactics applied to solving this SuDoKu - so far.
+            """
+        # ToDo: Consider renaming .m -> ._m; .p -> ._p etc.
         self.hardness = lst_hardess
         self.m = [['0' for i in range(9)] for j in range(9)] # Empty (0 filled) matrix
         self.p = [[set() for i in range(9)] for j in range(9)] # Empty (empty sets) pencil-matrix
-        self.rec = list() # Track record of solving tactics steps
+        self.rec = list() # Track record of solving tactic steps
         if len(str_ini) == 0:
             pass # Creating empty sudoku ...
         elif len(str_ini) == 81:

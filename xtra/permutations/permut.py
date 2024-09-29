@@ -1,9 +1,10 @@
 
 
 """
-Playing around with posibilities, the real stuff is in SuDoKu_Norm.py
+Playing around with possibilities, the real stuff is in SuDoKu_Norm.py
 """
 
+All this 'self' nonsense will never work outside a class ...
 
 def show_medium(lst_sdk):
 

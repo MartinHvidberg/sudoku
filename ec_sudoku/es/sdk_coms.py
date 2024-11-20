@@ -78,19 +78,6 @@ class SdkComs(sdk_base.SdkBase):
         # self.s = list() # list of solutions, i.e. correctly solved matrix(s), format as .m
         self.s = {'solu': list(), 'uniq': None}  # Solution space
 
-        # # ToDo: Move this part to sdk_coms, where we have a solver.
-        # if self.v: # If it's valid, so far, check if it's solvable
-        #     try:
-        #         # ToDo: This is doubtful - do the solver run x81 times? and what exactly do we prove here?
-        #         self.solution = [[int(SuDoKuX.sudoku99_NEW_XXX_(str_ini)[j*9+i].replace('.','0')) for i in range(9)] for j in range(9)] # Solve using brute force, to see if solution(s) exist
-        #         log.info("Input is Solvable, but was not checked for uniqueness...")
-        #     except:
-        #         self.solution = self.m # If not solvable, keep the init values to avoid a Null variable.
-        #         self.v = False # It looked valid, but it's not ...
-        #         log.warning("Input is NOT Solvable...")
-        # if self.v: # If it's valid, and also is solvable
-        #     self.pencil() # Fill in the pencil marks, for the valid, solvable, init matrix
-
     def solver_a(self):
         pass
 
@@ -105,8 +92,8 @@ class SdkComs(sdk_base.SdkBase):
 
 
 if __name__ == '__main__':
-    #  i = '13........2...9......8..7..6....48....5.2...........4.....3...27..5.....8........'.replace('.', '0') # from99 - very slow to solve (All=True: 0:02:08)
-    i = '8..5.9..67..3.1..2..3...8....12.34..9...6...3..68.47....4...5..2..4.5..76..9.2..4'.replace('.','0')  # Classic - ultra quickly solved (All=True: 0:00:00.01)
+    i = '13........2...9......8..7..6....48....5.2...........4.....3...27..5.....8........'.replace('.', '0') # from99 - very slow to solve (All=True: ca. 2 min)
+    #  i = '8..5.9..67..3.1..2..3...8....12.34..9...6...3..68.47....4...5..2..4.5..76..9.2..4'.replace('.','0')  # Classic - ultra quickly solved (All=True: 0:00:00.01)
     #  i = '9265714833514862798749235165823671941492583677631..8252387..651617835942495612738'.replace('.','0')  # double-solution (All=True: 0:00:00.0002)
     print(f"input ->: {i}")
     print("\nSolving with find all = True")

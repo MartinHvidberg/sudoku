@@ -1,4 +1,7 @@
 
+*** Dont use this, use /ec_sudoku/* instead ***
+
+
 """ The OLD unit test """
 
 # SuDoKuO_ut.PY

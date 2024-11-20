@@ -11,7 +11,7 @@ Largely based on prior /sudoku/SuDoKu_* work, but a fresh start
 
 **sdk_hums**: Adds 'Solve Like A Human' functionality
 
-**sdk_make**: All about making new SuDoKu'
+**sdk_make**: All about making new SuDoKus
 
 **sdk_prmu**: All about permutations
 

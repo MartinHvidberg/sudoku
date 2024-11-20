@@ -1,4 +1,7 @@
 
+*** Dont use this, use /ec_sudoku/* instead ***
+
+
 import copy
 import logging
 import sys

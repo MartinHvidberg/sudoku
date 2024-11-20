@@ -1,4 +1,7 @@
 
+*** Dont use this, use /ec_sudoku/* instead ***
+
+
 import SuDoKuX
 
 with open(r"../data/text/find_doubles.txt", 'r') as fil_in:

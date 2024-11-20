@@ -1,4 +1,7 @@
 
+*** Dont use this, use /ec_sudoku/* instead ***
+
+
 # import SuDoKu_simple
 import SuDoKuO
 
@@ -17,12 +20,12 @@ class SuDoKuNrmlz(SuDoKuO.SuDoKu):
         self._norm = ""
 
     def clean_all_but_m(self):
-        """ Reset percil marks ect. since they make no sence with the changed data """
+        """ Reset percil marks ect. since they make no sense with the changed data """
         self.p = [[set() for i in range(9)] for j in range(9)]  # Empty (empty lists) pencil-matrix
         self.rec = list()  # Track record of solving tactics steps
 
     def permute(self):  # XXX Should rather be called something_normalize... XXX
-        """ Permute the matrix - so the order become 123456789 """
+        """ Permute the matrix - so the order becomes 123456789 """
         str_alpha = "abcdefghi."
         str_numrc = "123456789."
 

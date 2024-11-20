@@ -18,7 +18,7 @@ Similar, if you swap all the 4's and 5's. You still have the essential same
 SuDoKu. In fact, you could swap all the numbers for there letter equivalent, 
 and you will still have the same SuDoKu.
 By substituting the alphabet of the SoDuKo, while preserving the logic of the 
-quiz, we render it into another language, style. Therefore, we call these 
+quiz, we render it into another alphabet, style. Therefore, we call these 
 permutations **alphabet-permutations**.
 As the SoDuKo 'alphabet' has 9 letters, not including 0, there are 9! = 
 362.880 different **alphabet-permutations**
@@ -26,7 +26,7 @@ As the SoDuKo 'alphabet' has 9 letters, not including 0, there are 9! =
 
 ### The 'normal' permutation
 In the following we will describe a method for finding the one of the 
-potential 8 * 362.880 = 2903040 (almost 3 mill) possible permutations, that 
+potential 8 * 362.880 = 2.903.040 (almost 3 mill) possible permutations, that 
 should represent the SuDoKu. We call this permutation: The 'normal' 
 permutation.
 

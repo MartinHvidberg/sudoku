@@ -1,4 +1,7 @@
 
+*** Dont use this, use /ec_sudoku/* instead *** 
+
+
 # SuDoKu - ECsoftware SuDoKu ...
 
 **SuDoKu_about**.md (and .pdf): This file  (Rename? to README_SoDuKo.md)

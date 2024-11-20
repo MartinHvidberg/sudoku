@@ -1,3 +1,6 @@
+
+""" I don't like the heavy use of global !! """
+
 import logging
 
 log = logging.getLogger(__name__)
@@ -51,8 +54,8 @@ def solve():
                         solve()
                         grid[row][col] = 0  #Backtrack step
                 return
-    #print('\nThe Solution')
-    #printGrid()
+    print('\nThe Solution')
+    printGrid()
 
 def main(str_sdk):
     global grid

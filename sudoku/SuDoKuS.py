@@ -1,4 +1,7 @@
 
+*** Dont use this, use /ec_sudoku/* instead ***
+
+
 """ Solvers - Computer centric solvers
 Functions that solve SuDoKus, like a computer, are located here.
 These are used to confirm solvebility, solutions, unique solutions, multiple solutions, etc.

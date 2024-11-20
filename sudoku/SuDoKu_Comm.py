@@ -1,3 +1,6 @@
+
+*** Dont use this, use /ec_sudoku/* instead ***
+
 #!/usr/bin/env python
 # -*- coding: utf-8; -*-
 

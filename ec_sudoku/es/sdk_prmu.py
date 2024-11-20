@@ -120,7 +120,7 @@ def make8frmu(sdk_in):
     """ From a given SuDoKu
         Create all the 8 possible figure-permutations,
         i.e. all the permutations that can be created with turn- and flip-operations
-        Return them in order, i a list, enduring that the normal-figure is number 0
+        Return them in order, as a list, ensuring that the normal-figure is number 0
         """
     set_8 = set()
     set_8.add(sdk_in.dump_str())

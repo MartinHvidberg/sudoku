@@ -1,3 +1,6 @@
+
+*** Dont use this, use /ec_sudoku/* instead ***
+
 #!/usr/bin/env python
 # -*- coding: utf-8; -*-
 
@@ -62,7 +65,7 @@ class SuDoKu(object):
             if self.v: # If it's valid, so far, check if it's solvable
                 try:
                     # ToDo: This is doubtful - do the solver run x81 times? and what exacely do we proove here?
-                    self.solution = [[int(SuDoKuX.sudoku99_NEW_XXX_(str_ini)[j*9+i].replace('.','0')) for i in range(9)] for j in range(9)] # Solve using brute force, to see if solution(s) exist
+                    self.solution = [[int(SuDoKuX.r(str_ini)[j*9+i].replace('.','0')) for i in range(9)] for j in range(9)] # Solve using brute force, to see if solution(s) exist
                     log.info("Input is Solvable, but was not checked for uniqueness...")
                 except:
                     self.solution = self.m # If not solvable, keep the init values to avoid a Null variable.

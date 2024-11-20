@@ -1,4 +1,6 @@
 
+*** Dont use this, use /ec_sudoku/* instead ***
+
 """ External (X-ternal) code
 Small and big pieces of code, copied from the internet or elsewhere
 This may be called from the other modules for test or to confirm solvability etc.

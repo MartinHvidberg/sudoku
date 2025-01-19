@@ -1,0 +1,5 @@
+
+There are more specific documentation in the subdirectories ...
+This is mainly a commit tracker
+
+2025-01-19 17:47 init this file

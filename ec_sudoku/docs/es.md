@@ -1,4 +1,3 @@
-
 # ES - EC SuDoKu
 
 The EC SuDoKu module, Strictly Structured. This is after the HUGE file purge, preventing all +40Mb files from being committed to git

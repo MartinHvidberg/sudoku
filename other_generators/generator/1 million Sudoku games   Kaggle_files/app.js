@@ -211,7 +211,6 @@
    * Site header in mobile view is z-index 1000, Mercat needs to appear on top
    * of it. Manually adding 1001 z-index for now, but need to see whether it
    * should be added to the styled-components theme.ts file.
-   * TODO(b/137297765): Investigate
    */
   z-index: 1001; /* Keep in sync with Loading component z-index */
   transition: opacity ${w}ms linear;
@@ -438,7 +437,6 @@
 `,t.TagSearchButton=o.default.div`
   ${o.readableColor(50)};
   position: absolute;
-  /* TODO RM: this positioning is fragile, doesn't account for long inputs */
   right: 0.75rem;
   top: 0.4rem;
 `,t.SearchInput=o.default.input`

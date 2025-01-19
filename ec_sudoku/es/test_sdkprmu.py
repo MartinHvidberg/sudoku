@@ -20,7 +20,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_turns(self):
         sdk = sdk_hums.SdkHums("")
-        sdk.set_matrix(lol_u)  # Brute force overwrite the matrix with this (invalid) contents
+        sdk.set_matrix(lol_u)  # Brute force overwrites the matrix with this (invalid) contents
 
         str_ref = """+---+---+---+
 |aAb|BcC|dDe|
@@ -118,7 +118,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_flips(self):
         sdk = sdk_hums.SdkHums("")
-        sdk.set_matrix(lol_u)  # Brute force overwrite the matrix with this (invalid) contents
+        sdk.set_matrix(lol_u)  # Brute force overwrites the matrix with this (invalid) contents
 
         str_ref = """+---+---+---+
 |aAb|BcC|dDe|

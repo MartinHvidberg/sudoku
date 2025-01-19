@@ -29,7 +29,7 @@ def is_valid(board, row, col, num):
 def solve_sudoku(board):
     empty_cell = find_empty_cell(board)
     if not empty_cell:
-        return [board.copy()]  # All cells are filled, puzzle is solved
+        return [board.copy()]  # All cells are filled, the puzzle is solved
 
     solutions = []
     row, col = empty_cell

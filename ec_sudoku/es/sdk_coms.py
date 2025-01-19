@@ -78,6 +78,8 @@ class SdkComs(sdk_base.SdkBase):
         # self.s = list() # list of solutions, i.e. correctly solved matrix(s), format as .m
         self.s = {'solu': list(), 'uniq': None}  # Solution space
 
+    # ToDo[40] get code from cgpt02_mytwist.py over here, and make it work !!
+
     def solver_a(self):
         pass
 
@@ -92,11 +94,11 @@ class SdkComs(sdk_base.SdkBase):
 
 
 if __name__ == '__main__':
-    i = '13........2...9......8..7..6....48....5.2...........4.....3...27..5.....8........'.replace('.', '0') # from99 - very slow to solve (All=True: ca. 2 min)
+    #  i = '13........2...9......8..7..6....48....5.2...........4.....3...27..5.....8........'.replace('.', '0') # from99 - very slow to solve (All=True: ca. 2 min)
     #  i = '8..5.9..67..3.1..2..3...8....12.34..9...6...3..68.47....4...5..2..4.5..76..9.2..4'.replace('.','0')  # Classic - ultra quickly solved (All=True: 0:00:00.01)
-    #  i = '9265714833514862798749235165823671941492583677631..8252387..651617835942495612738'.replace('.','0')  # double-solution (All=True: 0:00:00.0002)
+    i = '9265714833514862798749235165823671941492583677631..8252387..651617835942495612738'.replace('.','0')  # double-solution (All=True: 0:00:00.0002)
     print(f"input ->: {i}")
-    print("\nSolving with find all = True")
+    print("\nSolving with find all = True  (please wait...)")
     dtt_beg = datetime.datetime.now()
     o = r(i, True)
     print(f"Done: returned: {o} duration: {datetime.datetime.now() - dtt_beg}")

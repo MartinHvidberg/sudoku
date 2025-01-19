@@ -2,7 +2,7 @@
 # -*- coding: utf-8; -*-
 
 """ The Permutation Classes of SuDoKu
-Here we work with SuDoKu permutations, i.e. SuDoKu's that look different but are the same, but is rotated or mirrored
+Here we work with SuDoKu permutations, i.e. SuDoKu's that look different but are the same, e.g. is rotated or mirrored
 Focus is only on Permutations and on the so called Normal-permutation:
 - Converting any SuDoKu to its normal form
 - Generating the SuDoKu ID based on the permutation
@@ -10,13 +10,13 @@ Focus is only on Permutations and on the so called Normal-permutation:
 
 NOT in the Permutation Class is things like Ranking
 
+ToDo[20] Consider if this should be a class, and where in the hierarchy it would best be placed. Should it follow Base?
 Note: This module do not extend the SoDuKo class, but works with it
     The Class-hierarchy is, so far, SdkBase >> SdkComs >> SdkHums. """
 
 import logging
 
 import ec_sudoku.es.sdk_hums as sdk_hums
-import ec_sudoku.es.sdk_prmu as sdk_prmu
 
 __version__ = "0.0.1"
 
@@ -33,30 +33,12 @@ logbase = logging.getLogger("sdk_prmu")
 logbase.info("sdk_prmu: Start!")
 
 
-# def flip_h(sdk):  - Old, non-cloning version
-#     """ Flip the matrix - horizontally """
-#     # lst_t = sdk.get_matrix()
-#     # lst_fh = [lst_v[::-1] for lst_v in lst_t]
-#     # sdk.set_matrix(lst_fh)
-#     sdk.set_matrix([lst_v[::-1] for lst_v in sdk.get_matrix()])
-#     return sdk
-
-
 def flip_h(sdk_in):
     """ Flip the matrix - horizontally
         No return a deep-copy """
     sdk_ou = sdk_hums.SdkHums("")
     sdk_ou.set_matrix([lst_v[::-1] for lst_v in sdk_in.get_matrix()])
     return sdk_ou
-
-
-# def flip_v(sdk):  - Old, non-cloning version
-#     """ Flip the matrix - vertically """
-#     # lst_t = sdk.get_matrix()
-#     # lst_fv = lst_t[::-1]
-#     # sdk.set_matrix(lst_fv)
-#     sdk.set_matrix(sdk.get_matrix()[::-1])
-#     return sdksdk_ou
 
 
 def flip_v(sdk_in):
@@ -66,14 +48,6 @@ def flip_v(sdk_in):
     sdk_ou.set_matrix(sdk_in.get_matrix()[::-1])
     return sdk_ou
 
-
-# def turn_r(sdk):  - Old, non-cloning version
-#     """ Turn the maxrix 90 degrees - right """
-#     # # self.m = [col[::-1] for col in self.cols()]  # old OOP based version
-#     lst_tr = [col[::-1] for col in sdk.cols()]
-#     sdk.set_matrix(lst_tr)
-#     return sdk
-
 def turn_r(sdk_in):
     """ Turn the maxrix 90 degrees - right
         No return a deep-copy """
@@ -81,14 +55,6 @@ def turn_r(sdk_in):
     lst_tr = [col[::-1] for col in sdk_in.cols()]
     sdk_ou.set_matrix(lst_tr)
     return sdk_ou
-
-
-# def turn_l(sdk):  - Old, non-cloning version
-#     """ Turn the maxrix 90 degrees - left """
-#     # # self.m = [col for col in self.cols()][::-1]  # old OOP based version
-#     lst_tl = [col for col in sdk.cols()][::-1]
-#     sdk.set_matrix(lst_tl)
-#     return sdk
 
 
 def turn_l(sdk_in):
@@ -101,7 +67,7 @@ def turn_l(sdk_in):
 
 def permute(sdk_in, str_fr="0123456789", str_to="0123456789"):  # XXX Should rather be called something_normalize... XXX    # old OOP based version
     """ Permute the matrix
-        Given the 'from' and 'to' strings str_fr, str_to, which each holds the digits 0..9
+        Given the 'from' and 'to' (strings str_fr, str_to), which each holds the digits 0..9
         Any input occurrence of first digit in str_fr is replaced with first digit in str_to, and so forth
         str_fr (and/or str_to) can be skipped if its "0123456789", which is often the case """
     # ToDo[24] Check valisity of str_fr and str_to
@@ -125,26 +91,26 @@ def make8frmu(sdk_in):
     set_8 = set()
     set_8.add(sdk_in.dump_str())
     # print(f"\nTopLeft - Vert\n{sdk_in.show_small()}")
-    sdk_in = sdk_prmu.turn_l(sdk_in)
+    sdk_in = turn_l(sdk_in)
     set_8.add(sdk_in.dump_str())
     # print(f"\nLowerLeft - Hori\n{sdk_in.show_small()}")
-    sdk_in = sdk_prmu.turn_l(sdk_in)
+    sdk_in = turn_l(sdk_in)
     set_8.add(sdk_in.dump_str())
     # print(f"\nLowerRight - Vert\n{sdk_in.show_small()}")
-    sdk_in = sdk_prmu.turn_l(sdk_in)
+    sdk_in = turn_l(sdk_in)
     set_8.add(sdk_in.dump_str())
     # print(f"\nTopRight - Hori\n{sdk_in.show_small()}")
-    sdk_in = sdk_prmu.flip_v(sdk_in)
-    sdk_in = sdk_prmu.turn_l(sdk_in)
+    sdk_in = flip_v(sdk_in)
+    sdk_in = turn_l(sdk_in)
     set_8.add(sdk_in.dump_str())
     # print(f"\nTopRight - Vert\n{sdk_in.show_small()}")
-    sdk_in = sdk_prmu.turn_r(sdk_in)
+    sdk_in = turn_r(sdk_in)
     set_8.add(sdk_in.dump_str())
     # print(f"\nLowerRight - Hori\n{sdk_in.show_small()}")
-    sdk_in = sdk_prmu.turn_r(sdk_in)
+    sdk_in = turn_r(sdk_in)
     set_8.add(sdk_in.dump_str())
     # print(f"\nLowerLeft - Vert\n{sdk_in.show_small()}")
-    sdk_in = sdk_prmu.turn_r(sdk_in)
+    sdk_in = turn_r(sdk_in)
     set_8.add(sdk_in.dump_str())
     # print(f"\nTopLeft - Hori\n{sdk_in.show_small()}")
 
@@ -172,6 +138,6 @@ def normalize(sdk):
         return that (and maybe the name of it, as well as the name of the input?
         """
     sdk_f0 = make8frmu(sdk)[0]
-    sdk_f0t0 = tranpose(sdk_f0)
+    sdk_f0t0 = transpose(sdk_f0)
 
 

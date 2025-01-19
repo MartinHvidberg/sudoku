@@ -9,7 +9,7 @@ Focus is only on cells and their values:
 - Extract lists of cell-references (cps) and/or cell-values for rows and cols,
 - and relatively like: all other cells in this col., etc.
 
-NOT in the Base Class is things like pencil-marks, solving and solubility, permutations and ranking.
+NOT in the Base Class is things like pencil-marks, solving or solubility, permutations or ranking.
 """
 
 import logging
@@ -57,7 +57,7 @@ class SdkBase(object):
         # print(f"n: {n} => k,l: {k},{l}")
         return k, l
 
-    # ToDo [] Do we also need an kl2n()
+    # ToDo[10] Do we also need an kl2n()
 
     # Validity and completeness function(s)
 
@@ -91,7 +91,7 @@ class SdkBase(object):
     def set_matrix(self, lol_m):
         """ Inserts (overwrites) the self.m SoDuKo with the given LOL
             primarily to avoid other functions to access self.m directly """
-        # ToDo[] There should be some serious testing here...
+        # ToDo[10] There should be some serious testing here...
         self.m = lol_m
 
     def get(self, k=None, l=None):
@@ -101,7 +101,7 @@ class SdkBase(object):
         elif l is not None:
             return self.m[l]
         elif k is not None:
-            return 'k'
+            return 'k'  # ToDo[30] implement returning a column seems relevant, how can anything work without this ?!?
         else:
             return self.m
 
@@ -122,7 +122,7 @@ class SdkBase(object):
                             # logbase.info(f"\n{self.show_small()}")
                             return True
                         else:
-                            # ToDo: Change these to non-terminating actions, like return False, this is too destructive.
+                            # ToDo[10]: Change these to non-terminating actions, like return False, this is too destructive.
                             # raise UserWarning(f"Trying to set() value: {value}, all ready in Box: {self.m}")
                             return False
                     else:
@@ -137,7 +137,7 @@ class SdkBase(object):
         else:
             # raise UserWarning(f"Trying to set() value: {value} @ k,l = {k, l}. One of them is not an integer")
             return False
-        # ToDo: insert validate() here, but remove it before production, for better performance.
+        # ToDo[20]: insert validate() here, but remove it before production, for better performance.
 
     def load_str(self, str_in):
         """ Read a string of 81 digits, and fill the SuDoKu """
